@@ -119,7 +119,47 @@
       <div class="respuesta" id="r1d">❌ Incorrecto. Eso fue ayer, literal.</div>
     </div>
 
-    <!-- Aquí irían más preguntas similares (2, 3, 4...) con la misma estructura -->
+    <div class="pregunta">
+      <p><strong>2. ¿Dónde se consulta hoy el catálogo actualizado de productos?</strong></p>
+      <div class="opciones">
+        <button onclick="verificar(this, false, 'r2a', 2)">a) Google</button>
+        <button onclick="verificar(this, false, 'r2b', 2)">b) En la app del cartero</button>
+        <button onclick="verificar(this, true, 'r2c', 2)">c) En la intranet Conecta</button>
+        <button onclick="verificar(this, false, 'r2d', 2)">d) En la oficina de atención al cliente</button>
+      </div>
+      <div class="respuesta" id="r2a">❌ Incorrecto. Google sabrá mucho, pero no lo específico del catálogo de Correos.</div>
+      <div class="respuesta" id="r2b">❌ Incorrecto. Esa app no tiene esa función (todavía).</div>
+      <div class="respuesta" id="r2c">✅ Correcto. Conecta es donde se actualiza oficialmente todo el catálogo.</div>
+      <div class="respuesta" id="r2d">❌ Incorrecto. Los catálogos actualizados no cuelgan en la pared de la oficina.</div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>3. ¿Cuál de estas NO es una línea de productos de Correos?</strong></p>
+      <div class="opciones">
+        <button onclick="verificar(this, false, 'r3a', 3)">a) Línea económica</button>
+        <button onclick="verificar(this, false, 'r3b', 3)">b) Línea telegráfica</button>
+        <button onclick="verificar(this, true, 'r3c', 3)">c) Línea de snacks para carteros</button>
+        <button onclick="verificar(this, false, 'r3d', 3)">d) Línea básica</button>
+      </div>
+      <div class="respuesta" id="r3a">❌ Incorrecto. Esa sí existe, para los que no quieren gastar en exprés.</div>
+      <div class="respuesta" id="r3b">❌ Incorrecto. Aunque suene a siglo XIX, todavía existe.</div>
+      <div class="respuesta" id="r3c">✅ Correcto. Aún no existe… pero no sería mala idea.</div>
+      <div class="respuesta" id="r3d">❌ Incorrecto. Es una de las principales.</div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>4. ¿Qué valores destacan a Correos frente a la competencia?</strong></p>
+      <div class="opciones">
+        <button onclick="verificar(this, false, 'r4a', 4)">a) Rapidez, misterio y superstición</button>
+        <button onclick="verificar(this, true, 'r4b', 4)">b) Seguridad, fiabilidad, innovación y flexibilidad</button>
+        <button onclick="verificar(this, false, 'r4c', 4)">c) Exclusividad, lujo y champagne</button>
+        <button onclick="verificar(this, false, 'r4d', 4)">d) Ninguna, va sobreviviendo como puede</button>
+      </div>
+      <div class="respuesta" id="r4a">❌ Incorrecto. Aunque suene mágico, no son valores reales de la empresa.</div>
+      <div class="respuesta" id="r4b">✅ Correcto. Son los pilares con los que Correos se distingue.</div>
+      <div class="respuesta" id="r4c">❌ Incorrecto. Correos no es un hotel de lujo.</div>
+      <div class="respuesta" id="r4d">❌ Incorrecto. ¡Tiene sus fortalezas!</div>
+    </div>
 
   </div>
 
