@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesión A - Aula Pablo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .tarjeta {
+      background-color: #fff;
+      border-left: 6px solid #3498db;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .pregunta {
+      background-color: #eef6ff;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+    .opcion {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .opcion.correcta {
+      background-color: #d4edda;
+      border-color: #28a745;
+    }
+    .opcion.incorrecta {
+      background-color: #f8d7da;
+      border-color: #dc3545;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sesión A: Productos y Servicios Postales</h1>
+
+  <div class="tarjeta">
+    <p><strong>Correos</strong> es el operador designado para prestar el Servicio Postal Universal (SPU) en España. Es la empresa líder del mercado postal nacional e internacional, destacándose por su fiabilidad, seguridad e innovación constante.</p>
+
+    <p>Según la Ley 43/2010, se incluyen como servicios postales:</p>
+    <ul>
+      <li>a) Recogida, admisión, clasificación, transporte, distribución y entrega de envíos postales.</li>
+      <li>b) Servicios de giro y otros con naturaleza postal según normativa UE y UPU.</li>
+    </ul>
+
+    <p>Desde 1999, Correos agrupa sus productos en líneas que hoy en día son:</p>
+    <ul>
+      <li>Línea básica</li>
+      <li>Línea urgente</li>
+      <li>Línea de paquetería</li>
+      <li>Línea económica</li>
+      <li>Línea financiera</li>
+      <li>Línea telegráfica</li>
+    </ul>
+
+    <p>Este catálogo evoluciona y está disponible en la intranet <strong>Conecta</strong>.</p>
+  </div>
+
+  <div class="pregunta">
+    <p><strong>¿Cuál de estas líneas no forma parte del catálogo actual de Correos?</strong></p>
+    <div class="opcion" onclick="validar(this, false)">Línea económica</div>
+    <div class="opcion" onclick="validar(this, false)">Línea urgente</div>
+    <div class="opcion" onclick="validar(this, true)">Línea editorial</div>
+    <div class="opcion" onclick="validar(this, false)">Línea telegráfica</div>
+  </div>
+
+  <script>
+    function validar(element, esCorrecta) {
+      const opciones = document.querySelectorAll('.opcion');
+      opciones.forEach(op => {
+        op.classList.remove('correcta', 'incorrecta');
+        op.style.pointerEvents = 'none';
+      });
+      if (esCorrecta) {
+        element.classList.add('correcta');
+      } else {
+        element.classList.add('incorrecta');
+      }
+    }
+  </script>
+
+</body>
+</html>
