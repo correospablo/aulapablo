@@ -12,55 +12,66 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
+      padding: 2rem;
+      color: #333;
     }
+
     h1 {
       font-size: 2.5rem;
-      color: #2c3e50;
+      color: #1a73e8;
+      margin-bottom: 0.5rem;
     }
+
+    h2 {
+      font-weight: normal;
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .icons {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
     p {
       font-size: 1.2rem;
-      color: #34495e;
       max-width: 600px;
+      text-align: center;
+      margin-bottom: 2rem;
     }
-    .emoji {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    .boton {
-      display: inline-block;
-      background-color: #3498db;
-      color: white;
-      padding: 15px 30px;
+
+    button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1.1rem;
+      border: none;
       border-radius: 8px;
-      font-size: 1rem;
+      background-color: #1a73e8;
+      color: white;
       cursor: pointer;
-      margin-top: 30px;
-      text-decoration: none;
       transition: background-color 0.3s;
     }
-    .boton:hover {
-      background-color: #2980b9;
+
+    button:hover {
+      background-color: #155ab6;
     }
   </style>
 </head>
 <body>
-
-  <div class="emoji">📚🚀</div>
+  <div class="icons">📬 📦 📮 🧠 💪 ⏰</div>
   <h1>¡Bienvenido al Aula Pablo!</h1>
+  <h2>Tu centro de entrenamiento postal… sin sobresaltos (literal)</h2>
   <p>
-    Este es tu cuartel general para conquistar la oposición de Correos.  
-    Aquí vas a encontrar lecciones interactivas, tests, resúmenes y alguna que otra sorpresa.
+    Querido Pablo, empezaste este viaje con una sola meta: <strong>aprobar la oposición de Correos</strong>...  
+    y sobrevivir al proceso con tu dignidad y tu paciencia (más o menos) intactas.<br><br>
+    Este no es un curso cualquiera: es TU aula, TU ritmo y TU profe virtual con acento argentino  
+    que no se calla nada y te explica todo.<br><br>
+    Prepárate para aprender, reírte un poco y, sí, también sufrir un pelín… pero con estilo.
   </p>
-  <p>
-    (Sí, todo gratis y hecho con amor 💙)
-  </p>
-  <a class="boton" href="leccion-a1.html">Empezar a estudiar</a>
-
+  <button onclick="location.href='leccion-a1.html'">📚 Empezar la Lección A1</button>
 </body>
 </html>
+
+
 
 
