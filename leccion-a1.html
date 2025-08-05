@@ -1,74 +1,145 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lección A1 - Aula Pablo</title>
+  <title>Lección A1 - Introducción a Correos</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f8f9fa;
+      padding: 2rem;
+      color: #212529;
+    }
+    h1 {
+      color: #d6336c;
+    }
+    .bloque {
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .info {
+      background-color: #e3f2fd;
+      border-left: 6px solid #2196f3;
+    }
+    .explicacion {
+      background-color: #f3e5f5;
+      border-left: 6px solid #9c27b0;
+    }
+    .caso {
+      background-color: #ffecb3;
+      border-left: 6px solid #ff9800;
+    }
+    .test {
+      background-color: #e8f5e9;
+      border-left: 6px solid #4caf50;
+    }
+    .pregunta {
+      margin-bottom: 1rem;
+    }
+    .opciones button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background-color: #ffffff;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .respuesta {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: #d1e7dd;
+      border-left: 4px solid #198754;
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px;">
+<body>
+  <h1>📦 Lección A1 - ¿Qué es Correos y por qué no desapareció como el fax?</h1>
 
-<!-- Artículo informativo -->
-<div style="border-left: 6px solid #2e86c1; background: #ebf5fb; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
-  <h3 style="color: #2e86c1;">📜 El famoso manual del '99</h3>
-  <p>
-    En 1999, Correos publicó el <strong>Manual de productos y procedimientos</strong>, en el que organizó sus servicios en cinco líneas principales: básica, económica, urgente, paquetería y servicios financieros.<br><br>
-    Con el tiempo, este esquema fue evolucionando para adaptarse al mercado. Así surgieron nuevas líneas como la telegráfica o servicios digitales. Hoy el catálogo se actualiza regularmente y está disponible en la intranet <strong>Conecta</strong>, para que el personal siempre esté al día y no mande fruta frente al cliente.
-  </p>
-</div>
+  <div class="bloque info">
+    <p><strong>Correos</strong> es el operador oficial del <strong>Servicio Postal Universal (SPU)</strong> en España. En criollo: el que se encarga de que tus cartas, paquetes, avisos de Hacienda y postales de tu tía lleguen a destino, incluso si el pueblo no tiene ni panadería.</p>
+    <p>¿Y cómo es que sigue vivito y coleando? Porque además de estar en todos lados, tiene fama de fiable y excelente. Y eso, hoy en día, es un montonazo.</p>
+  </div>
 
-<!-- Explicación sarcástica -->
-<div style="border-left: 6px solid #af7ac5; background: #f5eef8; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
-  <h3 style="color: #8e44ad;">🎤 Ahora sí, versión criolla</h3>
-  <p>
-    Correos, como toda empresa seria, no podía seguir improvisando con los envíos. Así que en 1999 se sentaron y dijeron: “che, ordenemos esto”. Armaron un manual para clasificar los productos y servicios en categorías. Porque claro, no es lo mismo mandar una postal que una caja con vino para la suegra.<br><br>
-    ¿Y qué hicieron después? Lo fueron actualizando. Porque si no adaptás los servicios a la era del ecommerce, te pasa el cartero por arriba. Por eso ahora, si trabajás en Correos, tenés que entrar a <strong>Conecta</strong> y no vivir en 1999.
-  </p>
-</div>
-
-<!-- Caso práctico -->
-<div style="border-left: 6px solid #d35400; background: #fae5d3; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
-  <h3 style="color: #ca6f1e;">🎯 Caso práctico “la abuela que manda cosas”</h3>
-  <p>
-    La abuela Teresa quiere mandar una caja de dulces caseros desde Murcia a Barcelona. Va a la oficina de Correos y el trabajador, que leyó Conecta y no vive colgado del Wi-Fi, le ofrece varias opciones: paquetería estándar, urgente o incluso con seguimiento online. <br><br>
-    ¿Por qué puede hacer eso? Porque tiene claro qué línea de productos ofrece Correos y cómo explicárselo a la abuela sin usar jerga de manual. Eso es aplicar el manual del ‘99 con cabeza actual.
-  </p>
-</div>
-
-<!-- Mini test -->
-<div style="margin-top: 40px; background: #f4f6f7; padding: 20px; border-left: 6px solid #117a65; border-radius: 8px;">
-  <h4 style="color: #117a65;">📝 Mini test de repaso – Manual de Productos</h4>
-
-  <!-- Pregunta 1 -->
-  <div style="margin-bottom: 25px;">
-    <p><strong>1. ¿En qué año se publicó el manual de productos de Correos?</strong></p>
-    <ul style="list-style-type: none; padding-left: 0;">
-      <li>🔘 En 2005</li>
-      <li>🔘 En 2010</li>
-      <li>🔘 En 1999</li>
-      <li>🔘 En 2020</li>
+  <div class="bloque explicacion">
+    <p>La base legal de todo esto está en la <strong>Ley 43/2010</strong>, artículo 1.3. Ahí se menciona que forman parte del servicio postal universal:</p>
+    <ul>
+      <li>a) Servicios de recogida, admisión, clasificación, transporte, distribución y entrega de envíos postales. <em>(sin la "y" repetida)</em></li>
+      <li>b) Servicios de giro: o sea, mover plata de un lado a otro entre personas, usando la red postal.</li>
     </ul>
-    <div style="background: #eafaf1; padding: 10px; border-left: 4px solid #27ae60; border-radius: 4px; margin-top: 10px;">
-      ✅ <strong>Respuesta correcta:</strong> En 1999<br>
-      🧠 <strong>Explicación:</strong> Ese año Correos organizó formalmente sus productos en cinco líneas principales.
+    <p>También incluye cualquier otro servicio que "huela" a postal, si la Unión Europea o la Unión Postal Universal lo aprueban.</p>
+  </div>
+
+  <div class="bloque info">
+    <p><strong>¿Cómo se diferencia Correos del resto?</strong> Apuesta por <em>fiabilidad, seguridad, flexibilidad comercial e innovación continua</em>. No es poca cosa.</p>
+  </div>
+
+  <div class="bloque explicacion">
+    <p>En 1999 se publicó el famoso <strong>Manual de productos y procedimientos</strong>, clasificando sus servicios en cinco líneas: básica, económica, urgente, paquetería y servicios financieros. Más tarde, se sumó la línea telegráfica (sí, todavía existe). Y todo eso se actualiza hoy en la intranet <strong>Conecta</strong>, para que los empleados estén al día.</p>
+  </div>
+
+  <div class="bloque caso">
+    <p><strong>Caso práctico: "la abuela que manda cosas"</strong><br>
+    Teresa quiere mandar dulces desde Murcia a Barcelona. En la oficina de Correos, el trabajador que leyó <em>Conecta</em> y no vive en 1999, le ofrece varias opciones: paquetería estándar, urgente o con seguimiento.<br>
+    Porque para eso sirve el manual: para aplicar el conocimiento con cabeza actual.</p>
+  </div>
+
+  <div class="bloque test">
+    <h2>🧠 Mini test de repaso</h2>
+
+    <div class="pregunta">
+      <p><strong>1. ¿En qué año se publicó el manual de productos de Correos?</strong></p>
+      <div class="opciones">
+        <button onclick="mostrar('r1')">a) 2005</button>
+        <button onclick="mostrar('r1')">b) 2010</button>
+        <button onclick="mostrar('r1')">c) 1999 ✅</button>
+        <button onclick="mostrar('r1')">d) 2020</button>
+      </div>
+      <div class="respuesta" id="r1">✅ Correcto: fue en 1999. Correos organizó sus productos oficialmente en cinco líneas.</div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>2. ¿Dónde se consulta hoy el catálogo actualizado de productos?</strong></p>
+      <div class="opciones">
+        <button onclick="mostrar('r2')">a) Google</button>
+        <button onclick="mostrar('r2')">b) En la app del cartero</button>
+        <button onclick="mostrar('r2')">c) En la intranet Conecta ✅</button>
+        <button onclick="mostrar('r2')">d) En la oficina de atención al cliente</button>
+      </div>
+      <div class="respuesta" id="r2">✅ Correcto: se actualiza en Conecta, donde todo el personal accede a la info oficial.</div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>3. ¿Cuál de estas NO es una línea de productos de Correos?</strong></p>
+      <div class="opciones">
+        <button onclick="mostrar('r3')">a) Línea económica</button>
+        <button onclick="mostrar('r3')">b) Línea telegráfica</button>
+        <button onclick="mostrar('r3')">c) Línea de snacks para carteros 🚫</button>
+        <button onclick="mostrar('r3')">d) Línea básica</button>
+      </div>
+      <div class="respuesta" id="r3">✅ Correcto: aún no existe la línea de snacks para carteros... aunque no sería mala idea.</div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>4. ¿Qué valores destacan a Correos frente a la competencia?</strong></p>
+      <div class="opciones">
+        <button onclick="mostrar('r4')">a) Rapidez, misterio y superstición</button>
+        <button onclick="mostrar('r4')">b) Seguridad, fiabilidad, innovación y flexibilidad ✅</button>
+        <button onclick="mostrar('r4')">c) Exclusividad, lujo y champagne</button>
+        <button onclick="mostrar('r4')">d) Ninguna, va sobreviviendo como puede</button>
+      </div>
+      <div class="respuesta" id="r4">✅ Correcto: Correos se apoya en esos cuatro pilares clave.</div>
     </div>
   </div>
 
-  <!-- Pregunta 2 -->
-  <div style="margin-bottom: 25px;">
-    <p><strong>2. ¿Dónde se consulta hoy el catálogo actualizado de productos?</strong></p>
-    <ul style="list-style-type: none; padding-left: 0;">
-      <li>🔘 En Google</li>
-      <li>🔘 En la app del cartero</li>
-      <li>🔘 En la intranet Conecta</li>
-      <li>🔘 En la oficina de atención al cliente</li>
-    </ul>
-    <div style="background: #eafaf1; padding: 10px; border-left: 4px solid #27ae60; border-radius: 4px; margin-top: 10px;">
-      ✅ <strong>Respuesta correcta:</strong> En la intranet Conecta<br>
-      🧠 <strong>Explicación:</strong> Allí se actualiza constantemente el catálogo de servicios y productos.
-    </div>
-  </div>
-</div>
+  <script>
+    function mostrar(id) {
+      document.getElementById(id).style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
