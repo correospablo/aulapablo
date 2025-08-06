@@ -64,18 +64,26 @@
       border-left: 4px solid #6c757d;
       background-color: #f1f3f5;
     }
-    .boton-siguiente {
-      display: block;
-      margin-top: 2rem;
-      padding: 0.75rem 1.5rem;
-      background-color: #4caf50;
+    .next-lesson-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 40px;
+    }
+    .next-lesson-button {
+      background-color: #4CAF50;
       color: white;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
       border-radius: 8px;
-      width: fit-content;
-      float: right;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    .next-lesson-button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
@@ -166,7 +174,9 @@
 
   </div>
 
-  <a href="leccion-a4.html" class="boton-siguiente">➡️ Siguiente lección</a>
+  <div class="next-lesson-container">
+    <a href="leccion-a4.html" class="next-lesson-button">👉 Siguiente lección</a>
+  </div>
 
   <script>
     function verificar(boton, esCorrecta, idRespuesta) {
@@ -180,8 +190,5 @@
       document.getElementById(idRespuesta).style.display = 'block';
     }
   </script>
-</body>
-</html>
-
 </body>
 </html>
