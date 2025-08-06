@@ -76,16 +76,29 @@
     th {
       background-color: #dee2e6;
     }
-    .siguiente {
-      margin-top: 2rem;
-      text-align: right;
+
+    .next-lesson-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 40px;
     }
-    .siguiente a {
-      background-color: #0d6efd;
+
+    .next-lesson-button {
+      background-color: #4CAF50;
       color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
       text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .next-lesson-button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
@@ -180,8 +193,8 @@
     </div>
   </div>
 
-  <div class="siguiente">
-    <a href="leccion-a3.html">Siguiente lección →</a>
+  <div class="next-lesson-container">
+    <a class="next-lesson-button" href="leccion-a3.html">👉 Siguiente lección</a>
   </div>
 
   <script>
@@ -198,4 +211,6 @@
     }
   </script>
 </body>
+</html>
+
 </html>
