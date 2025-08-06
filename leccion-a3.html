@@ -35,65 +35,153 @@
       background-color: #e8f5e9;
       border-left: 6px solid #4caf50;
     }
-    .siguiente {
+    .pregunta {
+      margin-bottom: 1.5rem;
+    }
+    .opciones button {
       display: block;
-      margin: 2rem auto;
-      padding: 1rem 2rem;
-      background-color: #d6336c;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background-color: #ffffff;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
       cursor: pointer;
+      text-align: left;
+      transition: background-color 0.3s ease;
+    }
+    .opciones button.correcta {
+      background-color: #d1e7dd;
+      border-left: 4px solid #198754;
+    }
+    .opciones button.incorrecta {
+      background-color: #f8d7da;
+      border-left: 4px solid #dc3545;
+    }
+    .respuesta {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-left: 4px solid #6c757d;
+      background-color: #f1f3f5;
+    }
+    .boton-siguiente {
+      display: block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #4caf50;
+      color: white;
       text-align: center;
       text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      width: fit-content;
+      float: right;
     }
   </style>
 </head>
 <body>
-  <h1>✉️ Lección A3 - La carta ordinaria: ese clásico que resiste</h1>
+  <h1>✉️ Lección A3 - Carta Ordinaria: la vieja confiable</h1>
 
   <div class="bloque info">
-    <p>La carta ordinaria sigue viva, y con razón. Es un envío cerrado con contenido no visible ni declarado, y es considerada como tal cualquier comunicación escrita con carácter actual y personal. Facturas, estados financieros y documentos de negocio también entran en esta categoría.</p>
+    <p>Correos no solo manda paquetes, también cartas. Y no hablamos de palomas mensajeras, sino de <strong>Cartas Ordinarias</strong>. ¿Qué es eso? Es cualquier envío cerrado, con contenido no visible ni indicado, que contenga una comunicación actual y personal en soporte físico.</p>
+    <p>También entran en esta categoría recibos, facturas y otros documentos de negocio con mensajes no idénticos (o sea, que no son un panfleto fotocopiado para todo el barrio).</p>
   </div>
 
   <div class="bloque explicacion">
-    <p>Correos debe ofrecer este servicio dentro del SPU (Servicio Postal Universal) hasta 2 kg, garantizando fiabilidad y confidencialidad. Se entrega en el domicilio del destinatario y tiene distintas opciones según destino, peso y dimensiones.</p>
+    <p><strong>Ámbitos:</strong></p>
     <ul>
-      <li><strong>Ámbito nacional:</strong> España y Andorra.</li>
-      <li><strong>Ámbito internacional:</strong>
+      <li><strong>Nacional:</strong> España + Andorra.</li>
+      <li><strong>Internacional:</strong>
         <ul>
-          <li>Zona 1: Europa (incluye Groenlandia, excluye Albania, Armenia, etc.).</li>
-          <li>Zona 2: Resto de países.</li>
-          <li>Zona 3: EE.UU., Canadá, Japón, Rusia, Australia, Nueva Zelanda.</li>
+          <li><strong>Zona 1:</strong> Europa + Groenlandia (menos Rusia, Malta y compañía).</li>
+          <li><strong>Zona 2:</strong> resto del mundo.</li>
+          <li><strong>Zona 3:</strong> EE.UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda.</li>
         </ul>
       </li>
-      <li><strong>Dimensiones:</strong>
-        <ul>
-          <li>Máxima: sobre/caja: L + A + A = 90 cm (máx. 60 cm una dimensión).</li>
-          <li>Mínima: sobre/caja: 14 x 9 cm. Rollo: L + 2D = 17 cm (mín. 10 cm mayor dimensión).</li>
-        </ul>
-      </li>
-      <li><strong>Peso:</strong> hasta 2 kg.</li>
     </ul>
-    <p>Si no se cumplen las medidas mínimas, hay que anexar una etiqueta de 10x7 cm con datos visibles.</p>
-    <p>¿Enviás algo a Ceuta, Melilla o Canarias? ¿O al extranjero? Ahí puede que te pidan el famoso <strong>CN22 o CN23</strong>, especialmente si el valor supera los 300 DEG (unidad del FMI).</p>
-  </div>
-
-  <div class="bloque caso">
-    <p><strong>Caso práctico:</strong> Clara quiere enviar una postal a una amiga en París. El sobre pesa 80 g y mide 15 x 10 cm. Al ser menor de 100 g y dentro de Europa, se clasifica en el tramo correspondiente y se le aplica tarifa internacional Zona 1. Fácil y directo.</p>
+    <p><strong>Embalaje:</strong> caja, tubo o sobre (no azul clarito ni plástico transparente). Nada de publicidades. Y si es mini, tiene que llevar etiqueta de 10 x 7 cm.</p>
+    <p><strong>Peso:</strong> hasta 2 kg. <strong>Dimensiones máximas:</strong> 90 cm (L+A+A). <strong>Mínimas:</strong> 14x9 cm o L+2D = 17 cm para tubos. Si es más chico, ¡etiqueta obligatoria!</p>
+    <p><strong>Franqueo:</strong> en metálico, con sello, tarjeta, prepago, franqueo en oficina o hasta PayPal (en cartas digitales). Pero <u>nada de cheques</u>.</p>
+    <p><strong>Impresos CN22/CN23:</strong> obligatorios en casos como:</p>
+    <ul>
+      <li>Cartas internacionales fuera de la UE.</li>
+      <li>Desde Canarias, Ceuta o Melilla a cualquier parte.</li>
+      <li>Cartas nacionales sin documentos desde Península a Ceuta/Melilla/Canarias.</li>
+    </ul>
+    <p><strong>Entrega:</strong> a domicilio. Los plazos van desde 1 día (local) hasta 5 días hábiles (nacional). En Europa, 2 a 4 días. El resto del mundo... depende.</p>
+    <p><strong>Valores añadidos:</strong> reexpedición, devolución, recogida a domicilio y trazabilidad (con contrato).</p>
+    <p><strong>Ejemplo:</strong> Pablo quiere enviar una carta desde Murcia a Buenos Aires. Como va fuera de la UE, debe rellenar el CN22. Usa un sobre normalizado de 20g, lo franquea con tarjeta, y Correos se encarga de que cruce el charco (con paciencia).</p>
   </div>
 
   <div class="bloque test">
     <h2>🧠 Mini test de repaso</h2>
-    <ul>
-      <li>¿Cuál es el peso máximo de una carta ordinaria? ¿2 kg, 20 kg o 500 g?</li>
-      <li>¿Qué país se incluye en el ámbito nacional además de España?</li>
-      <li>¿Qué debe llevar un sobre que mide menos de 14 x 9 cm?</li>
-      <li>¿Qué documento se necesita para envíos a países fuera de la UE desde Península?</li>
-    </ul>
+
+    <div class="pregunta">
+      <p><strong>1. ¿Cuál es el peso máximo de una carta ordinaria?</strong></p>
+      <div class="opciones">
+        <button onclick="verificar(this, false, 'r1a')">a) 1 kg</button>
+        <button onclick="verificar(this, true, 'r1b')">b) 2 kg</button>
+        <button onclick="verificar(this, false, 'r1c')">c) 5 kg</button>
+      </div>
+      <div class="respuesta" id="r1a">❌ Incorrecto. Ese es el límite de otros productos, no de la carta ordinaria.</div>
+      <div class="respuesta" id="r1b">✅ Correcto. La carta ordinaria puede pesar hasta 2 kg.</div>
+      <div class="respuesta" id="r1c">❌ Incorrecto. Si pesa 5 kg ya no es "carta", es mudanza.</div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>2. ¿Qué zona incluye a Japón?</strong></p>
+      <div class="opciones">
+        <button onclick="verificar(this, false, 'r2a')">a) Zona 1</button>
+        <button onclick="verificar(this, false, 'r2b')">b) Zona 2</button>
+        <button onclick="verificar(this, true, 'r2c')">c) Zona 3</button>
+      </div>
+      <div class="respuesta" id="r2a">❌ Incorrecto. Zona 1 es Europa.</div>
+      <div class="respuesta" id="r2b">❌ Incorrecto. Zona 2 cubre el resto del mundo, pero Japón está en zona 3.</div>
+      <div class="respuesta" id="r2c">✅ Correcto. Japón está en la zona 3.</div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>3. ¿Qué etiqueta debe acompañar a una carta pequeña?</strong></p>
+      <div class="opciones">
+        <button onclick="verificar(this, true, 'r3a')">a) Etiqueta de 10 x 7 cm</button>
+        <button onclick="verificar(this, false, 'r3b')">b) Etiqueta amarilla de aduanas</button>
+        <button onclick="verificar(this, false, 'r3c')">c) No necesita etiqueta</button>
+      </div>
+      <div class="respuesta" id="r3a">✅ Correcto. Si es más chica que el mínimo, debe llevar esa etiqueta auxiliar.</div>
+      <div class="respuesta" id="r3b">❌ Incorrecto. Esa es para temas de aduanas.</div>
+      <div class="respuesta" id="r3c">❌ Incorrecto. Correos exige la etiqueta si no cumple con las medidas mínimas.</div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>4. ¿Cuál de estas formas de pago ya no se acepta?</strong></p>
+      <div class="opciones">
+        <button onclick="verificar(this, true, 'r4a')">a) Cheque</button>
+        <button onclick="verificar(this, false, 'r4b')">b) Tarjeta</button>
+        <button onclick="verificar(this, false, 'r4c')">c) Paypal</button>
+      </div>
+      <div class="respuesta" id="r4a">✅ Correcto. Aunque sigue figurando, el cheque ya no se admite.</div>
+      <div class="respuesta" id="r4b">❌ Incorrecto. Las tarjetas son perfectamente válidas.</div>
+      <div class="respuesta" id="r4c">❌ Incorrecto. PayPal está disponible para cartas digitales.</div>
+    </div>
+
   </div>
 
-  <a class="siguiente" href="leccion-a4.html">👉 Siguiente lección</a>
+  <a href="leccion-a4.html" class="boton-siguiente">➡️ Siguiente lección</a>
+
+  <script>
+    function verificar(boton, esCorrecta, idRespuesta) {
+      const botones = boton.parentElement.querySelectorAll('button');
+      botones.forEach(btn => btn.classList.remove('correcta', 'incorrecta'));
+      boton.classList.add(esCorrecta ? 'correcta' : 'incorrecta');
+
+      const respuestas = boton.parentElement.parentElement.querySelectorAll('.respuesta');
+      respuestas.forEach(r => r.style.display = 'none');
+
+      document.getElementById(idRespuesta).style.display = 'block';
+    }
+  </script>
+</body>
+</html>
+
 </body>
 </html>
