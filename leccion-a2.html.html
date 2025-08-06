@@ -62,73 +62,126 @@
       background-color: #d1e7dd;
       border-left: 4px solid #198754;
     }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background-color: #dee2e6;
+    }
+    .siguiente {
+      margin-top: 2rem;
+      text-align: right;
+    }
+    .siguiente a {
+      background-color: #0d6efd;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <h1>🛋️ Lección A2 - Los pesos y medidas de los productos postales</h1>
+  <h1>📏 Lección A2 - Los pesos y medidas de los productos postales</h1>
 
   <div class="bloque info">
-    <p>Este es uno de esos temas donde el Excel te persigue hasta en tus sueños. Pero no te asustes: no hace falta memorizar cada centímetro. Sólo tenés que entender cómo están organizados los límites de <strong>peso</strong> y <strong>tamaño</strong> de los productos de Correos. </p>
+    <p>Este tema parece de Excel, pero es más sencillo de lo que suena. Correos pone límites de <strong>peso</strong> y <strong>dimensiones</strong> para cada tipo de envío, y vos tenés que saber cuáles son.</p>
   </div>
 
   <div class="bloque explicacion">
-    <p>Los productos tienen condiciones de:</p>
+    <h3>📐 Dimensiones permitidas</h3>
+    <p><strong>Forma Caja (sobre o paquete rectangular)</strong></p>
     <ul>
-      <li><strong>Peso máximo</strong> (en kilos o gramos), dependiendo si el envío es nacional o internacional.</li>
-      <li><strong>Dimensiones</strong> máximas y mínimas: largo + ancho + alto o largo + 2 veces el diámetro (si es un rollo o tubo).</li>
+      <li>📦 Mínimas: 14 x 9 cm</li>
+      <li>📦 Máximas: Largo + Ancho + Alto = 90 cm (ningún lado mayor de 60 cm)</li>
     </ul>
-    <p>Algunos productos como "Carta urgente", "Paq Ligero" o "Paq Estándar" tienen medidas específicas. Otros, como "Libros" o "Cecogramas", tienen excepciones. Por ejemplo, la dimensión mínima del tubo o rollo <strong>L + 2D = 17 cm</strong> <strong>(no aplica a Notificación ni a Libros)</strong>.</p>
+
+    <p><strong>Forma Rollo o Tubo</strong></p>
+    <ul>
+      <li>🌀 Mínimo: L + 2D = 17 cm (siendo L ≥ 10 cm)</li>
+      <li>🌀 Máximo: L + 2D = 104 cm (ningún lado mayor de 90 cm)</li>
+      <li>🔕 <em>Excepciones:</em> Libros, Notificaciones y Cecogramas</li>
+    </ul>
+  </div>
+
+  <div class="bloque explicacion">
+    <h3>🏋️ Pesos máximos por producto</h3>
+    <table>
+      <thead>
+        <tr><th>Producto</th><th>Peso máximo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Carta Ordinaria / Certificada</td><td>2 kg</td></tr>
+        <tr><td>Paq Ligero</td><td>2 kg</td></tr>
+        <tr><td>Paq Mochila</td><td>15 kg</td></tr>
+        <tr><td>Paq Today</td><td>10 kg</td></tr>
+        <tr><td>Paq Estándar</td><td>30 kg</td></tr>
+        <tr><td>Paq Premium</td><td>40 kg</td></tr>
+        <tr><td>Paquete Azul</td><td>20 kg</td></tr>
+        <tr><td>Libros / Cecogramas</td><td>5 kg</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="bloque caso">
-    <p><strong>Caso práctico: "la mochila viajera"</strong><br>
-    Pablo quiere mandar una mochila de 12 kg desde Murcia a Valencia. Elige <strong>Paq Mochila</strong>, que acepta hasta 15 kg. Como su mochila entra en el sobre de 14,5 x 10 cm y puede llevar etiqueta, está todo OK.<br>
-    Pero si mide 80 cm de alto... ya se pasó. Tendrá que elegir otro servicio, como el <strong>Paq Estándar</strong>.</p>
+    <p><strong>Caso práctico: "La caja gamer frustrada"</strong><br>
+    Pablo quiere mandar una caja con periféricos gamer a su primo en Barcelona. Pesa 14 kg y mide 40x30x20 cm. Suma total: 90 cm, todo ok. Pero si la caja midiera 70x20x20, suma 110 cm... y ahí ya no le sirve el Paq Mochila. Tiene que usar otro servicio.</p>
   </div>
 
   <div class="bloque test">
     <h2>🧠 Mini test de repaso</h2>
 
     <div class="pregunta">
-      <p><strong>1. ¿Cuál es el peso máximo del Paq Ligero?</strong></p>
+      <p><strong>1. ¿Cuál es la fórmula correcta para medir un rollo postal?</strong></p>
       <div class="opciones">
-        <button onclick="evaluar(this, true, 'El Paq Ligero admite hasta 2 kg, y no se calcula el peso volumétrico.')">a) 2 kg</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. El Paq Ligero no admite más de 2 kg.')">b) 5 kg</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. Estás confundiendo con el Paq Today.')">c) 20 kg</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. Esa fórmula es para paquetes, no rollos.')">a) L + A + H</button>
+        <button onclick="evaluar(this, true, 'Correcto. L (largo) + 2 veces el diámetro (2D).')">b) L + 2D</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. Eso no existe en este contexto.')">c) P + D</button>
       </div>
       <div class="respuesta"></div>
     </div>
 
     <div class="pregunta">
-      <p><strong>2. ¿Qué significa L + 2D en las dimensiones de un tubo?</strong></p>
+      <p><strong>2. ¿Qué producto permite hasta 40 kg?</strong></p>
       <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. Eso sería largo + alto + ancho.')">a) Largo + Alto + Ancho</button>
-        <button onclick="evaluar(this, true, 'Correcto. Es largo + dos veces el diámetro.')">b) Largo + 2 veces el diámetro</button>
-        <button onclick="evaluar(this, false, 'Nope. La fórmula no se refiere al peso, sino al tamaño.')">c) Límite de peso + 2 kg</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. El Paq Estándar llega hasta 30 kg.')">a) Paq Estándar</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. El Paq Today es de 10 kg.')">b) Paq Today</button>
+        <button onclick="evaluar(this, true, 'Correcto. El Paq Premium admite hasta 40 kg.')">c) Paq Premium</button>
       </div>
       <div class="respuesta"></div>
     </div>
 
     <div class="pregunta">
-      <p><strong>3. ¿Qué producto permite un peso máximo de 30 kg?</strong></p>
+      <p><strong>3. ¿Cuál es la medida mínima para un sobre?</strong></p>
       <div class="opciones">
-        <button onclick="evaluar(this, false, 'Ese no llega a tanto.')">a) Paq Today</button>
-        <button onclick="evaluar(this, false, 'Te pasaste. El Paquete Azul es de hasta 20 kg.')">b) Paquete Azul</button>
-        <button onclick="evaluar(this, true, 'Correcto. El Paq Estándar permite hasta 30 kg.')">c) Paq Estándar</button>
+        <button onclick="evaluar(this, false, 'Muy pequeño. Eso no sirve ni para una postal.')">a) 10 x 5 cm</button>
+        <button onclick="evaluar(this, true, 'Correcto. 14 x 9 cm es la medida mínima para envíos tipo sobre.')">b) 14 x 9 cm</button>
+        <button onclick="evaluar(this, false, 'Eso sería demasiado grande para ser mínimo.')">c) 20 x 10 cm</button>
       </div>
       <div class="respuesta"></div>
     </div>
 
     <div class="pregunta">
-      <p><strong>4. ¿Cuál es la dimensión máxima permitida para un tubo si se usa la fórmula L + 2D?</strong></p>
+      <p><strong>4. ¿Qué productos tienen como excepción los límites de dimensiones?</strong></p>
       <div class="opciones">
-        <button onclick="evaluar(this, false, 'Muy corto. Esa medida no es suficiente.')">a) 80 cm</button>
-        <button onclick="evaluar(this, true, 'Correcto. En general, el máximo permitido es 104 cm.')">b) 104 cm</button>
-        <button onclick="evaluar(this, false, 'Te pasaste. Revisá la tabla de medidas.')">c) 120 cm</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. Paq Estándar sigue las normas comunes.')">a) Paq Estándar y Carta Ordinaria</button>
+        <button onclick="evaluar(this, true, 'Correcto. Cecogramas, Libros y Notificaciones tienen excepciones.')">b) Cecogramas, Libros y Notificaciones</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. No aplica.')">c) Paq Premium y Azul</button>
       </div>
       <div class="respuesta"></div>
     </div>
+  </div>
 
+  <div class="siguiente">
+    <a href="leccion-a3.html">Siguiente lección →</a>
   </div>
 
   <script>
@@ -144,6 +197,5 @@
       respuesta.style.display = "block";
     }
   </script>
-
 </body>
 </html>
