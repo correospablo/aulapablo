@@ -10,7 +10,6 @@
       background: #f5f7fa;
       padding: 2rem;
       color: #212529;
-      position: relative;
     }
     h1 {
       color: #d6336c;
@@ -50,16 +49,17 @@
       border-left: 4px solid #198754;
     }
     .boton-siguiente {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #198754;
+      display: block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #4caf50;
       color: white;
-      padding: 12px 24px;
-      border: none;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
       border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
+      width: fit-content;
+      float: right;
     }
   </style>
 </head>
@@ -155,10 +155,9 @@
       </div>
       <div class="respuesta"></div>
     </div>
-
   </div>
 
-  <button class="boton-siguiente" onclick="location.href='leccion-a5.html'">👉 Siguiente</button>
+  <a href="leccion-a5.html" class="boton-siguiente">➡️ Siguiente lección</a>
 
   <script>
     function evaluar(btn, esCorrecta, mensaje) {
