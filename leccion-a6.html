@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lección A6 - Cartas Certificadas Premium y Urgentes</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f7fa;
+      padding: 2rem;
+      color: #212529;
+    }
+    h1 {
+      color: #d6336c;
+    }
+    .bloque {
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .info { background-color: #e3f2fd; border-left: 6px solid #2196f3; }
+    .explicacion { background-color: #f3e5f5; border-left: 6px solid #9c27b0; }
+    .caso { background-color: #ffecb3; border-left: 6px solid #ff9800; }
+    .test { background-color: #e8f5e9; border-left: 6px solid #4caf50; }
+    .pregunta { margin-bottom: 1rem; }
+    .opciones button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background-color: #ffffff;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .opciones button.correcta {
+      background-color: #d1e7dd;
+      border-color: #198754;
+    }
+    .opciones button.incorrecta {
+      background-color: #f8d7da;
+      border-color: #dc3545;
+    }
+    .respuesta {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: #d1e7dd;
+      border-left: 4px solid #198754;
+    }
+    .next-lesson-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 40px;
+      padding-right: 20px;
+    }
+    .next-lesson-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    .next-lesson-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📦 Lección A6 - Cartas Certificadas Premium y Urgentes</h1>
+
+  <div class="bloque info">
+    <p>Entramos en la zona pro del correo: productos certificados y urgentes. En esta lección vamos a conocer dos tipos más: la <strong>Carta Certificada Prepagada Premium</strong> (para quienes les gusta tener todo listo desde casa) y la <strong>Carta Urgente</strong> (para los que viven con prisa o mandan cosas importantes).</p>
+  </div>
+
+  <div class="bloque explicacion">
+    <h2>✉️ Carta Certificada Prepagada Premium</h2>
+    <p>Es una carta certificada con tarifa plana que ya viene prepagada. O sea, vas, la comprás, te la llevás a casa, preparás el envío con calma, y cuando quieras, volvés a la oficina y la mandás.</p>
+    <ul>
+      <li>📦 Hasta 100 g.</li>
+      <li>📐 Tamaño: 189 x 250 mm.</li>
+      <li>🔖 Código de barras preimpreso: VD.</li>
+      <li>🛡️ Seguro incluido de 100 € (no ampliable).</li>
+      <li>📨 PEE 5 incluido (podés ampliarlo a PEE 10 o 15).</li>
+      <li>🛒 Se compra por "Venta de productos" en IRIS.</li>
+      <li>📄 Solo puede contener documentos si el destino tiene distinto régimen fiscal.</li>
+    </ul>
+  </div>
+
+  <div class="bloque explicacion">
+    <h2>🚀 Carta Urgente</h2>
+    <p>Un clásico para cuando necesitás que algo llegue <em>ya</em>. Es un producto nacional (España y Andorra), con seguimiento incluido, que puede usarse sin contrato.</p>
+    <ul>
+      <li>📍 Ámbito: nacional.</li>
+      <li>📦 Admite documentos y mercancías.</li>
+      <li>⚖️ Peso: hasta 500 g.</li>
+      <li>📏 Dimensiones mínimas: 14 x 9 cm. Máximas recomendadas: 23,5 x 12 cm, 10 mm de grosor.</li>
+      <li>📍 Identificable por etiqueta roja con la leyenda “carta urgente”.</li>
+      <li>💡 Incluye trazabilidad informatizada.</li>
+      <li>📦 No requiere firma, se deposita en el buzón.</li>
+      <li>⏱️ Plazo de entrega: 1 día hábil (si se admite antes de las 16 h en oficinas con turno tarde).</li>
+    </ul>
+  </div>
+
+  <div class="bloque caso">
+    <p><strong>Ejemplo práctico:</strong> Pablo quiere enviarle un documento importante a su hermana Vicky. Como está apurado, opta por una <strong>Carta Urgente</strong>. Compra un sobre, lo acondiciona como corresponde, le pega la etiqueta roja de “Urgente” y lo deja en el buzón de su barrio antes de las 16 h. En menos de 24 h, Vicky lo recibe. Otro día, Juli compra una <strong>Prepagada Premium</strong> en Correos. La prepara tranquila en casa y la envía dos días después con seguro y PEE incluidos. Ideal para enviar papeles de la gestoría a Grachu, sin correr.</p>
+  </div>
+
+  <div class="bloque test">
+    <h2>🧠 Mini test</h2>
+
+    <div class="pregunta">
+      <p><strong>1. ¿Cuál es el peso máximo de una Carta Urgente?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'Incorrecto. 100 g es el límite de la Carta Prepagada Premium.')">a) 100 g</button>
+        <button onclick="evaluar(this, true, 'Correcto. El máximo es 500 g.')">b) 500 g</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. 2 kg es el límite de una carta certificada normal.')">c) 2 kg</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>2. ¿Cuál de las siguientes afirmaciones es verdadera sobre la Prepagada Premium?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'No. Esta carta sí tiene seguimiento.')">a) No incluye seguimiento.</button>
+        <button onclick="evaluar(this, false, 'No. Solo se puede comprar desde IRIS.')">b) Se compra únicamente desde la web de Correos.</button>
+        <button onclick="evaluar(this, true, 'Correcto. Se compra por IRIS, ya viene prepagada y con seguro.')">c) Viene prepagada, se compra por IRIS y tiene seguro incluido.</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>3. ¿Qué característica NO pertenece a la Carta Urgente?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, true, 'Correcto. No requiere firma, va directo al buzón.')">a) Se entrega contra firma.</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. Tiene trazabilidad informatizada.')">b) Tiene seguimiento informatizado.</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. Es de ámbito nacional.')">c) Se utiliza dentro de España.</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+  </div>
+
+  <div class="next-lesson-container">
+    <a href="leccion-a7.html" class="next-lesson-button">👉 Siguiente lección</a>
+  </div>
+
+  <script>
+    function evaluar(btn, esCorrecta, mensaje) {
+      const botones = btn.parentElement.querySelectorAll("button");
+      botones.forEach(b => {
+        b.disabled = true;
+        b.classList.remove("correcta", "incorrecta");
+      });
+      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
+      const respuesta = btn.parentElement.nextElementSibling;
+      respuesta.innerText = mensaje;
+      respuesta.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
