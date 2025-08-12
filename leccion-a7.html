@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lección A7 - Carta Certificada Urgente</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f7fa;
+      padding: 2rem;
+      color: #212529;
+    }
+    h1 {
+      color: #d6336c;
+    }
+    .bloque {
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .info { background-color: #e3f2fd; border-left: 6px solid #2196f3; }
+    .explicacion { background-color: #f3e5f5; border-left: 6px solid #9c27b0; }
+    .caso { background-color: #ffecb3; border-left: 6px solid #ff9800; }
+    .test { background-color: #e8f5e9; border-left: 6px solid #4caf50; }
+    .pregunta { margin-bottom: 1rem; }
+    .opciones button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background-color: #ffffff;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .opciones button.correcta {
+      background-color: #d1e7dd;
+      border-color: #198754;
+    }
+    .opciones button.incorrecta {
+      background-color: #f8d7da;
+      border-color: #dc3545;
+    }
+    .respuesta {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: #d1e7dd;
+      border-left: 4px solid #198754;
+    }
+    .next-lesson-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 40px;
+      padding-right: 20px;
+    }
+    .next-lesson-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    .next-lesson-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 Lección A7 - Carta Certificada Urgente</h1>
+
+  <div class="bloque info">
+    <p>¿Necesitás enviar algo con seguimiento, que llegue rápido y además tenga todas las garantías legales? Entonces lo tuyo es la <strong>Carta Certificada Urgente</strong>. Un producto pensado para quienes no confían ni en las palomas mensajeras ni en el "después te lo paso por WhatsApp".</p>
+  </div>
+
+  <div class="bloque explicacion">
+    <h2>📩 ¿Qué es una Carta Certificada Urgente?</h2>
+    <p>Permite enviar documentos o mercancías con carácter urgente y control total del proceso. Incluye seguimiento con código de barras y entrega bajo firma, y si el destinatario no está, se deja aviso y queda en lista por 15 días.</p>
+    <ul>
+      <li>🗺️ Ámbito: nacional (España y Andorra).</li>
+      <li>📦 Embalaje: sobre, caja, tubo o rollo (con requisitos de integridad y dimensiones).</li>
+      <li>📛 Etiqueta roja con la leyenda "Carta urgente".</li>
+      <li>⚖️ Peso: hasta 2 kg.</li>
+      <li>📏 Dimensiones mínimas y máximas detalladas según tipo de embalaje.</li>
+      <li>💰 Tarifas según tramos de peso (de 20 g a 2 kg).</li>
+      <li>⏱️ Plazo de entrega: entre 1 y 2 días hábiles (según oficina y destino).</li>
+      <li>🧾 Servicios adicionales: aviso de recibo, valor declarado, prueba de entrega electrónica (PEE), trazabilidad, etc.</li>
+      <li>💳 Formas de pago: en oficina o diferido (según si hay contrato).</li>
+      <li>🛡️ Garantías: indemnización por pérdida o daño (según valor declarado o tarifa).</li>
+    </ul>
+  </div>
+
+  <div class="bloque caso">
+    <h3>📌 Ejemplo práctico</h3>
+    <p>Pablo necesita enviar el contrato original de alquiler a la gestoría que está en Madrid. Como quiere que llegue rápido y que quede constancia de la entrega, elige una <strong>Carta Certificada Urgente</strong>. Lo deposita en la oficina antes de las 14:30, y al día siguiente ya lo firma el destinatario. Seguimiento incluido, y si se pierde, Correos responde. Perfecto para trámites legales.</p>
+  </div>
+
+  <div class="bloque test">
+    <h2>🧠 Mini test</h2>
+
+    <div class="pregunta">
+      <p><strong>1. ¿Qué distingue a la Carta Certificada Urgente de una ordinaria?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'Incorrecto. La ordinaria no tiene seguimiento ni urgencia.')">a) Se puede enviar desde casa</button>
+        <button onclick="evaluar(this, true, 'Correcto. Tiene seguimiento, urgencia y entrega bajo firma.')">b) Tiene seguimiento y se entrega bajo firma</button>
+        <button onclick="evaluar(this, false, 'No, esa opción no define una carta urgente.')">c) Está escrita a mano</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>2. ¿Cuál es el peso máximo para este tipo de carta?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'No, ese límite es para otras cartas más simples.')">a) 500 g</button>
+        <button onclick="evaluar(this, false, 'Ese límite corresponde a otro servicio.')">b) 1 kg</button>
+        <button onclick="evaluar(this, true, 'Correcto. El límite es de 2 kg.')">c) 2 kg</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>3. ¿Qué pasa si el destinatario no está en casa?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'No se destruye el envío.')">a) Se destruye el envío</button>
+        <button onclick="evaluar(this, false, 'No se reenvía automáticamente.')">b) Se reenvía a otro domicilio</button>
+        <button onclick="evaluar(this, true, 'Correcto. Se deja aviso modelo M-4 para que lo retire en Correos.')">c) Se deja aviso en el buzón</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+  </div>
+
+  <div class="next-lesson-container">
+    <a href="leccion-a8.html" class="next-lesson-button">👉 Siguiente lección</a>
+  </div>
+
+  <script>
+    function evaluar(btn, esCorrecta, mensaje) {
+      const botones = btn.parentElement.querySelectorAll("button");
+      botones.forEach(b => {
+        b.disabled = true;
+        b.classList.remove("correcta", "incorrecta");
+      });
+      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
+      const respuesta = btn.parentElement.nextElementSibling;
+      respuesta.innerText = mensaje;
+      respuesta.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
