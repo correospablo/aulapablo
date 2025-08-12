@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lección A5 - Tarjeta postal y Carta certificada</title>
+  <title>Lección A5 - Carta Certificada Tarifa Plana</title>
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
@@ -52,10 +52,8 @@
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 999;
+      margin-top: 40px;
+      padding-right: 20px;
     }
     .next-lesson-button {
       background-color: #4CAF50;
@@ -76,48 +74,100 @@
 </head>
 <body>
 
-  <h1>📬 Lección A4 - Tarjeta Postal y Carta Certificada</h1>
+  <h1>📦 Lección A5 - Carta Certificada Tarifa Plana</h1>
 
-  <!-- Contenido de la lección -->
+  <div class="bloque info">
+    <p>¡Y seguimos con más cartas! Porque si pensabas que ya sabías todo sobre las cartas certificadas... <em>¡pum!</em>, Correos te saca de la galera una modalidad más: la <strong>Carta Certificada Tarifa Plana</strong>.</p>
+    <p>¿Te suena a gimnasio low cost? Nada que ver. Esto va de pagar un precio fijo sin importar el peso (siempre dentro de los márgenes permitidos, obvio). Ideal para los que no quieren andar con la balanza de cocina en la oficina postal.</p>
+  </div>
+
   <div class="bloque explicacion">
-    <h2>📩 Carta Certificada Tarifa Plana</h2>
-    <p>Son variantes de las cartas certificadas creadas en 2017, en las que se utiliza un sobre a un precio fijo establecido por Correos. De ámbito nacional (España y Andorra), se trata de un producto de “libre servicio” que, en el momento de la admisión, es dado de alta y el cliente paga la tarifa plana fijada.</p>
-    <p>En el precio fijo del sobre se incluye el servicio con independencia del peso del mismo (dentro del máximo permitido según el producto). No cabe la posibilidad de comprarla para usarla en un momento posterior, a diferencia de lo que ocurre con la carta certificada premium prepagada.</p>
-    <p>En su formalización, el cliente no debe rellenar ningún impreso. Estos productos se admiten en el momento en la oficina, pero no se venden en “Venta de Productos” en IRIS y no llevan código de barras preimpreso.</p>
-    <p><strong>⚠️ Importante:</strong> Si el envío tiene como destino un territorio con diferente régimen fiscal, solo podrá contener documentos.</p>
-    <p><strong>📌 Modelos disponibles:</strong></p>
+    <h2>📬 ¿Qué es la Carta Certificada Tarifa Plana?</h2>
+    <p>Es una variante de la carta certificada que incluye el sobre y la tarifa, todo en uno. Desde 2017, es un producto de <strong>libre servicio</strong> nacional (España y Andorra), que se paga y admite en el momento. No se puede guardar para otro día ni te lo venden en cualquier mostrador: se tramita directamente desde el módulo de admisión (IRIS).</p>
+    <p>No tiene código de barras preimpreso. Y si vas a mandar algo a zonas con distinto régimen fiscal, ojo: <strong>solo documentos</strong>.</p>
+
+    <h3>📌 Modelos disponibles:</h3>
     <ul>
-      <li><strong>1. Carta Certificada Estándar:</strong>
+      <li><strong>Carta Certificada Estándar</strong>
         <ul>
-          <li>Hasta 50 g</li>
-          <li>Sobre de 162 x 229 mm</li>
-          <li>Circula con productos registrados básicos. Código: CD</li>
+          <li>Máximo: 50 g</li>
+          <li>Sobre: 162 x 229 mm</li>
+          <li>Código: CD</li>
+          <li>Va con productos registrados básicos</li>
         </ul>
       </li>
-      <li><strong>2. Carta Certificada Premium:</strong>
+      <li><strong>Carta Certificada Premium</strong>
         <ul>
-          <li>Hasta 100 g</li>
-          <li>Sobre de 189 x 250 mm</li>
-          <li>Incluye PEE 5. Puede ampliarse a PEE 10 o PEE 15</li>
+          <li>Máximo: 100 g</li>
+          <li>Sobre: 189 x 250 mm</li>
+          <li>Código: VD</li>
+          <li>Incluye PEE 5 (ampliable a 10 o 15 años)</li>
           <li>Reembolso opcional</li>
-          <li>Seguro incluido de 100 €, ampliable hasta 3000 €</li>
-          <li>Circula como producto urgente registrado. Código: VD</li>
+          <li>Seguro incluido de 100 € (ampliable a 3000 €)</li>
         </ul>
       </li>
     </ul>
-    <p><strong>🛠️ Procedimiento de admisión:</strong></p>
-    <ul>
-      <li>La oficina da de alta los sobres en el almacén.</li>
-      <li>Se inicia la admisión como una carta certificada común.</li>
-      <li>En la segunda pantalla de IRIS, se debe seleccionar “Sobres Tarifa Plana”.</li>
-      <li>Si está dentro del peso y hay sobres disponibles, aparecerá el campo correspondiente.</li>
-      <li>Se elige el producto: Estándar, Premium o Premium Prepagada.</li>
-      <li>Se completan los datos del remitente y destinatario.</li>
-    </ul>
+
+    <h3>🖥️ Procedimiento:</h3>
+    <ol>
+      <li>La oficina da de alta los sobres en almacén.</li>
+      <li>Se admite como una carta certificada normal.</li>
+      <li>En la segunda pantalla de IRIS aparece “Sobres Tarifa Plana”.</li>
+      <li>Si cumple condiciones, se elige la modalidad (Estándar, Premium o Prepagada).</li>
+      <li>Se rellenan los datos del remitente y destinatario.</li>
+    </ol>
+  </div>
+
+  <div class="bloque caso">
+    <p><strong>Ejemplo práctico:</strong> Julieta quiere mandarle a la suegra Grachu una copia del contrato del alquiler. En lugar de pesar el sobre, decide usar una <strong>Carta Certificada Tarifa Plana Premium</strong>. El trabajador de Correos le pregunta si quiere seguro y PEE, Julieta asiente, y ¡listo! Grachu lo recibe, lo firma, y lo archiva con los recibos del gas del 2008.</p>
+  </div>
+
+  <div class="bloque test">
+    <h2>🧠 Mini test</h2>
+
+    <div class="pregunta">
+      <p><strong>1. ¿Qué incluye la Carta Certificada Tarifa Plana Premium?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, true, 'Correcto. PEE, seguro, reembolso opcional... viene cargadita.')">a) Prueba de Entrega Electrónica y seguro incluido</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. Eso es solo parte del modelo Estándar.')">b) Solo el sobre y el franqueo</button>
+        <button onclick="evaluar(this, false, 'No. La tarifa plana no se paga después.')">c) La opción de pagar después de enviarla</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>2. ¿Dónde se tramita este producto?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'Incorrecto. No se vende en mostrador directamente.')">a) En “Venta de Productos” de IRIS</button>
+        <button onclick="evaluar(this, true, 'Correcto. Se tramita en el módulo de admisión, como una carta certificada normal.')">b) En el módulo de admisión de IRIS</button>
+        <button onclick="evaluar(this, false, 'No se hace a través de la web.')">c) A través de la web de Correos</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>3. ¿Qué pasa si querés mandar algo que no es documento a una zona con régimen fiscal distinto?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'Incorrecto. No está permitido.')">a) Se permite, siempre que esté bien embalado</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. Depende del contenido, no del remitente.')">b) Solo si el remitente es empresa</button>
+        <button onclick="evaluar(this, true, 'Correcto. Solo se permiten documentos.')">c) No se permite, solo se admiten documentos</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>4. ¿Cuál es el peso máximo de una Carta Certificada Estándar?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'Incorrecto. Ese es el límite de la Premium.')">a) 100 g</button>
+        <button onclick="evaluar(this, true, 'Correcto. La Estándar permite hasta 50 g.')">b) 50 g</button>
+        <button onclick="evaluar(this, false, 'Demasiado peso para ambos modelos.')">c) 500 g</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
   </div>
 
   <div class="next-lesson-container">
-    <a href="leccion-a5.html" class="next-lesson-button">👉 Siguiente lección</a>
+    <a href="leccion-a6.html" class="next-lesson-button">👉 Siguiente lección</a>
   </div>
 
   <script>
@@ -136,3 +186,4 @@
 
 </body>
 </html>
+
