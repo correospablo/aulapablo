@@ -10,6 +10,9 @@
       background: #f5f7fa;
       padding: 2rem;
       color: #212529;
+      position: relative;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
     h1 {
       color: #d6336c;
@@ -48,24 +51,33 @@
       background-color: #d1e7dd;
       border-left: 4px solid #198754;
     }
-    .boton-siguiente {
-      display: block;
-      margin-top: 2rem;
-      padding: 0.75rem 1.5rem;
-      background-color: #4caf50;
+    .next-lesson-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 3rem;
+      padding-right: 1rem;
+    }
+    .next-lesson-button {
+      background-color: #4CAF50;
       color: white;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
       border-radius: 8px;
-      width: fit-content;
-      float: right;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    .next-lesson-button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
 
-  <h1>📮 Lección A4 - Tarjeta Postal y Carta Certificada</h1>
+  <h1>📬 Lección A4 - Tarjeta Postal y Carta Certificada</h1>
 
   <div class="bloque info">
     <p>Seguimos con la línea de comunicación postal. En esta lección vamos a ver dos clásicos del correo: la <strong>tarjeta postal</strong> (esa reliquia que mandábamos desde la playa) y la <strong>carta certificada</strong> (cuando necesitás que sí o sí llegue y quede constancia).</p>
@@ -155,9 +167,12 @@
       </div>
       <div class="respuesta"></div>
     </div>
+
   </div>
 
-  <a href="leccion-a5.html" class="boton-siguiente">➡️ Siguiente lección</a>
+  <div class="next-lesson-container">
+    <a href="leccion-a5.html" class="next-lesson-button">👉 Siguiente lección</a>
+  </div>
 
   <script>
     function evaluar(btn, esCorrecta, mensaje) {
