@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lección A8 - Valijas</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f7fa;
+      padding: 2rem;
+      color: #212529;
+    }
+    h1 {
+      color: #d6336c;
+    }
+    .bloque {
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .info { background-color: #e3f2fd; border-left: 6px solid #2196f3; }
+    .explicacion { background-color: #f3e5f5; border-left: 6px solid #9c27b0; }
+    .caso { background-color: #ffecb3; border-left: 6px solid #ff9800; }
+    .test { background-color: #e8f5e9; border-left: 6px solid #4caf50; }
+    .pregunta { margin-bottom: 1rem; }
+    .opciones button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background-color: #ffffff;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .opciones button.correcta {
+      background-color: #d1e7dd;
+      border-color: #198754;
+    }
+    .opciones button.incorrecta {
+      background-color: #f8d7da;
+      border-color: #dc3545;
+    }
+    .respuesta {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: #d1e7dd;
+      border-left: 4px solid #198754;
+    }
+    .next-lesson-fixed {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    .next-lesson-fixed:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📦 Lección A8 - Valijas</h1>
+
+  <div class="bloque info">
+    <p>Hoy entramos en el mundo empresarial. Las <strong>valijas</strong> son un servicio exclusivo de Correos para empresas que necesitan mover documentos o mercancías entre distintas sedes, de forma periódica y con horario acordado. O sea, un sistema de mensajería interna con esteroides.</p>
+  </div>
+
+  <div class="bloque explicacion">
+    <p>Las valijas sólo están disponibles para clientes con contrato. Pueden ser <strong>valijas unitoque</strong> (recogen y entregan al mismo tiempo) o <strong>valijas bitoque</strong> (recogen y entregan en distintos momentos).</p>
+    <p><strong>Características generales:</strong></p>
+    <ul>
+      <li>📍 Ámbito: Nacional (España y Andorra).</li>
+      <li>🤝 Contrato personalizado.</li>
+      <li>📦 Embalaje: bolsas con asas, resistentes, con cierre de cremallera precintable y ventana para etiqueta.</li>
+      <li>⚖️ Peso: hasta 20 kg.</li>
+      <li>📅 Entrega: 1 día hábil, en horario pactado con el cliente.</li>
+    </ul>
+    <p><strong>Precintos por color:</strong> amarillo (central a delegaciones), rojo (delegaciones a central). Correos recomienda tener precintos para 6 meses de uso.</p>
+    <p><strong>Servicios adicionales:</strong> clasificación de documentos, trazabilidad, venta de bolsas, entrega/recogida pactada, etc.</p>
+    <p><strong>Tarifas:</strong> varían por zona (provincial, peninsular, Baleares/Ceuta/Melilla, Península-Canarias) y por peso. Exentas de impuestos indirectos en Canarias, Ceuta y Melilla.</p>
+  </div>
+
+  <div class="bloque caso">
+    <p><strong>Ejemplo práctico:</strong> Enma trabaja en una empresa que tiene sede en Madrid y otra en Sevilla. Todos los lunes y jueves, llega a la oficina una valija con informes, contratos y hasta merchandising. Las valijas llegan puntuales, en bolsas precintadas, con seguimiento, y con precintos de colores para identificar el origen. Enma ya sabe: si ve precinto amarillo, viene de la central; si es rojo, la devolvieron con las firmas.</p>
+  </div>
+
+  <div class="bloque test">
+    <h2>🧠 Mini test</h2>
+
+    <div class="pregunta">
+      <p><strong>1. ¿A quién está dirigido el servicio de valijas?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'Incorrecto. No está disponible para particulares.')">a) Particulares sin contrato</button>
+        <button onclick="evaluar(this, true, 'Correcto. Las valijas están diseñadas para empresas con contrato.')">b) Empresas con contrato</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. No está orientado a clientes internacionales.')">c) Empresas internacionales</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>2. ¿Qué color de precinto se usa para envíos de delegaciones a la central?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'Incorrecto. Ese color es para la central hacia delegaciones.')">a) Amarillo</button>
+        <button onclick="evaluar(this, true, 'Correcto. El rojo es para envíos desde las delegaciones a la central.')">b) Rojo</button>
+        <button onclick="evaluar(this, false, 'No. El verde es para valijas internas de Correos.')">c) Verde</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>3. ¿Cuál es el plazo de entrega habitual de una valija?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, true, 'Correcto. Las valijas se entregan en un día hábil.')">a) 1 día hábil</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. No es un servicio con entrega semanal.')">b) 7 días</button>
+        <button onclick="evaluar(this, false, 'No. Las valijas no se entregan de forma inmediata.')">c) Entrega inmediata</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+  </div>
+
+  <a href="leccion-a9.html" class="next-lesson-fixed">👉 Siguiente lección</a>
+
+  <script>
+    function evaluar(btn, esCorrecta, mensaje) {
+      const botones = btn.parentElement.querySelectorAll("button");
+      botones.forEach(b => {
+        b.disabled = true;
+        b.classList.remove("correcta", "incorrecta");
+      });
+      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
+      const respuesta = btn.parentElement.nextElementSibling;
+      respuesta.innerText = mensaje;
+      respuesta.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
