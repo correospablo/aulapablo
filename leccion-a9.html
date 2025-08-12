@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lección A9 - Cecograma</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f7fa;
+      padding: 2rem;
+      color: #212529;
+    }
+    h1 {
+      color: #d6336c;
+    }
+    .bloque {
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .info { background-color: #e3f2fd; border-left: 6px solid #2196f3; }
+    .explicacion { background-color: #f3e5f5; border-left: 6px solid #9c27b0; }
+    .caso { background-color: #ffecb3; border-left: 6px solid #ff9800; }
+    .test { background-color: #e8f5e9; border-left: 6px solid #4caf50; }
+    .pregunta { margin-bottom: 1rem; }
+    .opciones button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background-color: #ffffff;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .opciones button.correcta {
+      background-color: #d1e7dd;
+      border-color: #198754;
+    }
+    .opciones button.incorrecta {
+      background-color: #f8d7da;
+      border-color: #dc3545;
+    }
+    .respuesta {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: #d1e7dd;
+      border-left: 4px solid #198754;
+    }
+    .next-lesson-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 40px;
+      padding-right: 20px;
+      position: fixed;
+      bottom: 20px;
+      right: 0;
+    }
+    .next-lesson-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    .next-lesson-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📦 Lección A9 - Cecograma</h1>
+
+  <div class="bloque info">
+    <p>Vamos con otro clásico poco conocido pero muy importante: el <strong>cecograma</strong>. Este servicio está pensado para facilitar el acceso a la comunicación a las personas invidentes. Y sí, ¡es gratis!</p>
+  </div>
+
+  <div class="bloque explicacion">
+    <h2>📝 ¿Qué es un cecograma?</h2>
+    <p>Es un envío entre personas ciegas y organizaciones de ciegos, que puede contener:</p>
+    <ul>
+      <li>Cartas cecográficas abiertas</li>
+      <li>Clisés con signos de cecografía</li>
+      <li>Grabaciones sonoras</li>
+      <li>Papel especial para invidentes</li>
+    </ul>
+    <p>El contenido debe estar claramente destinado a personas invidentes, y no hace falta que sea enviado por una organización. Si un particular acredita su condición de invidente con certificado médico, también puede usar este servicio.</p>
+    <p><strong>Características principales:</strong></p>
+    <ul>
+      <li>📍 Ámbito: Nacional (incluye Andorra) e internacional</li>
+      <li>⚖️ Peso: hasta 7 kg</li>
+      <li>📏 Dimensiones:</li>
+      <ul>
+        <li>Mínimas: 14 x 9 cm</li>
+        <li>Máximas: L + A + A = 90 cm (sin que ninguna supere 60 cm)</li>
+        <li>Rollo/tubo: entre 17 cm y 104 cm (L + 2D)</li>
+      </ul>
+      <li>📦 Embalaje: debe proteger el contenido, pero permitir su verificación</li>
+      <li>💰 Tarifa: exento de franqueo (Ley 43/2010, art. 34.3)</li>
+    </ul>
+  </div>
+
+  <div class="bloque caso">
+    <p><strong>Ejemplo práctico:</strong> En Murcia, un amigo de Pablo llamado Diego quiere enviar a su tía invidente que vive en Valencia un libro en braille y una carta escrita con cecografía. Como Diego no pertenece a una organización de ciegos, presenta el certificado médico de su tía. En Correos le dicen que el envío es un cecograma y que no debe pagar nada. ¡Y así nomás, lo manda!</p>
+  </div>
+
+  <div class="bloque test">
+    <h2>🧠 Mini test</h2>
+
+    <div class="pregunta">
+      <p><strong>1. ¿Cuál es el peso máximo permitido para un cecograma?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'Incorrecto. Hasta 2 kg es para cartas certificadas.')">a) 2 kg</button>
+        <button onclick="evaluar(this, true, 'Correcto. El peso máximo para un cecograma es de 7 kg.')">b) 7 kg</button>
+        <button onclick="evaluar(this, false, 'Nope. 10 kg no es un peso permitido para este servicio.')">c) 10 kg</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>2. ¿Qué característica distingue al cecograma en cuanto a tarifa?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, false, 'Incorrecto. No tiene tarifa preferencial, es directamente gratuito.')">a) Tiene tarifa reducida</button>
+        <button onclick="evaluar(this, true, 'Correcto. Está exento de franqueo por ley.')">b) Está exento de franqueo</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. Los sellos no se usan para este servicio.')">c) Debe llevar sellos especiales</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+    <div class="pregunta">
+      <p><strong>3. ¿Puede un particular usar el servicio de cecograma?</strong></p>
+      <div class="opciones">
+        <button onclick="evaluar(this, true, 'Correcto. Si presenta un certificado médico que acredite su condición, puede usarlo.')">a) Sí, si acredita la condición con un certificado médico</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. No hace falta pertenecer a una organización.')">b) Solo si pertenece a una organización de ciegos</button>
+        <button onclick="evaluar(this, false, 'Incorrecto. No es necesario que sea mayor de edad.')">c) Solo mayores de edad con certificado</button>
+      </div>
+      <div class="respuesta"></div>
+    </div>
+
+  </div>
+
+  <div class="next-lesson-container">
+    <a href="leccion-a10.html" class="next-lesson-button">👉 Siguiente lección</a>
+  </div>
+
+  <script>
+    function evaluar(btn, esCorrecta, mensaje) {
+      const botones = btn.parentElement.querySelectorAll("button");
+      botones.forEach(b => {
+        b.disabled = true;
+        b.classList.remove("correcta", "incorrecta");
+      });
+      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
+      const respuesta = btn.parentElement.nextElementSibling;
+      respuesta.innerText = mensaje;
+      respuesta.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
