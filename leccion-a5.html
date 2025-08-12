@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lección A5 - Tarjeta postal y Carta certificada</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f7fa;
+      padding: 2rem;
+      color: #212529;
+    }
+    h1 {
+      color: #d6336c;
+    }
+    .bloque {
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .info { background-color: #e3f2fd; border-left: 6px solid #2196f3; }
+    .explicacion { background-color: #f3e5f5; border-left: 6px solid #9c27b0; }
+    .caso { background-color: #ffecb3; border-left: 6px solid #ff9800; }
+    .test { background-color: #e8f5e9; border-left: 6px solid #4caf50; }
+    .pregunta { margin-bottom: 1rem; }
+    .opciones button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background-color: #ffffff;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .opciones button.correcta {
+      background-color: #d1e7dd;
+      border-color: #198754;
+    }
+    .opciones button.incorrecta {
+      background-color: #f8d7da;
+      border-color: #dc3545;
+    }
+    .respuesta {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: #d1e7dd;
+      border-left: 4px solid #198754;
+    }
+    .next-lesson-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    .next-lesson-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+    .next-lesson-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📬 Lección A4 - Tarjeta Postal y Carta Certificada</h1>
+
+  <!-- Contenido de la lección -->
+  <div class="bloque explicacion">
+    <h2>📩 Carta Certificada Tarifa Plana</h2>
+    <p>Son variantes de las cartas certificadas creadas en 2017, en las que se utiliza un sobre a un precio fijo establecido por Correos. De ámbito nacional (España y Andorra), se trata de un producto de “libre servicio” que, en el momento de la admisión, es dado de alta y el cliente paga la tarifa plana fijada.</p>
+    <p>En el precio fijo del sobre se incluye el servicio con independencia del peso del mismo (dentro del máximo permitido según el producto). No cabe la posibilidad de comprarla para usarla en un momento posterior, a diferencia de lo que ocurre con la carta certificada premium prepagada.</p>
+    <p>En su formalización, el cliente no debe rellenar ningún impreso. Estos productos se admiten en el momento en la oficina, pero no se venden en “Venta de Productos” en IRIS y no llevan código de barras preimpreso.</p>
+    <p><strong>⚠️ Importante:</strong> Si el envío tiene como destino un territorio con diferente régimen fiscal, solo podrá contener documentos.</p>
+    <p><strong>📌 Modelos disponibles:</strong></p>
+    <ul>
+      <li><strong>1. Carta Certificada Estándar:</strong>
+        <ul>
+          <li>Hasta 50 g</li>
+          <li>Sobre de 162 x 229 mm</li>
+          <li>Circula con productos registrados básicos. Código: CD</li>
+        </ul>
+      </li>
+      <li><strong>2. Carta Certificada Premium:</strong>
+        <ul>
+          <li>Hasta 100 g</li>
+          <li>Sobre de 189 x 250 mm</li>
+          <li>Incluye PEE 5. Puede ampliarse a PEE 10 o PEE 15</li>
+          <li>Reembolso opcional</li>
+          <li>Seguro incluido de 100 €, ampliable hasta 3000 €</li>
+          <li>Circula como producto urgente registrado. Código: VD</li>
+        </ul>
+      </li>
+    </ul>
+    <p><strong>🛠️ Procedimiento de admisión:</strong></p>
+    <ul>
+      <li>La oficina da de alta los sobres en el almacén.</li>
+      <li>Se inicia la admisión como una carta certificada común.</li>
+      <li>En la segunda pantalla de IRIS, se debe seleccionar “Sobres Tarifa Plana”.</li>
+      <li>Si está dentro del peso y hay sobres disponibles, aparecerá el campo correspondiente.</li>
+      <li>Se elige el producto: Estándar, Premium o Premium Prepagada.</li>
+      <li>Se completan los datos del remitente y destinatario.</li>
+    </ul>
+  </div>
+
+  <div class="next-lesson-container">
+    <a href="leccion-a5.html" class="next-lesson-button">👉 Siguiente lección</a>
+  </div>
+
+  <script>
+    function evaluar(btn, esCorrecta, mensaje) {
+      const botones = btn.parentElement.querySelectorAll("button");
+      botones.forEach(b => {
+        b.disabled = true;
+        b.classList.remove("correcta", "incorrecta");
+      });
+      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
+      const respuesta = btn.parentElement.nextElementSibling;
+      respuesta.innerText = mensaje;
+      respuesta.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
