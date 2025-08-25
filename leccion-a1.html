@@ -3,55 +3,77 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lección A1 — Introducción a Productos y Servicios Postales</title>
+<title>Lección AINTRODUCCIÓN — Introducción a Productos y Servicios Postales</title>
 <style>
-  /* ======= ESTILOS BASE (INLINE EN ESTE ARCHIVO) ======= */
+  /* ======= ESTILOS BASE (TODO EL CSS VA AQUÍ) ======= */
+  :root{
+    --c-leccion:#60a5fa;           /* azul (lección) */
+    --c-texto:#a78bfa;             /* violeta (texto legal) */
+    --c-explica:#22d3ee;           /* cian (explicación) */
+    --c-ejemplo:#f59e0b;           /* ámbar (ejemplo) */
+    --c-test:#3b82f6;              /* azul intenso (test) */
+    --bg-legal:#f5f3ff;            /* fondo texto legal */
+    --bg-explica:#ecfeff;          /* fondo explicación */
+    --bg-ejemplo:#fffbeb;          /* fondo ejemplo */
+    --bg-test:#eff6ff;             /* fondo test */
+  }
+  *{box-sizing:border-box}
   body { font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif; margin:0; padding:16px; background:#f7f7f7; color:#222; }
-  .contenedor { max-width: 900px; margin: 0 auto; }
+  .contenedor { max-width: 900px; margin: 0 auto; padding-bottom: 120px; }
   .leccion-titulo { font-size: 28px; font-weight: 800; margin: 8px 0 4px; }
   .leccion-sub { font-size: 16px; color:#555; margin-bottom: 24px; }
 
-  .minileccion { background:#fff; border:1px solid #e6e6e6; border-radius:12px; padding:18px; margin:18px 0; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  /* ======= CONTENEDOR MINILECCIÓN (color: lección) ======= */
+  .minileccion { background:#fff; border:1px solid #e6e6e6; border-radius:12px; padding:18px; margin:18px 0; box-shadow: 0 1px 2px rgba(0,0,0,.04); border-left:6px solid var(--c-leccion); }
   .badge { display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px; background:#eef6ff; color:#1453a6; border:1px solid #d7e9ff; margin-bottom:8px; }
   .minititulo { font-size:22px; font-weight:750; margin:6px 0 14px; }
 
-  .bloque { border-left:4px solid #e9e9e9; padding-left:12px; margin:14px 0; }
-  .bloque h4 { margin:0 0 6px; font-size:15px; text-transform:uppercase; letter-spacing:.4px; color:#666; }
-  .bloque pre { white-space:pre-wrap; background:#fafafa; border:1px dashed #e1e1e1; padding:10px; border-radius:8px; margin:6px 0 0; font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:14px; color:#333; }
+  /* ======= BLOQUES COLOREADOS SEGÚN TIPO ======= */
+  .bloque { border-radius:10px; padding:12px; margin:14px 0; border:1px solid #e9e9e9; }
+  .bloque h4 { margin:0 0 8px; font-size:15px; text-transform:uppercase; letter-spacing:.4px; color:#444; }
 
-  .ejemplo { background:#fffbef; border:1px solid #ffe6a6; border-radius:10px; padding:12px; }
+  /* Texto legal */
+  .b-texto{ background:var(--bg-legal); border-color:#ddd; }
+  .b-texto h4{ color:#5b21b6; }
+  blockquote.cita { background:#fff; border-left:4px solid var(--c-texto); padding:10px 12px; border-radius:8px; margin:6px 0 0; color:#333; }
+  blockquote.cita footer { font-size:12px; color:#666; margin-top:6px; }
 
-  .test { margin-top:16px; border-top:1px solid #eee; padding-top:12px; }
-  .pregunta { margin:14px 0; padding:12px; background:#fafafa; border:1px solid #e9e9e9; border-radius:10px; }
+  /* Explicación entendible */
+  .b-explica{ background:var(--bg-explica); border-color:#a5f3fc; }
+  .b-explica h4{ color:#0e7490; }
+
+  /* Ejemplo práctico */
+  .b-ejemplo{ background:var(--bg-ejemplo); border-color:#fde68a; }
+  .b-ejemplo h4{ color:#92400e; }
+  .ejemplo { background:#fff7e6; border:1px solid #ffe6a6; border-radius:10px; padding:12px; }
+
+  /* Test */
+  .test { margin-top:16px; padding:12px; background:var(--bg-test); border:1px solid #bfdbfe; border-radius:12px; }
+  .test .titulo-test{ font-weight:700; color:#1d4ed8; margin:0 0 8px; }
+  .pregunta { margin:14px 0; padding:12px; background:#fff; border:1px solid #e5e7eb; border-radius:10px; }
   .pregunta h5 { margin:0 0 8px; font-size:16px; }
   .opciones { list-style:none; margin:0; padding:0; }
-  .opciones li { margin:6px 0; }
-  .opcion { display:flex; gap:8px; align-items: flex-start; background:#fff; border:1px solid #e6e6e6; border-radius:8px; padding:8px; cursor:pointer; }
+  .opciones li { margin:8px 0; }
+  .opcion { display:flex; gap:8px; align-items: flex-start; background:#fff; border:1px solid #e6e6e6; border-radius:8px; padding:10px; cursor:pointer; }
   .opcion input { margin-top:4px; }
+  .opcion.correcta { background:#ecfdf3; border-color:#bbf7d0; }
+  .opcion.incorrecta { background:#fff1f2; border-color:#fecdd3; }
   .acciones { margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
   .btn { border:0; padding:10px 14px; border-radius:8px; font-weight:600; cursor:pointer; }
   .btn-primario { background:#1453a6; color:#fff; }
   .btn-secundario { background:#ececec; color:#222; }
+  .btn[disabled]{ opacity:.5; cursor:not-allowed; }
   .feedback { margin-top:10px; padding:10px; border-radius:8px; display:none; }
   .ok { background:#ecfdf3; border:1px solid #bbf7d0; color:#065f46; }
   .ko { background:#fff1f2; border:1px solid #fecdd3; color:#9f1239; }
   .explicacion { font-size:14px; color:#444; margin-top:4px; }
+  .opcion input:focus-visible { outline: 2px solid #1453a6; outline-offset: 2px; }
 
   /* ======= BOTÓN SIGUIENTE (ESTÁNDAR, NO CAMBIAR) ======= */
   .boton-siguiente {
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    background: #28a745;
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 18px;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 6px 18px rgba(40,167,69,0.25);
-    transition: transform .05s ease-in-out, box-shadow .15s ease;
-    z-index: 9999;
+    position: fixed; right: 16px; bottom: 16px; background: #28a745; color: #ffffff;
+    border: none; border-radius: 10px; padding: 12px 18px; font-weight: 700; text-decoration: none;
+    box-shadow: 0 6px 18px rgba(40,167,69,0.25); transition: transform .05s ease-in-out, box-shadow .15s ease; z-index: 9999;
   }
   .boton-siguiente:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(40,167,69,0.33); }
   .boton-siguiente:active { transform: translateY(0); }
@@ -59,30 +81,40 @@
 </head>
 <body>
   <div class="contenedor">
-    <div class="leccion-titulo">Lección A1 — Introducción a Productos y Servicios Postales</div>
+    <div class="leccion-titulo">Lección AINTRODUCCIÓN — Introducción a Productos y Servicios Postales</div>
     <div class="leccion-sub">Arrancamos bien: qué se entiende por productos y servicios postales, cómo está organizado el temario y qué se espera que sepas antes de meterte con tarifas y casuística. Sin tecnicismos vacíos: lo que importa para el examen y para no marearte.</div>
 
     <!-- ======= MINILECCIÓN 1 ======= -->
     <section class="minileccion">
-      <span class="badge">MINILECCIÓN</span>
+      <span class="badge">Minilección</span>
       <h3 class="minititulo">1) Qué cubre este bloque del temario</h3>
 
-      <div class="bloque">
+      <div class="bloque b-texto">
         <h4>📘 Texto literal del apartado</h4>
-        <pre>{{Pegar aquí el extracto oficial de tu temario donde se define el ámbito de "Productos y Servicios Postales". Evitar pegar más de 120–150 palabras seguidas: usar la parte exacta que se evalúa.}}</pre>
+        <blockquote class="cita">
+          Correos es el operador encargado de prestar el servicio postal universal (SPU) en España, constituyéndose en la compañía líder en el mercado postal, puesto que ofrece a sus clientes fiabilidad y excelencia en sus servicios, no solo en el territorio nacional, sino también en el ámbito internacional.
+
+La norma reguladora del servicio postal universal es la Ley 43/2010, de 30 de diciembre. En ella, el artículo 1.3 señala lo siguiente: Se regirán por lo dispuesto en esta ley:
+ a) Los servicios de recogida, admisión, clasificación, transporte, distribución y entrega de envíos postales.
+ b) Los servicios de giro mediante los cuales se ordenan pagos a personas físicas o jurídicas por cuenta y encargo de otras, a través de la red postal pública y cualesquiera otros servicios que tengan o pudieran tener naturaleza postal, de acuerdo con la normativa de la Unión Europea y de la Unión Postal Universal.
+
+Para diferenciarse en un mercado competitivo y con ofertas similares, Correos cuenta con los valores añadidos de su fiabilidad, seguridad, flexibilidad comercial e innovación continua aplicada a los servicios.
+          <footer>Fuente: Sesión A — Introducción (p. 4). Base legal: Ley 43/2010, art. 1.3</footer>
+        </blockquote>
       </div>
 
-      <div class="bloque">
+      <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
         <div>Acá hablamos de todo lo que Correos ofrece al público: <strong>productos</strong> (los envíos en sí: cartas, postales, paquetes…) y <strong>servicios</strong> que acompañan o modifican esos envíos (certificado, urgente, reembolso, notificaciones, etc.). La idea es que identifiques <em>qué es qué</em> y no confundas un tipo de envío con un servicio adicional. Parece obvio, pero en test te lo mezclan con maldad.</div>
       </div>
 
-      <div class="bloque">
+      <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
         <div class="ejemplo">Juli quiere mandar una carta a Grachu con seguimiento. La <em>carta</em> es el <strong>producto</strong>. El <strong>servicio</strong> que añade es <em>certificado</em> (para tener prueba de envío y entrega). Si además lo necesita rápido, suma <em>urgente</em>. Producto + servicios = operación completa.</div>
       </div>
 
       <div class="test" data-test-id="a1-1">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
         <div class="pregunta" data-question-id="q1">
           <h5>1) ¿Qué describe mejor a un <em>producto postal</em>?</h5>
           <ul class="opciones">
@@ -92,8 +124,8 @@
             <li><label class="opcion"><input type="radio" name="q1" data-explain="Es un ejemplo de información asociada, no de producto." /><span>El número de seguimiento</span></label></li>
           </ul>
           <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar">Comprobar</button>
-            <button class="btn btn-secundario" data-action="reset">Reiniciar</button>
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
           </div>
           <div class="feedback ok" role="alert" aria-live="polite"></div>
           <div class="feedback ko" role="alert" aria-live="polite"></div>
@@ -108,8 +140,8 @@
             <li><label class="opcion"><input type="radio" name="q2" data-explain="Las tarifas no son la clave para distinguirlos." /><span>Se distinguen por el precio de tarifa</span></label></li>
           </ul>
           <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar">Comprobar</button>
-            <button class="btn btn-secundario" data-action="reset">Reiniciar</button>
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
           </div>
           <div class="feedback ok"></div>
           <div class="feedback ko"></div>
@@ -124,8 +156,8 @@
             <li><label class="opcion"><input type="radio" name="q3" data-explain="Se usa en ambos bloques, no solo en el práctico." /><span>Solo sirve para el ejemplo práctico</span></label></li>
           </ul>
           <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar">Comprobar</button>
-            <button class="btn btn-secundario" data-action="reset">Reiniciar</button>
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
           </div>
           <div class="feedback ok"></div>
           <div class="feedback ko"></div>
@@ -135,25 +167,31 @@
 
     <!-- ======= MINILECCIÓN 2 ======= -->
     <section class="minileccion">
-      <span class="badge">MINILECCIÓN</span>
+      <span class="badge">Minilección</span>
       <h3 class="minititulo">2) Vista general de tipos de envíos</h3>
 
-      <div class="bloque">
+      <div class="bloque b-texto">
         <h4>📘 Texto literal del apartado</h4>
-        <pre>{{Pegar aquí la enumeración/sumario oficial de tipos de envíos del temario: cartas/postales, paquetes, notificaciones, envíos especiales, etc.}}</pre>
+        <blockquote class="cita">
+          Correos publicó en 1999 el <em>Manual de productos y procedimientos</em> en el que se agrupaban cinco líneas de productos (línea básica, económica, urgente, paquetería y línea de servicio postal financiero). Posteriormente, las líneas de productos y servicios aumentaron a seis: <strong>línea básica</strong>, <strong>línea urgente</strong>, <strong>línea de paquetería</strong>, <strong>línea económica</strong>, <strong>línea financiera</strong> y <strong>línea telegráfica</strong>.
+
+A lo largo de los años y en función de las necesidades del mercado de los servicios postales, se han ido incorporando nuevos productos y servicios que responden a lo que demandan los clientes y el mercado (p. ej., paquetería para comercio electrónico, marketing, servicios digitales y correo directo). El catálogo de productos se actualiza dentro de la intranet <strong>Conecta</strong> para disponer de la oferta completa y de información detallada y vigente para el cliente.
+          <footer>Fuente: Sesión A — Introducción (p. 4)</footer>
+        </blockquote>
       </div>
 
-      <div class="bloque">
+      <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
         <div>Antes de meternos con cada producto (Tarjeta Postal, Carta Certificada, Urgente…), te ubico: <strong>cartas y postales</strong> (documentos), <strong>paquetería</strong> (objetos/mercancías), <strong>notificaciones</strong> (cosas con valor legal) y <strong>especiales</strong> (cecogramas, envíos con condiciones particulares). Con esta brújula, después no te perdés.</div>
       </div>
 
-      <div class="bloque">
+      <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
         <div class="ejemplo">Pablo manda un llavero a Telde: eso es <strong>paquete</strong>. Si Juli envía una carta con cita médica: es <strong>carta</strong>. Si Lucía necesita que quede constancia de que su vecino recibió la notificación: hablamos de <strong>servicio certificado</strong> aplicado a la carta o notificación.</div>
       </div>
 
       <div class="test" data-test-id="a1-2">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
         <div class="pregunta" data-question-id="q4">
           <h5>1) ¿Cuál de estos es un envío de <em>documentos</em>?</h5>
           <ul class="opciones">
@@ -163,8 +201,8 @@
             <li><label class="opcion"><input type="radio" name="q4" data-explain="Esto es una condición del envío, no un tipo en sí." /><span>Urgente</span></label></li>
           </ul>
           <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar">Comprobar</button>
-            <button class="btn btn-secundario" data-action="reset">Reiniciar</button>
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
           </div>
           <div class="feedback ok"></div>
           <div class="feedback ko"></div>
@@ -179,8 +217,8 @@
             <li><label class="opcion"><input type="radio" name="q5" data-explain="Confunde servicio con producto." /><span>Son un servicio añadido a un paquete</span></label></li>
           </ul>
           <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar">Comprobar</button>
-            <button class="btn btn-secundario" data-action="reset">Reiniciar</button>
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
           </div>
           <div class="feedback ok"></div>
           <div class="feedback ko"></div>
@@ -195,8 +233,8 @@
             <li><label class="opcion"><input type="radio" name="q6" data-explain="No es un criterio de especialidad." /><span>Se definen solo por el peso</span></label></li>
           </ul>
           <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar">Comprobar</button>
-            <button class="btn btn-secundario" data-action="reset">Reiniciar</button>
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
           </div>
           <div class="feedback ok"></div>
           <div class="feedback ko"></div>
@@ -207,22 +245,33 @@
   </div>
 
   <!-- ======= BOTÓN SIGUIENTE (NO CAMBIAR) ======= -->
-  <a class="boton-siguiente" href="{{URL_DE_LA_SIGUIENTE_LECCIÓN}}">Siguiente ➜</a>
+  <a class="boton-siguiente" href="A2.html">Siguiente ➜</a>
 
 <script>
+/* ======= LÓGICA DEL MINITEST ======= */
 (function() {
-  function comprobar(preguntaEl) {
-    var nombre = preguntaEl.querySelector('input[type="radio"]')?.name;
-    if (!nombre) return;
+  function setEstadosIniciales() {
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn = p.querySelector('button[data-action="comprobar"]');
+      if (btn) btn.disabled = true;
+      p.addEventListener('change', function(e){
+        if (e.target.matches('input[type="radio"]')) btn.disabled = false;
+      });
+    });
+  }
 
+  function comprobar(preguntaEl) {
     var seleccion = preguntaEl.querySelector('input[type="radio"]:checked');
     var okBox = preguntaEl.querySelector('.feedback.ok');
     var koBox = preguntaEl.querySelector('.feedback.ko');
 
-    okBox.style.display = 'none';
-    koBox.style.display = 'none';
-    okBox.textContent = '';
-    koBox.textContent = '';
+    okBox.style.display = 'none'; okBox.textContent = '';
+    koBox.style.display = 'none'; koBox.textContent = '';
+
+    // limpiar resaltados previos
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){
+      o.classList.remove('correcta','incorrecta');
+    });
 
     if (!seleccion) {
       koBox.textContent = 'Elegí una opción antes de comprobar.';
@@ -232,23 +281,25 @@
 
     var esCorrecta = seleccion.hasAttribute('data-correct');
     var explicacion = seleccion.getAttribute('data-explain') || '';
+    var tarjeta = seleccion.closest('.opcion');
 
     if (esCorrecta) {
+      tarjeta.classList.add('correcta');
       okBox.innerHTML = '✅ Respuesta correcta<div class="explicacion">' + (explicacion || '¡Bien!') + '</div>';
       okBox.style.display = 'block';
     } else {
+      tarjeta.classList.add('incorrecta');
       koBox.innerHTML = '❌ Respuesta incorrecta<div class="explicacion">' + (explicacion || 'Revisá el concepto y probá otra vez.') + '</div>';
       koBox.style.display = 'block';
     }
   }
 
   function resetear(preguntaEl) {
-    var radios = preguntaEl.querySelectorAll('input[type="radio"]');
-    radios.forEach(function(r){ r.checked = false; });
-    var okBox = preguntaEl.querySelector('.feedback.ok');
-    var koBox = preguntaEl.querySelector('.feedback.ko');
-    if (okBox) { okBox.style.display = 'none'; okBox.textContent = ''; }
-    if (koBox) { koBox.style.display = 'none'; koBox.textContent = ''; }
+    preguntaEl.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked = false; });
+    preguntaEl.querySelectorAll('.feedback').forEach(function(f){ f.style.display='none'; f.textContent=''; });
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){ o.classList.remove('correcta','incorrecta'); });
+    var btn = preguntaEl.querySelector('button[data-action="comprobar"]');
+    if (btn) btn.disabled = true;
   }
 
   document.addEventListener('click', function(e) {
@@ -256,182 +307,14 @@
     if (!btn) return;
     var pregunta = btn.closest('.pregunta');
     if (!pregunta) return;
-
     var action = btn.getAttribute('data-action');
     if (action === 'comprobar') comprobar(pregunta);
     if (action === 'reset') resetear(pregunta);
   });
+
+  // init
+  setEstadosIniciales();
 })();
 </script>
-</body>
-</html>
-
-      border-left: 6px solid #4caf50;
-    }
-    .pregunta {
-      margin-bottom: 1.5rem;
-    }
-    .opciones button {
-      display: block;
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      background-color: #ffffff;
-      border: 1px solid #ced4da;
-      border-radius: 5px;
-      cursor: pointer;
-      text-align: left;
-      transition: background-color 0.3s ease;
-    }
-    .opciones button.correcta {
-      background-color: #d1e7dd;
-      border-left: 4px solid #198754;
-    }
-    .opciones button.incorrecta {
-      background-color: #f8d7da;
-      border-left: 4px solid #dc3545;
-    }
-    .respuesta {
-      display: none;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      border-left: 4px solid #6c757d;
-      background-color: #f1f3f5;
-    }
-    .registro {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #6c757d;
-    }
-  </style>
-</head>
-<body>
-  <h1>📦 Lección A1 - ¿Qué es Correos y por qué no desapareció como el fax?</h1>
-
-  <div class="bloque info">
-    <p><strong>Correos</strong> es el operador oficial del <strong>Servicio Postal Universal (SPU)</strong> en España. En criollo: el que se encarga de que tus cartas, paquetes, avisos de Hacienda y postales de tu tía lleguen a destino, incluso si el pueblo no tiene ni panadería.</p>
-    <p>¿Y cómo es que sigue vivito y coleando? Porque además de estar en todos lados, tiene fama de fiable y excelente. Y eso, hoy en día, es un montonazo.</p>
-  </div>
-
-  <div class="bloque explicacion">
-    <p>La base legal de todo esto está en la <strong>Ley 43/2010</strong>, artículo 1.3. Ahí se menciona que forman parte del servicio postal universal:</p>
-    <ul>
-      <li>a) Servicios de recogida, admisión, clasificación, transporte, distribución y entrega de envíos postales.</li>
-      <li>b) Servicios de giro: o sea, mover plata de un lado a otro entre personas, usando la red postal.</li>
-    </ul>
-    <p>También incluye cualquier otro servicio que "huela" a postal, si la Unión Europea o la Unión Postal Universal lo aprueban.</p>
-  </div>
-
-  <div class="bloque info">
-    <p><strong>¿Cómo se diferencia Correos del resto?</strong> Apuesta por <em>fiabilidad, seguridad, flexibilidad comercial e innovación continua</em>. No es poca cosa.</p>
-  </div>
-
-  <div class="bloque explicacion">
-    <p>En 1999 se publicó el famoso <strong>Manual de productos y procedimientos</strong>, clasificando sus servicios en cinco líneas: básica, económica, urgente, paquetería y servicios financieros. Más tarde, se sumó la línea telegráfica (sí, todavía existe). Y todo eso se actualiza hoy en la intranet <strong>Conecta</strong>, para que los empleados estén al día.</p>
-  </div>
-
-  <div class="bloque caso">
-    <p><strong>Caso práctico: "la abuela que manda cosas"</strong><br>
-    Teresa quiere mandar dulces desde Murcia a Barcelona. En la oficina de Correos, el trabajador que leyó <em>Conecta</em> y no vive en 1999, le ofrece varias opciones: paquetería estándar, urgente o con seguimiento.<br>
-    Porque para eso sirve el manual: para aplicar el conocimiento con cabeza actual.</p>
-  </div>
-
-  <div class="bloque test">
-    <h2>🧠 Mini test de repaso</h2>
-
-    <div class="pregunta">
-      <p><strong>1. ¿En qué año se publicó el manual de productos de Correos?</strong></p>
-      <div class="opciones">
-        <button onclick="verificar(this, false, 'r1a', 1)">a) 2005</button>
-        <button onclick="verificar(this, false, 'r1b', 1)">b) 2010</button>
-        <button onclick="verificar(this, true, 'r1c', 1)">c) 1999</button>
-        <button onclick="verificar(this, false, 'r1d', 1)">d) 2020</button>
-      </div>
-      <div class="respuesta" id="r1a">❌ Incorrecto. En 2005 todavía te pedían el NIF hasta para mandar un sobre.</div>
-      <div class="respuesta" id="r1b">❌ Incorrecto. Te pasaste una década.</div>
-      <div class="respuesta" id="r1c">✅ Correcto. En 1999 Correos organizó formalmente sus productos en cinco líneas.</div>
-      <div class="respuesta" id="r1d">❌ Incorrecto. Eso fue ayer, literal.</div>
-    </div>
-
-    <div class="pregunta">
-      <p><strong>2. ¿Dónde se consulta hoy el catálogo actualizado de productos?</strong></p>
-      <div class="opciones">
-        <button onclick="verificar(this, false, 'r2a', 2)">a) Google</button>
-        <button onclick="verificar(this, false, 'r2b', 2)">b) En la app del cartero</button>
-        <button onclick="verificar(this, true, 'r2c', 2)">c) En la intranet Conecta</button>
-        <button onclick="verificar(this, false, 'r2d', 2)">d) En la oficina de atención al cliente</button>
-      </div>
-      <div class="respuesta" id="r2a">❌ Incorrecto. Google sabrá mucho, pero no lo específico del catálogo de Correos.</div>
-      <div class="respuesta" id="r2b">❌ Incorrecto. Esa app no tiene esa función (todavía).</div>
-      <div class="respuesta" id="r2c">✅ Correcto. Conecta es donde se actualiza oficialmente todo el catálogo.</div>
-      <div class="respuesta" id="r2d">❌ Incorrecto. Los catálogos actualizados no cuelgan en la pared de la oficina.</div>
-    </div>
-
-    <div class="pregunta">
-      <p><strong>3. ¿Cuál de estas NO es una línea de productos de Correos?</strong></p>
-      <div class="opciones">
-        <button onclick="verificar(this, false, 'r3a', 3)">a) Línea económica</button>
-        <button onclick="verificar(this, false, 'r3b', 3)">b) Línea telegráfica</button>
-        <button onclick="verificar(this, true, 'r3c', 3)">c) Línea de snacks para carteros</button>
-        <button onclick="verificar(this, false, 'r3d', 3)">d) Línea básica</button>
-      </div>
-      <div class="respuesta" id="r3a">❌ Incorrecto. Esa sí existe, para los que no quieren gastar en exprés.</div>
-      <div class="respuesta" id="r3b">❌ Incorrecto. Aunque suene a siglo XIX, todavía existe.</div>
-      <div class="respuesta" id="r3c">✅ Correcto. Aún no existe… pero no sería mala idea.</div>
-      <div class="respuesta" id="r3d">❌ Incorrecto. Es una de las principales.</div>
-    </div>
-
-    <div class="pregunta">
-      <p><strong>4. ¿Qué valores destacan a Correos frente a la competencia?</strong></p>
-      <div class="opciones">
-        <button onclick="verificar(this, false, 'r4a', 4)">a) Rapidez, misterio y superstición</button>
-        <button onclick="verificar(this, true, 'r4b', 4)">b) Seguridad, fiabilidad, innovación y flexibilidad</button>
-        <button onclick="verificar(this, false, 'r4c', 4)">c) Exclusividad, lujo y champagne</button>
-        <button onclick="verificar(this, false, 'r4d', 4)">d) Ninguna, va sobreviviendo como puede</button>
-      </div>
-      <div class="respuesta" id="r4a">❌ Incorrecto. Aunque suene mágico, no son valores reales de la empresa.</div>
-      <div class="respuesta" id="r4b">✅ Correcto. Son los pilares con los que Correos se distingue.</div>
-      <div class="respuesta" id="r4c">❌ Incorrecto. Correos no es un hotel de lujo.</div>
-      <div class="respuesta" id="r4d">❌ Incorrecto. ¡Tiene sus fortalezas!</div>
-    </div>
-
-  </div>
-
-  <div class="registro" id="registro"></div>
-
-  <script>
-    const intentos = {};
-
-    function verificar(boton, esCorrecta, idRespuesta, preguntaNum) {
-      const preguntaId = 'pregunta' + preguntaNum;
-      intentos[preguntaId] = (intentos[preguntaId] || 0) + 1;
-
-      const botones = boton.parentElement.querySelectorAll('button');
-      botones.forEach(btn => {
-        btn.classList.remove('correcta', 'incorrecta');
-      });
-
-      const respuestas = boton.parentElement.parentElement.querySelectorAll('.respuesta');
-      respuestas.forEach(r => r.style.display = 'none');
-
-      boton.classList.add(esCorrecta ? 'correcta' : 'incorrecta');
-      document.getElementById(idRespuesta).style.display = 'block';
-
-      actualizarRegistro();
-    }
-
-    function actualizarRegistro() {
-      let html = '<strong>📊 Intentos realizados:</strong><ul>';
-      for (const [pregunta, cantidad] of Object.entries(intentos)) {
-        html += `<li>${pregunta.replace('pregunta', 'Pregunta ')}: ${cantidad} intento(s)</li>`;
-      }
-      html += '</ul>';
-      document.getElementById('registro').innerHTML = html;
-    }
-  </script>
-   <div style="text-align: right; margin-top: 2rem;">
-    <a href="leccion-a2.html" style="padding: 0.75rem 1.5rem; background-color: #4caf50; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">
-      👉 Siguiente lección
-    </a>
-  </div>
 </body>
 </html>
