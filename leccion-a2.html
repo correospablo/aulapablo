@@ -6,19 +6,19 @@
 <title>Lección A2 — Tablas de pesos y medidas de los productos</title>
 <style>
   :root{
-    --c-leccion:#60a5fa;      /* azul (lección) */
-    --c-texto:#a78bfa;        /* violeta (texto legal) */
-    --c-explica:#22d3ee;      /* cian (explicación) */
-    --c-ejemplo:#f59e0b;      /* ámbar (ejemplo) */
-    --c-test:#3b82f6;         /* azul intenso (test) */
-    --bg-legal:#f5f3ff;       /* fondo texto legal */
-    --bg-explica:#ecfeff;     /* fondo explicación */
-    --bg-ejemplo:#fffbeb;     /* fondo ejemplo */
-    --bg-test:#eff6ff;        /* fondo test */
+    --c-leccion:#60a5fa;           /* azul (lección) */
+    --c-texto:#a78bfa;             /* violeta (texto legal) */
+    --c-explica:#22d3ee;           /* cian (explicación) */
+    --c-ejemplo:#f59e0b;           /* ámbar (ejemplo) */
+    --c-test:#3b82f6;              /* azul intenso (test) */
+    --bg-legal:#f5f3ff;            /* fondo texto legal */
+    --bg-explica:#ecfeff;          /* fondo explicación */
+    --bg-ejemplo:#fffbeb;          /* fondo ejemplo */
+    --bg-test:#eff6ff;             /* fondo test */
   }
   *{box-sizing:border-box}
   body { font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif; margin:0; padding:16px; background:#f7f7f7; color:#222; }
-  .contenedor { max-width: 900px; margin: 0 auto; padding-bottom: 120px; }
+  .contenedor { max-width: 980px; margin: 0 auto; padding-bottom: 120px; }
   .leccion-titulo { font-size: 28px; font-weight: 800; margin: 8px 0 4px; }
   .leccion-sub { font-size: 16px; color:#555; margin-bottom: 24px; }
 
@@ -41,6 +41,13 @@
   .b-ejemplo h4{ color:#92400e; }
   .ejemplo { background:#fff7e6; border:1px solid #ffe6a6; border-radius:10px; padding:12px; }
 
+  .b-tabla{ overflow:auto; border:1px solid #e5e7eb; border-radius:10px; }
+  table{ width:100%; border-collapse:collapse; font-size:14px; }
+  th,td{ border:1px solid #e5e7eb; padding:8px 10px; text-align:left; vertical-align:top; }
+  thead th{ background:#f1f5f9; font-weight:700; }
+  tbody tr:nth-child(odd){ background:#fafafa; }
+  .nota{ font-size:13px; color:#555; margin-top:10px; }
+
   .test { margin-top:16px; padding:12px; background:var(--bg-test); border:1px solid #bfdbfe; border-radius:12px; }
   .test .titulo-test{ font-weight:700; color:#1d4ed8; margin:0 0 8px; }
   .pregunta { margin:14px 0; padding:12px; background:#fff; border:1px solid #e5e7eb; border-radius:10px; }
@@ -62,11 +69,7 @@
   .explicacion { font-size:14px; color:#444; margin-top:4px; }
   .opcion input:focus-visible { outline: 2px solid #1453a6; outline-offset: 2px; }
 
-  .boton-siguiente {
-    position: fixed; right: 16px; bottom: 16px; background: #28a745; color: #ffffff;
-    border: none; border-radius: 10px; padding: 12px 18px; font-weight: 700; text-decoration: none;
-    box-shadow: 0 6px 18px rgba(40,167,69,0.25); transition: transform .05s ease-in-out, box-shadow .15s ease; z-index: 9999;
-  }
+  .boton-siguiente { position: fixed; right: 16px; bottom: 16px; background: #28a745; color: #ffffff; border: none; border-radius: 10px; padding: 12px 18px; font-weight: 700; text-decoration: none; box-shadow: 0 6px 18px rgba(40,167,69,0.25); transition: transform .05s ease-in-out, box-shadow .15s ease; z-index: 9999; }
   .boton-siguiente:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(40,167,69,0.33); }
   .boton-siguiente:active { transform: translateY(0); }
 </style>
@@ -74,122 +77,76 @@
 <body>
   <div class="contenedor">
     <div class="leccion-titulo">Lección A2 — Tablas de pesos y medidas de los productos</div>
-    <div class="leccion-sub">Cómo leer las tablas oficiales sin marearte: qué datos mirar primero, cómo cruzar peso y dimensiones, y cómo evitar caer en el tramo equivocado. Acá no inventamos números: usamos la tabla oficial del producto.</div>
+    <div class="leccion-sub">Guía rápida para no pifiarla con límites de **peso** y **dimensiones** por producto. Incluye actualización aplicada para CCRI (dimensiones de **tarjeta postal**).</div>
 
-    <!-- ======= MINILECCIÓN 1 ======= -->
+    <!-- ======= MINILECCIÓN 1: Pesos máximos ======= -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">1) Qué datos importan y en qué orden</h3>
+      <h3 class="minititulo">1) Pesos máximos por producto (Nacional / Internacional)</h3>
 
       <div class="bloque b-texto">
-        <h4>📘 Texto literal del apartado</h4>
+        <h4>📘 Texto literal clave</h4>
         <blockquote class="cita">
-          {{Pegar aquí el texto literal donde el manual/tema indique los parámetros básicos para ubicar un envío en tabla: peso, dimensiones, formato aplicable y cualquier nota de medición}}
-          <footer>Fuente: Sesión A — A2 (p. {{nº}})</footer>
-        </blockquote>
-      </div>
-
-      <div class="bloque b-explica">
-        <h4>🎤 Ahora en versión entendible</h4>
-        <div>Primero <strong>peso real</strong> (lo que marca la báscula). Después <strong>medidas exteriores</strong> (largo × ancho × alto). Con esos dos datos, ubicás el envío en la <em>tabla oficial</em> del producto. Si el peso entra en un tramo pero las medidas no, <strong>manda el formato</strong>: <em>pasás al formato/categoría que admita esas dimensiones</em>. Todo lo demás (destino, urgencia, certificado) son <em>servicios</em> o condiciones aparte, no cambian la lectura básica de la tabla.</div>
-      </div>
-
-      <div class="bloque b-ejemplo">
-        <h4>🎯 Y cómo sería en la realidad</h4>
-        <div class="ejemplo">Juli lleva un sobre acolchado. Pesa 180 g. Medidas: 24 × 17 × 2,5 cm. En la ventanilla mirás: (1) tramo de <strong>peso</strong> correspondiente; (2) si esas <strong>medidas</strong> caben en el <em>formato</em> de ese producto. Si alguna medida excede lo permitido, cambiás el formato (y por tanto la tabla/tramo) antes de calcular extras como certificado o urgente.</div>
-      </div>
-
-      <div class="test" data-test-id="a2-1">
-        <div class="titulo-test">🧪 Mini test de repaso</div>
-        <div class="pregunta" data-question-id="q1">
-          <h5>1) ¿Qué mínimo necesitás para ubicar un envío en la tabla?</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Con peso y dimensiones ubicás formato y tramo. El resto va después." /><span>Peso real y dimensiones exteriores</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-explain="No define tramo/tabla; puede afectar servicios, no la base." /><span>Destino y urgencia</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-explain="El color del embalaje no figura en ninguna tabla oficial." /><span>Color del embalaje</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-explain="La forma de pago no influye en el tramo." /><span>Forma de pago (tarjeta/efectivo)</span></label></li>
-          </ul>
-          <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
-            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
-          </div>
-          <div class="feedback ok" role="alert" aria-live="polite"></div>
-          <div class="feedback ko" role="alert" aria-live="polite"></div>
-        </div>
-
-        <div class="pregunta" data-question-id="q2">
-          <h5>2) Si el peso encaja en el tramo 1, pero las medidas exceden el formato, ¿qué hacés?</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="No se ajusta a la norma: el formato también debe cumplirse." /><span>Cobro tramo 1 igualmente porque pesa poco</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Debe cumplirse peso y dimensiones a la vez. Si no, se cambia al formato/categoría que admita esas medidas." /><span>Cambio al formato/categoría que admita esas dimensiones</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="No existe la opción “sin formato” en tablas oficiales." /><span>Aplico un envío sin formato</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="Los extras se aplican después de ubicar formato y tramo." /><span>Añado urgente para compensar</span></label></li>
-          </ul>
-          <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
-            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
-          </div>
-          <div class="feedback ok"></div>
-          <div class="feedback ko"></div>
-        </div>
-
-        <div class="pregunta" data-question-id="q3">
-          <h5>3) ¿Dónde consultás la versión vigente de las tablas?</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="Google no garantiza vigencia ni oficialidad interna." /><span>En Google</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="El catálogo actualizado está en la intranet corporativa Conecta." /><span>En Conecta / catálogo interno actualizado</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es fuente de tablas oficiales." /><span>En redes sociales</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="Los catálogos físicos se quedan obsoletos; siempre verifica en Conecta." /><span>Solo en un catálogo impreso antiguo</span></label></li>
-          </ul>
-          <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
-            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
-          </div>
-          <div class="feedback ok"></div>
-          <div class="feedback ko"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= MINILECCIÓN 2 ======= -->
-    <section class="minileccion">
-      <span class="badge">Minilección</span>
-      <h3 class="minititulo">2) Errores típicos al leer la tabla</h3>
-
-      <div class="bloque b-texto">
-        <h4>📘 Texto literal del apartado</h4>
-        <blockquote class="cita">
-          {{Pegar aquí notas oficiales/advertencias si las hubiera en el temario (p. ej., cómo medir, tolerancias, aristas rígidas, etc.). Si no existen notas, dejar este bloque vacío o con la referencia “(no aplica)”.}}
-          <footer>Fuente: Sesión A — A2 (p. {{nº}})</footer>
+          Resumen literal de la tabla oficial de **pesos máximos**:
+          <br>• Carta ordinaria: **2 kg** (nacional).
+          <br>• Carta urgente: **500 g** (nacional).
+          <br>• Carta certificada: **2 kg** (nacional).
+          <br>• Carta certificada urgente: **2 kg** (nacional).
+          <br>• Notificación: **2 kg** (nacional).
+          <br>• Paq Ligero: **2 kg** (nacional; *sin peso volumétrico*).
+          <br>• Paq Light Internacional: **2 kg** (internacional).
+          <br>• Paquete Azul: **20 kg** (nacional) *(peso volumétrico máx. 50 kg).* 
+          <br>• Paq Estándar: **30 kg** (nacional).
+          <br>• Paq Today: **5 kg** (nacional) *(peso volumétrico 8 kg).* 
+          <br>• Paq Premium prepagado: **hasta 350 g / hasta 1 kg** (nacional).
+          <br>• Paq Retorno Internacional: **30 kg** (internacional).
+          <br>• Publibuzón: **100 g** (nacional) / Publibuzón internacional: **hasta 100 g**.
+          <br>• Publicorreo Óptimo: **800 g**; Publicorreo Premium: **2 kg**; Publicorreo Plus: **100 g** (nacional).
+          <br>• Cecogramas: **7 kg**. • Libros: **2 kg**. • Valijas: **20 kg** (nacional).
+          <br>• CCRI: **hasta 2 kg** (según país indicado en la tabla).
+          <footer>Fuente: Sesión A — Tablas de pesos (págs. 5–6).</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
         <div>
-          <ul>
-            <li><strong>Medir mal el grosor</strong>: si el bulto se deforma, medí la parte que <em>más</em> sobresale.</li>
-            <li><strong>Pesar sin embalaje</strong>: siempre con el embalaje final.</li>
-            <li><strong>Olvidar el formato</strong>: peso OK no sirve si el tamaño no entra.</li>
-            <li><strong>Aplicar extras antes de tiempo</strong>: urgente/certificado van <em>después</em> de ubicar la base.</li>
-          </ul>
+          Pensalo en dos grupos: <strong>cartas/notificaciones</strong> (tope típico 2 kg) y <strong>paquetería</strong> (5–30 kg según producto). Los envíos publicitarios ligeros (Publibuzón / Publicorreo) se mueven en **100 g–2 kg**. En internacional, fijate en los casos especiales: <strong>Paq Light Internacional 2 kg</strong> y <strong>Paq Retorno Internacional 30 kg</strong>. Si ves mención a <em>peso volumétrico</em>, manda la cuenta por dimensiones y quedate con el mayor entre real y volumétrico.
         </div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
-        <div class="ejemplo">Pablo trae una caja liviana (120 g) pero de 35 × 26 × 14 cm. Aunque pese poco, las <strong>medidas</strong> mandan el formato y, con ello, otra tabla. Si insistís en cobrar por el tramo más barato del peso, el sistema (o la devolución) te va a corregir.</div>
+        <div class="ejemplo">
+          Pablo quiere enviar una <strong>carta certificada</strong> con documentos y 1,2 kg: entra porque el tope son **2 kg**. Juli, en cambio, prepara un <strong>Paq Estándar</strong> de 27 kg para Citypaq: entra (tope **30 kg**), pero ojo con las **dimensiones** del casillero (viene en la minilección 2).
+        </div>
       </div>
 
-      <div class="test" data-test-id="a2-2">
+      <div class="test" data-test-id="a2-1">
         <div class="titulo-test">🧪 Mini test de repaso</div>
-        <div class="pregunta" data-question-id="q4">
-          <h5>1) ¿Cuál de estos es un error típico?</h5>
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Cuál es el peso máximo de una <em>carta certificada</em> en ámbito nacional?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q4" data-explain="Correcto: siempre medir embalaje final." /><span>Pesar con el embalaje final</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Si el peso está bien pero el tamaño no, estás mal leyendo la tabla." /><span>Ignorar el formato cuando el peso parece correcto</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es buena práctica; no es un error." /><span>Verificar medidas máximas del producto</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" data-explain="Consultar Conecta es lo que corresponde." /><span>Comprobar la tabla vigente en Conecta</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Este límite es para carta urgente." /><span>500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Tabla oficial: carta certificada = 2 kg (nacional)." /><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Este es tope de ciertos paquetes, no de cartas." /><span>5 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Corresponde a valijas (20 kg)." /><span>20 kg</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div>
+          <div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) Para <em>Paq Retorno Internacional</em>, el peso máximo indicado es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Ese límite es de Paq Today (según tabla)." /><span>5 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Demasiado bajo para esta línea." /><span>10 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Tabla oficial: 30 kg." /><span>30 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Corresponde a Publicorreo Plus (100 g)." /><span>100 g</span></label></li>
           </ul>
           <div class="acciones">
             <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
@@ -201,6 +158,104 @@
       </div>
     </section>
 
+    <!-- ======= MINILECCIÓN 2: Dimensiones ======= -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Dimensiones máximas y mínimas por producto</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal clave</h4>
+        <blockquote class="cita">
+          Extracto literal de **dimensiones**:
+          <br>• Correspondencia normalizada (máx.): **23,5 × 12 cm**.
+          <br>• Tarjeta postal (máx.): **espesor 5 mm**; (mín.): **14 × 9 cm**.
+          <br>• Carta urgente (máx.): **23,5 × 12 cm**, espesor máx. **10 mm**; (mín.): **sobre/caja 14 × 9 cm** *(si es inferior, etiqueta 10 × 7 cm con dirección y franqueo).* 
+          <br>• Paquete Azul (máx.): **caja L + A + A = 200 cm** sin que la mayor dimensión exceda **100 cm**; **rollo** L = **100 cm**, D = **15 cm**.
+          <br>• Paquete Internacional Light (máx.): **caja L + A + A = 90 cm** sin que la mayor dimensión exceda **60 cm**; **rollo** L + 2D = **17 cm** y mayor dim. ≥ **10 cm**; (mín.): **15 × 10 × 1 cm**.
+          <br>• Paq Estándar para Citypaq (máx. casillero): **74 × 42 × 60 cm** (terminal grande) / **60 × 49 × 40 cm** (terminal pequeño).
+          <br>• Paq Premium (máx. extra): **270 cm** (suma L + A + A) sin que la mayor dimensión exceda **170 cm**.
+          <br>• Paq Today (máx.): **39 × 39 × 29 cm**; (mín.): dimensiones para etiqueta **14,5 × 10 cm**.
+          <br>• Paq Ligero (máx.): **35 × 23 × 2 cm**; (mín.): **15 × 10 cm**.
+          <br>• Publicorreo Internacional (máx.): **L ≤ 24,5 cm**, **A ≤ 16,5 cm**, **espesor ≤ 5 mm**; (mín.): **sobre 14 × 9 cm**.
+          <br>• Publicorreo Óptimo (máx.): **23 × 33 × 2 cm**; (mín.): **14 × 9 cm**.
+          <br>• CCRI (máx.): **sobre/caja L + A + A = 90 cm**, sin que la mayor medida exceda **60 cm**; **rollo/tubo L + 2D = 104 cm**, sin que la mayor medida exceda **90 cm**; (mín.): **sobre/caja 14 × 9 cm**; **rollo/tubo L + 2D = 17 cm**, sin que la mayor medida sea **< 10 cm**. <strong>Además, cuando se trate de tarjeta postal en CCRI: máximas 12 × 23,5 cm; mínimas 14 × 9 cm.</strong>
+          <footer>Fuente: Sesión A — Tablas de dimensiones (págs. 7–11). Actualización aplicada: p. 11 (CCRI + tarjeta postal).</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>
+          La regla de oro de paquetería es la <strong>suma de lados</strong>. Si ves <em>L + A + A</em>, es **Largo + Alto + Ancho**. Para cilindros: <em>L + 2D</em> (largo + doble del diámetro). En productos publicitarios y cartas, las **mínimas** suelen ser **14 × 9 cm** (o etiqueta de **10 × 7 cm** cuando está permitido). En CCRI, si lo que viaja es **tarjeta postal**, aplican específicamente las <strong>12 × 23,5 cm</strong> (máx.) y **14 × 9 cm** (mín.).
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">
+          Juli prepara un tubo de póster para CCRI: mide **L = 60 cm**, **D = 6 cm** → <em>L + 2D = 72 cm</em> (ok) y la mayor medida no baja de **10 cm** (ok). Si fuese una tarjeta postal por CCRI, se comprueba el marco **12 × 23,5 cm**.
+        </div>
+      </div>
+
+      <div class="test" data-test-id="a2-2">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
+        <div class="pregunta" data-question-id="q3">
+          <h5>1) ¿Qué significa la fórmula <em>L + 2D</em> en las tablas de dimensiones?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Esa suma es la de cajas (tres lados)." /><span>Largo + Alto + Ancho</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Para cilindros: largo + el doble del diámetro." /><span>Largo + el doble del diámetro</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es una fórmula de estas tablas." /><span>Largo + perímetro</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Esto corresponde a volumen." /><span>Largo × ancho × alto</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div>
+          <div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>2) En CCRI, si el envío es una <em>tarjeta postal</em>, ¿qué marco de dimensiones aplica?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es el mínimo general para muchos productos, pero aquí se pide también la máxima específica." /><span>14 × 9 cm como único requisito</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Actualización aplicada en la tabla: máx. 12 × 23,5; mín. 14 × 9." /><span>Máximas 12 × 23,5 cm; mínimas 14 × 9 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es al revés según la tabla aplicada." /><span>Máximas 14 × 9 cm; mínimas 12 × 23,5 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="No coincide con CCRI." /><span>23 × 33 × 2 cm</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div>
+          <div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>3) ¿Cuál es la **suma máxima** de lados para <em>Paquete Azul</em> en caja?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Ese es el límite de Citypaq grande." /><span>74 + 42 + 60 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="La tabla indica L + A + A = 200 cm (con mayor lado ≤ 100 cm)." /><span>200 cm (L + A + A), con la mayor ≤ 100 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Corresponde a Paq Premium extra (270 cm)." /><span>270 cm (L + A + A)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Ese es el mínimo de paquetitos muy pequeños." /><span>15 × 10 × 1 cm</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div>
+          <div class="feedback ko"></div>
+        </div>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>ℹ️ Notas oficiales</h4>
+        <div class="nota">
+          • Para todos los productos postales, desde el 1/1/2009, **Andorra** se incluye en ámbito nacional (salvo indicación expresa en contrario, como notificaciones). En internacional se incluye **Gibraltar** en Zona 1 (Europa).<br>
+          • <strong>L + A + A</strong> = Largo + Alto + Ancho. <strong>D</strong> = diámetro ⇒ <strong>L + 2D</strong> suma largo + dos veces el diámetro.
+        </div>
+      </div>
+    </section>
   </div>
 
   <a class="boton-siguiente" href="A3.html">Siguiente ➜</a>
@@ -211,17 +266,14 @@
     document.querySelectorAll('.pregunta').forEach(function(p){
       var btn = p.querySelector('button[data-action="comprobar"]');
       if (btn) btn.disabled = true;
-      p.addEventListener('change', function(e){
-        if (e.target.matches('input[type="radio"]')) btn.disabled = false;
-      });
+      p.addEventListener('change', function(e){ if (e.target.matches('input[type="radio"]')) btn.disabled = false; });
     });
   }
   function comprobar(preguntaEl) {
     var seleccion = preguntaEl.querySelector('input[type="radio"]:checked');
     var okBox = preguntaEl.querySelector('.feedback.ok');
     var koBox = preguntaEl.querySelector('.feedback.ko');
-    okBox.style.display = 'none'; okBox.textContent = '';
-    koBox.style.display = 'none'; koBox.textContent = '';
+    okBox.style.display = 'none'; okBox.textContent = ''; koBox.style.display = 'none'; koBox.textContent = '';
     preguntaEl.querySelectorAll('.opcion').forEach(function(o){ o.classList.remove('correcta','incorrecta'); });
     if (!seleccion) { koBox.textContent = 'Elegí una opción antes de comprobar.'; koBox.style.display = 'block'; return; }
     var esCorrecta = seleccion.hasAttribute('data-correct');
@@ -234,14 +286,11 @@
     preguntaEl.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked = false; });
     preguntaEl.querySelectorAll('.feedback').forEach(function(f){ f.style.display='none'; f.textContent=''; });
     preguntaEl.querySelectorAll('.opcion').forEach(function(o){ o.classList.remove('correcta','incorrecta'); });
-    var btn = preguntaEl.querySelector('button[data-action="comprobar"]');
-    if (btn) btn.disabled = true;
+    var btn = preguntaEl.querySelector('button[data-action="comprobar"]'); if (btn) btn.disabled = true;
   }
   document.addEventListener('click', function(e) {
-    var btn = e.target.closest('button[data-action]');
-    if (!btn) return;
-    var pregunta = btn.closest('.pregunta');
-    if (!pregunta) return;
+    var btn = e.target.closest('button[data-action]'); if (!btn) return;
+    var pregunta = btn.closest('.pregunta'); if (!pregunta) return;
     var action = btn.getAttribute('data-action');
     if (action === 'comprobar') comprobar(pregunta);
     if (action === 'reset') resetear(pregunta);
