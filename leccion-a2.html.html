@@ -1,216 +1,253 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lección A2 - Pesos y medidas</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f8f9fa;
-      padding: 2rem;
-      color: #212529;
-    }
-    h1 {
-      color: #d6336c;
-    }
-    .bloque {
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-    }
-    .info {
-      background-color: #e3f2fd;
-      border-left: 6px solid #2196f3;
-    }
-    .explicacion {
-      background-color: #f3e5f5;
-      border-left: 6px solid #9c27b0;
-    }
-    .caso {
-      background-color: #ffecb3;
-      border-left: 6px solid #ff9800;
-    }
-    .test {
-      background-color: #e8f5e9;
-      border-left: 6px solid #4caf50;
-    }
-    .pregunta {
-      margin-bottom: 1rem;
-    }
-    .opciones button {
-      display: block;
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      background-color: #ffffff;
-      border: 1px solid #ced4da;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .opciones button.correcta {
-      background-color: #d1e7dd;
-      border-color: #198754;
-    }
-    .opciones button.incorrecta {
-      background-color: #f8d7da;
-      border-color: #dc3545;
-    }
-    .respuesta {
-      display: none;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background-color: #d1e7dd;
-      border-left: 4px solid #198754;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 1rem 0;
-      background: #fff;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 0.5rem;
-      text-align: left;
-    }
-    th {
-      background-color: #dee2e6;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A2 — Tablas de pesos y medidas de los productos</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa;      /* azul (lección) */
+    --c-texto:#a78bfa;        /* violeta (texto legal) */
+    --c-explica:#22d3ee;      /* cian (explicación) */
+    --c-ejemplo:#f59e0b;      /* ámbar (ejemplo) */
+    --c-test:#3b82f6;         /* azul intenso (test) */
+    --bg-legal:#f5f3ff;       /* fondo texto legal */
+    --bg-explica:#ecfeff;     /* fondo explicación */
+    --bg-ejemplo:#fffbeb;     /* fondo ejemplo */
+    --bg-test:#eff6ff;        /* fondo test */
+  }
+  *{box-sizing:border-box}
+  body { font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif; margin:0; padding:16px; background:#f7f7f7; color:#222; }
+  .contenedor { max-width: 900px; margin: 0 auto; padding-bottom: 120px; }
+  .leccion-titulo { font-size: 28px; font-weight: 800; margin: 8px 0 4px; }
+  .leccion-sub { font-size: 16px; color:#555; margin-bottom: 24px; }
 
-    .next-lesson-container {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 40px;
-    }
+  .minileccion { background:#fff; border:1px solid #e6e6e6; border-radius:12px; padding:18px; margin:18px 0; box-shadow: 0 1px 2px rgba(0,0,0,.04); border-left:6px solid var(--c-leccion); }
+  .badge { display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px; background:#eef6ff; color:#1453a6; border:1px solid #d7e9ff; margin-bottom:8px; }
+  .minititulo { font-size:22px; font-weight:750; margin:6px 0 14px; }
 
-    .next-lesson-button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
-    }
+  .bloque { border-radius:10px; padding:12px; margin:14px 0; border:1px solid #e9e9e9; }
+  .bloque h4 { margin:0 0 8px; font-size:15px; text-transform:uppercase; letter-spacing:.4px; color:#444; }
 
-    .next-lesson-button:hover {
-      background-color: #45a049;
-    }
-  </style>
+  .b-texto{ background:var(--bg-legal); border-color:#ddd; }
+  .b-texto h4{ color:#5b21b6; }
+  blockquote.cita { background:#fff; border-left:4px solid var(--c-texto); padding:10px 12px; border-radius:8px; margin:6px 0 0; color:#333; }
+  blockquote.cita footer { font-size:12px; color:#666; margin-top:6px; }
+
+  .b-explica{ background:var(--bg-explica); border-color:#a5f3fc; }
+  .b-explica h4{ color:#0e7490; }
+
+  .b-ejemplo{ background:var(--bg-ejemplo); border-color:#fde68a; }
+  .b-ejemplo h4{ color:#92400e; }
+  .ejemplo { background:#fff7e6; border:1px solid #ffe6a6; border-radius:10px; padding:12px; }
+
+  .test { margin-top:16px; padding:12px; background:var(--bg-test); border:1px solid #bfdbfe; border-radius:12px; }
+  .test .titulo-test{ font-weight:700; color:#1d4ed8; margin:0 0 8px; }
+  .pregunta { margin:14px 0; padding:12px; background:#fff; border:1px solid #e5e7eb; border-radius:10px; }
+  .pregunta h5 { margin:0 0 8px; font-size:16px; }
+  .opciones { list-style:none; margin:0; padding:0; }
+  .opciones li { margin:8px 0; }
+  .opcion { display:flex; gap:8px; align-items: flex-start; background:#fff; border:1px solid #e6e6e6; border-radius:8px; padding:10px; cursor:pointer; }
+  .opcion input { margin-top:4px; }
+  .opcion.correcta { background:#ecfdf3; border-color:#bbf7d0; }
+  .opcion.incorrecta { background:#fff1f2; border-color:#fecdd3; }
+  .acciones { margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
+  .btn { border:0; padding:10px 14px; border-radius:8px; font-weight:600; cursor:pointer; }
+  .btn-primario { background:#1453a6; color:#fff; }
+  .btn-secundario { background:#ececec; color:#222; }
+  .btn[disabled]{ opacity:.5; cursor:not-allowed; }
+  .feedback { margin-top:10px; padding:10px; border-radius:8px; display:none; }
+  .ok { background:#ecfdf3; border:1px solid #bbf7d0; color:#065f46; }
+  .ko { background:#fff1f2; border:1px solid #fecdd3; color:#9f1239; }
+  .explicacion { font-size:14px; color:#444; margin-top:4px; }
+  .opcion input:focus-visible { outline: 2px solid #1453a6; outline-offset: 2px; }
+
+  .boton-siguiente {
+    position: fixed; right: 16px; bottom: 16px; background: #28a745; color: #ffffff;
+    border: none; border-radius: 10px; padding: 12px 18px; font-weight: 700; text-decoration: none;
+    box-shadow: 0 6px 18px rgba(40,167,69,0.25); transition: transform .05s ease-in-out, box-shadow .15s ease; z-index: 9999;
+  }
+  .boton-siguiente:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(40,167,69,0.33); }
+  .boton-siguiente:active { transform: translateY(0); }
+</style>
 </head>
 <body>
-  <h1>📏 Lección A2 - Los pesos y medidas de los productos postales</h1>
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A2 — Tablas de pesos y medidas de los productos</div>
+    <div class="leccion-sub">Cómo leer las tablas oficiales sin marearte: qué datos mirar primero, cómo cruzar peso y dimensiones, y cómo evitar caer en el tramo equivocado. Acá no inventamos números: usamos la tabla oficial del producto.</div>
 
-  <div class="bloque info">
-    <p>Este tema parece de Excel, pero es más sencillo de lo que suena. Correos pone límites de <strong>peso</strong> y <strong>dimensiones</strong> para cada tipo de envío, y vos tenés que saber cuáles son.</p>
-  </div>
+    <!-- ======= MINILECCIÓN 1 ======= -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué datos importan y en qué orden</h3>
 
-  <div class="bloque explicacion">
-    <h3>📐 Dimensiones permitidas</h3>
-    <p><strong>Forma Caja (sobre o paquete rectangular)</strong></p>
-    <ul>
-      <li>📦 Mínimas: 14 x 9 cm</li>
-      <li>📦 Máximas: Largo + Ancho + Alto = 90 cm (ningún lado mayor de 60 cm)</li>
-    </ul>
-
-    <p><strong>Forma Rollo o Tubo</strong></p>
-    <ul>
-      <li>🌀 Mínimo: L + 2D = 17 cm (siendo L ≥ 10 cm)</li>
-      <li>🌀 Máximo: L + 2D = 104 cm (ningún lado mayor de 90 cm)</li>
-      <li>🔕 <em>Excepciones:</em> Libros, Notificaciones y Cecogramas</li>
-    </ul>
-  </div>
-
-  <div class="bloque explicacion">
-    <h3>🏋️ Pesos máximos por producto</h3>
-    <table>
-      <thead>
-        <tr><th>Producto</th><th>Peso máximo</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Carta Ordinaria / Certificada</td><td>2 kg</td></tr>
-        <tr><td>Paq Ligero</td><td>2 kg</td></tr>
-        <tr><td>Paq Mochila</td><td>15 kg</td></tr>
-        <tr><td>Paq Today</td><td>10 kg</td></tr>
-        <tr><td>Paq Estándar</td><td>30 kg</td></tr>
-        <tr><td>Paq Premium</td><td>40 kg</td></tr>
-        <tr><td>Paquete Azul</td><td>20 kg</td></tr>
-        <tr><td>Libros / Cecogramas</td><td>5 kg</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="bloque caso">
-    <p><strong>Caso práctico: "La caja gamer frustrada"</strong><br>
-    Pablo quiere mandar una caja con periféricos gamer a su primo en Barcelona. Pesa 14 kg y mide 40x30x20 cm. Suma total: 90 cm, todo ok. Pero si la caja midiera 70x20x20, suma 110 cm... y ahí ya no le sirve el Paq Mochila. Tiene que usar otro servicio.</p>
-  </div>
-
-  <div class="bloque test">
-    <h2>🧠 Mini test de repaso</h2>
-
-    <div class="pregunta">
-      <p><strong>1. ¿Cuál es la fórmula correcta para medir un rollo postal?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. Esa fórmula es para paquetes, no rollos.')">a) L + A + H</button>
-        <button onclick="evaluar(this, true, 'Correcto. L (largo) + 2 veces el diámetro (2D).')">b) L + 2D</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. Eso no existe en este contexto.')">c) P + D</button>
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal del apartado</h4>
+        <blockquote class="cita">
+          {{Pegar aquí el texto literal donde el manual/tema indique los parámetros básicos para ubicar un envío en tabla: peso, dimensiones, formato aplicable y cualquier nota de medición}}
+          <footer>Fuente: Sesión A — A2 (p. {{nº}})</footer>
+        </blockquote>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>2. ¿Qué producto permite hasta 40 kg?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. El Paq Estándar llega hasta 30 kg.')">a) Paq Estándar</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. El Paq Today es de 10 kg.')">b) Paq Today</button>
-        <button onclick="evaluar(this, true, 'Correcto. El Paq Premium admite hasta 40 kg.')">c) Paq Premium</button>
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>Primero <strong>peso real</strong> (lo que marca la báscula). Después <strong>medidas exteriores</strong> (largo × ancho × alto). Con esos dos datos, ubicás el envío en la <em>tabla oficial</em> del producto. Si el peso entra en un tramo pero las medidas no, <strong>manda el formato</strong>: <em>pasás al formato/categoría que admita esas dimensiones</em>. Todo lo demás (destino, urgencia, certificado) son <em>servicios</em> o condiciones aparte, no cambian la lectura básica de la tabla.</div>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>3. ¿Cuál es la medida mínima para un sobre?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Muy pequeño. Eso no sirve ni para una postal.')">a) 10 x 5 cm</button>
-        <button onclick="evaluar(this, true, 'Correcto. 14 x 9 cm es la medida mínima para envíos tipo sobre.')">b) 14 x 9 cm</button>
-        <button onclick="evaluar(this, false, 'Eso sería demasiado grande para ser mínimo.')">c) 20 x 10 cm</button>
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">Juli lleva un sobre acolchado. Pesa 180 g. Medidas: 24 × 17 × 2,5 cm. En la ventanilla mirás: (1) tramo de <strong>peso</strong> correspondiente; (2) si esas <strong>medidas</strong> caben en el <em>formato</em> de ese producto. Si alguna medida excede lo permitido, cambiás el formato (y por tanto la tabla/tramo) antes de calcular extras como certificado o urgente.</div>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>4. ¿Qué productos tienen como excepción los límites de dimensiones?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. Paq Estándar sigue las normas comunes.')">a) Paq Estándar y Carta Ordinaria</button>
-        <button onclick="evaluar(this, true, 'Correcto. Cecogramas, Libros y Notificaciones tienen excepciones.')">b) Cecogramas, Libros y Notificaciones</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. No aplica.')">c) Paq Premium y Azul</button>
+      <div class="test" data-test-id="a2-1">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Qué mínimo necesitás para ubicar un envío en la tabla?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Con peso y dimensiones ubicás formato y tramo. El resto va después." /><span>Peso real y dimensiones exteriores</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No define tramo/tabla; puede afectar servicios, no la base." /><span>Destino y urgencia</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="El color del embalaje no figura en ninguna tabla oficial." /><span>Color del embalaje</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="La forma de pago no influye en el tramo." /><span>Forma de pago (tarjeta/efectivo)</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok" role="alert" aria-live="polite"></div>
+          <div class="feedback ko" role="alert" aria-live="polite"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) Si el peso encaja en el tramo 1, pero las medidas exceden el formato, ¿qué hacés?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No se ajusta a la norma: el formato también debe cumplirse." /><span>Cobro tramo 1 igualmente porque pesa poco</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Debe cumplirse peso y dimensiones a la vez. Si no, se cambia al formato/categoría que admita esas medidas." /><span>Cambio al formato/categoría que admita esas dimensiones</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No existe la opción “sin formato” en tablas oficiales." /><span>Aplico un envío sin formato</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Los extras se aplican después de ubicar formato y tramo." /><span>Añado urgente para compensar</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div>
+          <div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) ¿Dónde consultás la versión vigente de las tablas?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Google no garantiza vigencia ni oficialidad interna." /><span>En Google</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="El catálogo actualizado está en la intranet corporativa Conecta." /><span>En Conecta / catálogo interno actualizado</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es fuente de tablas oficiales." /><span>En redes sociales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Los catálogos físicos se quedan obsoletos; siempre verifica en Conecta." /><span>Solo en un catálogo impreso antiguo</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div>
+          <div class="feedback ko"></div>
+        </div>
       </div>
-      <div class="respuesta"></div>
-    </div>
+    </section>
+
+    <!-- ======= MINILECCIÓN 2 ======= -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Errores típicos al leer la tabla</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal del apartado</h4>
+        <blockquote class="cita">
+          {{Pegar aquí notas oficiales/advertencias si las hubiera en el temario (p. ej., cómo medir, tolerancias, aristas rígidas, etc.). Si no existen notas, dejar este bloque vacío o con la referencia “(no aplica)”.}}
+          <footer>Fuente: Sesión A — A2 (p. {{nº}})</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>
+          <ul>
+            <li><strong>Medir mal el grosor</strong>: si el bulto se deforma, medí la parte que <em>más</em> sobresale.</li>
+            <li><strong>Pesar sin embalaje</strong>: siempre con el embalaje final.</li>
+            <li><strong>Olvidar el formato</strong>: peso OK no sirve si el tamaño no entra.</li>
+            <li><strong>Aplicar extras antes de tiempo</strong>: urgente/certificado van <em>después</em> de ubicar la base.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">Pablo trae una caja liviana (120 g) pero de 35 × 26 × 14 cm. Aunque pese poco, las <strong>medidas</strong> mandan el formato y, con ello, otra tabla. Si insistís en cobrar por el tramo más barato del peso, el sistema (o la devolución) te va a corregir.</div>
+      </div>
+
+      <div class="test" data-test-id="a2-2">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
+        <div class="pregunta" data-question-id="q4">
+          <h5>1) ¿Cuál de estos es un error típico?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Correcto: siempre medir embalaje final." /><span>Pesar con el embalaje final</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Si el peso está bien pero el tamaño no, estás mal leyendo la tabla." /><span>Ignorar el formato cuando el peso parece correcto</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es buena práctica; no es un error." /><span>Verificar medidas máximas del producto</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Consultar Conecta es lo que corresponde." /><span>Comprobar la tabla vigente en Conecta</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div>
+          <div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  <div class="next-lesson-container">
-    <a class="next-lesson-button" href="leccion-a3.html">👉 Siguiente lección</a>
-  </div>
+  <a class="boton-siguiente" href="A3.html">Siguiente ➜</a>
 
-  <script>
-    function evaluar(btn, esCorrecta, mensaje) {
-      const botones = btn.parentElement.querySelectorAll("button");
-      botones.forEach(b => {
-        b.disabled = true;
-        b.classList.remove("correcta", "incorrecta");
+<script>
+(function() {
+  function setEstadosIniciales() {
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn = p.querySelector('button[data-action="comprobar"]');
+      if (btn) btn.disabled = true;
+      p.addEventListener('change', function(e){
+        if (e.target.matches('input[type="radio"]')) btn.disabled = false;
       });
-      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
-      const respuesta = btn.parentElement.nextElementSibling;
-      respuesta.innerText = mensaje;
-      respuesta.style.display = "block";
-    }
-  </script>
+    });
+  }
+  function comprobar(preguntaEl) {
+    var seleccion = preguntaEl.querySelector('input[type="radio"]:checked');
+    var okBox = preguntaEl.querySelector('.feedback.ok');
+    var koBox = preguntaEl.querySelector('.feedback.ko');
+    okBox.style.display = 'none'; okBox.textContent = '';
+    koBox.style.display = 'none'; koBox.textContent = '';
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){ o.classList.remove('correcta','incorrecta'); });
+    if (!seleccion) { koBox.textContent = 'Elegí una opción antes de comprobar.'; koBox.style.display = 'block'; return; }
+    var esCorrecta = seleccion.hasAttribute('data-correct');
+    var explicacion = seleccion.getAttribute('data-explain') || '';
+    var tarjeta = seleccion.closest('.opcion');
+    if (esCorrecta) { tarjeta.classList.add('correcta'); okBox.innerHTML = '✅ Respuesta correcta<div class="explicacion">' + (explicacion || '¡Bien!') + '</div>'; okBox.style.display = 'block'; }
+    else { tarjeta.classList.add('incorrecta'); koBox.innerHTML = '❌ Respuesta incorrecta<div class="explicacion">' + (explicacion || 'Revisá el concepto y probá otra vez.') + '</div>'; koBox.style.display = 'block'; }
+  }
+  function resetear(preguntaEl) {
+    preguntaEl.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked = false; });
+    preguntaEl.querySelectorAll('.feedback').forEach(function(f){ f.style.display='none'; f.textContent=''; });
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){ o.classList.remove('correcta','incorrecta'); });
+    var btn = preguntaEl.querySelector('button[data-action="comprobar"]');
+    if (btn) btn.disabled = true;
+  }
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    var pregunta = btn.closest('.pregunta');
+    if (!pregunta) return;
+    var action = btn.getAttribute('data-action');
+    if (action === 'comprobar') comprobar(pregunta);
+    if (action === 'reset') resetear(pregunta);
+  });
+  setEstadosIniciales();
+})();
+</script>
 </body>
-</html>
-
 </html>
