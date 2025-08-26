@@ -1,177 +1,346 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lección A6 - Carta Certificada Prepagada Premium y Carta Urgente</title>
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: #f5f7fa;
-      padding: 2rem;
-      color: #212529;
-    }
-    h1 {
-      color: #d6336c;
-    }
-    .bloque {
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-    }
-    .info { background-color: #e3f2fd; border-left: 6px solid #2196f3; }
-    .explicacion { background-color: #f3e5f5; border-left: 6px solid #9c27b0; }
-    .caso { background-color: #ffecb3; border-left: 6px solid #ff9800; }
-    .test { background-color: #e8f5e9; border-left: 6px solid #4caf50; }
-    .pregunta { margin-bottom: 1rem; }
-    .opciones button {
-      display: block;
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      background-color: #ffffff;
-      border: 1px solid #ced4da;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .opciones button.correcta {
-      background-color: #d1e7dd;
-      border-color: #198754;
-    }
-    .opciones button.incorrecta {
-      background-color: #f8d7da;
-      border-color: #dc3545;
-    }
-    .respuesta {
-      display: none;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background-color: #d1e7dd;
-      border-left: 4px solid #198754;
-    }
-    .next-lesson-container {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 40px;
-      padding-right: 20px;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-    }
-    .next-lesson-button {
-      background-color: #198754;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
-    }
-    .next-lesson-button:hover {
-      background-color: #157347;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A6 — Carta certificada</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
+    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:24px}
+
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  .b-texto{background:var(--bg-legal);border-color:#ddd}
+  .b-texto h4{color:#5b21b6}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#a5f3fc}
+  .b-explica h4{color:#0e7490}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#fde68a}
+  .b-ejemplo h4{color:#92400e}
+  .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
+
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
+  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+  .opcion input:focus-visible{outline:2px solid #1453a6;outline-offset:2px}
+
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+  .boton-siguiente:active{transform:translateY(0)}
+</style>
 </head>
 <body>
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A6 — Carta certificada</div>
+    <div class="leccion-sub">Qué es, cómo se identifica, ámbitos y zonas, límites de peso y medidas, plazos, servicios/garantías y formas de pago. Con ejemplos realistas de la peña de Murcia 😉.</div>
 
-  <h1>📦 Lección A6 - Carta Certificada Prepagada Premium y Carta Urgente</h1>
+    <!-- ===== MINILECCIÓN 1: Qué es + cómo funciona ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es una carta certificada y cómo se tramita</h3>
 
-  <div class="bloque info">
-    <p>En esta lección vamos a ver dos productos bien distintos: uno con toda la pompa del certificado prepagado y otro que corre como si le debiera plata a alguien: la <strong>Carta Urgente</strong>. ¿Listo para seguir aprendiendo sin dormirte? Vamos.</p>
-  </div>
-
-  <div class="bloque explicacion">
-    <h2>📮 Carta Certificada Prepagada Premium</h2>
-    <p>Este producto es como el combo premium de las cartas certificadas. Ya viene pagado, con todo incluido y lo podés preparar en casa. Características:</p>
-    <ul>
-      <li>✅ Hasta 100 g de peso.</li>
-      <li>📦 Sobre de 189 x 250 mm.</li>
-      <li>🔒 Seguro de 100 € (incluido, no ampliable).</li>
-      <li>📩 PEE 5 incluido (opcional ampliación a 10 o 15 años de custodia en IRIS).</li>
-      <li>📌 Código de barras VD preimpreso.</li>
-      <li>🛒 Se vende por “Venta de Productos” de IRIS (como si fuera una Coca en la máquina).</li>
-      <li>📬 Se admite en cualquier oficina, no hace falta rellenar impreso, y se puede usar en otro momento.</li>
-      <li>📄 Solo documentos si el destino tiene diferente régimen fiscal.</li>
-    </ul>
-  </div>
-
-  <div class="bloque explicacion">
-    <h2>🚀 Carta Urgente</h2>
-    <p>Es un producto que grita “¡apúrate!”. Solo para ámbito nacional (España y Andorra). Sirve para documentos o mercancías que necesitan llegar en 24 horas.</p>
-    <ul>
-      <li>📍 Ámbito: nacional.</li>
-      <li>📦 Embalaje: sobre, caja o rollo. Debe proteger el contenido y llevar remitente/destinatario visible.</li>
-      <li>🔖 Etiqueta roja con “Carta Urgente” en el ángulo superior izquierdo.</li>
-      <li>📏 Peso máximo: 500 g.</li>
-      <li>📐 Dimensiones recomendadas: 23,5 x 12 cm / Espesor máximo: 10 mm.</li>
-      <li>⏱️ Plazo de entrega: 1 día hábil si se deposita antes de las 16:00 h (o 14:30 h en oficinas solo de mañana).</li>
-      <li>📡 Trazabilidad informatizada (IRIS, SGIE, PDA, etc.).</li>
-      <li>💰 Tarifas con posibilidad de bonificaciones.</li>
-      <li>🔁 Servicios adicionales: recogida a domicilio, devolución, corrección de dirección, normalización postal… solo para clientes con contrato.</li>
-    </ul>
-    <p><strong>⚠️ Importante:</strong> Desde 2020 ya no se comercializan Cartas Urgentes Internacionales.</p>
-  </div>
-
-  <div class="bloque caso">
-    <p><strong>Ejemplo práctico:</strong> Pablo tiene que enviar a su amigo Titi, que se mudó a Madrid, una copia urgente de los papeles para la solicitud de una hipoteca. Como necesita que llegue sí o sí al día siguiente, opta por una <strong>Carta Urgente</strong> y la deposita a las 11 h en la oficina de Murcia. Como está dentro del horario y destino nacional, Titi la recibe al día siguiente.</p>
-    <p>En otro momento, Julieta compra en Correos una <strong>Carta Certificada Prepagada Premium</strong> para enviar su contrato de alquiler a una empresa en Valencia. Como ya viene con seguro y código de seguimiento, ella simplemente completa el sobre en casa y lo deposita en la oficina más cercana. Fácil, práctico y seguro.</p>
-  </div>
-
-  <div class="bloque test">
-    <h2>🧠 Mini test</h2>
-
-    <div class="pregunta">
-      <p><strong>1. ¿Cuál es el peso máximo de una Carta Urgente?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. 100 g es para el sobre prepagado.')">a) 100 g</button>
-        <button onclick="evaluar(this, true, 'Correcto. El máximo para Carta Urgente es 500 g.')">b) 500 g</button>
-        <button onclick="evaluar(this, false, 'No. La Carta Certificada puede pesar hasta 2 kg, pero no la urgente.')">c) 2 kg</button>
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Se trata de todo envío cerrado cuyo contenido no se indique ni puede conocerse, así como toda comunicación de forma escrita en un soporte físico de cualquier naturaleza, que tenga carácter actual y personal, cuando se trate de comunicaciones especialmente importantes y destinadas a cualquier punto.<br><br>
+          Forma parte del servicio postal universal, incluso cuando circula con valor declarado, y está exento de IVA.
+          <footer>Sesión A — Carta certificada (p. 17)</footer>
+        </blockquote>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>2. ¿Cuál es una ventaja de la Carta Certificada Prepagada Premium?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. No lleva etiqueta roja.')">a) Lleva etiqueta roja con “urgente”.</button>
-        <button onclick="evaluar(this, false, 'No. No se vende con seguro de 3000 €, ese es ampliable en la Premium no prepagada.')">b) Incluye seguro ampliable a 3000 €.</button>
-        <button onclick="evaluar(this, true, 'Correcto. Se puede comprar, llevar a casa y usar después.')">c) Puede comprarse y usarse más adelante.</button>
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — Identificación, entrega y control</h4>
+        <blockquote class="cita">
+          Circula registrada y se identifica mediante una etiqueta con código de barras adherida en el anverso. Esta etiqueta se obtiene en las unidades de admisión o el cliente puede imprimirla a través de Mi Oficina. Además, desde su admisión hasta su entrega el envío está controlado y permite al cliente su seguimiento a través de la página web de Correos (www.correos.es) o a través de la aplicación Correos.<br><br>
+          La carta certificada tiene entrega en el domicilio del destinatario bajo firma del mismo o de una persona autorizada por él. Si no se puede realizar la entrega, se deja un aviso (modelo M-4) en el casillero del domicilio del destinatario para que pase a recogerlo en la oficina indicada. El envío permanece 15 días naturales a disposición del destinatario.<br><br>
+          Los envíos de correspondencia remitidos por las Administraciones Públicas que requieran constancia de entrega al destinatario y que sean depositados en Correos por empresas consolidadoras u otros operadores se consideran desde su admisión como envíos de cartas certificadas.<br><br>
+          Si un certificado es rehusado por el interesado o su representante no se procederá a un segundo o tercer intento de entrega si fuera el caso contratado, así como en otras circunstancias como dirección incorrecta y destinatario desconocido o fallecido.
+          <footer>Sesión A — Carta certificada (p. 18)</footer>
+        </blockquote>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>3. ¿Qué tipo de envíos pueden realizarse con la Carta Urgente?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'No. Ya no se comercializa para internacional.')">a) A cualquier parte del mundo.</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. No se usa para paquetería internacional.')">b) Solo a países con contrato vigente.</button>
-        <button onclick="evaluar(this, true, 'Correcto. Solo dentro del ámbito nacional: España y Andorra.')">c) Solo en el ámbito nacional.</button>
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>Es “la carta con acuse”: va registrada, tiene número y <em>siempre</em> pide firma a la entrega. Si no está la persona, queda aviso y se guarda 15 días. Se puede seguir por web o app.</div>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la realidad</h4>
+        <div class="ejemplo">
+          Jenny manda desde Murcia un contrato a Cristina: pide carta certificada para tener constancia y seguimiento. El repartidor no pilla a Cristina, deja M-4 y ella lo retira a los dos días en oficina, firmando.  
+          Pablo envía certificado a Grachu (Italia): imprime la etiqueta en Mi Oficina y sigue el tracking en la app; al ser internacional, los plazos dependen del país (Europa 2–4 días hábiles aprox.).
+        </div>
+      </div>
+
+      <div class="test" data-test-id="a6-1">
+        <div class="titulo-test">🧪 Mini test</div>
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) La entrega de una carta certificada se caracteriza por…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1"><span>Dejarla sin firma en el buzón</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Entrega bajo firma del destinatario o autorizado."><span>Exigir firma del destinatario o autorizado</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Solo seguimiento en oficinas</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Conservarla 30 días en oficina</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 2: Ámbito, peso, medidas, plazos ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Ámbito y zonas, límites y plazos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — Ámbito</h4>
+        <blockquote class="cita">
+          <strong>Nacional:</strong> España y Andorra.<br>
+          <strong>Internacional:</strong><br>
+          • Zona 1: Europa, incluida Groenlandia (excepto Albania, Armenia, Bosnia, Chipre, Georgia, Malta, Moldavia y Rusia).<br>
+          • Zona 2: resto de países (no incluidos en 1 y 3).<br>
+          • Zona 3: EE. UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda.
+          <footer>Sesión A — Carta certificada (p. 18)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — Embalaje, peso y medidas</h4>
+        <blockquote class="cita">
+          • Cualquier envase que garantice la integridad del contenido y permita adherir la etiqueta y los datos de remitente y destinatario (nunca a lápiz). Los sobres no pueden ir cerrados con cinta adhesiva ni presentar señales de haber sido abiertos.<br>
+          • Deberán ir acompañadas del impreso CN22 o CN23 (cuando el contenido supere 300 DEG).<br><br>
+          <u>Cartas nacionales</u> admitidas en Baleares y Península con destino a Ceuta, Melilla o Canarias, que no contengan documentos y sean remitidas por particulares. <u>Cartas internacionales</u> admitidas en Baleares y Península con destino a países de fuera de la UE; y las admitidas en Canarias, Ceuta y Melilla con cualquier destino.<br><br>
+          <strong>Peso:</strong> hasta 2 kg.<br>
+          <strong>Dimensiones máximas:</strong> sobre/caja L + A + A = 90 cm (mayor ≤ 60 cm). Rollo L + 2D = 104 cm (mayor ≤ 90 cm).<br>
+          <strong>Dimensiones mínimas:</strong> sobre/caja 14 × 9 cm. Rollo L + 2D = 17 cm (mayor ≥ 10 cm). En inferiores, etiqueta 10 × 7 cm.
+          <footer>Sesión A — Carta certificada (p. 19)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — Tramos y plazos</h4>
+        <blockquote class="cita">
+          <strong>Tramos de peso:</strong> hasta 20 g (normalizadas), >20–50, >50–100, >100–500, >500–1000 y >1000–2000 g.<br>
+          <strong>Plazos (nacional):</strong> local D+1; provincial D+2; nacional D+3 (en el 93 % de los envíos) y D+5 (en el 99 %).<br>
+          <strong>Plazos (internacional):</strong> Europa 2–4 días hábiles (según origen y destino); resto del mundo según país.
+          <footer>Sesión A — Carta certificada (p. 20)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la realidad</h4>
+        <div class="ejemplo">
+          Diego manda a Lorena un sobre de 23×11 cm y 80 g: entra en certificada (tramo >50–100 g).  
+          Alberto envía a Juanma (Argentina) documentos: comprueba medidas mínimas 14×9 y que no haga falta CN22/CN23 al tratarse de documentos; plazos dependen del país (Zona 2).
+        </div>
+      </div>
+
+      <div class="test" data-test-id="a6-2">
+        <div class="titulo-test">🧪 Mini test</div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Cuál es la fórmula para medir un <em>tubo</em>?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2"><span>L + A + A</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Cilindros: largo + el doble del diámetro."><span>L + 2D</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>L × A × A</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>Perímetro + largo</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) ¿Cuál es el peso máximo de la carta certificada?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3"><span>500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="El límite es 2 kg."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>5 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>20 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 3: Servicios, garantías y pago ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Servicios añadidos, garantías e indemnizaciones y pagos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — Servicios añadidos</h4>
+        <blockquote class="cita">
+          <strong>Ámbito nacional (según contratación):</strong> aviso de recibo (M-35 Plus 1E o 2E), valor declarado SPU hasta 3000 €, prueba de entrega electrónica (PEE 5 Postal), reembolso (mín. 0,01 € y máx. 2499,99 € en cuenta OIC; si se devuelve en oficina la máx. es 499,99 €), gestión del DUA por Correos, certificaciones de imposición y entrega, recogida a domicilio, petición de devolución/modificación/corrección de dirección, retorno de información, segundo intento de entrega (clientes con contrato), clasificación y digitalización (clientes con contrato), normalización de direcciones, trazabilidad RFID, servicio complementario de clasificación por ámbitos y códigos postales, gestión de entrega para clientes con acuerdos.<br><br>
+          <strong>Ámbito internacional (según país):</strong> AR, valor declarado SPU, reembolso, entrega en propia mano, retorno de información (clientes con contrato), gestión del DUA por Correos, reexpedición / devolución / modificación de dirección (según país), recogida a domicilio (clientes con contrato), certificación de imposición, trazabilidad en web y app.
+          <footer>Sesión A — Carta certificada (p. 20–21)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — Garantías e indemnizaciones</h4>
+        <blockquote class="cita">
+          <strong>Por pérdida/extravío o deterioro/daño:</strong><br>
+          • Ámbito nacional: tarifa abonada multiplicada por 10.<br>
+          • Ámbito internacional: devolución de la tarifa ordinaria abonada más 30 DEG.<br><br>
+          <strong>Si circula con valor declarado:</strong><br>
+          • Nacional: indemnización por pérdida más el valor asegurado; tratándose de siniestro, la menor de: el valor declarado, reposición del objeto o reparación del objeto dañado.<br>
+          • Internacional: devolución de la tarifa ordinaria más el valor asegurado.<br><br>
+          <strong>Si se trata de un reembolso:</strong><br>
+          • Pérdida antes de la entrega: nacional = tarifa ×10; internacional = tarifa + 30 DEG.<br>
+          • Si el envío ya se ha entregado: la indemnización es el importe del giro.<br><br>
+          Plazo mínimo de reclamación: nacional 7 días (máx. 4 meses); internacional 15 días (máx. 6 meses).
+          <footer>Sesión A — Carta certificada (p. 21–22)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — Formas de pago</h4>
+        <blockquote class="cita">
+          En el momento: metálico, transferencia, Tarjeta Más Cerca, tarjetas de crédito y débito, PayPal, sellos/estampillas, franqueo pagado en oficina y máquina de franquear. Franqueo electrónico OPV (Correos online). Franqueo a máquina. Franqueo de pago diferido (franqueo pagado). Prepago.
+          <footer>Sesión A — Carta certificada (p. 22)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la realidad</h4>
+        <div class="ejemplo">
+          Lucía envía a Vicki (Francia) un certificado con <em>aviso de recibo</em> y <em>valor declarado</em> de 150 € por unos documentos de título académico: si se pierde, la indemnización internacional será la tarifa ordinaria + valor asegurado.  
+          Titi manda a Guille un certificado con <em>reembolso</em> de 45 €: si se entrega, la indemnización ante incidencia del giro será el importe del reembolso.  
+          Marina paga en oficina con Tarjeta Más Cerca; Enma usa franqueo electrónico desde Correos Online para otro envío.
+        </div>
+      </div>
+
+      <div class="test" data-test-id="a6-3">
+        <div class="titulo-test">🧪 Mini test</div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) En nacional, la indemnización por pérdida de una certificada sin valor declarado es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4"><span>Tarifa abonada + 30 DEG</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Tal cual indica la tabla de garantías."><span>Tarifa abonada multiplicada por 10</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>Valor declarado</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>100 € fijos</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) Señalá un medio de pago admitido para certificadas:</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5"><span>Cheque en ventanilla</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Entre otros: metálico, tarjeta, transferencia, Más Cerca, sellos, OPV, prepago, etc."><span>Tarjeta bancaria / Más Cerca / OPV</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>Solo PayPal obligatorio</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>Cripto</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q6">
+          <h5>6) ¿Cuánto tiempo queda el aviso disponible en oficina si no se entrega?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q6"><span>7 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Tal y como dice la norma: 15 días naturales."><span>15 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>30 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>Hasta que el cliente vaya</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="next-lesson-container">
-    <a href="leccion-a7.html" class="next-lesson-button">👉 Siguiente lección</a>
-  </div>
+  <!-- ======= BOTÓN SIGUIENTE ======= -->
+  <a class="boton-siguiente" href="leccion-a7.html" rel="next">Siguiente ➜</a>
 
-  <script>
-    function evaluar(btn, esCorrecta, mensaje) {
-      const botones = btn.parentElement.querySelectorAll("button");
-      botones.forEach(b => {
-        b.disabled = true;
-        b.classList.remove("correcta", "incorrecta");
+<script>
+/* ======= LÓGICA DEL MINITEST ======= */
+(function() {
+  function setEstadosIniciales() {
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn = p.querySelector('button[data-action="comprobar"]');
+      if (btn) btn.disabled = true;
+      p.addEventListener('change', function(e){
+        if (e.target.matches('input[type="radio"]')) btn.disabled = false;
       });
-      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
-      const respuesta = btn.parentElement.nextElementSibling;
-      respuesta.innerText = mensaje;
-      respuesta.style.display = "block";
-    }
-  </script>
+    });
+  }
+  function comprobar(pEl) {
+    var seleccion = pEl.querySelector('input[type="radio"]:checked');
+    var ok = pEl.querySelector('.feedback.ok');
+    var ko = pEl.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    pEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!seleccion){ ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return; }
+    var esOk = seleccion.hasAttribute('data-correct');
+    var exp = seleccion.getAttribute('data-explain') || '';
+    var card = seleccion.closest('.opcion');
+    if(esOk){ card.classList.add('correcta'); ok.innerHTML='✅ Respuesta correcta<div class="explicacion">'+(exp||'¡Bien!')+'</div>'; ok.style.display='block'; }
+    else{ card.classList.add('incorrecta'); ko.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+(exp||'Revisá el concepto y probá otra vez.')+'</div>'; ko.style.display='block'; }
+  }
+  function resetear(pEl){
+    pEl.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    pEl.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent=''});
+    pEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var btn = pEl.querySelector('button[data-action="comprobar"]'); if(btn) btn.disabled=true;
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-action]'); if(!btn) return;
+    var p = btn.closest('.pregunta'); if(!p) return;
+    var act = btn.getAttribute('data-action');
+    if(act==='comprobar') comprobar(p);
+    if(act==='reset') resetear(p);
+  });
 
+  // Anti-caché por si el navegador guarda el destino viejo del botón
+  document.addEventListener('DOMContentLoaded', function(){
+    var a = document.querySelector('a.boton-siguiente');
+    if(a){ a.href='leccion-a7.html'; a.setAttribute('rel','next'); }
+  });
+
+  setEstadosIniciales();
+})();
+</script>
 </body>
 </html>
