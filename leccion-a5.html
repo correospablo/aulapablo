@@ -3,15 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lección A4 — Tarjeta postal</title>
+<title>Lección A5 — Línea de comunicación (Carta certificada)</title>
 <style>
   :root{
-    --c-leccion:#60a5fa;   /* azul (lección) */
-    --c-texto:#a78bfa;     /* violeta (texto legal) */
-    --c-explica:#22d3ee;   /* cian (explicación) */
-    --c-ejemplo:#f59e0b;   /* ámbar (ejemplo) */
-    --c-test:#3b82f6;      /* azul test */
-    --bg-legal:#f5f3ff;    --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
+    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
   }
   *{box-sizing:border-box}
   body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
@@ -59,70 +55,71 @@
   .explicacion{font-size:14px;color:#444;margin-top:4px}
   .opcion input:focus-visible{outline:2px solid #1453a6;outline-offset:2px}
 
-  /* Botón siguiente (estándar) */
   .boton-siguiente{
-    position:fixed;right:16px;bottom:16px;background:#28a745;color:#ffffff;border:none;border-radius:10px;
-    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,0.25);
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
     transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
   }
-  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,0.33)}
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
   .boton-siguiente:active{transform:translateY(0)}
 </style>
 </head>
 <body>
   <div class="contenedor">
-    <div class="leccion-titulo">Lección A4 — Tarjeta postal</div>
-    <div class="leccion-sub">Definición oficial, ámbitos y zonas, límites de peso/medidas, plazos, servicios y franqueos (A, A2, B, C, D). Ejemplos con la banda de Murcia 😉.</div>
+    <div class="leccion-titulo">Lección A5 — Línea de comunicación (Carta certificada)</div>
+    <div class="leccion-sub">Qué es, cómo se entrega, ámbitos/zona, límites de peso y medidas, plazos, servicios añadidos, indemnizaciones y pagos. Con ejemplos “de Murcia” y mini-tests.</div>
 
-    <!-- ===== MINILECCIÓN 1: Qué es tarjeta postal ===== -->
-    <section class="minileccion" id="definicion">
+    <!-- ===== MINILECCIÓN 1: Qué es y cómo funciona ===== -->
+    <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">1) Qué es una tarjeta postal (definición + reglas básicas)</h3>
+      <h3 class="minititulo">1) Qué es la carta certificada y cómo funciona</h3>
 
       <div class="bloque b-texto">
-        <h4>📘 Texto literal (con actualización)</h4>
+        <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          Se define como toda pieza rectangular de cartulina consistente o material similar, lleve o no el título de “tarjeta postal”, que circule al descubierto y contenga un mensaje de carácter actual y personal. La indicación del término “tarjeta postal” en los envíos individuales implica automáticamente esa clasificación postal, aunque el objeto correspondiente carezca de texto actual y personal (<strong>art. 2.3 del Reglamento de los Servicios Postales, RD 437/2024, de 30 de abril</strong>). Se ha de reservar la mitad derecha del anverso para consignar los datos del destinatario. Forma parte del SPU.
-          <footer>Fuente: Sesión A — Tarjeta postal (p. 15).</footer>
+          “Se trata de todo envío cerrado cuyo contenido no se indica ni puede conocerse, así como toda comunicación de forma escrita en un soporte físico de cualquier naturaleza, que tenga carácter actual y personal, cuando se trate de comunicaciones especialmente importantes y destinadas a cualquier punto. Forma parte del servicio postal universal, incluso cuando circula con valor declarado, y está exento de IVA.”<br><br>
+          “Circula registrada y se identifica mediante una etiqueta con código de barras adherida en el anverso […]. Desde su admisión hasta su entrega el envío está controlado y permite su seguimiento en la web o app de Correos. La entrega se hace en el domicilio bajo firma del destinatario o persona autorizada; si no es posible, se deja aviso (M-4) para recoger en oficina. El envío permanece <strong>15 días naturales</strong> a disposición del destinatario.”<br><br>
+          “Ciertos envíos de Administraciones Públicas depositados por consolidadores u otros operadores se consideran desde su admisión como cartas certificadas.” 
+          <footer>Fuente: Sesión A — Carta certificada (págs. 17–18).</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
-        <div>Postal = cartulina, a la vista, con mensajito “de ahora”. Y aun sin mensaje, si pone “tarjeta postal”, Correos la trata como postal. La mitad derecha es para dirección/pegatinas: no la invadas con dibujos.</div>
+        <div>Es una carta “con pruebas”: va con etiqueta y número, se sigue online y la entrega se firma. Si no está la persona, queda aviso y 15 días de espera en la oficina.</div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
         <div class="ejemplo">
-          Pablo compra una postal de la Catedral de Murcia, escribe dos líneas para su abuela y la manda tal cual, sin sobre → es tarjeta postal OK.  
-          Juli manda una foto impresa pegada en una cartulina con “tarjeta postal” y sin texto → también cuenta como postal.  
-          Titi quiere meter la postal en un sobre “porque llueve” → en sobre ya no es postal, pasa a <em>carta</em>.
+          En Murcia, Pablo envía un contrato a Cristina y quiere constancia: usa carta certificada con <em>aviso de recibo</em>.  
+          Juli le manda a Diego un certificado de estudios; sigue el tracking en la app y ve cuándo lo firma.  
+          Si Lorena no está en casa, el cartero deja el M-4 y el sobre queda 15 días en la oficina.
         </div>
       </div>
 
-      <div class="test" data-test-id="a4-1">
+      <div class="test" data-test-id="a5-1">
         <div class="titulo-test">🧪 Mini test de repaso</div>
 
         <div class="pregunta" data-question-id="q1">
-          <h5>1) ¿Qué condición básica NO cumple una tarjeta postal?</h5>
+          <h5>1) ¿Cómo se identifica una carta certificada?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q1" /><span>Va al descubierto</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" /><span>Es rectangular de cartulina o similar</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" /><span>Reserva la mitad derecha para la dirección</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="En sobre deja de ser ‘tarjeta postal’ y pasa a carta."><span>Va dentro de un sobre</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Con sello rojo sin número</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Etiqueta con código de barras y número para seguimiento."><span>Con etiqueta de código de barras adherida en el anverso</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Solo con el matasellos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>No requiere identificación especial</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
         <div class="pregunta" data-question-id="q2">
-          <h5>2) Si en la pieza figura la leyenda “tarjeta postal”…</h5>
+          <h5>2) Si no se puede entregar, ¿cuánto tiempo queda en la oficina?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="El propio título hace que se clasifique como postal aunque no tenga texto."><span>Se clasifica como postal aunque no haya texto personal</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" /><span>Se exige además un sobre</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" /><span>Debe ser confidencial</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" /><span>Se considera paquete</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>7 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Lo dice el texto: 15 días naturales."><span>15 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>30 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>Hasta que el remitente llame</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
@@ -130,58 +127,75 @@
       </div>
     </section>
 
-    <!-- ===== MINILECCIÓN 2: Ámbito, zonas, peso y medidas ===== -->
-    <section class="minileccion" id="ambito">
+    <!-- ===== MINILECCIÓN 2: Ámbito, peso, dimensiones y plazos ===== -->
+    <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">2) Ámbito y zonas + límites de peso y medidas</h3>
+      <h3 class="minititulo">2) Ámbito, peso límite, dimensiones y plazos</h3>
 
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          <strong>Ámbito:</strong> Nacional: España y Andorra. Internacional: Zona 1 (Europa, incluida Groenlandia; países listados), Zona 2 (resto de países no incluidos en 1 y 3) y Zona 3 (EE. UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda).<br>
-          <strong>Peso:</strong> hasta 20 g.<br>
-          <strong>Dimensiones:</strong> máximas 23,5 × 12 cm; mínimas 14 × 9 cm; espesor 5 mm. <strong>No</strong> acepta formato rollo.<br>
-          <strong>Plazos orientativos:</strong> Nacional: local D+1; provincial D+2; nacional D+3 (con los porcentajes de calidad habituales). Internacional: Europa 2–4 días hábiles; resto de destinos según país.
-          <footer>Fuente: Sesión A — Tarjeta postal (p. 15–16).</footer>
+          <strong>Ámbito</strong>: Nacional: España y Andorra. Internacional:  
+          Zona 1: Europa, incluida Groenlandia (excepto Albania, Armenia, Bosnia, Chipre, Georgia, Malta, Moldavia y Rusia).  
+          Zona 2: resto de países (no incluidos en 1 y 3).  
+          Zona 3: EE. UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda.<br><br>
+          <strong>Peso</strong>: hasta <strong>2 kg</strong>.  
+          <strong>Dimensiones máx.</strong>: sobre/caja L + A + A = <strong>90 cm</strong> (mayor ≤ 60 cm); rollo/tubo L + 2D = <strong>104 cm</strong> (mayor ≤ 90 cm).  
+          <strong>Mínimas</strong>: sobre/caja <strong>14 × 9 cm</strong>; rollo/tubo L + 2D = <strong>17 cm</strong> (mayor ≥ 10 cm). En inferiores a mínimas, etiqueta <strong>10 × 7 cm</strong> con dirección y franqueo.  
+          <strong>Tramos de peso</strong>: normalizadas (≤20 g), >20–50, >50–100, >100–500, >500–1000 y >1000–2000 g.  
+          <strong>Plazos (orientativo)</strong>: Nacional  D+1 (local), D+2 (provincial), D+3 (nacional). Internacional: Europa 2–4 días hábiles; resto según país.
+          <footer>Fuente: Sesión A — Carta certificada (págs. 18–20).</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
-        <div>Para estudiar: peso tope 20 g, tamaño entre 14×9 y 23,5×12, y nada de tubos. Andorra es nacional; si mandás “a Europa”, suele caer en Zona 1; EE. UU. o Japón, Zona 3; el resto, Zona 2.</div>
+        <div>Casi igual que carta ordinaria pero “con pruebas”. Límite 2 kg. Fórmulas clave: cajas <strong>L + A + A</strong>, tubos <strong>L + 2D</strong>. Zonas: ojo que Canadá y Rusia van en Zona 3.</div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
         <div class="ejemplo">
-          Marina envía una postal de 15×10 cm y 18 g a su primo en Valencia → dentro de límites (nacional).  
-          Diego manda postal a Juanma en EE. UU. → Zona 3.  
-          Lucía quiere enviar un tubo decorativo con saludo → no vale como postal: los tubos no están admitidos.
+          Lucía envía desde Murcia una certificada de 18 g a Marina: entra en normalizadas.  
+          Yaco manda un póster en tubo (L=60 cm, D=6 cm) a Guille: L+2D=72 → correcto.  
+          Diego envía 1,8 kg certificado a Fede en Canadá: tarificación internacional Zona 3, pero sigue con tope 2 kg y fórmulas de dimensiones.
         </div>
       </div>
 
-      <div class="test" data-test-id="a4-2">
+      <div class="test" data-test-id="a5-2">
         <div class="titulo-test">🧪 Mini test de repaso</div>
 
         <div class="pregunta" data-question-id="q3">
-          <h5>1) ¿Cuál es el peso máximo de una tarjeta postal?</h5>
+          <h5>1) ¿Cuál es el peso máximo de una carta certificada?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q3" /><span>50 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Es el límite oficial del producto."><span>20 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" /><span>100 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" /><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="El límite oficial es 2 kg."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>5 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>20 kg</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
         <div class="pregunta" data-question-id="q4">
-          <h5>2) Señalá la afirmación correcta sobre medidas</h5>
+          <h5>2) Para tubos/cilindros, la fórmula usada en dimensiones es…</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q4" /><span>Se admite formato rollo si pesa poco</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" /><span>La mínima es 10 × 7 cm</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Rango oficial: 14×9 a 23,5×12 cm; rollo no."><span>El rango va de 14 × 9 a 23,5 × 12 cm</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" /><span>La máxima es 24,5 × 16,5 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>L + A + A</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Largo + el doble del diámetro."><span>L + 2D</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>Perímetro + largo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>Volumen</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>3) ¿En qué zona se tarifica Canadá?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5"><span>Zona 1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>Zona 2</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Zona 3: EE. UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda."><span>Zona 3</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>No aplica zonas</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
@@ -189,71 +203,70 @@
       </div>
     </section>
 
-    <!-- ===== MINILECCIÓN 3: Servicios, garantías y franqueos ===== -->
-    <section class="minileccion" id="servicios">
+    <!-- ===== MINILECCIÓN 3: Servicios añadidos, garantías y pagos ===== -->
+    <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">3) Servicios adicionales, garantías e impresión de franqueo</h3>
+      <h3 class="minititulo">3) Servicios añadidos, indemnizaciones y formas de pago</h3>
 
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          <strong>Servicios adicionales (según contratación):</strong> petición de devolución/modificación de dirección, recogida a domicilio (con contrato), gestión de información de devoluciones (con contrato), normalización de direcciones (con contrato), y servicios complementarios de clasificación por ámbitos y códigos postales (con contrato), entre otros.  
-          <strong>Tarifas y bonificaciones:</strong> las establecidas para este producto, con posibilidad de bonificaciones por acuerdos.  
-          <strong>Garantías adicionales:</strong> en caso de pérdida o extravío de una <em>tarjeta postal certificada</em>, la indemnización será la tarifa abonada multiplicada por 10 en el ámbito nacional; fuera del territorio nacional, devolución de la tarifa ordinaria más 30 DEG.  
-          Se citan como productos en desuso la Tarjeta Postal Urgente y la Tarjeta Postal Certificada Urgente. Puede existir <em>Tarjeta Postal Prefranqueada</em> (franqueo impreso), con validez temporal limitada y expresada en letras:  
-          A (nacional normalizado), A2 (nacional no normalizado), B (internacional Zona 1), C (internacional Zona 2), D (internacional Zona 3).
-          <footer>Fuente: Sesión A — Tarjeta postal (p. 16–17).</footer>
+          <strong>Servicios añadidos (nacional, según contratación):</strong> aviso de recibo (M-35 Plus 1E / 2E), valor declarado SPU hasta 3000 €, prueba de entrega electrónica (PEE 5 Postal), reembolso (0,01–2499,99 € a cuenta bancaria; hasta 499,99 € si se devuelve en oficina/apartado), gestión del DUA, certificaciones de imposición y entrega, recogida a domicilio, peticiones de devolución/modificación/corrección de dirección, retorno de información (clientes con contrato), segundo intento (contrato), clasificación/digitalización/normalización, trazabilidad web/app y gestión de entrega (acuerdos).<br><br>
+          <strong>Internacional (según país/contrato):</strong> aviso de recibo (CN07), valor declarado SPU, reembolso, entrega en propia mano, retorno de información, gestión del DUA, reexpedición/devolución/modificación por el remitente, recogida a domicilio, certificación de imposición, trazabilidad web/app.<br><br>
+          <strong>Garantías (clientes sin contrato):</strong> por pérdida/extravío o deterioro: nacional = tarifa abonada ×10; internacional = devolución de la tarifa ordinaria + 30 DEG. Con <em>valor declarado</em>: nacional = pérdida + valor asegurado (o el menor entre valor declarado, reposición o reparación); internacional = tarifa ordinaria + valor asegurado. En reembolsos: si se pierde antes de entrega → nacional ×10 / internacional tarifa + 30 DEG; si ya se entregó → importe del giro. Plazos de reclamación: nacional mínimo 7 días y máximo 4 meses; internacional mínimo 15 días y máximo 6 meses.<br><br>
+          <strong>Formas de pago:</strong> metálico, transferencia, Tarjeta Más Cerca, tarjetas de crédito/débito, PayPal, sellos/estampillas, franqueo pagado en oficina o máquina, franqueo electrónico (OPV – Correos online), franqueo de pago diferido (franqueo pagado) y prepago.
+          <footer>Fuente: Sesión A — Carta certificada (págs. 20–22).</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
-        <div>Si la postal va certificada y se pierde, hay indemnización: en España, 10× la tarifa abonada; en internacional, tarifa ordinaria + 30 DEG. Los sellos con letras: A/A2 para España, B/C/D para Zonas 1/2/3. Las “urgentes” de postal prácticamente no se usan.</div>
+        <div>Para “demostrar” la entrega, el comodín es el <strong>aviso de recibo</strong>. Si hay dinero de por medio, entra <strong>reembolso</strong>. Con <strong>valor declarado</strong> se asegura el contenido y cambian las indemnizaciones. Reclamos: 7–120 días (nacional) y 15–180 (internacional).</div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
         <div class="ejemplo">
-          Cristina compra postales prefranqueadas “A” para enviar desde Murcia a Alicante → sirven mientras su validez esté vigente.  
-          Alberto manda una postal certificada a Grachu en Alemania (Zona 1). Si se extraviara, la referencia de indemnización sería la regla internacional (tarifa ordinaria + 30 DEG).  
-          Lorena trae una postal con sello “D” para Fede en EE. UU. → correcto: “D” = Zona 3.
+          Marina envía un contrato a Alberto con <em>aviso de recibo</em> y paga con tarjeta.  
+          Guille vende una guitarra y la manda certificada con <em>reembolso</em> de 250 € para que el cobro se haga al entregar.  
+          Lorena manda documentos a Juana en Portugal con <em>valor declarado</em> de 600 € (zona 1). Si se pierde, la indemnización considera la tarifa y el valor asegurado según norma.
         </div>
       </div>
 
-      <div class="test" data-test-id="a4-3">
+      <div class="test" data-test-id="a5-3">
         <div class="titulo-test">🧪 Mini test de repaso</div>
 
-        <div class="pregunta" data-question-id="q5">
-          <h5>1) ¿Qué letra identifica franqueo para internacional Zona 1?</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q5" /><span>A</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="B = Zona 1; C = Zona 2; D = Zona 3."><span>B</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5" /><span>C</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5" /><span>D</span></label></li>
-          </ul>
-          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
-          <div class="feedback ok"></div><div class="feedback ko"></div>
-        </div>
-
         <div class="pregunta" data-question-id="q6">
-          <h5>2) En España, la indemnización por pérdida de una <em>tarjeta postal certificada</em> es…</h5>
+          <h5>1) En nacional <em>sin valor declarado</em>, ¿cuál es la indemnización por pérdida?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q6" /><span>30 € fijos</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Regla literal: 10× la tarifa abonada (ámbito nacional)."><span>10 veces la tarifa abonada</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6" /><span>Tarifa ordinaria + 30 DEG</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6" /><span>No existe indemnización</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>Tarifa abonada + 30 DEG</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Indica el texto: tarifa abonada multiplicada por 10."><span>Tarifa abonada ×10</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>Valor declarado</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>Importe del giro</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
         <div class="pregunta" data-question-id="q7">
-          <h5>3) ¿Cuál de estas piezas encaja como tarjeta postal?</h5>
+          <h5>2) ¿Cuál de estas <em>no</em> es una forma de pago admitida?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Rectangular, al descubierto, dentro del rango 14×9–23,5×12 y ≤20 g."><span>Cartulina 15 × 10 cm, 18 g, al descubierto</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q7" /><span>Tubo con saludo de 30 cm de largo</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q7" /><span>Foto dentro de un sobre</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q7" /><span>Cartulina 12 × 8 cm con sello A</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>Tarjeta Más Cerca</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>PayPal</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="El cheque ya no se admite como forma de pago."><span>Cheque</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>Franqueo electrónico OPV</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q8">
+          <h5>3) ¿Cuál es el <em>plazo mínimo</em> para reclamar en internacional?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q8"><span>7 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="Internacional: mínimo 15 días, máximo 6 meses."><span>15 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8"><span>30 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8"><span>No hay mínimo</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
@@ -262,12 +275,12 @@
     </section>
   </div>
 
-  <!-- ======= BOTÓN SIGUIENTE (NO CAMBIAR) ======= -->
-  <a class="boton-siguiente" href="leccion-a5.html" rel="next">Siguiente ➜</a>
+  <!-- ======= BOTÓN SIGUIENTE ======= -->
+  <a class="boton-siguiente" href="leccion-a6.html" rel="next">Siguiente ➜</a>
 
 <script>
 /* ======= LÓGICA DEL MINITEST ======= */
-(function () {
+(function() {
   function setEstadosIniciales() {
     document.querySelectorAll('.pregunta').forEach(function(p){
       var btn = p.querySelector('button[data-action="comprobar"]');
@@ -277,22 +290,22 @@
       });
     });
   }
-  function comprobar(preguntaEl){
+  function comprobar(preguntaEl) {
     var seleccion = preguntaEl.querySelector('input[type="radio"]:checked');
     var okBox = preguntaEl.querySelector('.feedback.ok');
     var koBox = preguntaEl.querySelector('.feedback.ko');
     okBox.style.display='none'; okBox.textContent='';
     koBox.style.display='none'; koBox.textContent='';
     preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
-    if(!seleccion){ koBox.textContent='Elegí una opción antes de comprobar.'; koBox.style.display='block'; return; }
+    if (!seleccion){ koBox.textContent='Elegí una opción antes de comprobar.'; koBox.style.display='block'; return; }
     var esCorrecta = seleccion.hasAttribute('data-correct');
     var explicacion = seleccion.getAttribute('data-explain') || '';
     var tarjeta = seleccion.closest('.opcion');
-    if(esCorrecta){
+    if (esCorrecta){
       tarjeta.classList.add('correcta');
       okBox.innerHTML='✅ Respuesta correcta<div class="explicacion">'+(explicacion||'¡Bien!')+'</div>';
       okBox.style.display='block';
-    }else{
+    } else {
       tarjeta.classList.add('incorrecta');
       koBox.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+(explicacion||'Revisá el concepto y probá otra vez.')+'</div>';
       koBox.style.display='block';
@@ -302,20 +315,20 @@
     preguntaEl.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
     preguntaEl.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent=''});
     preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
-    var btn = preguntaEl.querySelector('button[data-action="comprobar"]'); if(btn) btn.disabled=true;
+    var btn = preguntaEl.querySelector('button[data-action="comprobar"]'); if (btn) btn.disabled=true;
   }
   document.addEventListener('click', function(e){
     var btn = e.target.closest('button[data-action]'); if(!btn) return;
     var p = btn.closest('.pregunta'); if(!p) return;
     var act = btn.getAttribute('data-action');
-    if(act==='comprobar') comprobar(p);
-    if(act==='reset') resetear(p);
+    if (act==='comprobar') comprobar(p);
+    if (act==='reset') resetear(p);
   });
 
-  /* Refuerzo por si el caché se pone rebelde */
+  // Anti-caché suave (por si el navegador se queda con un href viejo)
   document.addEventListener('DOMContentLoaded', function(){
     var next = document.querySelector('a.boton-siguiente');
-    if(next){ next.href = 'leccion-a5.html'; next.setAttribute('rel','next'); }
+    if (next) { next.href = 'leccion-a6.html'; next.setAttribute('rel','next'); }
   });
 
   setEstadosIniciales();
