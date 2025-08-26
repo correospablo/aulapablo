@@ -1,194 +1,335 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lección A3 - Carta Ordinaria</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f8f9fa;
-      padding: 2rem;
-      color: #212529;
-    }
-    h1 {
-      color: #d6336c;
-    }
-    .bloque {
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-    }
-    .info {
-      background-color: #e3f2fd;
-      border-left: 6px solid #2196f3;
-    }
-    .explicacion {
-      background-color: #f3e5f5;
-      border-left: 6px solid #9c27b0;
-    }
-    .caso {
-      background-color: #ffecb3;
-      border-left: 6px solid #ff9800;
-    }
-    .test {
-      background-color: #e8f5e9;
-      border-left: 6px solid #4caf50;
-    }
-    .pregunta {
-      margin-bottom: 1.5rem;
-    }
-    .opciones button {
-      display: block;
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      background-color: #ffffff;
-      border: 1px solid #ced4da;
-      border-radius: 5px;
-      cursor: pointer;
-      text-align: left;
-      transition: background-color 0.3s ease;
-    }
-    .opciones button.correcta {
-      background-color: #d1e7dd;
-      border-left: 4px solid #198754;
-    }
-    .opciones button.incorrecta {
-      background-color: #f8d7da;
-      border-left: 4px solid #dc3545;
-    }
-    .respuesta {
-      display: none;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      border-left: 4px solid #6c757d;
-      background-color: #f1f3f5;
-    }
-    .next-lesson-container {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 40px;
-    }
-    .next-lesson-button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
-    }
-    .next-lesson-button:hover {
-      background-color: #45a049;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A3 — Línea de comunicación (Carta ordinaria)</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
+    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:900px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:24px}
+
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  .b-texto{background:var(--bg-legal);border-color:#ddd}
+  .b-texto h4{color:#5b21b6}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#a5f3fc}
+  .b-explica h4{color:#0e7490}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#fde68a}
+  .b-ejemplo h4{color:#92400e}
+  .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
+
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
+  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+  .opcion input:focus-visible{outline:2px solid #1453a6;outline-offset:2px}
+
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+  .boton-siguiente:active{transform:translateY(0)}
+</style>
 </head>
 <body>
-  <h1>✉️ Lección A3 - Carta Ordinaria: la vieja confiable</h1>
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A3 — Línea de comunicación (Carta ordinaria)</div>
+    <div class="leccion-sub">Definición oficial, ámbitos y zonas, límites de peso/medidas, plazos, servicios y pagos. Dividido en 3 minilecciones con mini-tests.</div>
 
-  <div class="bloque info">
-    <p>Correos no solo manda paquetes, también cartas. Y no hablamos de palomas mensajeras, sino de <strong>Cartas Ordinarias</strong>. ¿Qué es eso? Es cualquier envío cerrado, con contenido no visible ni indicado, que contenga una comunicación actual y personal en soporte físico.</p>
-    <p>También entran en esta categoría recibos, facturas y otros documentos de negocio con mensajes no idénticos (o sea, que no son un panfleto fotocopiado para todo el barrio).</p>
+    <!-- ===== MINILECCIÓN 1: Línea de comunicación + Definición de carta ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Línea de comunicación y qué es “carta”</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          La línea de comunicación engloba la totalidad de los productos y servicios prestados por el operador postal, cuya finalidad es satisfacer las necesidades de comunicación por escrito de sus clientes y el envío de documentos en el ámbito nacional e internacional.
+          <footer>Fuente: Sesión A — Línea de comunicación (p. 12)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal (actualización aplicada)</h4>
+        <blockquote class="cita">
+          “Todo envío cerrado cuyo contenido no se indique ni pueda conocerse, así como toda comunicación materializada de forma escrita sobre soporte físico de cualquier naturaleza que tenga carácter actual y personal. En todo caso, tendrán la consideración de ‘carta’ los envíos de recibos, facturas, estados financieros y otros documentos de negocio con mensajes que no sean idénticos”. 
+          <footer>Norma citada: <strong>art. 2.3 del Reglamento de los Servicios Postales RD 437/2024</strong>.</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>“Comunicación” = <strong>papel que viaja</strong>. Si dentro hay documentos, estamos en cartas/postales. Si hay objetos o mercancías, pasamos a paquetería. Y la “carta” debe ir <em>cerrada</em> y no legible desde fuera.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">Factura impresa a un cliente → <strong>carta</strong>. Caja con una taza → <strong>paquete</strong>. Ticket de devolución dentro de un sobre transparente → no vale: debe ser cerrado y no legible.</div>
+      </div>
+
+      <div class="test" data-test-id="a3-1">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Qué transporta principalmente la línea de comunicación?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Definición oficial: comunicación por escrito y documentos."><span>Documentos y comunicaciones por escrito</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Eso es paquetería."><span>Mercancías y objetos voluminosos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Es un servicio, no el contenido."><span>Certificados de entrega</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No es postal."><span>Mensajes instantáneos</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Qué norma citamos ahora para definir “carta”?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Era la referencia antigua."><span>RD 1829/1999, art. 13.2.a</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Actualización de tu fe de cambios: RD 437/2024, art. 2.3."><span>RD 437/2024, art. 2.3</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No define carta."><span>Ley 43/2010, art. 1.3.b</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No es normativa postal."><span>LPACAP, art. 14</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 2: Ámbito, zonas y admisiones ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Ámbito, zonas y admisiones (con corrección aplicada)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Ámbito</strong>. Para <em>todos los productos postales</em>, desde el 1/1/2009, Andorra se incluye en ámbito nacional (salvo indicación en contrario, como notificaciones); en el ámbito internacional debe incluirse Gibraltar en la Zona 1 (Europa).<br>
+          <strong>Nacional</strong>: España y Andorra. <strong>Internacional</strong>: Zona 1 (Europa, incluida Groenlandia; países listados), Zona 2 (resto no incluidos en 1 y 3) y Zona 3 (EE. UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda).
+          <footer>Fuente: Sesión A — Carta ordinaria (p. 12)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — Cartas admitidas (corregido)</h4>
+        <blockquote class="cita">
+          <u>CARTAS NACIONALES</u> admitidas en Baleares y Península con destino a Ceuta, Melilla o Canarias <strong>que no contengan documentos</strong>.<br>
+          <u>CARTAS INTERNACIONALES</u> admitidas en Baleares y Península con destino a países de fuera de la Unión Europea. También las admitidas en Canarias, Ceuta y Melilla con cualquier destino.
+          <footer>Fuente: Sesión A — Carta ordinaria (p. 13). Ajuste: se suprime “y sean remitidas por particulares”.</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>Recordatorio que salva preguntas trampa: <strong>Andorra = nacional</strong>. <strong>Gibraltar = Zona 1</strong>. En el punto de “cartas admitidas”, queda <em>sin</em> la coletilla de “remitidas por particulares”.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">Sobre desde Mallorca a Tenerife con folleto comercial (sin documentos): encaja en “cartas nacionales admitidas” del listado. Un envío a Gibraltar se tarifica como <strong>Zona 1</strong>.</div>
+      </div>
+
+      <div class="test" data-test-id="a3-2">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>1) ¿En qué zona se incluye Gibraltar para internacional?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Zona 3 son EE. UU., Canadá, Japón, Rusia, Australia y NZ."><span>Zona 3</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Según la nota oficial: entra en Zona 1 (Europa)."><span>Zona 1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Zona 2 es el cajón del resto, pero Gibraltar está en 1."><span>Zona 2</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Es una trampa: no existe Zona 0."><span>Zona 0</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>2) Marca la opción que refleja la corrección en “Cartas nacionales admitidas”</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="La frase correcta termina en ‘…que no contengan documentos’."><span>Se elimina “y sean remitidas por particulares”</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Eso no se modifica."><span>Se elimina la referencia a Baleares y Península</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Andorra no es internacional."><span>Se indica que Andorra es internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="No hay ‘Zona 4’."><span>Se crea la Zona 4 para Gibraltar</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>3) Respecto al ámbito correcto, ¿qué afirmación es verdadera?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Al revés: Andorra es nacional."><span>Andorra es internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Tal como señala la nota general."><span>Andorra es nacional y Gibraltar está en Zona 1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Europa se agrupa en Zona 1, no en 2."><span>Europa es Zona 2</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Zona 3 tiene países concretos (EE. UU., Canadá, etc.)."><span>Zona 3 equivale a “resto del mundo”</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 3: Límites, plazos, servicios y pagos ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Límites de carta, plazos, servicios y formas de pago</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — límites</h4>
+        <blockquote class="cita">
+          <strong>Peso:</strong> hasta 2 kg.<br>
+          <strong>Dimensiones máx. (sobre/caja):</strong> L + A + A = 90 cm (la mayor ≤ 60 cm). <strong>Rollo/tubo:</strong> L + 2D = 104 cm (la mayor ≤ 90 cm).<br>
+          <strong>Dimensiones mín.:</strong> sobre/caja 14 × 9 cm; rollo/tubo L + 2D = 17 cm (la mayor ≥ 10 cm). En inferiores a las mínimas, etiqueta 10 × 7 cm con dirección y franqueo.
+          <footer>Fuente: Sesión A — Carta ordinaria (p. 13)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal — tramos, plazos y servicios</h4>
+        <blockquote class="cita">
+          <strong>Tramos de peso:</strong> hasta 20 g (normalizadas), >20–50, >50–100, >100–500, >500–1000 y >1000–2000 g.<br>
+          <strong>Plazos orientativos (nacional):</strong> local D+1; provincial D+2; nacional D+3. <strong>Internacional:</strong> Europa 2–4 días hábiles; resto del mundo según país.<br>
+          <strong>Servicios añadidos (según contratación):</strong> recogida a domicilio, peticiones de devolución/modificación, info devoluciones, normalización de direcciones, trazabilidad RFID, servicios complementarios, etc.<br>
+          <strong>Formas de pago:</strong> metálico, transferencia, Tarjeta Más Cerca, tarjeta, sellos/estampillas, franqueo pagado en oficina o máquina, franqueo electrónico (Correos online), prepago, franqueo en destino. <em>Nota:</em> el <strong>cheque ya no es admitido</strong> como forma de pago.
+          <footer>Fuente: Sesión A — Carta ordinaria (p. 13–15)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>Regla de oro: cajas = <strong>L + A + A</strong>; tubos = <strong>L + 2D</strong>. Si algo es muy chico, salvás con etiqueta 10×7. Los plazos (D+1 / D+2 / D+3) son la brújula; en internacional manda el país. Y en pagos: lo de siempre… salvo <strong>cheque</strong>, que ya no corre.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">Sobre 23×11 cm de 30 g → entra en normalizada (≤20 g sería el primer tramo). Tubo de 60 cm con D=6 cm → L+2D=72 (ok). Cliente pide pagar con cheque → se le informa que no está admitido.</div>
+      </div>
+
+      <div class="test" data-test-id="a3-3">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
+
+        <div class="pregunta" data-question-id="q6">
+          <h5>1) ¿Qué fórmula se usa para los <em>tubos</em>?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Para cilindros: largo + el doble del diámetro."><span>L + 2D</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="Esa es para cajas/sobres."><span>L + A + A</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="Eso es volumen."><span>L × A × A</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="No existe en las tablas."><span>Perímetro + largo</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q7">
+          <h5>2) ¿Cuál es la <em>dimensión mínima</em> de sobre/caja?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Si es menor, se usa etiqueta 10×7."><span>14 × 9 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="Es la medida de la etiqueta sustitutiva."><span>10 × 7 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="Corresponde a Publicorreo Óptimo."><span>23 × 33 × 2 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="No es estándar de carta."><span>15 × 10 × 1 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q8">
+          <h5>3) ¿Cuál de estas afirmaciones sobre pagos es correcta?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="Ya no se admite."><span>Se puede pagar con cheque</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="Listado oficial: metálico, tarjeta, transferencia, Más Cerca, sellos, franqueo pagado, electrónico, prepago, destino."><span>Se admiten metálico, tarjeta, transferencia, Más Cerca, sellos, franqueo pagado, electrónico, prepago y en destino</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="No es un medio de pago."><span>Solo con PayPal</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="Falso: existen varios tramos."><span>No hay tramos de peso en carta</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="bloque explicacion">
-    <p><strong>Ámbitos:</strong></p>
-    <ul>
-      <li><strong>Nacional:</strong> España + Andorra.</li>
-      <li><strong>Internacional:</strong>
-        <ul>
-          <li><strong>Zona 1:</strong> Europa + Groenlandia (menos Rusia, Malta y compañía).</li>
-          <li><strong>Zona 2:</strong> resto del mundo.</li>
-          <li><strong>Zona 3:</strong> EE.UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda.</li>
-        </ul>
-      </li>
-    </ul>
-    <p><strong>Embalaje:</strong> caja, tubo o sobre (no azul clarito ni plástico transparente). Nada de publicidades. Y si es mini, tiene que llevar etiqueta de 10 x 7 cm.</p>
-    <p><strong>Peso:</strong> hasta 2 kg. <strong>Dimensiones máximas:</strong> 90 cm (L+A+A). <strong>Mínimas:</strong> 14x9 cm o L+2D = 17 cm para tubos. Si es más chico, ¡etiqueta obligatoria!</p>
-    <p><strong>Franqueo:</strong> en metálico, con sello, tarjeta, prepago, franqueo en oficina o hasta PayPal (en cartas digitales). Pero <u>nada de cheques</u>.</p>
-    <p><strong>Impresos CN22/CN23:</strong> obligatorios en casos como:</p>
-    <ul>
-      <li>Cartas internacionales fuera de la UE.</li>
-      <li>Desde Canarias, Ceuta o Melilla a cualquier parte.</li>
-      <li>Cartas nacionales sin documentos desde Península a Ceuta/Melilla/Canarias.</li>
-    </ul>
-    <p><strong>Entrega:</strong> a domicilio. Los plazos van desde 1 día (local) hasta 5 días hábiles (nacional). En Europa, 2 a 4 días. El resto del mundo... depende.</p>
-    <p><strong>Valores añadidos:</strong> reexpedición, devolución, recogida a domicilio y trazabilidad (con contrato).</p>
-    <p><strong>Ejemplo:</strong> Pablo quiere enviar una carta desde Murcia a Buenos Aires. Como va fuera de la UE, debe rellenar el CN22. Usa un sobre normalizado de 20g, lo franquea con tarjeta, y Correos se encarga de que cruce el charco (con paciencia).</p>
-  </div>
+  <!-- ======= BOTÓN SIGUIENTE (NO CAMBIAR) ======= -->
+  <a class="boton-siguiente" href="leccion-a4.html">Siguiente ➜</a>
 
-  <div class="bloque test">
-    <h2>🧠 Mini test de repaso</h2>
-
-    <div class="pregunta">
-      <p><strong>1. ¿Cuál es el peso máximo de una carta ordinaria?</strong></p>
-      <div class="opciones">
-        <button onclick="verificar(this, false, 'r1a')">a) 1 kg</button>
-        <button onclick="verificar(this, true, 'r1b')">b) 2 kg</button>
-        <button onclick="verificar(this, false, 'r1c')">c) 5 kg</button>
-      </div>
-      <div class="respuesta" id="r1a">❌ Incorrecto. Ese es el límite de otros productos, no de la carta ordinaria.</div>
-      <div class="respuesta" id="r1b">✅ Correcto. La carta ordinaria puede pesar hasta 2 kg.</div>
-      <div class="respuesta" id="r1c">❌ Incorrecto. Si pesa 5 kg ya no es "carta", es mudanza.</div>
-    </div>
-
-    <div class="pregunta">
-      <p><strong>2. ¿Qué zona incluye a Japón?</strong></p>
-      <div class="opciones">
-        <button onclick="verificar(this, false, 'r2a')">a) Zona 1</button>
-        <button onclick="verificar(this, false, 'r2b')">b) Zona 2</button>
-        <button onclick="verificar(this, true, 'r2c')">c) Zona 3</button>
-      </div>
-      <div class="respuesta" id="r2a">❌ Incorrecto. Zona 1 es Europa.</div>
-      <div class="respuesta" id="r2b">❌ Incorrecto. Zona 2 cubre el resto del mundo, pero Japón está en zona 3.</div>
-      <div class="respuesta" id="r2c">✅ Correcto. Japón está en la zona 3.</div>
-    </div>
-
-    <div class="pregunta">
-      <p><strong>3. ¿Qué etiqueta debe acompañar a una carta pequeña?</strong></p>
-      <div class="opciones">
-        <button onclick="verificar(this, true, 'r3a')">a) Etiqueta de 10 x 7 cm</button>
-        <button onclick="verificar(this, false, 'r3b')">b) Etiqueta amarilla de aduanas</button>
-        <button onclick="verificar(this, false, 'r3c')">c) No necesita etiqueta</button>
-      </div>
-      <div class="respuesta" id="r3a">✅ Correcto. Si es más chica que el mínimo, debe llevar esa etiqueta auxiliar.</div>
-      <div class="respuesta" id="r3b">❌ Incorrecto. Esa es para temas de aduanas.</div>
-      <div class="respuesta" id="r3c">❌ Incorrecto. Correos exige la etiqueta si no cumple con las medidas mínimas.</div>
-    </div>
-
-    <div class="pregunta">
-      <p><strong>4. ¿Cuál de estas formas de pago ya no se acepta?</strong></p>
-      <div class="opciones">
-        <button onclick="verificar(this, true, 'r4a')">a) Cheque</button>
-        <button onclick="verificar(this, false, 'r4b')">b) Tarjeta</button>
-        <button onclick="verificar(this, false, 'r4c')">c) Paypal</button>
-      </div>
-      <div class="respuesta" id="r4a">✅ Correcto. Aunque sigue figurando, el cheque ya no se admite.</div>
-      <div class="respuesta" id="r4b">❌ Incorrecto. Las tarjetas son perfectamente válidas.</div>
-      <div class="respuesta" id="r4c">❌ Incorrecto. PayPal está disponible para cartas digitales.</div>
-    </div>
-
-  </div>
-
-  <div class="next-lesson-container">
-    <a href="leccion-a4.html" class="next-lesson-button">👉 Siguiente lección</a>
-  </div>
-
-  <script>
-    function verificar(boton, esCorrecta, idRespuesta) {
-      const botones = boton.parentElement.querySelectorAll('button');
-      botones.forEach(btn => btn.classList.remove('correcta', 'incorrecta'));
-      boton.classList.add(esCorrecta ? 'correcta' : 'incorrecta');
-
-      const respuestas = boton.parentElement.parentElement.querySelectorAll('.respuesta');
-      respuestas.forEach(r => r.style.display = 'none');
-
-      document.getElementById(idRespuesta).style.display = 'block';
+<script>
+(function() {
+  function setEstadosIniciales() {
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn = p.querySelector('button[data-action="comprobar"]');
+      if (btn) btn.disabled = true;
+      p.addEventListener('change', function(e){
+        if (e.target.matches('input[type="radio"]')) btn.disabled = false;
+      });
+    });
+  }
+  function comprobar(preguntaEl) {
+    var seleccion = preguntaEl.querySelector('input[type="radio"]:checked');
+    var okBox = preguntaEl.querySelector('.feedback.ok');
+    var koBox = preguntaEl.querySelector('.feedback.ko');
+    okBox.style.display='none'; okBox.textContent='';
+    koBox.style.display='none'; koBox.textContent='';
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!seleccion){koBox.textContent='Elegí una opción antes de comprobar.'; koBox.style.display='block'; return;}
+    var esCorrecta = seleccion.hasAttribute('data-correct');
+    var explicacion = seleccion.getAttribute('data-explain') || '';
+    var tarjeta = seleccion.closest('.opcion');
+    if(esCorrecta){
+      tarjeta.classList.add('correcta');
+      okBox.innerHTML='✅ Respuesta correcta<div class="explicacion">'+(explicacion||'¡Bien!')+'</div>';
+      okBox.style.display='block';
+    }else{
+      tarjeta.classList.add('incorrecta');
+      koBox.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+(explicacion||'Revisá el concepto y probá otra vez.')+'</div>';
+      koBox.style.display='block';
     }
-  </script>
+  }
+  function resetear(preguntaEl){
+    preguntaEl.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    preguntaEl.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent=''});
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var btn = preguntaEl.querySelector('button[data-action="comprobar"]'); if(btn) btn.disabled=true;
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-action]'); if(!btn) return;
+    var p = btn.closest('.pregunta'); if(!p) return;
+    var act = btn.getAttribute('data-action');
+    if(act==='comprobar') comprobar(p);
+    if(act==='reset') resetear(p);
+  });
+  setEstadosIniciales();
+})();
+</script>
 </body>
 </html>
