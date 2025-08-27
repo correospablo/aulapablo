@@ -1,169 +1,301 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lección A9 - Cecograma</title>
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: #f5f7fa;
-      padding: 2rem;
-      color: #212529;
-    }
-    h1 {
-      color: #d6336c;
-    }
-    .bloque {
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-    }
-    .info { background-color: #e3f2fd; border-left: 6px solid #2196f3; }
-    .explicacion { background-color: #f3e5f5; border-left: 6px solid #9c27b0; }
-    .caso { background-color: #ffecb3; border-left: 6px solid #ff9800; }
-    .test { background-color: #e8f5e9; border-left: 6px solid #4caf50; }
-    .pregunta { margin-bottom: 1rem; }
-    .opciones button {
-      display: block;
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      background-color: #ffffff;
-      border: 1px solid #ced4da;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .opciones button.correcta {
-      background-color: #d1e7dd;
-      border-color: #198754;
-    }
-    .opciones button.incorrecta {
-      background-color: #f8d7da;
-      border-color: #dc3545;
-    }
-    .respuesta {
-      display: none;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background-color: #d1e7dd;
-      border-left: 4px solid #198754;
-    }
-    .next-lesson-container {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 40px;
-      padding-right: 20px;
-      position: fixed;
-      bottom: 20px;
-      right: 0;
-    }
-    .next-lesson-button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
-    }
-    .next-lesson-button:hover {
-      background-color: #45a049;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A9 — Libros (línea de comunicación)</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
+    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:24px}
+
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  .b-texto{background:var(--bg-legal);border-color:#ddd}
+  .b-texto h4{color:#5b21b6}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#a5f3fc}
+  .b-explica h4{color:#0e7490}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#fde68a}
+  .b-ejemplo h4{color:#92400e}
+  .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
+
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
+  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+  .opcion input:focus-visible{outline:2px solid #1453a6;outline-offset:2px}
+
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+  .boton-siguiente:active{transform:translateY(0)}
+</style>
 </head>
 <body>
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A9 — Libros (línea de comunicación)</div>
+    <div class="leccion-sub">Qué se considera “libros”, límites clave (peso/dimensiones), ámbitos y compatibilidades. Con ejemplos cotidianos de todo el grupo para fijar.</div>
 
-  <h1>📦 Lección A9 - Cecograma</h1>
+    <!-- ========= MINILECCIÓN 1 ========= -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) ¿Qué es el producto “Libros”?</h3>
 
-  <div class="bloque info">
-    <p>Vamos con otro clásico poco conocido pero muy importante: el <strong>cecograma</strong>. Este servicio está pensado para facilitar el acceso a la comunicación a las personas invidentes. Y sí, ¡es gratis!</p>
-  </div>
-
-  <div class="bloque explicacion">
-    <h2>📝 ¿Qué es un cecograma?</h2>
-    <p>Es un envío entre personas ciegas y organizaciones de ciegos, que puede contener:</p>
-    <ul>
-      <li>Cartas cecográficas abiertas</li>
-      <li>Clisés con signos de cecografía</li>
-      <li>Grabaciones sonoras</li>
-      <li>Papel especial para invidentes</li>
-    </ul>
-    <p>El contenido debe estar claramente destinado a personas invidentes, y no hace falta que sea enviado por una organización. Si un particular acredita su condición de invidente con certificado médico, también puede usar este servicio.</p>
-    <p><strong>Características principales:</strong></p>
-    <ul>
-      <li>📍 Ámbito: Nacional (incluye Andorra) e internacional</li>
-      <li>⚖️ Peso: hasta 7 kg</li>
-      <li>📏 Dimensiones:</li>
-      <ul>
-        <li>Mínimas: 14 x 9 cm</li>
-        <li>Máximas: L + A + A = 90 cm (sin que ninguna supere 60 cm)</li>
-        <li>Rollo/tubo: entre 17 cm y 104 cm (L + 2D)</li>
-      </ul>
-      <li>📦 Embalaje: debe proteger el contenido, pero permitir su verificación</li>
-      <li>💰 Tarifa: exento de franqueo (Ley 43/2010, art. 34.3)</li>
-    </ul>
-  </div>
-
-  <div class="bloque caso">
-    <p><strong>Ejemplo práctico:</strong> En Murcia, un amigo de Pablo llamado Diego quiere enviar a su tía invidente que vive en Valencia un libro en braille y una carta escrita con cecografía. Como Diego no pertenece a una organización de ciegos, presenta el certificado médico de su tía. En Correos le dicen que el envío es un cecograma y que no debe pagar nada. ¡Y así nomás, lo manda!</p>
-  </div>
-
-  <div class="bloque test">
-    <h2>🧠 Mini test</h2>
-
-    <div class="pregunta">
-      <p><strong>1. ¿Cuál es el peso máximo permitido para un cecograma?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. Hasta 2 kg es para cartas certificadas.')">a) 2 kg</button>
-        <button onclick="evaluar(this, true, 'Correcto. El peso máximo para un cecograma es de 7 kg.')">b) 7 kg</button>
-        <button onclick="evaluar(this, false, 'Nope. 10 kg no es un peso permitido para este servicio.')">c) 10 kg</button>
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          En la línea de comunicación, <strong>libros</strong> cubre el envío de obras impresas encuadernadas (en papel u otro soporte físico equivalente) que se remiten como documentación. Es un producto documental, distinto de paquetería; su tratamiento en límites y medidas se alinea con los de carta/CCRI. <br>
+          <em>(Resumen operativo del manual: en el temario figura como “Libros” con tope de peso de <strong>2&nbsp;kg</strong> y límites dimensionales de la familia carta/CCRI.)</em>
+          <footer>Referencia: sesión A — tabla de pesos (aparece “Libros: 2 kg”).</footer>
+        </blockquote>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>2. ¿Qué característica distingue al cecograma en cuanto a tarifa?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. No tiene tarifa preferencial, es directamente gratuito.')">a) Tiene tarifa reducida</button>
-        <button onclick="evaluar(this, true, 'Correcto. Está exento de franqueo por ley.')">b) Está exento de franqueo</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. Los sellos no se usan para este servicio.')">c) Debe llevar sellos especiales</button>
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>Si lo que viaja son <em>libros</em> (uno o varios) y no hay mercancía extra, lo tratamos como envío documental “Libros”. Cuando se mezclan libros con objetos (taza, juguete, etc.), ya es paquetería.</div>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>3. ¿Puede un particular usar el servicio de cecograma?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, true, 'Correcto. Si presenta un certificado médico que acredite su condición, puede usarlo.')">a) Sí, si acredita la condición con un certificado médico</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. No hace falta pertenecer a una organización.')">b) Solo si pertenece a una organización de ciegos</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. No es necesario que sea mayor de edad.')">c) Solo mayores de edad con certificado</button>
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">
+          En Murcia: Pablo manda a Diego un manual encuadernado; Juli presta a Marina una novela y la reenvía; Enma devuelve a Alberto un cómic. Todo entra como “Libros”. Si Lucía añade un marcapáginas de madera voluminoso para Titi, ya se evalúa como paquete.
+        </div>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
+      <div class="test" data-test-id="a9-1">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Cuándo encaja el producto “Libros”?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1"><span>Cuando viajan libros junto con una taza</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Solo obras impresas encuadernadas; sin mercancía extra."><span>Cuando se envían exclusivamente obras impresas encuadernadas</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Si el envío es un peluche con forma de libro</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Solo si pesa más de 2 kg</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= MINILECCIÓN 2 ========= -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Ámbito, peso y dimensiones</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal clave</h4>
+        <blockquote class="cita">
+          <strong>Ámbito:</strong> nacional e internacional (zonas estándar).<br>
+          <strong>Peso máximo:</strong> <strong>2 kg</strong> por envío (tabla de productos).<br>
+          <strong>Dimensiones:</strong> se ajustan a los límites de carta/CCRI: sobre/caja <em>L + A + A = 90 cm</em> (mayor ≤ 60 cm); rollo/tubo <em>L + 2D = 104 cm</em> (mayor ≤ 90 cm). Mínimas: 14 × 9 cm; si es menor, etiqueta 10 × 7 cm con dirección y franqueo.
+          <footer>Operativa basada en las tablas de límites que ya viste en A2 y A3.</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>Memotecnia fácil: **2 kg** y las **medidas de carta/CCRI**. Si son varios libros, asegurá buen embalaje y que no sobresalgan las tapas para no deteriorarse.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">
+          En Murcia: Cristina envía a Yaco dos libros de cocina (1,4 kg) → ok. Jenny manda a Guille un tomo de 900 g en sobre acolchado 23×16×4 → suma 43 (L+A+A), ok. Lorena arma un tubo con láminas encuadernadas para Marina: mide L=60 y D=6 → L+2D=72, ok.  
+          Exterior: Alberto remite a Grachu una edición de 1,2 kg (Zona 1); Diego envía a Gra un álbum infantil para Juana (5 años); Lucía manda a Cande un libro blando para Lolo (bebé). Todos quedan dentro del tope de 2 kg si el embalaje respeta medidas.
+        </div>
+      </div>
+
+      <div class="test" data-test-id="a9-2">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>1) ¿Cuál es el peso máximo permitido en “Libros”?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2"><span>500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="La tabla sitúa “Libros” con tope 2 kg."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>5 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>20 kg</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>2) Para cilindros (tubos), ¿qué fórmula de medida aplica?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3"><span>L + A + A</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Cilindros → L + 2D (igual que en carta/CCRI)."><span>L + 2D</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>Perímetro + largo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>Volumen (L×A×A)</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= MINILECCIÓN 3 ========= -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Compatibilidades y pagos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Servicios añadibles (según contratación y país):</strong> certificado, aviso de recibo, valor declarado y opciones de trazabilidad cuando estén disponibles. <strong>Plazos:</strong> nacionales orientativos D+1 / D+2 / D+3; internacionales según zona/país. <strong>Pagos:</strong> metálico, tarjeta, transferencia, Tarjeta Más Cerca, sellos/estampillas, franqueo pagado/maquina y franqueo electrónico; para clientes con contrato, franqueo en destino/diferido según condiciones.
+          <footer>Operativa alineada con la familia carta (ver A3 y A7 para detalle).</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>Si el cliente quiere <em>prueba</em>, sumá “certificado” (y, si procede, AR). Para envíos caros, valor declarado. Y recordá: lo que define el producto es que sean libros; si meten un juguete para Juana o Lolo, pasa a paquete.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">
+          Casos del grupo:  
+          • Titi manda a Vicki un libro de fotografía con certificado.  
+          • Guille envía a Cristian una antología con AR.  
+          • Jenny remite a Rodri un manual técnico con valor declarado.  
+          • Lorena envía a Juanma un libro infantil para leer con Juana (5 años).  
+          • Marina manda a Ana un cuento de tapas blandas para Lolo (bebé).  
+          • Pablo prepara para Fede un pack de dos libros (1,7 kg) → ok por peso; si añadiera una taza, cambiaría a paquetería.  
+          • Enma y Lucía coordinan devoluciones de libros entre Murcia y Cande/Maru según zona internacional.
+        </div>
+      </div>
+
+      <div class="test" data-test-id="a9-3">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>1) ¿Qué servicio añadirías si el remitente quiere constancia de entrega?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Para constancia y seguimiento usa “certificado”; se puede sumar AR."><span>Certificado (y, si procede, Aviso de Recibo)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>Urgente internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>Paq Retorno</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>Citypaq</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>2) Marca la opción correcta sobre “Libros”</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5"><span>Admite enviar juguetes junto con los libros</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Solo obras impresas encuadernadas; si añades mercancía, pasa a paquete."><span>Se usa solo si el contenido son libros (obras impresas encuadernadas)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>No puede viajar fuera de España</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>No tiene límite de peso</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
+          </div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="next-lesson-container">
-    <a href="leccion-a10.html" class="next-lesson-button">👉 Siguiente lección</a>
-  </div>
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a10.html" rel="next">Siguiente ➜</a>
 
-  <script>
-    function evaluar(btn, esCorrecta, mensaje) {
-      const botones = btn.parentElement.querySelectorAll("button");
-      botones.forEach(b => {
-        b.disabled = true;
-        b.classList.remove("correcta", "incorrecta");
+<script>
+(function(){
+  function setEstadosIniciales(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var b = p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled = true;
+      p.addEventListener('change', function(e){
+        if(e.target.matches('input[type="radio"]')) b.disabled = false;
       });
-      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
-      const respuesta = btn.parentElement.nextElementSibling;
-      respuesta.innerText = mensaje;
-      respuesta.style.display = "block";
+    });
+  }
+  function comprobar(p){
+    var s = p.querySelector('input[type="radio"]:checked');
+    var ok = p.querySelector('.feedback.ok');
+    var ko = p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!s){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var corr = s.hasAttribute('data-correct');
+    var exp = s.getAttribute('data-explain') || '';
+    var card = s.closest('.opcion');
+    if(corr){
+      card.classList.add('correcta');
+      ok.innerHTML='✅ Respuesta correcta<div class="explicacion">'+(exp||'¡Bien!')+'</div>';
+      ok.style.display='block';
+    }else{
+      card.classList.add('incorrecta');
+      ko.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+(exp||'Revisá el concepto y probá otra vez.')+'</div>';
+      ko.style.display='block';
     }
-  </script>
-
+  }
+  function resetear(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent=''});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b = p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-action]'); if(!btn) return;
+    var p = btn.closest('.pregunta'); if(!p) return;
+    var a = btn.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') resetear(p);
+  });
+  setEstadosIniciales();
+})();
+</script>
 </body>
 </html>
