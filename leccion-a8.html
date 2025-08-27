@@ -1,149 +1,332 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lección A8 - Valijas</title>
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: #f5f7fa;
-      padding: 2rem;
-      color: #212529;
-    }
-    h1 {
-      color: #d6336c;
-    }
-    .bloque {
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-    }
-    .info { background-color: #e3f2fd; border-left: 6px solid #2196f3; }
-    .explicacion { background-color: #f3e5f5; border-left: 6px solid #9c27b0; }
-    .caso { background-color: #ffecb3; border-left: 6px solid #ff9800; }
-    .test { background-color: #e8f5e9; border-left: 6px solid #4caf50; }
-    .pregunta { margin-bottom: 1rem; }
-    .opciones button {
-      display: block;
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      background-color: #ffffff;
-      border: 1px solid #ced4da;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .opciones button.correcta {
-      background-color: #d1e7dd;
-      border-color: #198754;
-    }
-    .opciones button.incorrecta {
-      background-color: #f8d7da;
-      border-color: #dc3545;
-    }
-    .respuesta {
-      display: none;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background-color: #d1e7dd;
-      border-left: 4px solid #198754;
-    }
-    .next-lesson-fixed {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
-    }
-    .next-lesson-fixed:hover {
-      background-color: #45a049;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A8 — Carta certificada urgente</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
+    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:24px}
+
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  .b-texto{background:var(--bg-legal);border-color:#ddd}
+  .b-texto h4{color:#5b21b6}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#a5f3fc}
+  .b-explica h4{color:#0e7490}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#fde68a}
+  .b-ejemplo h4{color:#92400e}
+  .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
+
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
+  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+  .opcion input:focus-visible{outline:2px solid #1453a6;outline-offset:2px}
+
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#ffffff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,0.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,0.33)}
+  .boton-siguiente:active{transform:translateY(0)}
+</style>
 </head>
 <body>
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A8 — Carta certificada urgente</div>
+    <div class="leccion-sub">Qué es, límites clave (peso/medidas), plazos, servicios/garantías y pagos. Con ejemplos cercanos para no confundirte en ventanilla.</div>
 
-  <h1>📦 Lección A8 - Valijas</h1>
+    <!-- ===== MINILECCIÓN 1: QUÉ ES ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es la carta certificada urgente</h3>
 
-  <div class="bloque info">
-    <p>Hoy entramos en el mundo empresarial. Las <strong>valijas</strong> son un servicio exclusivo de Correos para empresas que necesitan mover documentos o mercancías entre distintas sedes, de forma periódica y con horario acordado. O sea, un sistema de mensajería interna con esteroides.</p>
-  </div>
-
-  <div class="bloque explicacion">
-    <p>Las valijas sólo están disponibles para clientes con contrato. Pueden ser <strong>valijas unitoque</strong> (recogen y entregan al mismo tiempo) o <strong>valijas bitoque</strong> (recogen y entregan en distintos momentos).</p>
-    <p><strong>Características generales:</strong></p>
-    <ul>
-      <li>📍 Ámbito: Nacional (España y Andorra).</li>
-      <li>🤝 Contrato personalizado.</li>
-      <li>📦 Embalaje: bolsas con asas, resistentes, con cierre de cremallera precintable y ventana para etiqueta.</li>
-      <li>⚖️ Peso: hasta 20 kg.</li>
-      <li>📅 Entrega: 1 día hábil, en horario pactado con el cliente.</li>
-    </ul>
-    <p><strong>Precintos por color:</strong> amarillo (central a delegaciones), rojo (delegaciones a central). Correos recomienda tener precintos para 6 meses de uso.</p>
-    <p><strong>Servicios adicionales:</strong> clasificación de documentos, trazabilidad, venta de bolsas, entrega/recogida pactada, etc.</p>
-    <p><strong>Tarifas:</strong> varían por zona (provincial, peninsular, Baleares/Ceuta/Melilla, Península-Canarias) y por peso. Exentas de impuestos indirectos en Canarias, Ceuta y Melilla.</p>
-  </div>
-
-  <div class="bloque caso">
-    <p><strong>Ejemplo práctico:</strong> Enma trabaja en una empresa que tiene sede en Madrid y otra en Sevilla. Todos los lunes y jueves, llega a la oficina una valija con informes, contratos y hasta merchandising. Las valijas llegan puntuales, en bolsas precintadas, con seguimiento, y con precintos de colores para identificar el origen. Enma ya sabe: si ve precinto amarillo, viene de la central; si es rojo, la devolvieron con las firmas.</p>
-  </div>
-
-  <div class="bloque test">
-    <h2>🧠 Mini test</h2>
-
-    <div class="pregunta">
-      <p><strong>1. ¿A quién está dirigido el servicio de valijas?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. No está disponible para particulares.')">a) Particulares sin contrato</button>
-        <button onclick="evaluar(this, true, 'Correcto. Las valijas están diseñadas para empresas con contrato.')">b) Empresas con contrato</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. No está orientado a clientes internacionales.')">c) Empresas internacionales</button>
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Permite el envío de documentos y/o mercancías con carácter de urgencia, con entrega en el domicilio del destinatario bajo firma (o persona autorizada). El envío viaja controlado con etiqueta con código de barras y se puede seguir en la web o app. Si no se puede entregar, se deja aviso para recogida en oficina; queda 15 días naturales a disposición. La pérdida da lugar a una indemnización fija igual para cada envío. 
+          <footer>Fuente: Sesión A — Carta certificada urgente (págs. 26–29)</footer>
+        </blockquote>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>2. ¿Qué color de precinto se usa para envíos de delegaciones a la central?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. Ese color es para la central hacia delegaciones.')">a) Amarillo</button>
-        <button onclick="evaluar(this, true, 'Correcto. El rojo es para envíos desde las delegaciones a la central.')">b) Rojo</button>
-        <button onclick="evaluar(this, false, 'No. El verde es para valijas internas de Correos.')">c) Verde</button>
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>
+          Es la mezcla de las dos ideas: <strong>certificada</strong> (seguimiento + firma) y <strong>urgente</strong> (plazo corto). 
+          Ámbito: <strong>nacional (España y Andorra)</strong>. Se identifica con etiqueta roja “carta urgente”.
+        </div>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>3. ¿Cuál es el plazo de entrega habitual de una valija?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, true, 'Correcto. Las valijas se entregan en un día hábil.')">a) 1 día hábil</button>
-        <button onclick="evaluar(this, false, 'Incorrecto. No es un servicio con entrega semanal.')">b) 7 días</button>
-        <button onclick="evaluar(this, false, 'No. Las valijas no se entregan de forma inmediata.')">c) Entrega inmediata</button>
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">
+          Marina manda desde Murcia una carta certificada urgente a Diego (Madrid) con 120 g: sale hoy y, si entra a tiempo, llega D+1.  
+          Pablo necesita prueba de entrega digital: añadimos <em>PEE 5 postal</em>.  
+          Cristina pregunta si puede certif. urgente a Grachu (Argentina): no, el producto es solo nacional; se le orienta a opciones internacionales de carta certificada.
+        </div>
       </div>
-      <div class="respuesta"></div>
-    </div>
+
+      <div class="test" data-test-id="a8-1">
+        <div class="titulo-test">🧪 Mini test</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Qué combina la carta certificada urgente?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1"><span>Solo urgencia, sin firma</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Seguimiento + firma (certificada) y plazo corto (urgente)."><span>Seguimiento con firma + plazo corto de entrega</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Solo seguimiento sin urgencia</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Es un paquete, no una carta</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Qué ámbito tiene?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Se presta en España y Andorra."><span>Nacional (España y Andorra)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>Solo internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>Local de barrio</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>Unión Europea únicamente</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 2: LÍMITES Y PLAZOS ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Peso, medidas y plazos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Peso máximo:</strong> hasta 2 kg.<br>
+          <strong>Dimensiones máx. (sobre/caja):</strong> L + A + A = 90 cm (la mayor ≤ 60 cm). <strong>Rollo/tubo:</strong> L + 2D = 104 cm (la mayor ≤ 90 cm).<br>
+          <strong>Mínimas:</strong> sobre/caja 14 × 9 cm; rollo/tubo L + 2D = 17 cm (la mayor ≥ 10 cm). En inferiores, etiqueta 10 × 7 cm con dirección y franqueo.<br>
+          <strong>Tramos de peso:</strong> hasta 20 g (normalizadas), >20–50 g, >50–100 g, >100–500 g, >500–1000 g y >1000–2000 g.<br>
+          <strong>Plazo de entrega (orientativo):</strong> el 90 % en D+1, depositadas antes de 16:00 (oficinas con tarde) o 14:30 (solo mañana) y con origen/destino grandes poblaciones.
+          <footer>Fuente: Sesión A — Carta certificada urgente (págs. 27–28)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>
+          Cajas se miden con <strong>L + A + A</strong>; tubos con <strong>L + 2D</strong>. Si la pieza es muy chica, salvás con etiqueta 10×7. 
+          Para que llegue D+1, la clave es la <strong>hora de corte</strong> y que vaya entre ciudades con buena conexión.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">
+          Titi trae un tubo para Jenny: L = 22 cm y D = 3,5 cm → L+2D = 29 cm (ok) y la mayor medida es 22 cm (≥10).  
+          Alberto deja a las 13:10 un sobre de 35 g para Lucía (Murcia→Valencia): entra en tramo >20–50 g; si pasa antes de la hora de corte, objetivo D+1.  
+          Yaco llega con una caja muy pequeña para Guille: 11×7 cm → no llega a 14×9; se etiqueta 10×7 y listo.
+        </div>
+      </div>
+
+      <div class="test" data-test-id="a8-2">
+        <div class="titulo-test">🧪 Mini test</div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>1) ¿Cuál es el peso máximo?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3"><span>500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="La ficha marca hasta 2 kg."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>5 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>20 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>2) Para un cilindro, ¿qué fórmula de medida aplica?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4"><span>L + A + A</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Tubos/rollos: largo + el doble del diámetro."><span>L + 2D</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>Perímetro + largo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>Volumen</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>3) ¿Cuál es la mínima de sobre/caja sin etiqueta sustitutiva?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Si es menor, se usa etiqueta 10×7."><span>14 × 9 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>10 × 7 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>23 × 33 × 2 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>No tiene mínimas</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 3: SERVICIOS, GARANTÍAS Y PAGOS ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Servicios añadidos, garantías y pagos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Servicios añadidos / valores:</strong> aviso de recibo (M-35 Plus 1E/2E), valor declarado SPU (hasta 3000 €), prueba de entrega electrónica PEE 5 postal (5 años de custodia), recogida a domicilio y otros (según contrato), normalización de direcciones, retorno de información/trazabilidad, certificaciones de imposición y entrega, etc.<br>
+          <strong>Garantías:</strong> por pérdida/extravio o deterioro: indemnización = tarifa abonada × 10. Si circula con valor declarado, se añade la indemnización por pérdida + valor asegurado (con los límites y supuestos indicados). Plazo de reclamación: desde la admisión, mínimo 7 días y máximo 4 meses.<br>
+          <strong>Formas de pago:</strong> metálico, transferencia, Tarjeta Más Cerca, tarjeta (crédito/débito), sellos/estampillas, franqueo pagado en oficina o a máquina y franqueo electrónico (online). Para clientes con contrato: franqueo pagado (diferido).
+          <footer>Fuente: Sesión A — Carta certificada urgente (págs. 28–29)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Ahora en versión entendible</h4>
+        <div>
+          Si querés “papelito” físico, sumás <strong>aviso de recibo</strong>. Si alcanza con digital, <strong>PEE 5</strong>. ¿Objeto de valor? <strong>Valor declarado</strong>. 
+          En pagos, lo habitual de ventanilla; el diferido es para clientes con contrato.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y cómo sería en la realidad</h4>
+        <div class="ejemplo">
+          Lorena envía contratos a Enma con certificada urgente + AR: tendrá el justificante firmado.  
+          Julieta manda documentos a Alberto con PEE 5: luego puede descargar la prueba desde la web.  
+          Jenny necesita asegurar 600 €: se tramita con valor declarado (hasta el tope SPU) y queda cubierto según norma.
+        </div>
+      </div>
+
+      <div class="test" data-test-id="a8-3">
+        <div class="titulo-test">🧪 Mini test</div>
+
+        <div class="pregunta" data-question-id="q6">
+          <h5>1) ¿Qué opción deja constancia digital de la entrega sin papel físico?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="PEE 5 = Prueba de Entrega Electrónica."><span>PEE 5 postal</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>Aviso de recibo (papel)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>Citypaq</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>Reembolso</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q7">
+          <h5>2) La indemnización base por pérdida/extravio es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q7"><span>Tarifa abonada × 5</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Según la nota vigente indicada en la ficha."><span>Tarifa abonada × 10</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>30 € fijos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>Valor declarado siempre</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q8">
+          <h5>3) ¿Cuál de estos medios es válido en ventanilla?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="Cualquiera de ellos es válido en la lista oficial."><span>Metálico / tarjeta / transferencia / franqueo pagado en oficina</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8"><span>Solo en metálico</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8"><span>Solo con PayPal</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8"><span>Cheque bancario</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <a href="leccion-a9.html" class="next-lesson-fixed">👉 Siguiente lección</a>
+  <!-- BOTÓN SIGUIENTE -->
+  <a class="boton-siguiente" href="leccion-a9.html" rel="next">Siguiente ➜</a>
 
-  <script>
-    function evaluar(btn, esCorrecta, mensaje) {
-      const botones = btn.parentElement.querySelectorAll("button");
-      botones.forEach(b => {
-        b.disabled = true;
-        b.classList.remove("correcta", "incorrecta");
+<script>
+/* ===== LÓGICA DE TEST ===== */
+(function(){
+  function setEstadosIniciales(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) b.disabled=false;
       });
-      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
-      const respuesta = btn.parentElement.nextElementSibling;
-      respuesta.innerText = mensaje;
-      respuesta.style.display = "block";
-    }
-  </script>
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return; }
+    var bien=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(bien){ card.classList.add('correcta'); ok.innerHTML='✅ Respuesta correcta<div class="explicacion">'+exp+'</div>'; ok.style.display='block'; }
+    else{ card.classList.add('incorrecta'); ko.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+exp+'</div>'; ko.style.display='block'; }
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest('button[data-action]'); if(!btn) return;
+    var p=btn.closest('.pregunta'); if(!p) return;
+    var a=btn.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
 
+  /* Anti-caché suave del botón siguiente */
+  document.addEventListener('DOMContentLoaded',function(){
+    document.querySelectorAll('a.boton-siguiente').forEach(function(a){
+      a.href='leccion-a9.html'; a.setAttribute('rel','next');
+    });
+  });
+
+  setEstadosIniciales();
+})();
+</script>
 </body>
 </html>
