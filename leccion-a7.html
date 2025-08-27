@@ -1,159 +1,309 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lección A7 - Carta Certificada Urgente</title>
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: #f5f7fa;
-      padding: 2rem;
-      color: #212529;
-    }
-    h1 {
-      color: #d6336c;
-    }
-    .bloque {
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1.5rem 0;
-    }
-    .info { background-color: #e3f2fd; border-left: 6px solid #2196f3; }
-    .explicacion { background-color: #f3e5f5; border-left: 6px solid #9c27b0; }
-    .caso { background-color: #ffecb3; border-left: 6px solid #ff9800; }
-    .test { background-color: #e8f5e9; border-left: 6px solid #4caf50; }
-    .pregunta { margin-bottom: 1rem; }
-    .opciones button {
-      display: block;
-      margin: 0.5rem 0;
-      padding: 0.5rem 1rem;
-      background-color: #ffffff;
-      border: 1px solid #ced4da;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .opciones button.correcta {
-      background-color: #d1e7dd;
-      border-color: #198754;
-    }
-    .opciones button.incorrecta {
-      background-color: #f8d7da;
-      border-color: #dc3545;
-    }
-    .respuesta {
-      display: none;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background-color: #d1e7dd;
-      border-left: 4px solid #198754;
-    }
-    .next-lesson-container {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 40px;
-      padding-right: 20px;
-    }
-    .next-lesson-button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
-    }
-    .next-lesson-button:hover {
-      background-color: #45a049;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A7 — Certificada Prepagada Premium y Carta Urgente</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa;  --c-texto:#a78bfa;  --c-explica:#22d3ee;  --c-ejemplo:#f59e0b;  --c-test:#3b82f6;
+    --bg-legal:#f5f3ff;   --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:24px}
+
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  .b-texto{background:var(--bg-legal);border-color:#ddd}
+  .b-texto h4{color:#5b21b6}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#a5f3fc}
+  .b-explica h4{color:#0e7490}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#fde68a}
+  .b-ejemplo h4{color:#92400e}
+  .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
+
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
+  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+  .opcion input:focus-visible{outline:2px solid #1453a6;outline-offset:2px}
+
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#ffffff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,0.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,0.33)}
+  .boton-siguiente:active{transform:translateY(0)}
+</style>
 </head>
 <body>
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A7 — Certificada Prepagada Premium y Carta Urgente</div>
+    <div class="leccion-sub">Qué incluye el sobre Premium prepagado y cómo funciona la Carta Urgente. Con ejemplos del equipo de Murcia y mini-tests.</div>
 
-  <h1>🚀 Lección A7 - Carta Certificada Urgente</h1>
+    <!-- ===== MINILECCIÓN 1: CERTIFICADA PREPAGADA PREMIUM ===== -->
+    <section class="minileccion" id="premium">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Carta Certificada Prepagada Premium</h3>
 
-  <div class="bloque info">
-    <p>¿Necesitás enviar algo con seguimiento, que llegue rápido y además tenga todas las garantías legales? Entonces lo tuyo es la <strong>Carta Certificada Urgente</strong>. Un producto pensado para quienes no confían ni en las palomas mensajeras ni en el "después te lo paso por WhatsApp".</p>
-  </div>
-
-  <div class="bloque explicacion">
-    <h2>📩 ¿Qué es una Carta Certificada Urgente?</h2>
-    <p>Permite enviar documentos o mercancías con carácter urgente y control total del proceso. Incluye seguimiento con código de barras y entrega bajo firma, y si el destinatario no está, se deja aviso y queda en lista por 15 días.</p>
-    <ul>
-      <li>🗺️ Ámbito: nacional (España y Andorra).</li>
-      <li>📦 Embalaje: sobre, caja, tubo o rollo (con requisitos de integridad y dimensiones).</li>
-      <li>📛 Etiqueta roja con la leyenda "Carta urgente".</li>
-      <li>⚖️ Peso: hasta 2 kg.</li>
-      <li>📏 Dimensiones mínimas y máximas detalladas según tipo de embalaje.</li>
-      <li>💰 Tarifas según tramos de peso (de 20 g a 2 kg).</li>
-      <li>⏱️ Plazo de entrega: entre 1 y 2 días hábiles (según oficina y destino).</li>
-      <li>🧾 Servicios adicionales: aviso de recibo, valor declarado, prueba de entrega electrónica (PEE), trazabilidad, etc.</li>
-      <li>💳 Formas de pago: en oficina o diferido (según si hay contrato).</li>
-      <li>🛡️ Garantías: indemnización por pérdida o daño (según valor declarado o tarifa).</li>
-    </ul>
-  </div>
-
-  <div class="bloque caso">
-    <h3>📌 Ejemplo práctico</h3>
-    <p>Pablo necesita enviar el contrato original de alquiler a la gestoría que está en Madrid. Como quiere que llegue rápido y que quede constancia de la entrega, elige una <strong>Carta Certificada Urgente</strong>. Lo deposita en la oficina antes de las 14:30, y al día siguiente ya lo firma el destinatario. Seguimiento incluido, y si se pierde, Correos responde. Perfecto para trámites legales.</p>
-  </div>
-
-  <div class="bloque test">
-    <h2>🧠 Mini test</h2>
-
-    <div class="pregunta">
-      <p><strong>1. ¿Qué distingue a la Carta Certificada Urgente de una ordinaria?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'Incorrecto. La ordinaria no tiene seguimiento ni urgencia.')">a) Se puede enviar desde casa</button>
-        <button onclick="evaluar(this, true, 'Correcto. Tiene seguimiento, urgencia y entrega bajo firma.')">b) Tiene seguimiento y se entrega bajo firma</button>
-        <button onclick="evaluar(this, false, 'No, esa opción no define una carta urgente.')">c) Está escrita a mano</button>
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal clave</h4>
+        <blockquote class="cita">
+          Sobre certificado prepagado con tarifa plana. Se vende en IRIS (Venta de Productos) y
+          circula con código de barras preimpreso <strong>VD</strong>.<br>
+          <strong>Características:</strong> hasta <strong>100 g</strong>; medidas <strong>189 × 250 mm</strong>;
+          <strong>seguro incluido de 100 €</strong> (no ampliable);
+          <strong>PEE 5</strong> incluido, ampliable a <strong>PEE 10</strong> o <strong>PEE 15</strong> en IRIS;
+          indemnización por pérdida <strong>100 €</strong>.
+          Si el destino tiene un régimen fiscal diferente, solo puede contener documentos.
+          <footer>Fuente: 3.1.5 Carta Certificada Prepagada Premium (p. 24)</footer>
+        </blockquote>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>2. ¿Cuál es el peso máximo para este tipo de carta?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'No, ese límite es para otras cartas más simples.')">a) 500 g</button>
-        <button onclick="evaluar(this, false, 'Ese límite corresponde a otro servicio.')">b) 1 kg</button>
-        <button onclick="evaluar(this, true, 'Correcto. El límite es de 2 kg.')">c) 2 kg</button>
+      <div class="bloque b-explica">
+        <h4>🎤 En claro</h4>
+        <div>Comprás el sobre, ya viene pagado y con seguimiento. Mientras no supere 100 g ni 189×250 mm, va directo a admisión. Trae PEE básico y un seguro fijo de 100 €.</div>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
-    <div class="pregunta">
-      <p><strong>3. ¿Qué pasa si el destinatario no está en casa?</strong></p>
-      <div class="opciones">
-        <button onclick="evaluar(this, false, 'No se destruye el envío.')">a) Se destruye el envío</button>
-        <button onclick="evaluar(this, false, 'No se reenvía automáticamente.')">b) Se reenvía a otro domicilio</button>
-        <button onclick="evaluar(this, true, 'Correcto. Se deja aviso modelo M-4 para que lo retire en Correos.')">c) Se deja aviso en el buzón</button>
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          Pablo compra un sobre Premium para mandar contratos a Julieta: pesa 78 g → entra perfecto y ya trae PEE 5.<br>
+          Lucía quiere subir la custodia del PEE a 15 años para Marina: en IRIS se amplía a PEE 15 y listo.<br>
+          Yaco pregunta si puede meter un pen con fotos para un destino con régimen fiscal distinto: no, solo documentos.
+        </div>
       </div>
-      <div class="respuesta"></div>
-    </div>
 
+      <div class="test" data-test-id="a7-1">
+        <div class="titulo-test">🧪 Mini test</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Cuál es el peso máximo del sobre Premium prepagado?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1"><span>50 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="La ficha indica hasta 100 g."><span>100 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>350 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>500 g</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Qué código de barras trae preimpreso el sobre?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2"><span>R</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Es un certificado con código preimpreso VD."><span>VD</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>SGIE</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>UR</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) Señala lo que <em>sí</em> viene incluido en el Premium</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Incluye PEE 5 e indemnización/seguro de 100 €."><span>PEE 5 y seguro/indemnización de 100 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>Seguro ampliable a 3000 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>Peso hasta 500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>Se vende solo online</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 2: CARTA URGENTE ===== -->
+    <section class="minileccion" id="urgente">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Carta Urgente (nacional)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal clave</h4>
+        <blockquote class="cita">
+          Producto para enviar con urgencia documentos o comunicaciones escritas en sobre/caja cerrados. Lleva código de barras para control en IRIS y en la entrega; etiqueta roja “carta urgente”.<br>
+          <strong>Importante:</strong> desde <strong>01/01/2020</strong> se eliminó la oferta de <em>cartas urgentes internacionales</em>; solo se mantienen para clientes con contrato vigente (no se abren nuevos).<br>
+          <strong>Ámbito:</strong> nacional (España y Andorra). <strong>Peso:</strong> hasta <strong>500 g</strong>.<br>
+          <strong>Dimensiones:</strong> máx. recomendado <strong>23,5 × 12 cm</strong> y espesor máx. <strong>10 mm</strong>. Mínimas: sobre/caja <strong>14 × 9 cm</strong>; tubo/rollo <strong>L + 2D = 17 cm</strong> con mayor ≥ <strong>10 cm</strong> (si es menor, etiqueta 10 × 7).<br>
+          <strong>Plazo orientativo:</strong> <strong>D+1</strong> si se deposita antes de 16:00 (14:30 en oficinas solo mañana) y origen/destino grandes poblaciones.<br>
+          <strong>Servicios:</strong> petición de devolución/modificación de dirección; recogida a domicilio, normalización de direcciones, info de devoluciones y trazabilidad/retorno (según contrato).<br>
+          <strong>Pago:</strong> metálico, transferencia, tarjeta/Tarjeta Más Cerca, sellos, franqueo pagado en oficina o a máquina; franqueo diferido = franqueo pagado (clientes con contrato).
+          <footer>Fuente: 3.1.6 Carta urgente (p. 24–26)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 En claro</h4>
+        <div>Es “la rápida” de cartas nacionales: hasta 500 g, D+1 si entra a tiempo. Las internacionales ya no se venden salvo contratos antiguos. Si la pieza es mínima, podés salvar con etiqueta 10×7.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          Marina presenta a las 13:00 una carta urgente para Diego (Murcia→Madrid), 120 g: llega D+1.<br>
+          Cristina quiere enviar urgente a Grachu (Argentina): no se comercializa urgente internacional; se orienta a otro producto internacional.<br>
+          Titi trae un tubo pequeño para Jenny: mide L = 20 cm y D = 3,5 cm → L + 2D = 27 cm (ok) y la mayor medida es ≥ 10 cm (ok).
+        </div>
+      </div>
+
+      <div class="test" data-test-id="a7-2">
+        <div class="titulo-test">🧪 Mini test</div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>1) El peso máximo de la carta urgente es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4"><span>100 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="La ficha marca hasta 500 g."><span>500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>5 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>2) ¿Qué ocurre con las cartas urgentes internacionales desde 01/01/2020?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Solo se mantienen para contratos vigentes; no se comercializan nuevas."><span>Solo existen para clientes con contrato vigente; no se abren nuevas</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>Se venden normalmente en oficina</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>Desapareció también para contratos vigentes</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>Es exclusivo online</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q6">
+          <h5>3) ¿Cuál es la dimensión mínima para sobre/caja en urgente?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Mínima 14 × 9 cm; si es menor, etiqueta 10 × 7."><span>14 × 9 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>10 × 7 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>23,5 × 12 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>15 × 10 × 1 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q7">
+          <h5>4) Para obtener D+1, ¿qué condición de admisión debe cumplirse?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q7"><span>Admitir cualquier hora del día</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Antes de 16:00 (14:30 en oficinas solo mañana) y grandes poblaciones."><span>Depositar antes de 16:00 (14:30 si solo mañana) entre grandes poblaciones</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>Solo depósitos en Citypaq</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>Solo clientes con contrato</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NOTAS RÁPIDAS ===== -->
+    <section class="minileccion">
+      <span class="badge">Apunte</span>
+      <h3 class="minititulo">3) Notas rápidas</h3>
+      <div class="bloque b-explica">
+        <h4>ℹ️ Recordatorios</h4>
+        <div>
+          • L + 2D = largo + dos veces el diámetro (tubos/rollos).<br>
+          • Andorra cuenta como ámbito nacional.<br>
+          • A destinos Canarias, Ceuta, Melilla o Andorra: exentas de impuestos indirectos (mencionado en la ficha). 
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="next-lesson-container">
-    <a href="leccion-a8.html" class="next-lesson-button">👉 Siguiente lección</a>
-  </div>
+  <!-- ======= BOTÓN SIGUIENTE ======= -->
+  <a class="boton-siguiente" href="leccion-a8.html" rel="next">Siguiente ➜</a>
 
-  <script>
-    function evaluar(btn, esCorrecta, mensaje) {
-      const botones = btn.parentElement.querySelectorAll("button");
-      botones.forEach(b => {
-        b.disabled = true;
-        b.classList.remove("correcta", "incorrecta");
+<script>
+/* ======= LÓGICA DEL MINITEST ======= */
+(function() {
+  function setEstadosIniciales() {
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn = p.querySelector('button[data-action="comprobar"]');
+      if (btn) btn.disabled = true;
+      p.addEventListener('change', function(e){
+        if (e.target.matches('input[type="radio"]')) btn.disabled = false;
       });
-      btn.classList.add(esCorrecta ? "correcta" : "incorrecta");
-      const respuesta = btn.parentElement.nextElementSibling;
-      respuesta.innerText = mensaje;
-      respuesta.style.display = "block";
+    });
+  }
+  function comprobar(preguntaEl) {
+    var seleccion = preguntaEl.querySelector('input[type="radio"]:checked');
+    var okBox = preguntaEl.querySelector('.feedback.ok');
+    var koBox = preguntaEl.querySelector('.feedback.ko');
+    okBox.style.display='none'; okBox.textContent='';
+    koBox.style.display='none'; koBox.textContent='';
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if (!seleccion){ koBox.textContent='Elegí una opción antes de comprobar.'; koBox.style.display='block'; return; }
+    var esCorrecta = seleccion.hasAttribute('data-correct');
+    var explicacion = seleccion.getAttribute('data-explain') || '';
+    var tarjeta = seleccion.closest('.opcion');
+    if (esCorrecta){
+      tarjeta.classList.add('correcta');
+      okBox.innerHTML='✅ Respuesta correcta<div class="explicacion">'+(explicacion||'¡Bien!')+'</div>';
+      okBox.style.display='block';
+    } else {
+      tarjeta.classList.add('incorrecta');
+      koBox.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+(explicacion||'Revisá el concepto y probá otra vez.')+'</div>';
+      koBox.style.display='block';
     }
-  </script>
+  }
+  function resetear(preguntaEl){
+    preguntaEl.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    preguntaEl.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent=''});
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var btn = preguntaEl.querySelector('button[data-action="comprobar"]'); if (btn) btn.disabled=true;
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-action]'); if(!btn) return;
+    var p = btn.closest('.pregunta'); if(!p) return;
+    var act = btn.getAttribute('data-action');
+    if (act==='comprobar') comprobar(p);
+    if (act==='reset') resetear(p);
+  });
 
+  /* ======= PARCHE ANTI-CACHÉ PARA EL BOTÓN SIGUIENTE ======= */
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('a.boton-siguiente').forEach(function(a){
+      a.href = 'leccion-a8.html';
+      a.setAttribute('rel','next');
+    });
+  });
+
+  setEstadosIniciales();
+})();
+</script>
 </body>
 </html>
