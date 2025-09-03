@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BLOQUE A — Índice de lecciones</title>
+<style>
+  :root{--c:#60a5fa;--b:#e5e7eb;--t:#111827;--bg:#f7f7f7;--card:#fff;--chipbg:#eef6ff;--chip:#1453a6}
+  *{box-sizing:border-box}
+  body{margin:0;padding:16px;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;color:var(--t)}
+  .wrap{max-width:980px;margin:0 auto;padding-bottom:80px}
+  h1{margin:6px 0 4px;font-size:28px;font-weight:800}
+  p.sub{margin:0 0 16px;color:#4b5563}
+  .panel{background:var(--card);border:1px solid var(--b);border-left:6px solid var(--c);border-radius:12px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}
+  .buscador input{flex:1;min-width:240px;padding:10px 12px;border:1px solid var(--b);border-radius:10px;font-size:15px}
+  .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+  .card{background:#fff;border:1px solid var(--b);border-radius:10px;padding:12px;transition:box-shadow .15s}
+  .card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+  .code{display:inline-block;background:var(--chipbg);color:var(--chip);font-weight:700;border:1px solid #d7e9ff;border-radius:999px;padding:2px 8px;margin-right:6px}
+  .title{margin:6px 0 0;font-size:16px;font-weight:700}
+  .desc{margin:4px 0 0;color:#4b5563;font-size:14px}
+  .pill{display:inline-block;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:999px;padding:2px 8px;font-size:12px;margin-top:6px}
+  .footer{margin-top:14px;font-size:12px;color:#6b7280}
+  a{color:#1453a6;text-decoration:none} a:hover{text-decoration:underline}
+  .hide{display:none!important}
+  .topnav{display:flex;gap:8px;align-items:center;margin:6px 0 12px}
+  .topnav a{border:1px solid var(--b);padding:6px 10px;border-radius:999px;text-decoration:none}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topnav">
+      <a href="index.html">⬅ Volver al inicio</a>
+    </div>
+
+    <h1>Bloque A — Línea de comunicación</h1>
+    <p class="sub">Índice rápido de lecciones. También podés usar <strong>Ctrl/Cmd + F</strong>.</p>
+
+    <div class="panel">
+      <div class="buscador">
+        <input id="q" type="search" placeholder="Buscar: A1, carta, urgente, certificada…">
+      </div>
+
+      <div id="lista" class="list">
+        <a class="card" href="leccion-a1.html"><span class="code">A1</span>
+          <div class="title">Introducción — Productos y servicios postales</div>
+          <div class="desc">Qué cubre el bloque y diferencia producto/servicio.</div><span class="pill">fácil</span>
+        </a>
+
+        <a class="card" href="leccion-a2.html"><span class="code">A2</span>
+          <div class="title">Tablas de pesos y medidas</div>
+          <div class="desc">Límites por producto. L+A+A y L+2D. CCRI postal.</div><span class="pill">tablas</span>
+        </a>
+
+        <a class="card" href="leccion-a3.html"><span class="code">A3</span>
+          <div class="title">Carta ordinaria</div>
+          <div class="desc">Definición (RD 437/2024), ámbitos/zonas, plazos y pagos.</div>
+        </a>
+
+        <a class="card" href="leccion-a4.html"><span class="code">A4</span>
+          <div class="title">[Reservado / pendiente]</div>
+          <div class="desc">Se listan huecos para ubicar el temario.</div><span class="pill">próximamente</span>
+        </a>
+
+        <a class="card" href="leccion-a5.html"><span class="code">A5</span>
+          <div class="title">[Reservado / pendiente]</div><span class="pill">próximamente</span>
+        </a>
+
+        <a class="card" href="leccion-a6.html"><span class="code">A6</span>
+          <div class="title">[Reservado / pendiente]</div><span class="pill">próximamente</span>
+        </a>
+
+        <a class="card" href="leccion-a7.html"><span class="code">A7</span>
+          <div class="title">Carta urgente</div>
+          <div class="desc">Ámbito, límites, plazos. Mini test.</div>
+        </a>
+
+        <a class="card" href="leccion-a8.html"><span class="code">A8</span>
+          <div class="title">Carta certificada urgente</div>
+          <div class="desc">Seguimiento + firma + D+1. Servicios/garantías.</div>
+        </a>
+
+        <a class="card" href="leccion-a9.html"><span class="code">A9</span>
+          <div class="title">[Reservado / pendiente]</div><span class="pill">próximamente</span>
+        </a>
+
+        <a class="card" href="leccion-a10.html"><span class="code">A10</span>
+          <div class="title">[Reservado / pendiente]</div><span class="pill">próximamente</span>
+        </a>
+      </div>
+
+      <div class="footer">Sugerencia: escribí “certificada”, “urgente”, “A8”, etc., para filtrar.</div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const q=document.getElementById('q');
+  const items=[...document.querySelectorAll('#lista .card')];
+  const n=s=> (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  q.addEventListener('input',()=>{
+    const t=n(q.value.trim());
+    items.forEach(el=>{
+      if(!t){el.classList.remove('hide');return;}
+      el.classList.toggle('hide', !n(el.textContent).includes(t));
+    });
+  });
+})();
+</script>
+</body>
+</html>
