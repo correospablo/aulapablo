@@ -3,88 +3,81 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Lección INTRODUCCIÓN — Qué es un producto y qué es un servicio postal. Texto literal, versión entendible, ejemplos y mini-test." />
 <title>Lección INTRODUCCIÓN — Introducción a Productos y Servicios Postales</title>
 <style>
-  /* ======= ESTILOS BASE (TODO EL CSS VA AQUÍ) ======= */
   :root{
-    --c-leccion:#60a5fa;           /* azul (lección) */
-    --c-texto:#a78bfa;             /* violeta (texto legal) */
-    --c-explica:#22d3ee;           /* cian (explicación) */
-    --c-ejemplo:#f59e0b;           /* ámbar (ejemplo) */
-    --c-test:#3b82f6;              /* azul intenso (test) */
-    --bg-legal:#f5f3ff;            /* fondo texto legal */
-    --bg-explica:#ecfeff;          /* fondo explicación */
-    --bg-ejemplo:#fffbeb;          /* fondo ejemplo */
-    --bg-test:#eff6ff;             /* fondo test */
+    --c-leccion:#60a5fa;
+    --c-texto:#a78bfa;
+    --c-explica:#22d3ee;
+    --c-ejemplo:#f59e0b;
+    --c-test:#3b82f6;
+    --bg-legal:#f5f3ff;
+    --bg-explica:#ecfeff;
+    --bg-ejemplo:#fffbeb;
+    --bg-test:#eff6ff;
   }
   *{box-sizing:border-box}
-  body { font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif; margin:0; padding:16px; background:#f7f7f7; color:#222; }
-  .contenedor { max-width: 900px; margin: 0 auto; padding-bottom: 120px; }
-  .leccion-titulo { font-size: 28px; font-weight: 800; margin: 8px 0 4px; }
-  .leccion-sub { font-size: 16px; color:#555; margin-bottom: 24px; }
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:900px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:24px}
 
-  /* ======= CONTENEDOR MINILECCIÓN (color: lección) ======= */
-  .minileccion { background:#fff; border:1px solid #e6e6e6; border-radius:12px; padding:18px; margin:18px 0; box-shadow: 0 1px 2px rgba(0,0,0,.04); border-left:6px solid var(--c-leccion); }
-  .badge { display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px; background:#eef6ff; color:#1453a6; border:1px solid #d7e9ff; margin-bottom:8px; }
-  .minititulo { font-size:22px; font-weight:750; margin:6px 0 14px; }
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
 
-  /* ======= BLOQUES COLOREADOS SEGÚN TIPO ======= */
-  .bloque { border-radius:10px; padding:12px; margin:14px 0; border:1px solid #e9e9e9; }
-  .bloque h4 { margin:0 0 8px; font-size:15px; text-transform:uppercase; letter-spacing:.4px; color:#444; }
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
 
-  /* Texto legal */
-  .b-texto{ background:var(--bg-legal); border-color:#ddd; }
-  .b-texto h4{ color:#5b21b6; }
-  blockquote.cita { background:#fff; border-left:4px solid var(--c-texto); padding:10px 12px; border-radius:8px; margin:6px 0 0; color:#333; }
-  blockquote.cita footer { font-size:12px; color:#666; margin-top:6px; }
+  .b-texto{background:var(--bg-legal);border-color:#ddd}
+  .b-texto h4{color:#5b21b6}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
 
-  /* Explicación entendible */
-  .b-explica{ background:var(--bg-explica); border-color:#a5f3fc; }
-  .b-explica h4{ color:#0e7490; }
+  .b-explica{background:var(--bg-explica);border-color:#a5f3fc}
+  .b-explica h4{color:#0e7490}
 
-  /* Ejemplo práctico */
-  .b-ejemplo{ background:var(--bg-ejemplo); border-color:#fde68a; }
-  .b-ejemplo h4{ color:#92400e; }
-  .ejemplo { background:#fff7e6; border:1px solid #ffe6a6; border-radius:10px; padding:12px; }
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#fde68a}
+  .b-ejemplo h4{color:#92400e}
+  .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
 
-  /* Test */
-  .test { margin-top:16px; padding:12px; background:var(--bg-test); border:1px solid #bfdbfe; border-radius:12px; }
-  .test .titulo-test{ font-weight:700; color:#1d4ed8; margin:0 0 8px; }
-  .pregunta { margin:14px 0; padding:12px; background:#fff; border:1px solid #e5e7eb; border-radius:10px; }
-  .pregunta h5 { margin:0 0 8px; font-size:16px; }
-  .opciones { list-style:none; margin:0; padding:0; }
-  .opciones li { margin:8px 0; }
-  .opcion { display:flex; gap:8px; align-items: flex-start; background:#fff; border:1px solid #e6e6e6; border-radius:8px; padding:10px; cursor:pointer; }
-  .opcion input { margin-top:4px; }
-  .opcion.correcta { background:#ecfdf3; border-color:#bbf7d0; }
-  .opcion.incorrecta { background:#fff1f2; border-color:#fecdd3; }
-  .acciones { margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
-  .btn { border:0; padding:10px 14px; border-radius:8px; font-weight:600; cursor:pointer; }
-  .btn-primario { background:#1453a6; color:#fff; }
-  .btn-secundario { background:#ececec; color:#222; }
-  .btn[disabled]{ opacity:.5; cursor:not-allowed; }
-  .feedback { margin-top:10px; padding:10px; border-radius:8px; display:none; }
-  .ok { background:#ecfdf3; border:1px solid #bbf7d0; color:#065f46; }
-  .ko { background:#fff1f2; border:1px solid #fecdd3; color:#9f1239; }
-  .explicacion { font-size:14px; color:#444; margin-top:4px; }
-  .opcion input:focus-visible { outline: 2px solid #1453a6; outline-offset: 2px; }
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
+  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+  .opcion input:focus-visible{outline:2px solid #1453a6;outline-offset:2px}
 
-  /* ======= BOTÓN SIGUIENTE (ESTÁNDAR, NO CAMBIAR) ======= */
-  .boton-siguiente {
-    position: fixed; right: 16px; bottom: 16px; background: #28a745; color: #ffffff;
-    border: none; border-radius: 10px; padding: 12px 18px; font-weight: 700; text-decoration: none;
-    box-shadow: 0 6px 18px rgba(40,167,69,0.25); transition: transform .05s ease-in-out, box-shadow .15s ease; z-index: 9999;
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#ffffff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
   }
-  .boton-siguiente:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(40,167,69,0.33); }
-  .boton-siguiente:active { transform: translateY(0); }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+  .boton-siguiente:active{transform:translateY(0)}
 </style>
 </head>
 <body>
   <div class="contenedor">
     <div class="leccion-titulo">Lección INTRODUCCIÓN — Introducción a Productos y Servicios Postales</div>
-    <div class="leccion-sub">Arrancamos bien: qué se entiende por productos y servicios postales, cómo está organizado el temario y qué se espera que sepas antes de meterte con tarifas y casuística. Sin tecnicismos vacíos: lo que importa para el examen y para no marearte.</div>
+    <div class="leccion-sub">Arrancamos bien: qué se entiende por productos y servicios postales, cómo está organizado el temario y qué se espera que sepas antes de meterte con tarifas y casuística. Sin tecnicismos vacíos.</div>
 
-    <!-- ======= MINILECCIÓN 1 ======= -->
+    <!-- MINILECCIÓN 1 -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
       <h3 class="minititulo">1) Qué cubre este bloque del temario</h3>
@@ -92,36 +85,39 @@
       <div class="bloque b-texto">
         <h4>📘 Texto literal del apartado</h4>
         <blockquote class="cita">
-          Correos es el operador encargado de prestar el servicio postal universal (SPU) en España, constituyéndose en la compañía líder en el mercado postal, puesto que ofrece a sus clientes fiabilidad y excelencia en sus servicios, no solo en el territorio nacional, sino también en el ámbito internacional.
-
-La norma reguladora del servicio postal universal es la Ley 43/2010, de 30 de diciembre. En ella, el artículo 1.3 señala lo siguiente: Se regirán por lo dispuesto en esta ley:
- a) Los servicios de recogida, admisión, clasificación, transporte, distribución y entrega de envíos postales.
- b) Los servicios de giro mediante los cuales se ordenan pagos a personas físicas o jurídicas por cuenta y encargo de otras, a través de la red postal pública y cualesquiera otros servicios que tengan o pudieran tener naturaleza postal, de acuerdo con la normativa de la Unión Europea y de la Unión Postal Universal.
-
-Para diferenciarse en un mercado competitivo y con ofertas similares, Correos cuenta con los valores añadidos de su fiabilidad, seguridad, flexibilidad comercial e innovación continua aplicada a los servicios.
+          Correos es el operador encargado de prestar el servicio postal universal (SPU) en España, constituyéndose en la compañía líder en el mercado postal, puesto que ofrece a sus clientes fiabilidad y excelencia en sus servicios, no solo en el territorio nacional, sino también en el ámbito internacional.<br><br>
+          La norma reguladora del servicio postal universal es la Ley 43/2010, de 30 de diciembre. En ella, el artículo 1.3 señala lo siguiente: Se regirán por lo dispuesto en esta ley:<br>
+          a) Los servicios de recogida, admisión, clasificación, transporte, distribución y entrega de envíos postales.<br>
+          b) Los servicios de giro mediante los cuales se ordenan pagos a personas físicas o jurídicas por cuenta y encargo de otras, a través de la red postal pública y cualesquiera otros servicios que tengan o pudieran tener naturaleza postal, de acuerdo con la normativa de la Unión Europea y de la Unión Postal Universal.<br><br>
+          Para diferenciarse en un mercado competitivo y con ofertas similares, Correos cuenta con los valores añadidos de su fiabilidad, seguridad, flexibilidad comercial e innovación continua aplicada a los servicios.
           <footer>Fuente: Sesión A — Introducción (p. 4). Base legal: Ley 43/2010, art. 1.3</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
-        <div>Acá hablamos de todo lo que Correos ofrece al público: <strong>productos</strong> (los envíos en sí: cartas, postales, paquetes…) y <strong>servicios</strong> que acompañan o modifican esos envíos (certificado, urgente, reembolso, notificaciones, etc.). La idea es que identifiques <em>qué es qué</em> y no confundas un tipo de envío con un servicio adicional. Parece obvio, pero en test te lo mezclan con maldad.</div>
+        <div>
+          Acá hablamos de todo lo que Correos ofrece al público: <strong>productos</strong> (los envíos en sí: cartas, postales, paquetes…) y <strong>servicios</strong> que acompañan o modifican esos envíos (certificado, urgente, reembolso, notificaciones, etc.). La idea es distinguir <em>qué es qué</em> para no confundir un tipo de envío con un extra.
+        </div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
-        <div class="ejemplo">Juli quiere mandar una carta a Grachu con seguimiento. La <em>carta</em> es el <strong>producto</strong>. El <strong>servicio</strong> que añade es <em>certificado</em> (para tener prueba de envío y entrega). Si además lo necesita rápido, suma <em>urgente</em>. Producto + servicios = operación completa.</div>
+        <div class="ejemplo">
+          Juli quiere mandar una carta a Grachu con seguimiento. La <em>carta</em> es el <strong>producto</strong>. El <strong>servicio</strong> que añade es <em>certificado</em> (para tener prueba de envío y entrega). Si además lo necesita rápido, suma <em>urgente</em>. Producto + servicios = operación completa.
+        </div>
       </div>
 
       <div class="test" data-test-id="a1-1">
         <div class="titulo-test">🧪 Mini test de repaso</div>
+
         <div class="pregunta" data-question-id="q1">
           <h5>1) ¿Qué describe mejor a un <em>producto postal</em>?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q1" data-explain="Esto es un servicio adicional, no el envío en sí." /><span>El certificado, porque añade prueba de entrega</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Producto = el tipo de envío (carta, postal, paquete…)." /><span>La carta ordinaria enviada a un domicilio</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-explain="La urgencia acelera, pero no es un producto por sí misma." /><span>La modalidad urgente</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-explain="Es un ejemplo de información asociada, no de producto." /><span>El número de seguimiento</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Esto es un servicio adicional, no el envío en sí."><span>El certificado, porque añade prueba de entrega</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Producto = el tipo de envío (carta, postal, paquete…)."><span>La carta ordinaria enviada a un domicilio</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="La urgencia acelera, pero no es un producto por sí misma."><span>La modalidad urgente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Es información asociada, no un producto."><span>El número de seguimiento</span></label></li>
           </ul>
           <div class="acciones">
             <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
@@ -134,109 +130,101 @@ Para diferenciarse en un mercado competitivo y con ofertas similares, Correos cu
         <div class="pregunta" data-question-id="q2">
           <h5>2) ¿Cuál es la diferencia más clara entre <em>producto</em> y <em>servicio</em>?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="Algunas cartas también pueden ser urgentes, así que esta regla falla." /><span>El producto nunca puede ser urgente</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Producto = envío/tipo. Servicio = prestación que modifica o añade garantías/velocidad." /><span>El producto es el envío; el servicio, la prestación añadida</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="Rotundo no: hay productos nacionales e internacionales." /><span>El producto siempre es nacional y el servicio, internacional</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="Las tarifas no son la clave para distinguirlos." /><span>Se distinguen por el precio de tarifa</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Algunas cartas también pueden ser urgentes."><span>El producto nunca puede ser urgente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Producto = envío/tipo. Servicio = prestación que añade garantías/velocidad."><span>El producto es el envío; el servicio, la prestación añadida</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Hay productos internacionales también."><span>El producto siempre es nacional y el servicio, internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Las tarifas no definen el concepto."><span>Se distinguen por el precio de tarifa</span></label></li>
           </ul>
           <div class="acciones">
             <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
             <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
           </div>
-          <div class="feedback ok"></div>
-          <div class="feedback ko"></div>
+          <div class="feedback ok" role="alert" aria-live="polite"></div>
+          <div class="feedback ko" role="alert" aria-live="polite"></div>
         </div>
 
         <div class="pregunta" data-question-id="q3">
           <h5>3) ¿Para qué usamos el <em>texto literal</em> del temario en esta sección?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="No, lo copiamos para estudiar la definición exacta." /><span>Para ignorarlo y quedarnos con la explicación</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Porque en test suelen calcar definiciones; necesitamos esa redacción exacta." /><span>Para memorizar la redacción exacta que puede caer en test</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="Nunca citamos lo que no vamos a usar." /><span>Para rellenar espacio en la página</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="Se usa en ambos bloques, no solo en el práctico." /><span>Solo sirve para el ejemplo práctico</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No, lo usamos para estudiar la definición exacta."><span>Para ignorarlo y quedarnos con la explicación</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="En test suelen calcar definiciones; necesitamos esa redacción exacta."><span>Para memorizar la redacción exacta que puede caer en test</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Nunca citamos lo que no vamos a usar."><span>Para rellenar espacio en la página</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Sirve también para comprender, pero no solo para el ejemplo."><span>Solo sirve para el ejemplo práctico</span></label></li>
           </ul>
           <div class="acciones">
             <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
             <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
           </div>
-          <div class="feedback ok"></div>
-          <div class="feedback ko"></div>
+          <div class="feedback ok" role="alert" aria-live="polite"></div>
+          <div class="feedback ko" role="alert" aria-live="polite"></div>
         </div>
       </div>
     </section>
-
   </div>
 
-  <!-- ======= BOTÓN SIGUIENTE (NO CAMBIAR) ======= -->
-  <a class="boton-siguiente" href="leccion-a2.html">Siguiente ➜</a>
+  <a class="boton-siguiente" href="leccion-a2.html" rel="next">Siguiente ➜</a>
 
 <script>
-/* ======= LÓGICA DEL MINITEST ======= */
-(function() {
-  function setEstadosIniciales() {
+/* ===== LÓGICA DEL MINI-TEST ===== */
+(function(){
+  function init(){
     document.querySelectorAll('.pregunta').forEach(function(p){
-      var btn = p.querySelector('button[data-action="comprobar"]');
-      if (btn) btn.disabled = true;
+      const btn = p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled = true;
       p.addEventListener('change', function(e){
-        if (e.target.matches('input[type="radio"]')) btn.disabled = false;
+        if(e.target.matches('input[type="radio"]') && btn){ btn.disabled = false; }
       });
     });
   }
 
-  function comprobar(preguntaEl) {
-    var seleccion = preguntaEl.querySelector('input[type="radio"]:checked');
-    var okBox = preguntaEl.querySelector('.feedback.ok');
-    var koBox = preguntaEl.querySelector('.feedback.ko');
+  function comprobar(p){
+    const seleccion = p.querySelector('input[type="radio"]:checked');
+    const ok = p.querySelector('.feedback.ok');
+    const ko = p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
 
-    okBox.style.display = 'none'; okBox.textContent = '';
-    koBox.style.display = 'none'; koBox.textContent = '';
-
-    // limpiar resaltados previos
-    preguntaEl.querySelectorAll('.opcion').forEach(function(o){
-      o.classList.remove('correcta','incorrecta');
-    });
-
-    if (!seleccion) {
-      koBox.textContent = 'Elegí una opción antes de comprobar.';
-      koBox.style.display = 'block';
+    if(!seleccion){
+      ko.textContent='Elegí una opción antes de comprobar.';
+      ko.style.display='block';
       return;
     }
 
-    var esCorrecta = seleccion.hasAttribute('data-correct');
-    var explicacion = seleccion.getAttribute('data-explain') || '';
-    var tarjeta = seleccion.closest('.opcion');
+    const esCorrecta = seleccion.hasAttribute('data-correct');
+    const exp = seleccion.getAttribute('data-explain') || '';
+    const card = seleccion.closest('.opcion');
 
-    if (esCorrecta) {
-      tarjeta.classList.add('correcta');
-      okBox.innerHTML = '✅ Respuesta correcta<div class="explicacion">' + (explicacion || '¡Bien!') + '</div>';
-      okBox.style.display = 'block';
-    } else {
-      tarjeta.classList.add('incorrecta');
-      koBox.innerHTML = '❌ Respuesta incorrecta<div class="explicacion">' + (explicacion || 'Revisá el concepto y probá otra vez.') + '</div>';
-      koBox.style.display = 'block';
+    if(esCorrecta){
+      card.classList.add('correcta');
+      ok.innerHTML = '✅ Respuesta correcta<div class="explicacion">'+(exp || '¡Bien!')+'</div>';
+      ok.style.display='block';
+    }else{
+      card.classList.add('incorrecta');
+      ko.innerHTML = '❌ Respuesta incorrecta<div class="explicacion">'+(exp || 'Revisá el concepto y probá otra vez.')+'</div>';
+      ko.style.display='block';
     }
   }
 
-  function resetear(preguntaEl) {
-    preguntaEl.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked = false; });
-    preguntaEl.querySelectorAll('.feedback').forEach(function(f){ f.style.display='none'; f.textContent=''; });
-    preguntaEl.querySelectorAll('.opcion').forEach(function(o){ o.classList.remove('correcta','incorrecta'); });
-    var btn = preguntaEl.querySelector('button[data-action="comprobar"]');
-    if (btn) btn.disabled = true;
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    const btn = p.querySelector('button[data-action="comprobar"]');
+    if(btn) btn.disabled = true;
   }
 
-  document.addEventListener('click', function(e) {
-    var btn = e.target.closest('button[data-action]');
-    if (!btn) return;
-    var pregunta = btn.closest('.pregunta');
-    if (!pregunta) return;
-    var action = btn.getAttribute('data-action');
-    if (action === 'comprobar') comprobar(pregunta);
-    if (action === 'reset') resetear(pregunta);
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('button[data-action]');
+    if(!btn) return;
+    const p = btn.closest('.pregunta');
+    if(!p) return;
+    const act = btn.getAttribute('data-action');
+    if(act==='comprobar') comprobar(p);
+    if(act==='reset') reset(p);
   });
 
-  // init
-  setEstadosIniciales();
+  init();
 })();
 </script>
 </body>
