@@ -20,6 +20,7 @@
       font-size: 2.5rem;
       color: #1a73e8;
       margin-bottom: 0.5rem;
+      text-align:center;
     }
 
     h2 {
@@ -27,6 +28,7 @@
       font-size: 1.5rem;
       margin-top: 0;
       margin-bottom: 1rem;
+      text-align:center;
     }
 
     .icons {
@@ -50,17 +52,38 @@
       color: white;
       cursor: pointer;
       transition: background-color 0.3s;
+      font-weight:700;
     }
 
-    button:hover {
-      background-color: #155ab6;
+    button:hover { background-color: #155ab6; }
+
+    /* NUEVO: contenedor para alinear botón + enlace */
+    .acciones-home{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:14px;
     }
+    .link-bloque{
+      display:inline-block;
+      padding:12px 16px;
+      border-radius:10px;
+      background:#eef2ff;
+      border:1px solid #c7d2fe;
+      color:#1e40af;
+      font-weight:700;
+      text-decoration:none;
+    }
+    .link-bloque:hover{ text-decoration:underline; }
   </style>
 </head>
 <body>
   <div class="icons">📬 📦 📮 🧠 💪 ⏰</div>
   <h1>¡Bienvenido al Aula, Pablo!</h1>
   <h2>Tu centro de entrenamiento postal… sin sobresaltos (literal)</h2>
+
   <p>
     Querido Pablo, empezaste este viaje con una sola meta: <strong>aprobar la oposición de Correos</strong>...  
     y sobrevivir al proceso con tu dignidad y tu paciencia (más o menos) intactas.<br><br>
@@ -68,21 +91,11 @@
     que no se calla nada y te explica todo.<br><br>
     Preparate para aprender, reírte un poco y, sí, también sufrir un pelín… pero con estilo.
   </p>
-  <button onclick="location.href='leccion-a1.html'">📚 Empezar la Lección A1</button>
-  <p style="margin-top:14px;">
-  <a href="bloque-a.html"
-     style="display:inline-block;padding:12px 16px;border-radius:10px;
-            background:#eef2ff;border:1px solid #c7d2fe;color:#1e40af;
-            font-weight:700;text-decoration:none;">
-    Ver Bloque A (todas las lecciones A)
-  </a>
-</p>
 
+  <!-- NUEVO bloque centrado con botón + enlace -->
+  <div class="acciones-home">
+    <button onclick="location.href='leccion-a1.html'">📚 Empezar la Lección A1</button>
+    <a class="link-bloque" href="bloque-a.html">Ver Bloque A (todas las lecciones A)</a>
+  </div>
 </body>
 </html>
-
-
-
-
-
-
