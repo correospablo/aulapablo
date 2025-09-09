@@ -1,6 +1,123 @@
-<!doctype html>
-<meta charset="utf-8">
-<title>Mapa de bloques</title>
-<meta http-equiv="refresh" content="0; url=bloque-a.html">
-<link rel="canonical" href="bloque-a.html">
-<p>Redirigiendo al mapa de bloques… Si no te lleva solo, <a href="bloque-a.html">clic aquí</a>.</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bloques A–P — Aula Pablo</title>
+<style>
+  :root{--azul:#1a73e8;--azul-2:#155ab6}
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;background:#f7f7f7;color:#222;padding:16px}
+  .wrap{max-width:1000px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:6px 0 18px}
+  .crumbs{display:flex;gap:8px;align-items:center;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;padding:8px 12px}
+  .crumbs a{color:#1453a6;text-decoration:none;font-weight:600}
+  .crumbs a:hover{text-decoration:underline}
+  h1{font-size:26px;margin:6px 0 4px}
+  .sub{color:#555;margin:0 0 16px}
+
+  .filtro{margin:6px 0 18px}
+  .filtro input{width:100%;max-width:420px;padding:10px 12px;border:1px solid #cbd5e1;border-radius:10px}
+
+  .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  @media (max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+
+  .card{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:14px;display:flex;gap:12px;align-items:center}
+  .badge{width:40px;height:40px;border-radius:999px;background:#eef2ff;border:1px solid #c7d2fe;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#1e40af;flex:none}
+  .card .txt{display:flex;flex-direction:column}
+  .card .tit{font-weight:800}
+  .card a{margin-top:6px;align-self:flex-start;background:#1a73e8;color:#fff;text-decoration:none;border-radius:8px;padding:7px 10px;font-weight:700}
+  .card a:hover{background:#155ab6}
+  footer{margin:24px 0 8px;color:#6b7280;font-size:13px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="crumbs">
+        <a href="index.html">Inicio</a> <span>›</span> <strong>Bloques A–P</strong>
+      </div>
+    </header>
+
+    <h1>Bloques del curso (A–P)</h1>
+    <p class="sub">Elegí una letra para saltar al índice del bloque. También podés buscar con <strong>Ctrl+F</strong> o usar el filtro rápido.</p>
+
+    <div class="filtro">
+      <input id="buscador" type="search" placeholder="Filtrar por letra o texto… (ej. A, Introducción)" />
+    </div>
+
+    <div id="lista" class="grid">
+      <!-- A–P -->
+      <div class="card" data-k="a introduccion tablas pesos medidas">
+        <div class="badge">A</div>
+        <div class="txt">
+          <div class="tit">Bloque A — Introducción &amp; tablas</div>
+          <small>Panorama general, pesos/medidas y primeros productos.</small>
+          <a href="bloque-a.html">Abrir bloque A</a>
+        </div>
+      </div>
+
+      <div class="card" data-k="b bloque b">
+        <div class="badge">B</div><div class="txt"><div class="tit">Bloque B</div><small>Contenido del bloque B.</small><a href="bloque-b.html">Abrir bloque B</a></div>
+      </div>
+      <div class="card" data-k="c bloque c">
+        <div class="badge">C</div><div class="txt"><div class="tit">Bloque C</div><small>Contenido del bloque C.</small><a href="bloque-c.html">Abrir bloque C</a></div>
+      </div>
+      <div class="card" data-k="d bloque d">
+        <div class="badge">D</div><div class="txt"><div class="tit">Bloque D</div><small>Contenido del bloque D.</small><a href="bloque-d.html">Abrir bloque D</a></div>
+      </div>
+      <div class="card" data-k="e bloque e">
+        <div class="badge">E</div><div class="txt"><div class="tit">Bloque E</div><small>Contenido del bloque E.</small><a href="bloque-e.html">Abrir bloque E</a></div>
+      </div>
+      <div class="card" data-k="f bloque f">
+        <div class="badge">F</div><div class="txt"><div class="tit">Bloque F</div><small>Contenido del bloque F.</small><a href="bloque-f.html">Abrir bloque F</a></div>
+      </div>
+      <div class="card" data-k="g bloque g">
+        <div class="badge">G</div><div class="txt"><div class="tit">Bloque G</div><small>Contenido del bloque G.</small><a href="bloque-g.html">Abrir bloque G</a></div>
+      </div>
+      <div class="card" data-k="h bloque h">
+        <div class="badge">H</div><div class="txt"><div class="tit">Bloque H</div><small>Contenido del bloque H.</small><a href="bloque-h.html">Abrir bloque H</a></div>
+      </div>
+      <div class="card" data-k="i bloque i">
+        <div class="badge">I</div><div class="txt"><div class="tit">Bloque I</div><small>Contenido del bloque I.</small><a href="bloque-i.html">Abrir bloque I</a></div>
+      </div>
+      <div class="card" data-k="j bloque j">
+        <div class="badge">J</div><div class="txt"><div class="tit">Bloque J</div><small>Contenido del bloque J.</small><a href="bloque-j.html">Abrir bloque J</a></div>
+      </div>
+      <div class="card" data-k="k bloque k">
+        <div class="badge">K</div><div class="txt"><div class="tit">Bloque K</div><small>Contenido del bloque K.</small><a href="bloque-k.html">Abrir bloque K</a></div>
+      </div>
+      <div class="card" data-k="l bloque l">
+        <div class="badge">L</div><div class="txt"><div class="tit">Bloque L</div><small>Contenido del bloque L.</small><a href="bloque-l.html">Abrir bloque L</a></div>
+      </div>
+      <div class="card" data-k="m bloque m">
+        <div class="badge">M</div><div class="txt"><div class="tit">Bloque M</div><small>Contenido del bloque M.</small><a href="bloque-m.html">Abrir bloque M</a></div>
+      </div>
+      <div class="card" data-k="n bloque n">
+        <div class="badge">N</div><div class="txt"><div class="tit">Bloque N</div><small>Contenido del bloque N.</small><a href="bloque-n.html">Abrir bloque N</a></div>
+      </div>
+      <div class="card" data-k="o bloque o">
+        <div class="badge">O</div><div class="txt"><div class="tit">Bloque O</div><small>Contenido del bloque O.</small><a href="bloque-o.html">Abrir bloque O</a></div>
+      </div>
+      <div class="card" data-k="p bloque p">
+        <div class="badge">P</div><div class="txt"><div class="tit">Bloque P</div><small>Contenido del bloque P.</small><a href="bloque-p.html">Abrir bloque P</a></div>
+      </div>
+    </div>
+
+    <footer>Consejo: podés usar <strong>Ctrl+F</strong> para buscar por letra o por el texto del bloque.</footer>
+  </div>
+
+<script>
+  const q = document.getElementById('buscador');
+  const cards = [...document.querySelectorAll('#lista .card')];
+  q.addEventListener('input', () => {
+    const s = q.value.trim().toLowerCase();
+    cards.forEach(c=>{
+      const hit = c.dataset.k.includes(s);
+      c.style.display = s ? (hit ? '' : 'none') : '';
+    });
+  });
+</script>
+</body>
+</html>
