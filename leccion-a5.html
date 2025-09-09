@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lección A5 — Línea de comunicación (Carta certificada)</title>
+<title>Lección A5 — Carta certificada</title>
 <style>
   :root{
     --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
@@ -11,7 +11,7 @@
   }
   *{box-sizing:border-box}
   body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
-  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .contenedor{max-width:900px;margin:0 auto;padding-bottom:120px}
   .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
   .leccion-sub{font-size:16px;color:#555;margin-bottom:24px}
 
@@ -62,64 +62,108 @@
   }
   .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
   .boton-siguiente:active{transform:translateY(0)}
+
+  /* Skin "tema-azul" */
+  body.tema-azul .minititulo{
+    display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800}
+  body.tema-azul .b-texto{background:#ebf5fb;border-color:#d6eaf8;border-left:6px solid #2e86c1}
+  body.tema-azul .b-texto h4{color:#2e86c1}
+  body.tema-azul blockquote.cita{border-left:4px solid #2e86c1;background:#fff}
+  body.tema-azul .b-explica{background:#f5eef8;border-color:#ead1f3;border-left:6px solid #af7ac5}
+  body.tema-azul .b-explica h4{color:#8e44ad}
+  body.tema-azul .b-ejemplo{background:#fae5d3;border-color:#f7d7bd;border-left:6px solid #d35400}
+  body.tema-azul .b-ejemplo h4{color:#ca6f1e}
+  body.tema-azul .ejemplo{background:#fff8ef;border-color:#f7d7bd}
+  body.tema-azul .test{background:#f4f6f7;border:1px solid #cfe6df;border-left:6px solid #117a65}
+  body.tema-azul .test .titulo-test{color:#117a65}
+  body.tema-azul .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  body.tema-azul .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+
+  /* breadcrumb */
+  .breadcrumb{max-width:980px;margin:8px auto 18px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;display:flex;gap:8px;align-items:center;font-size:14px}
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
 </style>
 </head>
-<body>
-  <div class="contenedor">
-    <div class="leccion-titulo">Lección A5 — Línea de comunicación (Carta certificada)</div>
-    <div class="leccion-sub">Qué es, cómo se entrega, ámbitos/zona, límites de peso y medidas, plazos, servicios añadidos, indemnizaciones y pagos. Con ejemplos “de Murcia” y mini-tests.</div>
+<body class="tema-azul">
 
-    <!-- ===== MINILECCIÓN 1: Qué es y cómo funciona ===== -->
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>A5 · Carta certificada</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A5 — Carta certificada</div>
+    <div class="leccion-sub">
+      Qué es una carta certificada, cómo se identifica y entrega, ámbitos y límites, servicios disponibles, garantías e indemnizaciones, y formas de pago. Con ejemplos “de la vida real” y minitest.
+    </div>
+
+    <!-- ===== MINILECCIÓN 1 ===== -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">1) Qué es la carta certificada y cómo funciona</h3>
+      <h3 class="minititulo">1) Qué es y cómo funciona la carta certificada</h3>
 
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          “Se trata de todo envío cerrado cuyo contenido no se indica ni puede conocerse, así como toda comunicación de forma escrita en un soporte físico de cualquier naturaleza, que tenga carácter actual y personal, cuando se trate de comunicaciones especialmente importantes y destinadas a cualquier punto. Forma parte del servicio postal universal, incluso cuando circula con valor declarado, y está exento de IVA.”<br><br>
-          “Circula registrada y se identifica mediante una etiqueta con código de barras adherida en el anverso […]. Desde su admisión hasta su entrega el envío está controlado y permite su seguimiento en la web o app de Correos. La entrega se hace en el domicilio bajo firma del destinatario o persona autorizada; si no es posible, se deja aviso (M-4) para recoger en oficina. El envío permanece <strong>15 días naturales</strong> a disposición del destinatario.”<br><br>
-          “Ciertos envíos de Administraciones Públicas depositados por consolidadores u otros operadores se consideran desde su admisión como cartas certificadas.” 
-          <footer>Fuente: Sesión A — Carta certificada (págs. 17–18).</footer>
+          “Envío cerrado cuyo contenido no se indica ni puede conocerse; comunicación escrita en soporte físico, de carácter actual y personal, cuando se trate de comunicaciones especialmente importantes y destinadas a cualquier punto. Circula <strong>registrada</strong> y se identifica con una <strong>etiqueta con código de barras</strong> adherida en el anverso, que permite el <strong>seguimiento</strong> desde admisión hasta la entrega.”<br><br>
+          “Se entrega en domicilio <strong>bajo firma</strong> del destinatario o persona autorizada. Si no es posible, se deja aviso para recogida en oficina; el envío permanece <strong>15 días naturales</strong> a disposición.” 
+          <footer>Fuente: Sesión A — Carta certificada (p. 17–18)</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
-        <div>Es una carta “con pruebas”: va con etiqueta y número, se sigue online y la entrega se firma. Si no está la persona, queda aviso y 15 días de espera en la oficina.</div>
+        <div>
+          Es la carta “con apellidos”: <em>registrada, con etiqueta y firma</em>. Se sigue online y sólo se da por entregada cuando alguien firma. Si no hay nadie, aviso al buzón y queda 15 días en oficina.
+        </div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
         <div class="ejemplo">
-          En Murcia, Pablo envía un contrato a Cristina y quiere constancia: usa carta certificada con <em>aviso de recibo</em>.<br>
-          Juli le manda a Diego un certificado de estudios; sigue el tracking en la app y ve cuándo lo firma.<br>
-          Si Lorena no está en casa, el cartero deja el M-4 y el sobre queda 15 días en la oficina.
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Belén</strong> envía un <em>contrato</em> a su cliente: pide certificada con seguimiento para demostrar entrega.</li>
+            <li><strong>Farid</strong> manda un <em>título académico</em> a una universidad: certificada + <u>aviso de recibo</u> para guardar el justificante.</li>
+            <li><strong>Xiomara</strong> no está en casa: le dejan <em>aviso</em>, pasa por la oficina y retira dentro de los <u>15 días</u>.</li>
+          </ul>
         </div>
       </div>
 
       <div class="test" data-test-id="a5-1">
         <div class="titulo-test">🧪 Mini test de repaso</div>
 
-        <div class="pregunta" data-question-id="q1">
+        <div class="pregunta">
           <h5>1) ¿Cómo se identifica una carta certificada?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q1"><span>Con sello rojo sin número</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Etiqueta con código de barras y número para seguimiento."><span>Con etiqueta de código de barras adherida en el anverso</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1"><span>Solo con el matasellos</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1"><span>No requiere identificación especial</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" /><span>Por un sobre de color rojo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Etiqueta con código de barras que habilita el seguimiento."/><span>Con una etiqueta con código de barras y seguimiento</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" /><span>Por un número de teléfono en la etiqueta</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <div class="pregunta" data-question-id="q2">
-          <h5>2) Si no se puede entregar, ¿cuánto tiempo queda en la oficina?</h5>
+        <div class="pregunta">
+          <h5>2) En la entrega, ¿qué es obligatorio?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q2"><span>7 días naturales</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Lo dice el texto: 15 días naturales."><span>15 días naturales</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2"><span>30 días naturales</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2"><span>Hasta que el remitente llame</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" /><span>Solo depositar en buzón</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="La entrega válida exige firma del destinatario o autorizado."/><span>Firma del destinatario o persona autorizada</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" /><span>Foto del portal</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta">
+          <h5>3) Si no se puede entregar, ¿cuánto tiempo queda en oficina?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" /><span>7 días hábiles</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Plazo estándar de depósito para recogida con aviso."/><span>15 días <em>naturales</em></span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" /><span>30 días naturales</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
@@ -127,75 +171,73 @@
       </div>
     </section>
 
-    <!-- ===== MINILECCIÓN 2: Ámbito, peso, dimensiones y plazos ===== -->
+    <!-- ===== MINILECCIÓN 2 ===== -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">2) Ámbito, peso límite, dimensiones y plazos</h3>
+      <h3 class="minititulo">2) Ámbitos, admisiones, embalaje y límites</h3>
 
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          <strong>Ámbito</strong>: Nacional: España y Andorra. Internacional:  
-          Zona 1: Europa, incluida Groenlandia (excepto Albania, Armenia, Bosnia, Chipre, Georgia, Malta, Moldavia y Rusia).  
-          Zona 2: resto de países (no incluidos en 1 y 3).  
-          Zona 3: EE. UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda.<br><br>
-          <strong>Peso</strong>: hasta <strong>2 kg</strong>.  
-          <strong>Dimensiones máx.</strong>: sobre/caja L + A + A = <strong>90 cm</strong> (mayor ≤ 60 cm); rollo/tubo L + 2D = <strong>104 cm</strong> (mayor ≤ 90 cm).  
-          <strong>Mínimas</strong>: sobre/caja <strong>14 × 9 cm</strong>; rollo/tubo L + 2D = <strong>17 cm</strong> (mayor ≥ 10 cm). En inferiores a mínimas, etiqueta <strong>10 × 7 cm</strong> con dirección y franqueo.  
-          <strong>Tramos de peso</strong>: normalizadas (≤20 g), >20–50, >50–100, >100–500, >500–1000 y >1000–2000 g.  
-          <strong>Plazos (orientativo)</strong>: Nacional  D+1 (local), D+2 (provincial), D+3 (nacional). Internacional: Europa 2–4 días hábiles; resto según país.
-          <footer>Fuente: Sesión A — Carta certificada (págs. 18–20).</footer>
+          <strong>Ámbito</strong>: Nacional (España y Andorra). Internacional: <u>Zona 1</u> Europa incluida Groenlandia (con excepciones listadas), <u>Zona 2</u> resto de países (no incluidos en 1 y 3), <u>Zona 3</u> EE. UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda.<br><br>
+          <strong>Embalaje</strong>: envolver de forma segura; adherir etiqueta con barras y datos de remitente/destinatario (sin lápiz). No cerrar con cinta que evidencie manipulación. Posible pseudónimo en concursos (queda constancia en IRIS/impreso).<br>
+          <strong>Documentación</strong>: CN22 o CN23 si el contenido supera 300 DEG.<br>
+          <strong>Admisiones</strong> (extracto): Cartas <em>nacionales</em> admitidas en Baleares y Península con destino a Ceuta, Melilla o Canarias, <em>que no contengan documentos</em> y <em>sean remitidas por particulares</em> (texto oficial).<br><br>
+          <strong>Peso</strong> hasta 2 kg. <strong>Dimensiones máx.</strong> sobre/caja L + A + A = 90 cm (mayor ≤ 60); <strong>Rollo</strong> L + 2D = 104 cm (mayor ≤ 90). <strong>Mínimas</strong> sobre/caja 14 × 9 cm; rollo L + 2D = 17 cm (mayor ≥ 10).<br>
+          <strong>Tramos de peso</strong>: ≤20 g; >20–50; >50–100; >100–500; >500–1000; >1000–2000 g. <strong>Plazos</strong> (orientativos): local D+1, provincial D+2, nacional D+3; internacional: Europa 2–4 días hábiles, resto según país.
+          <footer>Fuente: Sesión A — Carta certificada (p. 18–20)</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
-        <div>Casi igual que carta ordinaria pero “con pruebas”. Límite 2 kg. Fórmulas clave: cajas <strong>L + A + A</strong>, tubos <strong>L + 2D</strong>. Zonas: ojo que Canadá y Rusia van en Zona 3.</div>
+        <div>
+          Piensa “como carta", pero registrada: mismas <strong>medidas y tramos</strong>, peso máx. 2 kg. Para tubos: <strong>L + 2D</strong>; para cajas: <strong>L + A + A</strong>. Si hay contenido de aduana, CN22/CN23.
+        </div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
         <div class="ejemplo">
-          Lucía envía desde Murcia una certificada de 18 g a Marina: entra en normalizadas.<br>
-          Yaco manda un póster en tubo (L=60 cm, D=6 cm) a Guille: L+2D=72 → correcto.<br>
-          Diego envía 1,8 kg certificado a Fede en Canadá: tarificación internacional Zona 3; tope 2 kg y mismas fórmulas de medidas.
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Gorka</strong> envía una <em>medalla</em> a Canarias desde Madrid: certificada como <u>carta nacional admitida</u> (no documentos) si es particular.</li>
+            <li><strong>Helena</strong> manda a Japón un <em>diploma</em> enrollado en tubo: calcula <u>L + 2D</u> y comprueba que no supere 104 cm.</li>
+            <li><strong>Karim</strong> declara contenido >300 DEG hacia Argentina: adjunta <u>CN23</u>.</li>
+          </ul>
         </div>
       </div>
 
       <div class="test" data-test-id="a5-2">
         <div class="titulo-test">🧪 Mini test de repaso</div>
 
-        <div class="pregunta" data-question-id="q3">
-          <h5>1) ¿Cuál es el peso máximo de una carta certificada?</h5>
+        <div class="pregunta">
+          <h5>1) ¿Cuál es el <em>peso máximo</em> de una carta certificada?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q3"><span>500 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="El límite oficial es 2 kg."><span>2 kg</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3"><span>5 kg</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3"><span>20 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" /><span>1 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Mismo límite que carta: hasta 2 kg."/><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" /><span>5 kg</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <div class="pregunta" data-question-id="q4">
-          <h5>2) Para tubos/cilindros, la fórmula usada en dimensiones es…</h5>
+        <div class="pregunta">
+          <h5>2) En formato <em>tubo</em>, ¿qué fórmula de medidas se usa?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q4"><span>L + A + A</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Largo + el doble del diámetro."><span>L + 2D</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4"><span>Perímetro + largo</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4"><span>Volumen</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Para cilindros: largo + doble del diámetro."/><span>L + 2D</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" /><span>L + A + A</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" /><span>L × A × A</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <div class="pregunta" data-question-id="q5">
-          <h5>3) ¿En qué zona se tarifica Canadá?</h5>
+        <div class="pregunta">
+          <h5>3) Marca la <em>admisión nacional</em> descrita en el temario:</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q5"><span>Zona 1</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5"><span>Zona 2</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Zona 3: EE. UU., Canadá, Japón, Rusia, Australia y Nueva Zelanda."><span>Zona 3</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5"><span>No aplica zonas</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" /><span>Baleares y Península ⇄ Ceuta/Melilla/Canarias con documentos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Texto oficial del apartado de certificada."><span>Baleares y Península con destino a Ceuta, Melilla o Canarias, <u>sin documentos</u> y remitidas por particulares</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" /><span>Solo envíos de empresas con contrato</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
@@ -203,70 +245,73 @@
       </div>
     </section>
 
-    <!-- ===== MINILECCIÓN 3: Servicios añadidos, garantías y pagos ===== -->
+    <!-- ===== MINILECCIÓN 3 ===== -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">3) Servicios añadidos, indemnizaciones y formas de pago</h3>
+      <h3 class="minititulo">3) Servicios, garantías, indemnizaciones y pagos</h3>
 
       <div class="bloque b-texto">
-        <h4>📘 Texto literal</h4>
+        <h4>📘 Texto literal (resumen operativo)</h4>
         <blockquote class="cita">
-          <strong>Servicios añadidos (nacional, según contratación):</strong> aviso de recibo (M-35 Plus 1E / 2E), valor declarado SPU hasta 3000 €, prueba de entrega electrónica (PEE 5 Postal), reembolso (0,01–2499,99 € a cuenta bancaria; hasta 499,99 € si se devuelve en oficina/apartado), gestión del DUA, certificaciones de imposición y entrega, recogida a domicilio, peticiones de devolución/modificación/corrección de dirección, retorno de información (clientes con contrato), segundo intento (contrato), clasificación/digitalización/normalización, trazabilidad web/app y gestión de entrega (acuerdos).<br><br>
-          <strong>Internacional (según país/contrato):</strong> aviso de recibo (CN07), valor declarado SPU, reembolso, entrega en propia mano, retorno de información, gestión del DUA, reexpedición/devolución/modificación por el remitente, recogida a domicilio, certificación de imposición, trazabilidad web/app.<br><br>
-          <strong>Garantías (clientes sin contrato):</strong> por pérdida/extravío o deterioro: nacional = tarifa abonada ×10; internacional = devolución de la tarifa ordinaria + 30 DEG. Con <em>valor declarado</em>: nacional = pérdida + valor asegurado (o el menor entre valor declarado, reposición o reparación); internacional = tarifa ordinaria + valor asegurado. En reembolsos: si se pierde antes de entrega → nacional ×10 / internacional tarifa + 30 DEG; si ya se entregó → importe del giro. Plazos de reclamación: nacional mínimo 7 días y máximo 4 meses; internacional mínimo 15 días y máximo 6 meses.<br><br>
-          <strong>Formas de pago:</strong> metálico, transferencia, Tarjeta Más Cerca, tarjetas de crédito/débito, PayPal, sellos/estampillas, franqueo pagado en oficina o máquina, franqueo electrónico (OPV – Correos online), franqueo de pago diferido (franqueo pagado) y prepago.
-          <footer>Fuente: Sesión A — Carta certificada (págs. 20–22).</footer>
+          <strong>Servicios nacionales</strong> (selección): Aviso de recibo (M-35 Plus 1E o 2E), Valor declarado SPU (hasta 3000 €), Prueba de entrega electrónica (PEE 5), Reembolso (mín. 0,01 €; máx. 2499,99 € a cuenta bancaria OIC; si se paga en oficina/apartado, máx. 499,99 €), gestión DUA, certificaciones, recogida a domicilio (clientes con contrato), devolución/modificación de dirección, retorno de información, segundo intento (contrato).<br><br>
+          <strong>Servicios internacionales</strong> (según país): aviso de recibo (CN07), valor declarado SPU, reembolso, entrega en propia mano, retorno de información, gestión DUA, reexpedición, devolución/modificación de dirección, certificación de imposición, trazabilidad web/app.<br><br>
+          <strong>Garantías (sin contrato)</strong>: por pérdida/extravío/deterioro, en nacional: <u>tarifa abonada × 10</u>; en internacional: devolución de la tarifa ordinaria + 30 DEG. Con <u>valor declarado</u>, la indemnización en nacional será hasta el valor asegurado (la menor entre: valor declarado, reposición o reparación); en internacional: tarifa ordinaria + valor asegurado.<br><br>
+          <strong>Reembolso</strong>: si la pérdida ocurre antes de la entrega, en nacional: tarifa abonada × 10; en internacional: tarifa ordinaria + 30 DEG. Si el envío ya se entregó, la indemnización es el <u>importe del giro</u>.<br><br>
+          <strong>Plazos de reclamación</strong>: nacional, mínimo 7 días naturales y máximo 4 meses; internacional, mínimo 15 días naturales y máximo 6 meses (desde la admisión).<br>
+          <strong>Formas de pago</strong>: metálico, transferencia, Tarjeta Más Cerca, tarjetas débito/crédito, PayPal, sellos/estampillas, franqueo pagado en oficina o máquina, franqueo electrónico (Correos online), franqueo a máquina, franqueo en destino, pago diferido y prepago.
+          <footer>Fuente: Sesión A — Carta certificada (p. 20–21)</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Ahora en versión entendible</h4>
-        <div>Para “demostrar” la entrega, el comodín es el <strong>aviso de recibo</strong>. Si hay dinero de por medio, entra <strong>reembolso</strong>. Con <strong>valor declarado</strong> se asegura el contenido y cambian las indemnizaciones. Reclamos: 7–120 días (nacional) y 15–180 (internacional).</div>
+        <div>
+          Lo potente de la certificada es combinar <strong>seguimiento + prueba</strong> (AR, PEE) y, si hace falta, <strong>valor declarado</strong>. En reclamaciones recuerda los <u>plazos</u> y quién cobra la indemnización por defecto: el <strong>remitente</strong> (puede autorizar al destinatario).
+        </div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 Y cómo sería en la realidad</h4>
         <div class="ejemplo">
-          Marina envía un contrato a Alberto con <em>aviso de recibo</em> y paga con tarjeta.<br>
-          Guille vende una guitarra y la manda certificada con <em>reembolso</em> de 250 € para que el cobro se haga al entregar.<br>
-          Lorena manda documentos a Juana en Portugal con <em>valor declarado</em> de 600 € (zona 1). Si se pierde, la indemnización considera la tarifa y el valor asegurado según norma.
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Mateo</strong> vende una cámara a <em>499 €</em>: usa certificada con <u>reembolso</u> para cobrar en oficina (tope 499,99 €).</li>
+            <li><strong>Uma</strong> manda documentación valiosa: añade <u>valor declarado</u> y pide <u>PEE 5</u> para guardar la prueba digital.</li>
+            <li><strong>Raquel</strong> reclama un deterioro: aporta factura/fotos del embalaje y comunica el daño al recibir — requisito clave.</li>
+          </ul>
         </div>
       </div>
 
       <div class="test" data-test-id="a5-3">
         <div class="titulo-test">🧪 Mini test de repaso</div>
 
-        <div class="pregunta" data-question-id="q6">
-          <h5>1) En nacional <em>sin valor declarado</em>, ¿cuál es la indemnización por pérdida?</h5>
+        <div class="pregunta">
+          <h5>1) En reembolso nacional pagado en <em>oficina</em>, ¿cuál es el máximo?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q6"><span>Tarifa abonada + 30 DEG</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Indica el texto: tarifa abonada multiplicada por 10."><span>Tarifa abonada ×10</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6"><span>Valor declarado</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6"><span>Importe del giro</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" /><span>299,99 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Para pago en oficina/apartado: 499,99 €. Para abono en cuenta OIC: 2.499,99 €."><span>499,99 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" /><span>2.499,99 €</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <div class="pregunta" data-question-id="q7">
-          <h5>2) ¿Cuál de estas <em>no</em> es una forma de pago admitida?</h5>
+        <div class="pregunta">
+          <h5>2) Sin valor declarado y en ámbito nacional, la indemnización por pérdida es…</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q7"><span>Tarjeta Más Cerca</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q7"><span>PayPal</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="El cheque ya no se admite como forma de pago."><span>Cheque</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q7"><span>Franqueo electrónico OPV</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" /><span>30 € fijos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" /><span>Tarifa abonada × 5</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="Regla general para clientes sin contrato: tarifa abonada multiplicada por 10."><span>Tarifa abonada × 10</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <div class="pregunta" data-question-id="q8">
-          <h5>3) ¿Cuál es el <em>plazo mínimo</em> para reclamar en internacional?</h5>
+        <div class="pregunta">
+          <h5>3) ¿Cuál es el <em>plazo de reclamación</em> en envíos nacionales?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q8"><span>7 días naturales</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="Internacional: mínimo 15 días, máximo 6 meses."><span>15 días naturales</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q8"><span>30 días naturales</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q8"><span>No hay mínimo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-correct="true" data-explain="Desde la admisión: mínimo 7 días naturales y máximo 4 meses."><span>Mínimo 7 días naturales y máximo 4 meses</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" /><span>Mínimo 24 horas y máximo 7 días</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" /><span>Mínimo 15 días y máximo 6 meses</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
@@ -275,7 +320,7 @@
     </section>
   </div>
 
-  <!-- ======= BOTÓN SIGUIENTE ======= -->
+  <!-- Botón siguiente -->
   <a class="boton-siguiente" href="leccion-a6.html" rel="next">Siguiente ➜</a>
 
 <script>
@@ -297,15 +342,15 @@
     okBox.style.display='none'; okBox.textContent='';
     koBox.style.display='none'; koBox.textContent='';
     preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
-    if (!seleccion){ koBox.textContent='Elegí una opción antes de comprobar.'; koBox.style.display='block'; return; }
+    if(!seleccion){koBox.textContent='Elegí una opción antes de comprobar.'; koBox.style.display='block'; return;}
     var esCorrecta = seleccion.hasAttribute('data-correct');
     var explicacion = seleccion.getAttribute('data-explain') || '';
     var tarjeta = seleccion.closest('.opcion');
-    if (esCorrecta){
+    if(esCorrecta){
       tarjeta.classList.add('correcta');
       okBox.innerHTML='✅ Respuesta correcta<div class="explicacion">'+(explicacion||'¡Bien!')+'</div>';
       okBox.style.display='block';
-    } else {
+    }else{
       tarjeta.classList.add('incorrecta');
       koBox.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+(explicacion||'Revisá el concepto y probá otra vez.')+'</div>';
       koBox.style.display='block';
@@ -315,22 +360,15 @@
     preguntaEl.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
     preguntaEl.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent=''});
     preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
-    var btn = preguntaEl.querySelector('button[data-action="comprobar"]'); if (btn) btn.disabled=true;
+    var btn = preguntaEl.querySelector('button[data-action="comprobar"]'); if(btn) btn.disabled=true;
   }
   document.addEventListener('click', function(e){
     var btn = e.target.closest('button[data-action]'); if(!btn) return;
     var p = btn.closest('.pregunta'); if(!p) return;
     var act = btn.getAttribute('data-action');
-    if (act==='comprobar') comprobar(p);
-    if (act==='reset') resetear(p);
+    if(act==='comprobar') comprobar(p);
+    if(act==='reset') resetear(p);
   });
-
-  // Anti-caché suave (por si el navegador se queda con un href viejo)
-  document.addEventListener('DOMContentLoaded', function(){
-    var next = document.querySelector('a.boton-siguiente');
-    if (next) { next.href = 'leccion-a6.html'; next.setAttribute('rel','next'); }
-  });
-
   setEstadosIniciales();
 })();
 </script>
