@@ -6,44 +6,50 @@
 <title>Lección A6 — Carta certificada Tarifa Plana</title>
 <style>
   :root{
-    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
-    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
   }
   *{box-sizing:border-box}
   body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
-  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .contenedor{max-width:900px;margin:0 auto;padding-bottom:120px}
   .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
   .leccion-sub{font-size:16px;color:#555;margin-bottom:24px}
 
+  /* breadcrumb */
+  .breadcrumb{max-width:900px;margin:0 auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;display:flex;gap:8px;align-items:center;font-size:14px}
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
   .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
   .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
-  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
 
   .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
   .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
 
-  .b-texto{background:var(--bg-legal);border-color:#ddd}
-  .b-texto h4{color:#5b21b6}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
   blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
   blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
 
-  .b-explica{background:var(--bg-explica);border-color:#a5f3fc}
-  .b-explica h4{color:#0e7490}
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
 
-  .b-ejemplo{background:var(--bg-ejemplo);border-color:#fde68a}
-  .b-ejemplo h4{color:#92400e}
-  .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
 
-  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
-  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
   .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
   .pregunta h5{margin:0 0 8px;font-size:16px}
   .opciones{list-style:none;margin:0;padding:0}
   .opciones li{margin:8px 0}
   .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
   .opcion input{margin-top:4px}
-  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
-  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
   .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
   .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
   .btn-primario{background:#1453a6;color:#fff}
@@ -64,249 +70,204 @@
   .boton-siguiente:active{transform:translateY(0)}
 </style>
 </head>
+
 <body>
+  <!-- Breadcrumb hacia BLOQUES -->
+  <nav class="breadcrumb" aria-label="ruta">
+    <a href="index.html">🏠 Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">📚 Bloques</a><span class="sep">›</span>
+    <span>Lección A6</span>
+  </nav>
+
   <div class="contenedor">
     <div class="leccion-titulo">Lección A6 — Carta certificada Tarifa Plana</div>
-    <div class="leccion-sub">Qué es, modelos (Estándar / Premium), límites, qué incluye y cómo se admite en IRIS. Con ejemplos de la banda de Murcia y mini-tests. <strong>Ámbito: solo nacional (España y Andorra).</strong></div>
+    <div class="leccion-sub">Qué es, ámbitos, modelos (Estándar/Premium), cómo se admite en IRIS y en qué casos conviene. Con ejemplos realistas y mini-test.</div>
 
-    <!-- ===== MINILECCIÓN 1: Qué es + modelos ===== -->
+    <!-- ===== MINILECCIÓN 1: Qué es y alcance ===== -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">1) Qué es la “Tarifa Plana” y sus modelos</h3>
+      <h3 class="minititulo">1) Qué es “Tarifa Plana” y dónde aplica</h3>
 
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          Son variantes de cartas certificadas creadas en 2017 que se tramitan en el acto, a un <strong>precio fijo</strong> establecido por Correos. Producto de “libre servicio”: en la admisión de oficina se da de alta y el cliente paga la <em>tarifa plana</em> fijada. El precio del sobre incluye el servicio con independencia del peso del envío <em>dentro del máximo permitido</em> según el modelo. <br>
-          <u>Ámbito</u>: nacional (España y Andorra).<br>
-          No se pueden comprar para usarlas más adelante (eso es la <em>Prepagada Premium</em> de la lección A7). Si el destino tiene <em>régimen fiscal distinto</em> (Canarias, Ceuta, Melilla, Andorra), solo pueden contener <strong>documentos</strong>.
-          <footer>Fuente: Sesión A — Carta certificada Tarifa Plana (p. 22)</footer>
-        </blockquote>
-      </div>
-
-      <div class="bloque b-texto">
-        <h4>📘 Texto literal — Modelos y límites</h4>
-        <blockquote class="cita">
-          <strong>1) Carta Certificada Estándar</strong><br>
-          • Peso: hasta <strong>50 g</strong> — Sobre <strong>162 × 229 mm</strong>.<br>
-          • Circula con los productos registrados de la <em>línea básica</em> y <strong>código CD</strong>.<br><br>
-          <strong>2) Carta Certificada Premium</strong><br>
-          • Peso: hasta <strong>100 g</strong> — Sobre <strong>189 × 250 mm</strong>.<br>
-          • <strong>Servicios incluidos</strong>: PEE 5 Postal incluido; <strong>seguro</strong> (valor declarado paquetería) de <strong>100 €</strong> incluido (ampliable hasta <strong>3000 €</strong>). <strong>Reembolso</strong> opcional.<br>
-          • Circula con <em>registrados urgentes</em> y <strong>código VD</strong>.
-          <footer>Fuente: Sesión A — Carta certificada Tarifa Plana (p. 23)</footer>
+          “Variantes de carta certificada creadas en 2017, con sobre a precio fijo establecido por Correos. Ámbito nacional (España y Andorra). Producto de <em>libre servicio</em>: en la admisión el cliente paga la tarifa plana fijada. El precio incluye el servicio con independencia del peso dentro del máximo permitido. No se puede comprar para usarla después, a diferencia de la <em>premium prepagada</em>.”<br>
+          “Si el destino tiene régimen fiscal distinto, solo puede contener <strong>documentos</strong>.” 
+          <footer>Fuente: Sesión A — Carta certificada Tarifa Plana (p. 22–24).</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
-        <h4>🎤 Ahora en versión entendible</h4>
-        <div>Comprás el <em>sobre</em> en mostrador y ya lleva el servicio dentro del precio. Elegís <strong>Estándar</strong> (50 g) o <strong>Premium</strong> (100 g). La Premium es más “pro”: trae PEE incluido y seguro de 100 € (ampliable), y puede llevar reembolso.</div>
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Es una certificada “con sobre especial” cuyo precio ya viene cerrado. Sirve en <strong>España y Andorra</strong>. El peso no te cambia el precio siempre que no pases el tope del modelo. Si vas a un lugar con régimen fiscal distinto (p. ej., <em>Canarias</em>), con Tarifa Plana solo van <strong>documentos</strong>. Si es objeto/mercancía → paquete.
+        </div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 En la vida real</h4>
         <div class="ejemplo">
-          Julieta manda en Murcia un sobre con 40 g a Diego: elige <em>Tarifa Plana Estándar</em> (dentro del tope 50 g).<br>
-          Alberto envía documentación delicada a Marina con <em>Tarifa Plana Premium</em> para tener <em>PEE</em> incluido y seguro de 100 €; añade reembolso de 20 € por gestión.<br>
-          Si Cristina prepara una Premium a Tenerife: como es régimen fiscal distinto, solo puede llevar <strong>documentos</strong>.
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Marcos</strong> manda a León un <em>informe de 8 páginas</em>: Tarifa Plana va perfecta.</li>
+            <li><strong>Vega</strong> quiere enviar a Tenerife una <em>camiseta</em>: con Tarifa Plana no vale (solo documentos). Le toca <strong>paquete</strong>.</li>
+            <li><strong>Gala</strong> escribe a Andorra con <em>contrato firmado</em>: entra como <strong>ámbito nacional</strong>, Tarifa Plana OK.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 2: Modelos ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Modelos disponibles y extras</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Estándar</strong>: hasta 50 g; sobre 162×229 mm; circula con productos registrados de línea básica y código CD.<br>
+          <strong>Premium</strong>: hasta 100 g; sobre 189×250 mm; incluye <strong>PEE 5</strong> (IRIS permite ampliar a PEE 10/15); <strong>reembolso opcional</strong>; <strong>seguro</strong> (valor declarado paquetería) de 100 € incluido, ampliable a 3000 €; circula con productos registrados <em>urgentes</em> y código VD. 
+          <footer>Fuente: Sesión A — Tarifa Plana (p. 22–23).</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Pensalo así: <strong>Estándar</strong> = ligera y simple. <strong>Premium</strong> = más pesada, con <em>PEE 5</em> ya incluido y posibilidad de <em>reembolso</em> y <em>seguro</em>. Si el sobre pesa entre 50 y 100 g, o el cliente quiere PEE/seguro, la decisión se cae sola: <strong>Premium</strong>.
         </div>
       </div>
 
-      <div class="test" data-test-id="a6-1">
-        <div class="titulo-test">🧪 Mini test</div>
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Casos rápidos</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Íker</strong> envía <em>planos finos</em> (40 g) a Burgos → <strong>Estándar</strong>.</li>
+            <li><strong>Liu</strong> manda un <em>dossier de 72 g</em> y quiere <em>PEE 5</em> para guardarlo → <strong>Premium</strong>.</li>
+            <li><strong>Rosa</strong> necesita posible <em>reembolso</em> → solo lo ofrece <strong>Premium</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 3: Admisión en IRIS ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Cómo se admite en IRIS (paso a paso)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          “El cliente no rellena impreso. Se admite en el momento en oficina; no se vende en ‘Venta de Productos’ en IRIS y no lleva código de barras preimpreso. Se tramita como <strong>carta certificada normal</strong> y, en la segunda pantalla de admisión en IRIS, se selecciona <em>‘Sobres Tarifa Plana’</em>. Si hay stock y el peso encaja, se muestran Estándar/Premium para elegir.” 
+          <footer>Fuente: Sesión A — Tarifa Plana (p. 23–24).</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          En la oficina: das de alta los sobres en almacén, abrís una <strong>certificada normal</strong>, y en la <em>segunda pantalla</em> marcás <strong>Sobres Tarifa Plana</strong>. Elegís Estándar/Premium, y completás datos del remitente/destinatario. Fin.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Mini-escena</h4>
+        <div class="ejemplo">
+          <p><strong>Nahid</strong> trae un sobre con 95 g de documentos para Oviedo. En IRIS: “Admisión → Certificada normal → segunda pantalla → <em>Sobres Tarifa Plana</em> → <strong>Premium</strong> (porque 95 g) → datos → listo”.</p>
+        </div>
+      </div>
+
+      <!-- Mini test -->
+      <div class="test" data-test-id="a6">
+        <div class="titulo-test">🧪 Mini test de repaso</div>
 
         <div class="pregunta" data-question-id="q1">
-          <h5>1) ¿Cuál NO se puede hacer con Tarifa Plana?</h5>
+          <h5>1) ¿Cuál de estas afirmaciones define mejor Tarifa Plana?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q1"><span>Usarla solo en España y Andorra</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="La Tarifa Plana no se compra para usar más tarde; eso es la Prepagada Premium (A7)."><span>Comprar el sobre para usarlo en otro momento</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1"><span>Incluir PEE y seguro (en la Premium)</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1"><span>Elegir Estándar o Premium</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Precio fijo; el peso no cambia el precio dentro del tope del modelo y es ámbito España+Andorra."><span>Certificada a precio fijo (libre servicio) para España y Andorra; el peso no cambia el precio si no superás el máximo del modelo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Se admite en oficina, no por web únicamente."><span>Solo se puede contratar por la web</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Con régimen fiscal distinto solo documentos, no mercancías."><span>Permite enviar mercancías a Canarias sin restricciones</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No existe un sobre ‘internacional’ de Tarifa Plana."><span>Es un sobre internacional con código preimpreso</span></label></li>
           </ul>
-          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
         <div class="pregunta" data-question-id="q2">
-          <h5>2) El límite de peso de la <em>Premium</em> es…</h5>
+          <h5>2) ¿Qué es exclusivo de <em>Premium</em> frente a <em>Estándar</em>?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q2"><span>50 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Premium: hasta 100 g; Estándar: hasta 50 g."><span>100 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2"><span>2 kg</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2"><span>1 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Ambas son certificadas."><span>Que sea una certificada</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Según la ficha: PEE 5 incluido, opción de reembolso y seguro 100€ ampliable."><span>PEE 5 incluido, posibilidad de reembolso y seguro desde 100 € (ampliable)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Estándar llega a 50 g; Premium a 100 g."><span>Peso máximo 50 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="El código CD aparece en Estándar; Premium puede ir con urgentes/VD."><span>Usa siempre el mismo código CD</span></label></li>
           </ul>
-          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
-      </div>
-    </section>
-
-    <!-- ===== MINILECCIÓN 2: Cómo se admite en IRIS ===== -->
-    <section class="minileccion">
-      <span class="badge">Minilección</span>
-      <h3 class="minititulo">2) Admisión en oficina: paso a paso</h3>
-
-      <div class="bloque b-texto">
-        <h4>📘 Texto literal — Procedimiento</h4>
-        <blockquote class="cita">
-          • La oficina <strong>da de alta los sobres</strong> en su almacén para poder venderlos a los clientes.<br>
-          • La admisión comienza como <em>carta certificada normal</em> en IRIS. En la <strong>segunda pantalla</strong>, aparece la opción <strong>“Sobres Tarifa Plana”</strong> si hay stock y el peso entra en los límites del modelo.<br>
-          • Al seleccionar “Sobres Tarifa Plana”, se muestran <em>Estándar</em> y <em>Premium</em> para escoger el que pida el cliente.<br>
-          • No se rellena impreso por el cliente. El sobre no lleva código de barras preimpreso: se genera en la admisión.<br>
-          <footer>Fuente: Sesión A — Carta certificada Tarifa Plana (p. 23)</footer>
-        </blockquote>
-      </div>
-
-      <div class="bloque b-explica">
-        <h4>🎤 Ahora en versión entendible</h4>
-        <div>En caja, arrancás como una certificada normal, y en la pantalla 2 tildás <em>Sobres Tarifa Plana</em>. Si hay sobres en almacén y el peso cuadra (≤50 g ó ≤100 g), elegís Estándar o Premium y listo.</div>
-      </div>
-
-      <div class="bloque b-ejemplo">
-        <h4>🎯 En la vida real</h4>
-        <div class="ejemplo">
-          Enma trae un envío de 55 g: el sistema no ofrece Estándar (tope 50); la operadora le sugiere <em>Premium</em> (tope 100 g).<br>
-          Yaco pide Estándar pero no hay stock en almacén: en IRIS no aparece “Sobres Tarifa Plana”; se cursa como certificada normal o se ofrece Premium si hay.
-        </div>
-      </div>
-
-      <div class="test" data-test-id="a6-2">
-        <div class="titulo-test">🧪 Mini test</div>
 
         <div class="pregunta" data-question-id="q3">
-          <h5>3) ¿Dónde se elige “Sobres Tarifa Plana” en IRIS?</h5>
+          <h5>3) En IRIS, ¿cómo se tramita correctamente?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q3"><span>En la venta de productos</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Tras iniciar una certificada normal, en la segunda pantalla aparece “Sobres Tarifa Plana”."><span>En la <em>segunda pantalla</em> de la admisión de certificada</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3"><span>En el cierre de caja</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3"><span>No se elige, va por defecto</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Primero certificada normal, y en la segunda pantalla marcás ‘Sobres Tarifa Plana’."><span>Se inicia como certificada normal y en la segunda pantalla se elige “Sobres Tarifa Plana”</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="El material se da de alta en almacén, no se vende por esa ruta en IRIS."><span>Se compra en “Venta de Productos”</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="El sobre no trae código previo."><span>Exige un código de barras preimpreso del sobre</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es el flujo oficial descrito."><span>Solo si el cliente trae un formulario ya cumplimentado</span></label></li>
           </ul>
-          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
-          <div class="feedback ok"></div><div class="feedback ko"></div>
-        </div>
-
-        <div class="pregunta" data-question-id="q4">
-          <h5>4) Un envío a Ceuta con Tarifa Plana puede llevar…</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="En destinos con régimen fiscal distinto (Ceuta, Melilla, Canarias, Andorra) solo documentos."><span>Solo documentos</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4"><span>Merch y regalos pequeños</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4"><span>Alimentos</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4"><span>Cualquier contenido</span></label></li>
-          </ul>
-          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
-          <div class="feedback ok"></div><div class="feedback ko"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== MINILECCIÓN 3: Qué incluye cada modelo + pagos ===== -->
-    <section class="minileccion">
-      <span class="badge">Minilección</span>
-      <h3 class="minititulo">3) Qué incluye / códigos de circulación / formas de pago</h3>
-
-      <div class="bloque b-texto">
-        <h4>📘 Texto literal</h4>
-        <blockquote class="cita">
-          • <strong>Estándar</strong>: circula en línea básica con <strong>código CD</strong> (hasta 50 g).<br>
-          • <strong>Premium</strong>: circula como registrado urgente con <strong>código VD</strong> (hasta 100 g). Incluye <strong>PEE 5 Postal</strong> y <strong>seguro 100 €</strong> (ampliable a 3000 €). Reembolso, opcional.<br>
-          • Formas de pago: metálico, tarjeta, Tarjeta Más Cerca, transferencia, sellos/estampillas, franqueo pagado/OPV/máquina; <em>no</em> cheque.
-          <footer>Fuente: Sesión A — Carta certificada Tarifa Plana (p. 23)</footer>
-        </blockquote>
-      </div>
-
-      <div class="bloque b-explica">
-        <h4>🎤 Ahora en versión entendible</h4>
-        <div>Recordá: <em>CD = Estándar</em>, <em>VD = Premium</em>. La Premium “trae extras” (PEE + seguro) y permite añadir reembolso. Medios de pago: todos los habituales; el <strong>cheque no</strong>.</div>
-      </div>
-
-      <div class="bloque b-ejemplo">
-        <h4>🎯 En la vida real</h4>
-        <div class="ejemplo">
-          Jenny manda a Lucía un envío con 95 g: va por <em>Premium</em> (VD) y ya tiene PEE incluido; paga con tarjeta.<br>
-          Guille necesita justificante digital: también elige <em>Premium</em>. Para un simple envío de 30 g, Titi ahorra con <em>Estándar</em> (CD).
-        </div>
-      </div>
-
-      <div class="test" data-test-id="a6-3">
-        <div class="titulo-test">🧪 Mini test</div>
-
-        <div class="pregunta" data-question-id="q5">
-          <h5>5) ¿Qué código usa la Tarifa Plana <em>Estándar</em>?</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Estándar: CD · Premium: VD."><span>CD</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5"><span>VD</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5"><span>EX</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5"><span>MRW</span></label></li>
-          </ul>
-          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
-          <div class="feedback ok"></div><div class="feedback ko"></div>
-        </div>
-
-        <div class="pregunta" data-question-id="q6">
-          <h5>6) Señalá lo que <em>sí</em> incluye la Premium:</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q6"><span>Cheque como forma de pago</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6"><span>POD impreso obligatorio</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Premium trae PEE 5 Postal y seguro 100 € incluidos (ampliable)."><span>PEE 5 Postal y seguro 100 € incluidos</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6"><span>Valor declarado siempre 3000 €</span></label></li>
-          </ul>
-          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- ======= BOTÓN SIGUIENTE ======= -->
+  <!-- Botón siguiente -->
   <a class="boton-siguiente" href="leccion-a7.html" rel="next">Siguiente ➜</a>
 
 <script>
-/* ======= LÓGICA DEL MINITEST ======= */
-(function() {
-  function setEstadosIniciales() {
+(function(){
+  function init(){
     document.querySelectorAll('.pregunta').forEach(function(p){
       var btn = p.querySelector('button[data-action="comprobar"]');
-      if (btn) btn.disabled = true;
+      if(btn) btn.disabled = true;
       p.addEventListener('change', function(e){
-        if (e.target.matches('input[type="radio"]')) btn.disabled = false;
+        if(e.target.matches('input[type="radio"]')) btn.disabled = false;
       });
     });
   }
-  function comprobar(pEl) {
-    var seleccion = pEl.querySelector('input[type="radio"]:checked');
-    var ok = pEl.querySelector('.feedback.ok');
-    var ko = pEl.querySelector('.feedback.ko');
-    ok.style.display='none'; ok.textContent='';
-    ko.style.display='none'; ko.textContent='';
-    pEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
-    if(!seleccion){ ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return; }
-    var esOk = seleccion.hasAttribute('data-correct');
-    var exp = seleccion.getAttribute('data-explain') || '';
-    var card = seleccion.closest('.opcion');
-    if(esOk){ card.classList.add('correcta'); ok.innerHTML='✅ Respuesta correcta<div class="explicacion">'+(exp||'¡Bien!')+'</div>'; ok.style.display='block'; }
-    else{ card.classList.add('incorrecta'); ko.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+(exp||'Revisá el concepto y probá otra vez.')+'</div>'; ko.style.display='block'; }
+  function check(p){
+    var sel = p.querySelector('input[type="radio"]:checked');
+    var okBox = p.querySelector('.feedback.ok');
+    var koBox = p.querySelector('.feedback.ko');
+    okBox.style.display='none'; okBox.textContent='';
+    koBox.style.display='none'; koBox.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ koBox.textContent='Elegí una opción antes de comprobar.'; koBox.style.display='block'; return; }
+    var card = sel.closest('.opcion');
+    var isOk = sel.hasAttribute('data-correct');
+    var exp = sel.getAttribute('data-explain')||'';
+    if(isOk){
+      card.classList.add('correcta');
+      okBox.innerHTML='✅ Respuesta correcta<div class="explicacion">'+exp+'</div>';
+      okBox.style.display='block';
+    }else{
+      card.classList.add('incorrecta');
+      koBox.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+exp+'</div>';
+      koBox.style.display='block';
+    }
   }
-  function resetear(pEl){
-    pEl.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
-    pEl.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent=''});
-    pEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
-    var btn = pEl.querySelector('button[data-action="comprobar"]'); if(btn) btn.disabled=true;
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    var btn = p.querySelector('button[data-action="comprobar"]'); if(btn) btn.disabled=true;
   }
   document.addEventListener('click', function(e){
-    var btn = e.target.closest('button[data-action]'); if(!btn) return;
-    var p = btn.closest('.pregunta'); if(!p) return;
-    var act = btn.getAttribute('data-action');
-    if(act==='comprobar') comprobar(p);
-    if(act==='reset') resetear(p);
+    var b = e.target.closest('button[data-action]'); if(!b) return;
+    var p = b.closest('.pregunta'); if(!p) return;
+    var a = b.getAttribute('data-action');
+    if(a==='comprobar') check(p);
+    if(a==='reset') reset(p);
   });
-
-  // Anti-caché del botón Siguiente
-  document.addEventListener('DOMContentLoaded', function(){
-    var a = document.querySelector('a.boton-siguiente');
-    if(a){ a.href='leccion-a7.html'; a.setAttribute('rel','next'); }
-  });
-
-  setEstadosIniciales();
+  init();
 })();
 </script>
 </body>
