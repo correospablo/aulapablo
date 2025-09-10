@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lección A9 — Libros (línea de comunicación)</title>
+<title>Lección A9 — Carta certificada urgente</title>
 <style>
   :root{
     --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
@@ -11,10 +11,18 @@
   }
   *{box-sizing:border-box}
   body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
-  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .contenedor{max-width:900px;margin:0 auto;padding-bottom:120px}
   .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
   .leccion-sub{font-size:16px;color:#555;margin-bottom:24px}
-
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:8px auto 16px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+  /* cajas y skin */
   .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
   .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
   .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
@@ -62,237 +70,212 @@
   }
   .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
   .boton-siguiente:active{transform:translateY(0)}
+
+  /* skin tema-azul */
+  body.tema-azul .minititulo{
+    display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800
+  }
+  body.tema-azul .b-texto{background:#ebf5fb;border-color:#d6eaf8;border-left:6px solid #2e86c1}
+  body.tema-azul .b-texto h4{color:#2e86c1}
+  body.tema-azul blockquote.cita{border-left:4px solid #2e86c1;background:#fff}
+  body.tema-azul .b-explica{background:#f5eef8;border-color:#ead1f3;border-left:6px solid #af7ac5}
+  body.tema-azul .b-explica h4{color:#8e44ad}
+  body.tema-azul .b-ejemplo{background:#fae5d3;border-color:#f7d7bd;border-left:6px solid #d35400}
+  body.tema-azul .b-ejemplo h4{color:#ca6f1e}
+  body.tema-azul .ejemplo{background:#fff8ef;border-color:#f7d7bd}
+  body.tema-azul .test{background:#f4f6f7;border:1px solid #cfe6df;border-left:6px solid #117a65;border-radius:12px}
+  body.tema-azul .test .titulo-test{color:#117a65}
+  body.tema-azul .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  body.tema-azul .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
 </style>
 </head>
-<body>
-  <div class="contenedor">
-    <div class="leccion-titulo">Lección A9 — Libros (línea de comunicación)</div>
-    <div class="leccion-sub">Qué se considera “libros”, límites clave (peso/dimensiones), ámbitos y compatibilidades. Con ejemplos cotidianos de todo el grupo para fijar.</div>
 
-    <!-- ========= MINILECCIÓN 1 ========= -->
+<body class="tema-azul">
+  <!-- Breadcrumb que vuelve a bloques -->
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Bloque A</span><span class="sep">›</span>
+    <strong>Lección A9</strong>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A9 — Carta certificada urgente</div>
+    <div class="leccion-sub">Producto de **carácter urgente** con control y prueba de entrega: entrega bajo firma y seguimiento con etiqueta de barras. Aquí va todo lo que puede caer en test.</div>
+
+    <!-- ===== MINILECCIÓN 1: Qué es ===== -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">1) ¿Qué es el producto “Libros”?</h3>
+      <h3 class="minititulo">1) Qué es “carta certificada urgente”</h3>
 
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          En la línea de comunicación, <strong>libros</strong> cubre el envío de obras impresas encuadernadas (en papel u otro soporte físico equivalente) que se remiten como documentación. Es un producto documental, distinto de paquetería; su tratamiento en límites y medidas se alinea con los de carta/CCRI. <br>
-          <em>(Resumen operativo del manual: en el temario figura como “Libros” con tope de peso de <strong>2&nbsp;kg</strong> y límites dimensionales de la familia carta/CCRI.)</em>
-          <footer>Referencia: sesión A — tabla de pesos (aparece “Libros: 2 kg”).</footer>
+          Permite el envío de documentos y/o mercancías con carácter de urgencia, con entrega habitual en uno o dos días hábiles. Circula controlada y registrada con una <strong>etiqueta con código de barras</strong> adherida en el anverso. La entrega es en el domicilio del destinatario <strong>bajo firma</strong> (o persona autorizada). Si no es posible, se deja aviso (M-4) para recogida en oficina. El envío permanece <strong>15 días naturales</strong> a disposición del cliente. El remitente puede hacer seguimiento por web o app. La pérdida da lugar a indemnización fija por envío. 
+          <footer>Sesión A — Carta certificada urgente (resumen p. 26–28)</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
-        <h4>🎤 Ahora en versión entendible</h4>
-        <div>Si lo que viaja son <em>libros</em> (uno o varios) y no hay mercancía extra, lo tratamos como envío documental “Libros”. Cuando se mezclan libros con objetos (taza, juguete, etc.), ya es paquetería.</div>
-      </div>
-
-      <div class="bloque b-ejemplo">
-        <h4>🎯 Y cómo sería en la realidad</h4>
-        <div class="ejemplo">
-          En Murcia: Pablo manda a Diego un manual encuadernado; Juli presta a Marina una novela y la reenvía; Enma devuelve a Alberto un cómic. Todo entra como “Libros”. Si Lucía añade un marcapáginas de madera voluminoso para Titi, ya se evalúa como paquete.
+        <h4>🎤 En versión entendible</h4>
+        <div>
+          Es una <strong>certificada</strong> (firma + seguimiento) que además es <strong>rápida</strong>. Si no te encuentran, queda aviso y va a oficina. Tenés 15 días para retirarla.
         </div>
       </div>
 
-      <div class="test" data-test-id="a9-1">
-        <div class="titulo-test">🧪 Mini test de repaso</div>
-
-        <div class="pregunta" data-question-id="q1">
-          <h5>1) ¿Cuándo encaja el producto “Libros”?</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q1"><span>Cuando viajan libros junto con una taza</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Solo obras impresas encuadernadas; sin mercancía extra."><span>Cuando se envían exclusivamente obras impresas encuadernadas</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1"><span>Si el envío es un peluche con forma de libro</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1"><span>Solo si pesa más de 2 kg</span></label></li>
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Casos reales (sin bostezos)</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Alma</strong> envía <em>títulos universitarios</em> a un colegio profesional y necesita que lleguen pronto y con firma → <u>carta certificada urgente</u>.</li>
+            <li><strong>Bruno</strong> manda un <em>contrato</em> para firmar a su socia en Vigo → urgente + <u>aviso de recibo</u> para archivarlo.</li>
+            <li><strong>Celia</strong> remite una <em>licencia</em> que no puede perderse: añade <u>valor declarado SPU</u> (hasta 3000 €).</li>
+            <li><strong>Diego</strong> vive en pueblo chico: deposita antes de las 14:30 (oficina de mañana) para entrar en el objetivo <strong>D+1</strong>.</li>
           </ul>
-          <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
-            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
-          </div>
-          <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
       </div>
     </section>
 
-    <!-- ========= MINILECCIÓN 2 ========= -->
+    <!-- ===== MINILECCIÓN 2: Límites y plazos ===== -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">2) Ámbito, peso y dimensiones</h3>
+      <h3 class="minititulo">2) Ámbito, medidas, peso, plazos y tramos</h3>
 
       <div class="bloque b-texto">
-        <h4>📘 Texto literal clave</h4>
+        <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          <strong>Ámbito:</strong> nacional e internacional (zonas estándar).<br>
-          <strong>Peso máximo:</strong> <strong>2 kg</strong> por envío (tabla de productos).<br>
-          <strong>Dimensiones:</strong> se ajustan a los límites de carta/CCRI: sobre/caja <em>L + A + A = 90 cm</em> (mayor ≤ 60 cm); rollo/tubo <em>L + 2D = 104 cm</em> (mayor ≤ 90 cm). Mínimas: 14 × 9 cm; si es menor, etiqueta 10 × 7 cm con dirección y franqueo.
-          <footer>Operativa basada en las tablas de límites que ya viste en A2 y A3.</footer>
+          <strong>Ámbito:</strong> nacional (España y Andorra).<br>
+          <strong>Embalaje:</strong> sobre, caja, tubo o rollo; datos de remitente y destinatario visibles sobre el embalaje.<br>
+          <strong>Código de barras</strong> en el envío y en el comprobante de imposición; etiqueta roja “Carta urgente”.<br>
+          <strong>Peso:</strong> hasta 2 kg.<br>
+          <strong>Dimensiones máx.:</strong> sobre/caja L+A+A ≤ 90 cm (mayor ≤ 60 cm). Rollo/tubo L+2D ≤ 104 cm (mayor ≤ 90 cm).<br>
+          <strong>Dimensiones mín.:</strong> sobre/caja 14×9 cm; rollo/tubo L+2D ≥ 17 cm (mayor ≥ 10 cm). Si es más chico, <em>etiqueta</em> 10×7 cm con dirección y franqueo.<br>
+          <strong>Tramos de peso:</strong> hasta 20 g; &gt;20–50 (incluye hasta 20 g sin normalizar); &gt;50–100; &gt;100–500; &gt;500–1000; &gt;1000–2000 g.<br>
+          <strong>Plazo orientativo:</strong> objetivo de entrega del 90% en <strong>1 día hábil</strong> si el depósito se realiza antes de las 16:00 (oficinas con turno de tarde) o antes de las 14:30 (oficinas con sólo turno de mañana), y origen/destino en grandes poblaciones.
+          <footer>Sesión A — Carta certificada urgente (p. 27–28)</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
-        <h4>🎤 Ahora en versión entendible</h4>
-        <div>Memotecnia fácil: **2 kg** y las **medidas de carta/CCRI**. Si son varios libros, asegurá buen embalaje y que no sobresalgan las tapas para no deteriorarse.</div>
+        <h4>🧭 Pistas para el test</h4>
+        <div>
+          Recordá las fórmulas: <strong>L+A+A</strong> para sobres/cajas y <strong>L+2D</strong> para tubos. Nacional = España + Andorra. Y el “<em>truco</em>” del objetivo D+1 depende de <em>horario de depósito</em> y tamaño de población.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 3: Servicios, garantías y pago ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Servicios añadidos, garantías e indemnizaciones</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Servicios añadidos (según contratación):</strong> aviso de recibo (M-35 Plus 1E/2E), valor declarado SPU (hasta 3000 €), PEE 5 postal (5 años de custodia), gestión del DUA, recogida a domicilio (clientes con contrato vigente), peticiones de devolución/modificación/corrección de dirección, retorno de información/trazabilidad (clientes con contrato), segundo intento de entrega, clasificación de envíos, digitalización de contenidos y certificaciones de imposición y entrega.<br><br>
+          <strong>Garantías:</strong> por pérdida/extravío/deterioro → <u>indemnización = tarifa abonada × 10</u> (en contratos anteriores al 27/06/2021: 30 € + valor declarado contratado). Con <u>valor declarado</u>: se indemniza la menor de estas cantidades: el valor declarado, la reposición o la reparación del objeto.<br>
+          <strong>Plazo de reclamación:</strong> mínimo 3 días naturales y máximo 4 meses desde la admisión.<br>
+          <strong>Formas de pago:</strong> en el momento (metálico, transferencia, Tarjeta Más Cerca, tarjeta, sellos/estampillas, franqueo pagado o a máquina en oficina y franqueo electrónico <em>online</em>); diferido para clientes con contrato vigente: <u>franqueo pagado</u>.
+          <footer>Sesión A — Carta certificada urgente (p. 28)</footer>
+        </blockquote>
       </div>
 
       <div class="bloque b-ejemplo">
-        <h4>🎯 Y cómo sería en la realidad</h4>
+        <h4>📎 En la práctica</h4>
         <div class="ejemplo">
-          En Murcia: Cristina envía a Yaco dos libros de cocina (1,4 kg) → ok. Jenny manda a Guille un tomo de 900 g en sobre acolchado 23×16×4 → suma 43 (L+A+A), ok. Lorena arma un tubo con láminas encuadernadas para Marina: mide L=60 y D=6 → L+2D=72, ok.  
-          Exterior: Alberto remite a Grachu una edición de 1,2 kg (Zona 1); Diego envía a Gra un álbum infantil para Juana; Lucía manda a Cande un libro blando para Lolo. Todos quedan dentro del tope de 2 kg si el embalaje respeta medidas.
+          <p><strong>Gala</strong> necesita constancia digital: usa <u>PEE 5</u>. <strong>Héctor</strong> mueve documentos con valor: añade <u>VD</u>. <strong>Inés</strong> contrató recogida: disponible sólo para clientes con contrato vigente.</p>
         </div>
       </div>
 
-      <div class="test" data-test-id="a9-2">
+      <div class="test" data-test-id="a9">
         <div class="titulo-test">🧪 Mini test de repaso</div>
 
-        <div class="pregunta" data-question-id="q2">
-          <h5>1) ¿Cuál es el peso máximo permitido en “Libros”?</h5>
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Qué combinación describe mejor a la <em>carta certificada urgente</em>?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q2"><span>500 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="La tabla sitúa “Libros” con tope 2 kg."><span>2 kg</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2"><span>5 kg</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2"><span>20 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="La simple urgente no exige firma."><span>Urgente sin firma y sin seguimiento</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Es certificada (firma + seguimiento) y además urgente."><span>Entrega bajo firma + seguimiento + objetivo D+1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Eso es una carta ordinaria."><span>Sin control, sin etiqueta y sin aviso</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="La etiqueta roja es propia de urgente/certificada urgente."><span>No lleva etiqueta de producto</span></label></li>
           </ul>
-          <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
-            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
-          </div>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Cuál es el límite dimensional mínimo para <em>tubo/rollo</em>?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Esa es para sobre/caja."><span>14 × 9 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Para cilindros: L + 2D ≥ 17 cm y la mayor ≥ 10 cm."><span>L + 2D ≥ 17 cm (mayor ≥ 10 cm)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Eso es un máximo."><span>L + 2D ≤ 104 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No existe esa fórmula en carta."><span>Perímetro + largo ≥ 20 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
         <div class="pregunta" data-question-id="q3">
-          <h5>2) Para cilindros (tubos), ¿qué fórmula de medida aplica?</h5>
+          <h5>3) Con valor declarado, ¿qué indemnización corresponde ante siniestro?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q3"><span>L + A + A</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Cilindros → L + 2D (igual que en carta/CCRI)."><span>L + 2D</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3"><span>Perímetro + largo</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3"><span>Volumen (L×A×A)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="La tarifa×10 aplica sin VD. Con VD se compara."><span>Siempre tarifa abonada × 10</span></label></li>
+          <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Se paga la menor entre: valor declarado, reposición o reparación."><span>La menor entre valor declarado, reposición o reparación</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No hay tope en 500 € en este producto."><span>Máximo 500 € independientemente del VD</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="PEE es prueba, no indemnización."><span>El importe de PEE 5</span></label></li>
           </ul>
-          <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
-            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
-          </div>
-          <div class="feedback ok"></div><div class="feedback ko"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========= MINILECCIÓN 3 ========= -->
-    <section class="minileccion">
-      <span class="badge">Minilección</span>
-      <h3 class="minititulo">3) Compatibilidades y pagos</h3>
-
-      <div class="bloque b-texto">
-        <h4>📘 Texto literal</h4>
-        <blockquote class="cita">
-          <strong>Servicios añadibles (según contratación y país):</strong> certificado, aviso de recibo, valor declarado y opciones de trazabilidad cuando estén disponibles. <strong>Plazos:</strong> nacionales orientativos D+1 / D+2 / D+3; internacionales según zona/país. <strong>Pagos:</strong> metálico, tarjeta, transferencia, Tarjeta Más Cerca, sellos/estampillas, franqueo pagado/maquina y franqueo electrónico; para clientes con contrato, franqueo en destino/diferido según condiciones.
-          <footer>Operativa alineada con la familia carta (ver A3 y A7 para detalle).</footer>
-        </blockquote>
-      </div>
-
-      <div class="bloque b-explica">
-        <h4>🎤 Ahora en versión entendible</h4>
-        <div>Si el cliente quiere <em>prueba</em>, sumá “certificado” (y, si procede, AR). Para envíos caros, valor declarado. Y recordá: lo que define el producto es que sean libros; si meten un juguete para Juana o Lolo, pasa a paquete.</div>
-      </div>
-
-      <div class="bloque b-ejemplo">
-        <h4>🎯 Y cómo sería en la realidad</h4>
-        <div class="ejemplo">
-          Casos del grupo:  
-          • Titi manda a Vicki un libro de fotografía con certificado.  
-          • Guille envía a Cristian una antología con AR.  
-          • Jenny remite a Rodri un manual técnico con valor declarado.  
-          • Lorena envía a Juanma un libro infantil para leer con Juana.  
-          • Marina manda a Ana un cuento de tapas blandas para Lolo.  
-          • Pablo prepara para Fede un pack de dos libros (1,7 kg) → ok por peso; si añadiera una taza, cambiaría a paquetería.  
-          • Enma y Lucía coordinan devoluciones de libros entre Murcia y Cande/Maru según zona internacional.
-        </div>
-      </div>
-
-      <div class="test" data-test-id="a9-3">
-        <div class="titulo-test">🧪 Mini test de repaso</div>
-
-        <div class="pregunta" data-question-id="q4">
-          <h5>1) ¿Qué servicio añadirías si el remitente quiere constancia de entrega?</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Para constancia y seguimiento usa “certificado”; se puede sumar AR."><span>Certificado (y, si procede, Aviso de Recibo)</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4"><span>Urgente internacional</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4"><span>Paq Retorno</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4"><span>Citypaq</span></label></li>
-          </ul>
-          <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
-            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
-          </div>
-          <div class="feedback ok"></div><div class="feedback ko"></div>
-        </div>
-
-        <div class="pregunta" data-question-id="q5">
-          <h5>2) Marca la opción correcta sobre “Libros”</h5>
-          <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q5"><span>Admite enviar juguetes junto con los libros</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Solo obras impresas encuadernadas; si añades mercancía, pasa a paquete."><span>Se usa solo si el contenido son libros (obras impresas encuadernadas)</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5"><span>No puede viajar fuera de España</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5"><span>No tiene límite de peso</span></label></li>
-          </ul>
-          <div class="acciones">
-            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button>
-            <button class="btn btn-secundario" data-action="reset">Limpiar selección</button>
-          </div>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar respuesta</button><button class="btn btn-secundario" data-action="reset">Limpiar selección</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- Botón siguiente -->
   <a class="boton-siguiente" href="leccion-a10.html" rel="next">Siguiente ➜</a>
 
 <script>
-(function(){
-  function setEstadosIniciales(){
+/* Mini-test */
+(function() {
+  function setEstadosIniciales() {
     document.querySelectorAll('.pregunta').forEach(function(p){
-      var b = p.querySelector('button[data-action="comprobar"]');
-      if(b) b.disabled = true;
+      var btn = p.querySelector('button[data-action="comprobar"]');
+      if (btn) btn.disabled = true;
       p.addEventListener('change', function(e){
-        if(e.target.matches('input[type="radio"]')) b.disabled = false;
+        if (e.target.matches('input[type="radio"]')) btn.disabled = false;
       });
     });
   }
-  function comprobar(p){
-    var s = p.querySelector('input[type="radio"]:checked');
-    var ok = p.querySelector('.feedback.ok');
-    var ko = p.querySelector('.feedback.ko');
-    ok.style.display='none'; ok.textContent='';
-    ko.style.display='none'; ko.textContent='';
-    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
-    if(!s){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
-    var corr = s.hasAttribute('data-correct');
-    var exp = s.getAttribute('data-explain') || '';
-    var card = s.closest('.opcion');
-    if(corr){
-      card.classList.add('correcta');
-      ok.innerHTML='✅ Respuesta correcta<div class="explicacion">'+(exp||'¡Bien!')+'</div>';
-      ok.style.display='block';
+  function comprobar(preguntaEl) {
+    var seleccion = preguntaEl.querySelector('input[type="radio"]:checked');
+    var okBox = preguntaEl.querySelector('.feedback.ok');
+    var koBox = preguntaEl.querySelector('.feedback.ko');
+    okBox.style.display='none'; okBox.textContent='';
+    koBox.style.display='none'; koBox.textContent='';
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!seleccion){koBox.textContent='Elegí una opción antes de comprobar.'; koBox.style.display='block'; return;}
+    var esCorrecta = seleccion.hasAttribute('data-correct');
+    var explicacion = seleccion.getAttribute('data-explain') || '';
+    var tarjeta = seleccion.closest('.opcion');
+    if(esCorrecta){
+      tarjeta.classList.add('correcta');
+      okBox.innerHTML='✅ Respuesta correcta<div class="explicacion">'+(explicacion||'¡Bien!')+'</div>';
+      okBox.style.display='block';
     }else{
-      card.classList.add('incorrecta');
-      ko.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+(exp||'Revisá el concepto y probá otra vez.')+'</div>';
-      ko.style.display='block';
+      tarjeta.classList.add('incorrecta');
+      koBox.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+(explicacion||'Revisá y probá de nuevo.')+'</div>';
+      koBox.style.display='block';
     }
   }
-  function resetear(p){
-    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
-    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent=''});
-    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
-    var b = p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  function resetear(preguntaEl){
+    preguntaEl.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    preguntaEl.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent=''});
+    preguntaEl.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var btn = preguntaEl.querySelector('button[data-action="comprobar"]'); if(btn) btn.disabled=true;
   }
   document.addEventListener('click', function(e){
     var btn = e.target.closest('button[data-action]'); if(!btn) return;
     var p = btn.closest('.pregunta'); if(!p) return;
-    var a = btn.getAttribute('data-action');
-    if(a==='comprobar') comprobar(p);
-    if(a==='reset') resetear(p);
+    var act = btn.getAttribute('data-action');
+    if(act==='comprobar') comprobar(p);
+    if(act==='reset') resetear(p);
   });
   setEstadosIniciales();
 })();
