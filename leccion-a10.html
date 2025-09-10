@@ -1,120 +1,324 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Lección A10 - Notificaciones</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background-color: #f0f4f8;
-      color: #333;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      background-color: #ffe6f0;
-      padding: 10px;
-      border-left: 10px solid #ff4da6;
-      color: #b30059;
-    }
-    .intro, .ejemplo, .test, .siguiente {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 10px;
-    }
-    .intro {
-      background-color: #e6f2ff;
-      border-left: 6px solid #3399ff;
-    }
-    .explicacion {
-      background-color: #fce4ec;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .explicacion ul {
-      list-style-type: square;
-      padding-left: 20px;
-    }
-    .ejemplo {
-      background-color: #fff3cd;
-      border-left: 6px solid #ffcc00;
-    }
-    .test {
-      background-color: #e6ffee;
-      border-left: 6px solid #00cc66;
-    }
-    .siguiente {
-      text-align: right;
-      margin-top: 30px;
-    }
-    .btn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .pregunta {
-      margin-bottom: 10px;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A10 — Valijas (servicio con contrato)</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
+    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques generales */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  /* Texto literal */
+  .b-texto{background:var(--bg-legal);border-color:#ddd}
+  .b-texto h4{color:#5b21b6}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  /* Explicación */
+  .b-explica{background:var(--bg-explica);border-color:#a5f3fc}
+  .b-explica h4{color:#0e7490}
+
+  /* Ejemplo */
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#fde68a}
+  .b-ejemplo h4{color:#92400e}
+  .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
+  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Skin azul como el ejemplo que te gustó */
+  body.tema-azul .minititulo{
+    display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;
+  }
+  body.tema-azul .b-texto{background:#ebf5fb;border-color:#d6eaf8;border-left:6px solid #2e86c1}
+  body.tema-azul .b-texto h4{color:#2e86c1}
+  body.tema-azul blockquote.cita{border-left:4px solid #2e86c1;background:#fff}
+  body.tema-azul .b-explica{background:#f5eef8;border-color:#ead1f3;border-left:6px solid #af7ac5}
+  body.tema-azul .b-explica h4{color:#8e44ad}
+  body.tema-azul .b-ejemplo{background:#fae5d3;border-color:#f7d7bd;border-left:6px solid #d35400}
+  body.tema-azul .b-ejemplo h4{color:#ca6f1e}
+  body.tema-azul .ejemplo{background:#fff8ef;border-color:#f7d7bd}
+  body.tema-azul .test{background:#f4f6f7;border-left:6px solid #117a65}
+  body.tema-azul .test .titulo-test{color:#117a65}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none;
+    box-shadow:0 6px 18px rgba(40,167,69,.25);transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
 </head>
-<body>
-  <h1>📄 Lección A10 - Notificaciones</h1>
 
-  <div class="intro">
-    Algunos sobres llegan con más susto que alegría. Las **notificaciones administrativas y judiciales** son productos certificados con prueba fehaciente de entrega, y tienen sus reglas estrictas. Vamos a verlas sin que te tiemble el pulso.
+<body class="tema-azul">
+  <!-- Breadcrumb que vuelve a BLOQUES -->
+  <nav class="breadcrumb" aria-label="Migas de pan">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>A10 · Valijas</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A10 — Valijas (servicio con contrato)</div>
+    <div class="leccion-sub">Qué son, para qué empresas sirve, requisitos de embalaje, colores de precintos, zonas y pagos. Con ejemplos reales y mini-test.</div>
+
+    <!-- ===== MINILECCIÓN 1 ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es una valija y cuándo se usa</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal del apartado</h4>
+        <blockquote class="cita">
+          Servicio con contrato por el que Correos garantiza la recogida, transporte y entrega urgente de documentos y/o mercancías en un <strong>horario fijo acordado</strong> con el cliente, agrupando los envíos en un <strong>embalaje autorizado</strong>. Diseñado para el correo interno de empresas entre sede central y delegaciones. Según contrato puede ser <em>valija unitoque</em> (entrega y recogida a la vez) o <em>bitoque</em> (en horarios distintos). Ámbito <strong>nacional (España y Andorra)</strong>. 
+          <footer>Fuente: Sesión A — Valijas (p. 29–30)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 En versión entendible</h4>
+        <div>Es un “<strong>shuttle</strong>” de empresa: Correos pasa cuando se pactó, recoge la bolsa autorizada y la deja en el punto acordado. Ideal si tu empresa mueve papeles/objetos entre oficinas todos los días.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Y en la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Editorial Nemo</strong>: manda originales y pruebas de imprenta a sus delegaciones cada tarde → valija <em>unitoque</em> (pasa una vez y hace intercambio).</li>
+            <li><strong>Hospital San Isidro</strong>: laboratorio central recibe muestras por la mañana y envía resultados por la tarde → valija <em>bitoque</em>.</li>
+            <li><strong>Finanzas Rivendel</strong>: documentos contables entre sede y 12 oficinas, siempre en <em>bolsa autorizada</em> → valija con contrato y trazabilidad.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 2 ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Características clave y acondicionamiento</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Opciones:</strong> servicio con contrato personalizable. <br>
+          <strong>Tipos:</strong> <u>valijas para clientes externos</u> y <u>valijas de uso interno</u>. <br>
+          <strong>Embalaje autorizado:</strong> bolsas resistentes con asas y logotipo del cliente visible; <em>cierre de cremallera precintable</em> y <em>ventana plástica</em> centrada para la etiqueta origen/destino. <br>
+          <strong>Peso:</strong> hasta <strong>20 kg</strong>. <strong>Dimensiones:</strong> las homologadas para el envase utilizado. <br>
+          <strong>Plazos:</strong> 1 día hábil para todo el territorio; entrega en el punto y horario acordados. <br>
+          <strong>Precintos – código de colores:</strong> amarillos (de central a delegaciones) y rojos (de delegaciones a central). El cliente debe prever precintos de cada color para al menos seis meses (uno por valija y día contratado).
+          <footer>Fuente: Sesión A — Valijas (p. 29–30)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 En versión entendible</h4>
+        <div>
+          El sobre no vale: tiene que ser <strong>bolsa autorizada</strong> con cremallera y precinto. Pensá el color: <em>amarillo</em> cuando la central envía, <em>rojo</em> cuando vuelve. Y no te pases de 20 kg.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 3 ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Zonas tarifarias y pagos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Zonas</h4>
+        <blockquote class="cita">
+          <strong>Zona 1 (provincial):</strong> origen y destino en la misma provincia (hasta 10 kg / de 10 a 20 kg por destino y mes).<br>
+          <strong>Zona 2 (peninsular):</strong> origen y destino dentro de la Península (hasta 10 kg / de 10 a 20 kg por destino y mes).<br>
+          <strong>Zona 3 (Baleares, Ceuta y Melilla):</strong> por destino y mes hasta 1 kg; <em>cada kg o fracción</em> adicional.<br>
+          <strong>Zona 4 (Península/Baleares → Canarias):</strong> por destino y mes hasta 1 kg; <em>cada kg o fracción</em> adicional.<br>
+          Valijas a Canarias, Ceuta y Melilla: sin impuestos indirectos. <br>
+          <strong>Pago:</strong> conforme a tarifas vigentes; admite <em>pospago</em> y <em>pago diferido</em>.
+          <footer>Fuente: Sesión A — Valijas (p. 30)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Casos rápidos</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Sevilla ⇄ Sevilla</strong> (sede-barrio): <u>Zona 1</u>.</li>
+            <li><strong>Madrid ⇄ Valencia</strong>: <u>Zona 2</u>.</li>
+            <li><strong>Málaga ⇄ Ceuta</strong>: <u>Zona 3</u>.</li>
+            <li><strong>Bilbao ⇄ Las Palmas</strong>: <u>Zona 4</u> (kgs o fracción).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 4 ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Servicios adicionales y valijas de uso interno</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Servicios adicionales</h4>
+        <blockquote class="cita">
+          Servicio diario en laborables, venta de bolsas, clasificación de documentos, periodicidad pactada, sólo entrega o ida/vuelta y <strong>trazabilidad</strong> de valijas.
+          <footer>Fuente: Sesión A — Valijas (p. 30)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-texto">
+        <h4>📘 Valijas de uso interno de Correos (colores)</h4>
+        <blockquote class="cita">
+          <strong>Intrazonales y Sede Central</strong> (administración interna): bolsas <em>amarillas o azul corporativo</em>.<br>
+          Precinto <u>verde</u>: si el destino es Sede Central. Precinto <u>azul</u>: si sale desde Sede Central hacia una unidad.<br>
+          <strong>Servicios Rurales (SS.RR.)</strong>: bolsas <em>rojas</em>. Precinto <u>verde</u> cuando van del SS.RR. al centro de reparto; <u>azul</u> cuando el centro de reparto envía al SS.RR.
+          <footer>Fuente: Sesión A — Valijas (p. 30)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Mini-historias de colores</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Dirección Central → Delegaciones</strong>: bolsa azul corporativo, <u>precinto azul</u> (sale de la central).</li>
+            <li><strong>Delegación → Central</strong>: bolsa amarilla, <u>precinto verde</u> si llega a Sede Central.</li>
+            <li><strong>SS.RR. de Almendralejo → Centro de reparto</strong>: bolsa roja, <u>precinto verde</u>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEST ===== -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">5) Mini test de repaso</h3>
+
+      <div class="test" data-test-id="a10">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) El <em>ámbito</em> de las valijas es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Así lo define el apartado: nacional (España y Andorra)."><span>Nacional (España y Andorra)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Internacional no aplica a este servicio."><span>Internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No existe una Zona 0."><span>Zona 0</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Cuál es el <em>peso máximo</em> de una valija?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Ese límite es de Carta Urgente, no de valijas."><span>Hasta 500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Peso máximo de valija: 20 kg."><span>Hasta 20 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No aparece en valijas."><span>Hasta 2 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) Madrid ⇄ Las Palmas. ¿Qué <em>zona</em> es?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Provincial es dentro de la misma provincia."><span>Zona 1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Península interior."><span>Zona 2</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Origen Península/Baleares y destino Canarias → Zona 4."><span>Zona 4</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) La central envía documentación a sus delegaciones. El <em>precinto</em> del cierre será…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="De central a delegaciones: precinto amarillo."><span>Amarillo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Rojo es de delegaciones a la central."><span>Rojo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Verde/Azul se usan en valijas internas de Correos."><span>Verde</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) Señalá la afirmación correcta</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Las valijas requieren embalaje autorizado y contrato."><span>Las valijas pueden circular en cualquier bolsa sin contrato</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="El apartado distingue valijas para clientes externos y valijas de uso interno."><span>Existen valijas para clientes externos y valijas de uso interno</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="No, el ámbito es nacional."><span>El ámbito de valijas es internacional</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="explicacion">
-    <h2>🖋️ ¿Qué son las notificaciones?</h2>
-    <p>
-      Son envíos certificados utilizados exclusivamente por entidades administrativas y judiciales. Su objetivo es asegurar que el destinatario reciba una comunicación legal con total seguridad y trazabilidad.
-    </p>
-    <ul>
-      <li>Incluyen dos intentos de entrega en el domicilio del destinatario, en horarios diferentes y con al menos 3 horas de diferencia si el primero fue antes de las 15 h.</li>
-      <li>Si nadie recibe el envío, se deja un aviso (modelo M-4) y queda en lista por 7 días naturales.</li>
-      <li>Circulan con código de barras. Pueden llevar prueba de entrega electrónica (PEE) y aviso de recibo.</li>
-      <li>Ámbito: solo España (excluye Andorra).</li>
-      <li>Peso: hasta 2 kg. Dimensiones: entre 14x9 cm y L+A+A = 90 cm.</li>
-      <li>Se identifican con la palabra "Notificación", el tipo de acto, número de expediente, órgano emisor, dirección y código SICI (si aplica).</li>
-      <li>Clientes: con o sin contrato. El remitente debe ser una administración o órgano autorizado legalmente.</li>
-      <li>Plazos orientativos: local D+1, provincial D+2, nacional D+3 (93 % de los casos).</li>
-      <li>Códigos SGIE comunes: NA, ND, NT, NV, N3, 90 (administrativas) y NC, NJ, NF (judiciales).</li>
-    </ul>
-  </div>
+  <a class="boton-siguiente" href="leccion-a11.html" rel="next">Siguiente ➜</a>
 
-  <div class="ejemplo">
-    <strong>✨ Ejemplo práctico:</strong> Pablo, que vive en Murcia, recibió una notificación judicial. El primer intento fue un martes por la mañana, pero no estaba. Como el intento fue antes de las 15:00, el segundo intento se hizo el jueves a la tarde, con más de 3 horas de diferencia. Finalmente la recibió en mano y firmó el acuse de recibo.
-  </div>
-
-  <div class="test">
-    <h2>🧒 Mini test</h2>
-    <div class="pregunta">
-      <strong>¿Cuántos intentos de entrega incluye una notificación?</strong><br>
-      a) Uno<br>
-      b) Dos ✅<br>
-      c) Tres
-    </div>
-    <div class="pregunta">
-      <strong>¿Cuál es el plazo de permanencia en lista si no se puede entregar?</strong><br>
-      a) 15 días<br>
-      b) 10 días<br>
-      c) 7 días ✅
-    </div>
-    <div class="pregunta">
-      <strong>¿Se pueden enviar notificaciones desde particulares?</strong><br>
-      a) Sí<br>
-      b) No ✅<br>
-      c) Solo en el extranjero
-    </div>
-  </div>
-
-  <div class="siguiente">
-    <a class="btn" href="#">Siguiente lección</a>
-  </div>
+<script>
+(function(){
+  function init(){document.querySelectorAll('.pregunta').forEach(p=>{const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true; p.addEventListener('change',e=>{if(e.target.matches('input[type="radio"]')) b.disabled=false;});});}
+  function check(p){
+    const sel=p.querySelector('input[type="radio"]:checked'); const ok=p.querySelector('.feedback.ok'); const ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    const good=sel.hasAttribute('data-correct'); const exp=sel.getAttribute('data-explain')||''; const card=sel.closest('.opcion');
+    if(good){card.classList.add('correcta'); ok.innerHTML='✅ Respuesta correcta<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-action]'); if(!b) return;
+    const p=b.closest('.pregunta'); if(!p) return;
+    const a=b.getAttribute('data-action'); if(a==='comprobar') check(p); if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
 </body>
 </html>
