@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Repaso — Bloque A (Cartas y Valijas)</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
+    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques generales */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  /* skin azul */
+  body.tema-azul .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800}
+  body.tema-azul .b-explica{background:#f5eef8;border-color:#ead1f3;border-left:6px solid #af7ac5}
+  body.tema-azul .b-explica h4{color:#8e44ad}
+  body.tema-azul .test{background:#f4f6f7;border-left:6px solid #117a65}
+  body.tema-azul .test .titulo-test{color:#117a65}
+
+  /* grid enlaces */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+  .chip{display:block;padding:10px 12px;border:1px solid #dbeafe;border-radius:10px;background:#eff6ff;color:#1453a6;text-decoration:none;font-weight:700}
+  .chip:hover{background:#e0efff}
+
+  /* tabla chuletario */
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:10px;border:1px solid #e5e7eb;text-align:left}
+  th{background:#eef2ff}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;border:1px solid #cfe6df;border-radius:12px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* botón flotante */
+  .boton-siguiente{position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25)}
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body class="tema-azul">
+  <nav class="breadcrumb" aria-label="Migas de pan">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Repaso Bloque A</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Repaso — Bloque A (Cartas y Valijas)</div>
+    <div class="leccion-sub">Un repaso express de A1 a A10: mapa del bloque, números que caen en test y un quiz final para que veas cómo vas.</div>
+
+    <!-- Enlaces a las lecciones -->
+    <section class="minileccion">
+      <span class="badge">Accesos rápidos</span>
+      <h3 class="minititulo">Volver a cualquier lección</h3>
+      <div class="grid">
+        <a class="chip" href="leccion-a1.html">A1 · Intro / Productos vs Servicios</a>
+        <a class="chip" href="leccion-a2.html">A2 · Dimensiones y marcos</a>
+        <a class="chip" href="leccion-a3.html">A3 · Carta Certificada</a>
+        <a class="chip" href="leccion-a4.html">A4 · Certificada Tarifa Plana</a>
+        <a class="chip" href="leccion-a5.html">A5 · (continuación Tarifa Plana)</a>
+        <a class="chip" href="leccion-a6.html">A6 · Certificada Prepagada Premium</a>
+        <a class="chip" href="leccion-a7.html">A7 · Carta Urgente</a>
+        <a class="chip" href="leccion-a8.html">A8 · Carta Urgente (práctica)</a>
+        <a class="chip" href="leccion-a9.html">A9 · Carta Certificada Urgente</a>
+        <a class="chip" href="leccion-a10.html">A10 · Valijas (contrato)</a>
+      </div>
+    </section>
+
+    <!-- Mapa rápido -->
+    <section class="minileccion">
+      <span class="badge">Mapa</span>
+      <h3 class="minititulo">Qué cubre cada lección en 1 línea</h3>
+      <div class="bloque b-explica">
+        <ul style="margin:0;padding-left:18px">
+          <li><strong>A1</strong>: Diferenciar <em>producto</em> (el envío) de <em>servicio</em> (prestación añadida).</li>
+          <li><strong>A2</strong>: Marcos de <em>dimensiones</em> y <em>mínimos</em> para cartas/sobres y cilindros.</li>
+          <li><strong>A3</strong>: Carta Certificada (SPU): opciones, PEE, VD, reembolso, plazos.</li>
+          <li><strong>A4–A5</strong>: Certificada <em>Tarifa Plana</em> (Estándar 50 g / Premium 100 g), PEE 5 incluido.</li>
+          <li><strong>A6</strong>: Certificada <em>Prepagada Premium</em>: sobre con código VD, PEE 5 incluido.</li>
+          <li><strong>A7–A8</strong>: Carta Urgente (no requiere firma): límites y plazos 1 día hábil.</li>
+          <li><strong>A9</strong>: Certificada Urgente (con firma): máximas 90 cm; rollo L+2D ≤ 104 cm; hasta 2 kg.</li>
+          <li><strong>A10</strong>: Valijas con contrato: 20 kg, colores de precintos y zonas 1–4.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Chuletario -->
+    <section class="minileccion">
+      <span class="badge">Chuletario</span>
+      <h3 class="minititulo">Números que más preguntan</h3>
+      <div class="bloque">
+        <table>
+          <thead><tr><th>Producto</th><th>Claves rápidas</th></tr></thead>
+          <tbody>
+            <tr><td>Carta Urgente</td><td>Peso: hasta 500 g · Mínimo sobre: 14 × 9 cm · Máx. sobre recomendado: 23,5 × 12 cm (espesor máx. 10 mm) · Rollo: L+2D ≤ 17 cm · Plazo típico: 1 día hábil</td></tr>
+            <tr><td>Certificada Urgente</td><td>Peso: hasta 2 kg · Sobre/caja: L+A+A ≤ 90 cm (max. dim. ≤ 60 cm) · Rollo: L+2D ≤ 104 cm (max. dim. ≤ 90 cm) · Mínimo: 14 × 9 cm · 90% en 1 día hábil</td></tr>
+            <tr><td>Tarifa Plana</td><td>Estándar: hasta 50 g · Premium: hasta 100 g · PEE 5 incluido · Seguro 100 € (Premium)</td></tr>
+            <tr><td>Valijas</td><td>20 kg · Precinto <strong>amarillo</strong> (central → delegaciones) / <strong>rojo</strong> (delegaciones → central) · Zonas 1–4 (provincial/peninsular/Baleares-Ceuta-Melilla/Canarias)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Test -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso del Bloque A (12 preguntas)</h3>
+
+      <div class="test" data-test-id="repaso-a">
+        <!-- Q1 -->
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) La diferencia más clara entre <em>producto</em> y <em>servicio</em> es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="El precio no define la categoría."><span>Se distinguen por precio</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Producto = envío/tipo; servicio = prestación añadida."><span>El producto es el envío; el servicio, la prestación añadida</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Hay productos urgentes."><span>El producto nunca puede ser urgente</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) Carta Urgente: ¿peso máximo?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Carta Urgente: hasta 500 g."><span>500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Ese es el límite de Certificada Urgente."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Demasiado alto para esta modalidad."><span>20 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) Carta Urgente (cilindro/rollo): límite dimensional</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Rollo en urgente: L + 2D ≤ 17 cm."><span>L + 2D ≤ 17 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Eso corresponde a la certificada urgente."><span>L + 2D ≤ 104 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es el valor correcto."><span>L + 2D ≤ 90 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) Certificada Urgente: ¿peso máximo?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Ese es de urgente normal."><span>500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Certificada Urgente llega hasta 2 kg."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es el máximo de una valija."><span>20 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) Certificada Urgente (sobre/caja): suma máxima de lados</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Para sobre/caja: L + A + A ≤ 90 cm (y la mayor ≤ 60 cm)."><span>90 cm (L + A + A)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Eso es el cilindro de certificada urgente."><span>104 cm (L + 2D)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Valor inventado."><span>120 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="pregunta" data-question-id="q6">
+          <h5>6) Certificada Urgente (cilindro/rollo): límite correcto</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="Ese es el rollo de urgente normal."><span>L + 2D ≤ 17 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Correcto para certificada urgente."><span>L + 2D ≤ 104 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="No coincide con normativa."><span>L + 2D ≤ 120 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="pregunta" data-question-id="q7">
+          <h5>7) En Tarifa Plana, ¿qué combinación es correcta?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Estándar 50 g / Premium 100 g."><span>Estándar 50 g · Premium 100 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="No coincide."><span>Estándar 100 g · Premium 50 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="Pesos incorrectos."><span>Estándar 20 g · Premium 70 g</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="pregunta" data-question-id="q8">
+          <h5>8) ¿Qué servicio viene incluido por defecto en Tarifa Plana?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="PEE 5 está incluido en ambos modelos."><span>PEE 5 (Prueba de Entrega Electrónica)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="Es opcional."><span>Reembolso</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="No es ‘incluido por defecto’."><span>Valor declarado 3000 €</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="pregunta" data-question-id="q9">
+          <h5>9) Valijas: peso máximo por unidad</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q9" data-explain="Eso es de carta."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-correct="true" data-explain="Límite de valijas: 20 kg."><span>20 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-explain="Demasiado alto."><span>50 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="pregunta" data-question-id="q10">
+          <h5>10) Valijas: de delegaciones a la central, el precinto correcto es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q10" data-explain="Amarillo es de central → delegaciones."><span>Amarillo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-correct="true" data-explain="Delegaciones → central: rojo."><span>Rojo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-explain="Verde se usa en flujos internos específicos."><span>Verde</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="pregunta" data-question-id="q11">
+          <h5>11) ¿Qué escenario corresponde a <em>Zona 4</em> de valijas?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q11" data-explain="Eso es Zona 1 (provincial)."><span>Sevilla ⇄ Sevilla</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q11" data-explain="Península interior, Zona 2."><span>Madrid ⇄ Valencia</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q11" data-correct="true" data-explain="Península/Baleares con destino Canarias."><span>Bilbao ⇄ Las Palmas</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="pregunta" data-question-id="q12">
+          <h5>12) En una carta certificada nacional (SPU), ¿qué opción de valor es posible?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q12" data-correct="true" data-explain="La certificada puede llevar Valor Declarado SPU (hasta el límite vigente)."><span>Valor declarado (SPU)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q12" data-explain="La normalización no es una ‘opción de valor’."><span>Normalización</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q12" data-explain="Paq es un producto, no un añadido a carta certificada."><span>Paq Estándar</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <a class="boton-siguiente" href="bloques.html">Volver a Bloques</a>
+
+<script>
+/* Motor del quiz (mismo estilo que el de las lecciones) */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(p=>{
+      const b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',e=>{
+        if(e.target.matches('input[type="radio"]')) b.disabled=false;
+      });
+    });
+  }
+  function check(p){
+    const sel=p.querySelector('input[type="radio"]:checked');
+    const ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    const good=sel.hasAttribute('data-correct');
+    const exp=sel.getAttribute('data-explain')||'';
+    const card=sel.closest('.opcion');
+    if(good){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-action]'); if(!b) return;
+    const p=b.closest('.pregunta'); if(!p) return;
+    const a=b.getAttribute('data-action'); if(a==='comprobar') check(p); if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
