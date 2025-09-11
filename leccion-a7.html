@@ -181,6 +181,20 @@
         </div>
       </div>
 
+      <!-- NUEVO: En la vida real (punto 3) -->
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real: venta y admisión</h4>
+        <div class="ejemplo">
+          <ul style="margin:0; padding-left:18px">
+            <li><strong>Claudia</strong> compra 5 sobres prepagados en ventanilla (IRIS → <em>Venta de Productos</em>). Se los lleva. Tres días después trae uno ya armado: se registra como certificada usando el <strong>VD del sobre</strong>, sin rellenar impreso.</li>
+            <li><strong>Hugo</strong> trae el sobre comprado, pero el destino es Las Palmas y dentro incluye un <em>USB</em> con fotos: <u>rechazo</u>. Con régimen fiscal distinto <strong>solo documentos</strong>; si hay mercancía → paquetería.</li>
+            <li><strong>Noa</strong> llega con un sobre prepagado sin abrir y pregunta si puede “cambiar el destinatario” después de admitirlo: <strong>antes</strong> de registrar, sí; una vez admitido, habría que <em>anular</em> el envío y volver a presentarlo.</li>
+            <li><strong>Bruno</strong> trae un sobre <em>no</em> prepagado y pide “que lo pasen como prepagada”: <strong>no es posible</strong>. O se vende el sobre prepagado, o se tramita como Premium normal (certificada) y se cobra allí.</li>
+            <li><strong>Zoe</strong> quiere ampliar PEE a 10 años: se puede al admitir (IRIS permite <strong>PEE 10</strong> o <strong>PEE 15</strong>), pero el <em>seguro</em> sigue fijo en <strong>100 €</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
       <!-- Mini test -->
       <div class="test" data-test-id="a7">
         <div class="titulo-test">🧪 Mini test de repaso</div>
@@ -244,7 +258,7 @@
     var koBox = p.querySelector('.feedback.ko');
     okBox.style.display='none'; okBox.textContent='';
     koBox.style.display='none'; koBox.textContent='';
-    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    p.querySelectorAll('.opcion').forEach(function(o){ o.classList.remove('correcta','incorrecta'); });
     if(!sel){ koBox.textContent='Elegí una opción antes de comprobar.'; koBox.style.display='block'; return; }
     var card = sel.closest('.opcion');
     var isOk = sel.hasAttribute('data-correct');
@@ -260,9 +274,9 @@
     }
   }
   function reset(p){
-    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
-    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
-    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked=false; });
+    p.querySelectorAll('.feedback').forEach(function(f){ f.style.display='none'; f.textContent=''; });
+    p.querySelectorAll('.opcion').forEach(function(o){ o.classList.remove('correcta','incorrecta'); });
     var btn = p.querySelector('button[data-action="comprobar"]'); if(btn) btn.disabled=true;
   }
   document.addEventListener('click', function(e){
