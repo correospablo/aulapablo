@@ -66,9 +66,9 @@
   .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
   .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
   .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
-  .explicacion{font-size:14px;color:#444;margin-top:4px}
+  .explicacion{font-size:14px;color:#444}
 
-  /* Skin azul como el ejemplo que te gustó */
+  /* Skin azul */
   body.tema-azul .minititulo{
     display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;
   }
@@ -158,6 +158,20 @@
           El sobre no vale: tiene que ser <strong>bolsa autorizada</strong> con cremallera y precinto. Pensá el color: <em>amarillo</em> cuando la central envía, <em>rojo</em> cuando vuelve. Y no te pases de 20 kg.
         </div>
       </div>
+
+      <!-- NUEVO: casos de la vida real para el punto 2 -->
+      <div class="bloque b-ejemplo">
+        <h4>🧪 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Bolsa 18 kg</strong> con contratos y tablets → <u>OK</u> (≤ 20 kg) siempre que sea <em>bolsa autorizada</em> y con <em>precinto</em>.</li>
+            <li><strong>Bolsa 22 kg</strong> → <u>NO</u> (supera el tope). Se divide en dos valijas.</li>
+            <li><strong>Central → delegaciones</strong> → precinto <u>amarillo</u>. <strong>Vuelta</strong> a la central → <u>rojo</u>.</li>
+            <li><strong>Horario pactado 9:30</strong> → Correos recoge/entrega a esa hora (objetivo 1 día hábil a nivel nacional).</li>
+            <li><strong>Necesidad de dos pasos</strong> (recibe y luego envía) → contratá <em>bitoque</em>; si hacés intercambio en el mismo momento → <em>unitoque</em>.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- ===== MINILECCIÓN 3 ===== -->
@@ -176,6 +190,16 @@
           <strong>Pago:</strong> conforme a tarifas vigentes; admite <em>pospago</em> y <em>pago diferido</em>.
           <footer>Fuente: Sesión A — Valijas (p. 30)</footer>
         </blockquote>
+      </div>
+
+      <!-- NUEVO: versión entendible punto 3 -->
+      <div class="bloque b-explica">
+        <h4>🗣️ Versión entendible</h4>
+        <div>
+          Pensalo así: <strong>Z1/Z2</strong> (provincial y peninsular) se tarifican <em>por destino y mes</em> con dos escalones (≤10 kg y 10–20 kg).  
+          <strong>Z3/Z4</strong> (Baleares/Ceuta/Melilla y Canarias) arrancan con <em>1 kg por destino y mes</em> y luego suman <em>cada kg o fracción</em>.  
+          Facturación cómoda: empresas usan <strong>pospago</strong> o <strong>pago diferido</strong>.
+        </div>
       </div>
 
       <div class="bloque b-ejemplo">
@@ -212,6 +236,18 @@
           <strong>Servicios Rurales (SS.RR.)</strong>: bolsas <em>rojas</em>. Precinto <u>verde</u> cuando van del SS.RR. al centro de reparto; <u>azul</u> cuando el centro de reparto envía al SS.RR.
           <footer>Fuente: Sesión A — Valijas (p. 30)</footer>
         </blockquote>
+      </div>
+
+      <!-- NUEVO: versión entendible punto 4 -->
+      <div class="bloque b-explica">
+        <h4>🗣️ Versión entendible</h4>
+        <div>
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Qué puedo contratar</strong>: recogida diaria o en días fijos, solo entrega o ida/vuelta, bolsas oficiales y seguimiento.</li>
+            <li><strong>Mnemotecnia colores internos</strong>: <em>verde</em> = “<u>llega</u> a la Central”; <em>azul</em> = “<u>sale</u> de la Central”. En SS.RR., las bolsas son <em>rojas</em>.</li>
+            <li><strong>Idea clave</strong>: fuera de Correos (clientes) → precintos <em>amarillo/rojo</em>; dentro de Correos → <em>verde/azul</em> según sentido.</li>
+          </ul>
+        </div>
       </div>
 
       <div class="bloque b-ejemplo">
@@ -293,18 +329,31 @@
   </div>
 
   <a class="boton-siguiente" href="repaso-a.html" aria-label="Ir al repaso del Bloque A">
-  Repaso del Bloque A ➜
-</a>
+    Repaso del Bloque A ➜
+  </a>
 
 <script>
 (function(){
-  function init(){document.querySelectorAll('.pregunta').forEach(p=>{const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true; p.addEventListener('change',e=>{if(e.target.matches('input[type="radio"]')) b.disabled=false;});});}
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(p=>{
+      const b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',e=>{
+        if(e.target.matches('input[type="radio"]')) b.disabled=false;
+      });
+    });
+  }
   function check(p){
-    const sel=p.querySelector('input[type="radio"]:checked'); const ok=p.querySelector('.feedback.ok'); const ko=p.querySelector('.feedback.ko');
-    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    const sel=p.querySelector('input[type="radio"]:checked');
+    const ok=p.querySelector('.feedback.ok');
+    const ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
     p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
     if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
-    const good=sel.hasAttribute('data-correct'); const exp=sel.getAttribute('data-explain')||''; const card=sel.closest('.opcion');
+    const good=sel.hasAttribute('data-correct');
+    const exp=sel.getAttribute('data-explain')||'';
+    const card=sel.closest('.opcion');
     if(good){card.classList.add('correcta'); ok.innerHTML='✅ Respuesta correcta<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
     else{card.classList.add('incorrecta'); ko.innerHTML='❌ Respuesta incorrecta<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
   }
@@ -317,7 +366,9 @@
   document.addEventListener('click',e=>{
     const b=e.target.closest('button[data-action]'); if(!b) return;
     const p=b.closest('.pregunta'); if(!p) return;
-    const a=b.getAttribute('data-action'); if(a==='comprobar') check(p); if(a==='reset') reset(p);
+    const a=b.getAttribute('data-action');
+    if(a==='comprobar') check(p);
+    if(a==='reset') reset(p);
   });
   init();
 })();
