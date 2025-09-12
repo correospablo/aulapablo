@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A11 — Valijas (operativa y colores)</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
+    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques generales */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  /* Texto literal */
+  .b-texto{background:var(--bg-legal);border-color:#ddd}
+  .b-texto h4{color:#5b21b6}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  /* Explicación */
+  .b-explica{background:var(--bg-explica);border-color:#a5f3fc}
+  .b-explica h4{color:#0e7490}
+
+  /* Ejemplo */
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#fde68a}
+  .b-ejemplo h4{color:#92400e}
+  .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
+  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444}
+
+  /* Skin azul */
+  body.tema-azul .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800}
+  body.tema-azul .b-texto{background:#ebf5fb;border-color:#d6eaf8;border-left:6px solid #2e86c1}
+  body.tema-azul .b-texto h4{color:#2e86c1}
+  body.tema-azul blockquote.cita{border-left:4px solid #2e86c1;background:#fff}
+  body.tema-azul .b-explica{background:#f5eef8;border-color:#ead1f3;border-left:6px solid #af7ac5}
+  body.tema-azul .b-explica h4{color:#8e44ad}
+  body.tema-azul .b-ejemplo{background:#fae5d3;border-color:#f7d7bd;border-left:6px solid #d35400}
+  body.tema-azul .ejemplo{background:#fff8ef;border-color:#f7d7bd}
+  body.tema-azul .test{background:#f4f6f7;border-left:6px solid #117a65}
+  body.tema-azul .test .titulo-test{color:#117a65}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none;
+    box-shadow:0 6px 18px rgba(40,167,69,.25);transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body class="tema-azul">
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Migas de pan">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>A11 · Valijas (operativa y colores)</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A11 — Valijas (operativa y colores)</div>
+    <div class="leccion-sub">Tipos, embalaje autorizado, colores de precintos (externos e internos), zonas y pagos. Con ejemplos prácticos y mini-test.</div>
+
+    <!-- ===== 1. Tipos de valija ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Tipos de valija y cuándo conviene</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Servicio con contrato para intercambio periódico entre sede central y delegaciones en territorio nacional (España y Andorra). Según contrato: <em>valija unitoque</em> (entrega y recogida a la vez) y <em>valija bitoque</em> (en horarios distintos). Se agrupan envíos en <strong>embalaje autorizado</strong> y se recogen/entregan en horario fijo pactado. 
+          <footer>Sesión A — Valijas (p. 29–30)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Es un “transporte interno” contratado: Correos pasa siempre a la misma hora. Si te viene bien un único intercambio al día → <strong>unitoque</strong>. Si necesitás ida por la mañana y vuelta por la tarde → <strong>bitoque</strong>.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Despacho Atlas</strong> manda documentación contable a 8 delegaciones cada tarde → unitoque.</li>
+            <li><strong>Clínica Norte</strong> envía muestras a la mañana y recibe resultados a la tarde → bitoque.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. Embalaje y precintos ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Embalaje autorizado y código de colores</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Embalaje</strong>: bolsa resistente con asas y logotipo visible, <em>cierre de cremallera precintable</em> y <em>ventana plástica</em> centrada para etiqueta origen/destino. <br>
+          <strong>Precintos (clientes externos)</strong>: <u>amarillo</u> (de central a delegaciones) y <u>rojo</u> (de delegaciones a central). Previsión mínima: seis meses (uno por valija y día contratado). <br>
+          <strong>Uso interno de Correos</strong>: bolsas amarillas o azul corporativo. Precinto <u>verde</u> si el destino es Sede Central; <u>azul</u> si sale de Sede Central. SS.RR.: bolsas rojas; precinto verde (SS.RR. → centro) o azul (centro → SS.RR.).
+          <footer>Sesión A — Valijas (p. 29–30)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Sin <strong>bolsa homologada</strong> no hay valija. Acordate: <em>amarillo</em> va desde la central, <em>rojo</em> cuando vuelve. En el circuito interno de Correos mirá <em>verde/azul</em> (Sede Central) y <em>rojo</em> para SS.RR. (bolsa roja).</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Casos rápidos</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li>La <strong>central de Mercurio</strong> prepara 12 bolsas para delegaciones → cierra con <u>precinto amarillo</u>.</li>
+            <li>La <strong>delegación de Cádiz</strong> devuelve documentación a central → <u>precinto rojo</u>.</li>
+            <li>En <strong>Sede Central</strong> envían a una unidad administrativa → bolsa azul corporativo con <u>precinto azul</u>.</li>
+            <li>Un <strong>SS.RR.</strong> remite valija al centro de reparto → bolsa roja con <u>precinto verde</u>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. Zonas y tiempos ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Zonas tarifarias, peso y plazo</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Zonas</strong>: 1) Provincial (misma provincia). 2) Peninsular. 3) Baleares/Ceuta/Melilla. 4) Origen Península/Baleares y destino Canarias. <br>
+          <strong>Peso</strong>: hasta 20 kg por valija. <br>
+          <strong>Plazo</strong>: 1 día hábil para todo el territorio; entrega en el punto y horario acordados. <br>
+          <strong>Pago</strong>: según tarifas vigentes; admite pospago y pago diferido.
+          <footer>Sesión A — Valijas (p. 30)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Ubicá primero la <strong>zona</strong> (provincial, peninsular o islas/ciudades), confirmá que no supere <strong>20 kg</strong> y recordá que el reparto es en el <strong>horario pactado</strong>. La facturación puede cerrarse a fin de mes (pospago/pago diferido).</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Sevilla ⇄ Dos Hermanas</strong> (misma provincia): <u>Zona 1</u>.</li>
+            <li><strong>Madrid ⇄ Valencia</strong>: <u>Zona 2</u>.</li>
+            <li><strong>Málaga ⇄ Ceuta</strong>: <u>Zona 3</u>.</li>
+            <li><strong>Bilbao ⇄ Las Palmas</strong>: <u>Zona 4</u>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. Servicios añadidos ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Servicios añadidos y operativa</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Servicio diario en días laborables, venta de bolsas, clasificación de documentos, periodicidad pactada, sólo entrega o ida/vuelta, y <strong>trazabilidad</strong> de valijas. Las valijas hacia Canarias, Ceuta y Melilla carecen de impuestos indirectos.
+          <footer>Sesión A — Valijas (p. 30)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Podés contratar desde “solo entrega” hasta “ida y vuelta diaria”, comprar las bolsas a Correos y pedir clasificación. Todo el recorrido queda registrado (trazabilidad).</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Práctica</h4>
+        <div class="ejemplo">
+          <p><strong>Gala</strong> necesita control del flujo: activa la <u>trazabilidad</u>. <strong>Héctor</strong> arranca con “solo ida” y luego pasa a <u>ida/vuelta</u>. <strong>Inés</strong> compra <u>bolsas homologadas</u> a Correos para cumplir embalaje.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEST ===== -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Mini test de Valijas (A11)</h3>
+
+      <div class="test" data-test-id="a11">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) De central a delegaciones, el precinto correcto es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Clientes externos: central → delegaciones = amarillo."><span>Amarillo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Rojo es delegación → central."><span>Rojo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Verde se usa en valijas internas hacia Sede Central."><span>Verde</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Cuál NO es un requisito del embalaje?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Sí es requisito: ventana plástica."><span>Ventana plástica centrada</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Sí es requisito: cierre de cremallera precintable."><span>Cierre de cremallera precintable</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="El sobre común no sirve: debe ser bolsa homologada resistente con asas y logo."><span>Sobre común con estampillas</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) Madrid ⇄ Ceuta. ¿Qué zona es?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Zona 1 es provincial (misma provincia)."><span>Zona 1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Peninsula ⇄ Ceuta/Melilla → Zona 3."><span>Zona 3</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Zona 4 es hacia Canarias."><span>Zona 4</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) El peso máximo por valija es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Esto corresponde a carta certificada urgente."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Límite de valijas: 20 kg."><span>20 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="50 kg no está contemplado."><span>50 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <a class="boton-siguiente" href="repaso-a.html" aria-label="Ir al repaso del Bloque A">
+    Repaso del Bloque A ➜
+  </a>
+
+<script>
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(p=>{
+      const b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',e=>{
+        if(e.target.matches('input[type="radio"]')) b.disabled=false;
+      });
+    });
+  }
+  function check(p){
+    const sel=p.querySelector('input[type="radio"]:checked');
+    const ok=p.querySelector('.feedback.ok'); const ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    const good=sel.hasAttribute('data-correct');
+    const exp=sel.getAttribute('data-explain')||'';
+    const card=sel.closest('.opcion');
+    if(good){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-action]'); if(!b) return;
+    const p=b.closest('.pregunta'); if(!p) return;
+    const a=b.getAttribute('data-action'); if(a==='comprobar') check(p); if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
