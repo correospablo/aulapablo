@@ -130,10 +130,10 @@
         <table>
           <thead><tr><th>Producto</th><th>Claves rápidas</th></tr></thead>
           <tbody>
-            <tr><td>Carta Urgente</td><td>Peso: hasta 500 g · Mínimo sobre: 14 × 9 cm · Máx. sobre recomendado: 23,5 × 12 cm (espesor máx. 10 mm) · Rollo: L+2D ≤ 17 cm · Plazo típico: 1 día hábil</td></tr>
+            <tr><td>Carta Urgente</td><td>Peso: hasta 500 g · Mínimo sobre: 14 × 9 cm · Máx. sobre recomendado: 23,5 × 12 cm (espesor máx. 10 mm) · Rollo: <strong>L+2D ≥ 17 cm</strong> (mayor ≥ 10 cm) · Plazo típico: 1 día hábil</td></tr>
             <tr><td>Certificada Urgente</td><td>Peso: hasta 2 kg · Sobre/caja: L+A+A ≤ 90 cm (max. dim. ≤ 60 cm) · Rollo: L+2D ≤ 104 cm (max. dim. ≤ 90 cm) · Mínimo: 14 × 9 cm · 90% en 1 día hábil</td></tr>
-            <tr><td>Tarifa Plana</td><td>Estándar: hasta 50 g · Premium: hasta 100 g · PEE 5 incluido · Seguro 100 € (Premium)</td></tr>
-            <tr><td>Valijas</td><td>20 kg · Precinto <strong>amarillo</strong> (central → delegaciones) / <strong>rojo</strong> (delegaciones → central) · Zonas 1–4 (provincial/peninsular/Baleares-Ceuta-Melilla/Canarias)</td></tr>
+            <tr><td>Tarifa Plana</td><td>Estándar: hasta 50 g · Premium: hasta 100 g · PEE 5 incluido</td></tr>
+            <tr><td>Valijas</td><td>20 kg · Precinto <strong>amarillo</strong> (central → delegaciones) / <strong>rojo</strong> (delegaciones → central) · Zonas 1–4</td></tr>
           </tbody>
         </table>
       </div>
@@ -142,10 +142,10 @@
     <!-- Test -->
     <section class="minileccion">
       <span class="badge">Mini test</span>
-      <h3 class="minititulo">Quiz de repaso del Bloque A (12 preguntas)</h3>
+      <h3 class="minititulo">Quiz de repaso del Bloque A (40 preguntas)</h3>
 
       <div class="test" data-test-id="repaso-a">
-        <!-- Q1 -->
+        <!-- A1 · Intro -->
         <div class="pregunta" data-question-id="q1">
           <h5>1) La diferencia más clara entre <em>producto</em> y <em>servicio</em> es…</h5>
           <ul class="opciones">
@@ -157,133 +157,439 @@
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q2 -->
         <div class="pregunta" data-question-id="q2">
-          <h5>2) Carta Urgente: ¿peso máximo?</h5>
+          <h5>2) ¿Cuál de estos es un <em>producto</em>?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Carta Urgente: hasta 500 g."><span>500 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="Ese es el límite de Certificada Urgente."><span>2 kg</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="Demasiado alto para esta modalidad."><span>20 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Carta certificada urgente es un tipo de envío."><span>Carta certificada urgente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Es un servicio adicional."><span>Aviso de recibo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Servicio para clientes con contrato."><span>Recogida a domicilio</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q3 -->
         <div class="pregunta" data-question-id="q3">
-          <h5>3) Carta Urgente (cilindro/rollo): límite dimensional</h5>
+          <h5>3) ¿Cuál de estos es un <em>servicio</em> añadido a cartas?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Rollo en urgente: L + 2D ≤ 17 cm."><span>L + 2D ≤ 17 cm</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="Eso corresponde a la certificada urgente."><span>L + 2D ≤ 104 cm</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es el valor correcto."><span>L + 2D ≤ 90 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Es un producto."><span>Carta urgente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Servicio de constancia de entrega."><span>Aviso de recibo (AR)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Es otro producto."><span>Paq Estándar</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q4 -->
         <div class="pregunta" data-question-id="q4">
-          <h5>4) Certificada Urgente: ¿peso máximo?</h5>
+          <h5>4) ¿Qué se <em>vende</em> por <em>Venta de Productos</em> en IRIS?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q4" data-explain="Ese es de urgente normal."><span>500 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Certificada Urgente llega hasta 2 kg."><span>2 kg</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es el máximo de una valija."><span>20 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Los sobres de la Prepagada Premium se compran por adelantado."><span>Sobres prepagados Premium</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es un envío que se admita en mostrador, no se ‘vende’ como producto en IRIS."><span>Carta urgente nacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es un añadido de certificada."><span>Aviso de recibo</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q5 -->
+        <!-- A2 · Dimensiones -->
         <div class="pregunta" data-question-id="q5">
-          <h5>5) Certificada Urgente (sobre/caja): suma máxima de lados</h5>
+          <h5>5) Mínimo de un sobre/caja en cartas (nacional)</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Para sobre/caja: L + A + A ≤ 90 cm (y la mayor ≤ 60 cm)."><span>90 cm (L + A + A)</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5" data-explain="Eso es el cilindro de certificada urgente."><span>104 cm (L + 2D)</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q5" data-explain="Valor inventado."><span>120 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Mínimo general: 14 × 9 cm."><span>14 × 9 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Eso es grande para mínimo."><span>23,5 × 12 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="No es una medida válida de mínimo."><span>10 × 7 cm</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q6 -->
         <div class="pregunta" data-question-id="q6">
-          <h5>6) Certificada Urgente (cilindro/rollo): límite correcto</h5>
+          <h5>6) Mínimo de <em>tubo/rollo</em> en cartas</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q6" data-explain="Ese es el rollo de urgente normal."><span>L + 2D ≤ 17 cm</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Correcto para certificada urgente."><span>L + 2D ≤ 104 cm</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q6" data-explain="No coincide con normativa."><span>L + 2D ≤ 120 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Para cilindros: L + 2D ≥ 17 cm y la mayor ≥ 10 cm."><span>L + 2D ≥ 17 cm (mayor ≥ 10 cm)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="Eso es una cota máxima de certificada urgente."><span>L + 2D ≤ 104 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="Incorrecto para mínimos."><span>L + 2D ≤ 17 cm</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q7 -->
         <div class="pregunta" data-question-id="q7">
-          <h5>7) En Tarifa Plana, ¿qué combinación es correcta?</h5>
+          <h5>7) Sobre “carta”: espesor máximo recomendado</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Estándar 50 g / Premium 100 g."><span>Estándar 50 g · Premium 100 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q7" data-explain="No coincide."><span>Estándar 100 g · Premium 50 g</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q7" data-explain="Pesos incorrectos."><span>Estándar 20 g · Premium 70 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Para el formato sobre carta: 10 mm."><span>10 mm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="Demasiado."><span>20 mm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="Insuficiente para estándar."><span>3 mm</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q8 -->
         <div class="pregunta" data-question-id="q8">
-          <h5>8) ¿Qué servicio viene incluido por defecto en Tarifa Plana?</h5>
+          <h5>8) Si tu envío es <em>inferior a mínimos</em>, lo salvás con…</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="PEE 5 está incluido en ambos modelos."><span>PEE 5 (Prueba de Entrega Electrónica)</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q8" data-explain="Es opcional."><span>Reembolso</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q8" data-explain="No es ‘incluido por defecto’."><span>Valor declarado 3000 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="Etiqueta 10 × 7 cm con dirección y franqueo."><span>Etiqueta 10 × 7 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="No es una solución reglada."><span>Enrollarlo más</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="No existe esa opción."><span>Marcar “tamaño mini”</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q9 -->
+        <!-- A3 · Carta Certificada -->
         <div class="pregunta" data-question-id="q9">
-          <h5>9) Valijas: peso máximo por unidad</h5>
+          <h5>9) Una carta certificada se entrega…</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q9" data-explain="Eso es de carta."><span>2 kg</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q9" data-correct="true" data-explain="Límite de valijas: 20 kg."><span>20 kg</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q9" data-explain="Demasiado alto."><span>50 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-correct="true" data-explain="Rasgo definitorio de la certificada."><span>Bajo firma (o persona autorizada)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-explain="Eso es la urgente."><span>En buzón sin firma</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-explain="No corresponde a cartas."><span>Con albarán de paquetería</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q10 -->
         <div class="pregunta" data-question-id="q10">
-          <h5>10) Valijas: de delegaciones a la central, el precinto correcto es…</h5>
+          <h5>10) Si no encuentran al destinatario, dejan aviso y el envío queda en oficina por…</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q10" data-explain="Amarillo es de central → delegaciones."><span>Amarillo</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q10" data-correct="true" data-explain="Delegaciones → central: rojo."><span>Rojo</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q10" data-explain="Verde se usa en flujos internos específicos."><span>Verde</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-explain="Muy corto."><span>5 días hábiles</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-correct="true" data-explain="Plazo típico: 15 días naturales."><span>15 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-explain="No es el plazo."><span>30 días naturales</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q11 -->
         <div class="pregunta" data-question-id="q11">
-          <h5>11) ¿Qué escenario corresponde a <em>Zona 4</em> de valijas?</h5>
+          <h5>11) ¿Qué servicio da constancia digital de la entrega?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q11" data-explain="Eso es Zona 1 (provincial)."><span>Sevilla ⇄ Sevilla</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q11" data-explain="Península interior, Zona 2."><span>Madrid ⇄ Valencia</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q11" data-correct="true" data-explain="Península/Baleares con destino Canarias."><span>Bilbao ⇄ Las Palmas</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q11" data-correct="true" data-explain="PEE = Prueba de Entrega Electrónica."><span>PEE (Prueba de Entrega Electrónica)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q11" data-explain="AR es constancia en papel."><span>Aviso de recibo en papel</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q11" data-explain="No es prueba de entrega."><span>Normalización</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
-        <!-- Q12 -->
         <div class="pregunta" data-question-id="q12">
-          <h5>12) En una carta certificada nacional (SPU), ¿qué opción de valor es posible?</h5>
+          <h5>12) ¿Qué impreso se deja cuando no se puede entregar?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q12" data-correct="true" data-explain="La certificada puede llevar Valor Declarado SPU (hasta el límite vigente)."><span>Valor declarado (SPU)</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q12" data-explain="La normalización no es una ‘opción de valor’."><span>Normalización</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q12" data-explain="Paq es un producto, no un añadido a carta certificada."><span>Paq Estándar</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q12" data-correct="true" data-explain="El clásico aviso de llegada."><span>M-4 (aviso de llegada)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q12" data-explain="Eso es de paquetería."><span>Etiqueta 790</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q12" data-explain="No existe como tal."><span>Nota 24H</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A4 · Tarifa Plana (Estándar) -->
+        <div class="pregunta" data-question-id="q13">
+          <h5>13) Tarifa Plana <em>Estándar</em>: peso máximo correcto</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q13" data-correct="true" data-explain="Estándar llega a 50 g."><span>50 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q13" data-explain="Eso es Premium."><span>100 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q13" data-explain="Es de valijas."><span>20 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q14">
+          <h5>14) En Tarifa Plana, ¿qué servicio viene incluido por defecto?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q14" data-correct="true" data-explain="PEE 5 incluido."><span>PEE 5</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q14" data-explain="Es opcional."><span>Reembolso</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q14" data-explain="No aplica como ‘incluido’."><span>Valor declarado 3000 €</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q15">
+          <h5>15) Para admitir Tarifa Plana en IRIS, entrás por…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q15" data-correct="true" data-explain="Se usan los menús de Sobres Tarifa Plana."><span>“Sobres Tarifa Plana”</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q15" data-explain="No se inicia como certificada normal."><span>“Carta certificada normal”</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q15" data-explain="No existe esa ruta."><span>“Venta de Productos”</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q16">
+          <h5>16) Ámbito de Tarifa Plana (Estándar)</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q16" data-correct="true" data-explain="Para España y Andorra."><span>Nacional (España y Andorra)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q16" data-explain="No es internacional."><span>Internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q16" data-explain="No existe."><span>Zona 0</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A5 · Tarifa Plana (Premium) -->
+        <div class="pregunta" data-question-id="q17">
+          <h5>17) Tarifa Plana <em>Premium</em>: peso máximo correcto</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q17" data-explain="Eso es Estándar."><span>50 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q17" data-correct="true" data-explain="Premium llega a 100 g."><span>100 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q17" data-explain="No es carta."><span>2 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q18">
+          <h5>18) ¿Qué afirmación es cierta sobre Tarifa Plana Premium?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q18" data-correct="true" data-explain="Premium = 100 g y PEE 5."><span>Admite hasta 100 g y trae PEE 5 incluido</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q18" data-explain="Eso es la Prepagada Premium."><span>Se compra por adelantado</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q18" data-explain="No es un producto internacional."><span>Tiene ámbito internacional</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q19">
+          <h5>19) ¿Cuál de estas <em>sí</em> se compra por adelantado?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q19" data-explain="TP Premium se paga al admitir."><span>Tarifa Plana Premium</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q19" data-correct="true" data-explain="La Prepagada Premium se vende en IRIS por Venta de Productos."><span>Prepagada Premium</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q19" data-explain="Es un envío, no un sobre prepagado."><span>Carta urgente</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q20">
+          <h5>20) El pago de Tarifa Plana Premium se realiza normalmente…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q20" data-correct="true" data-explain="Se paga al momento de la admisión en oficina."><span>Al admitir el envío en oficina</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q20" data-explain="Eso es la modalidad prepagada."><span>Al comprar el sobre por adelantado</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q20" data-explain="No hace falta contrato."><span>Solo con contrato anual</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A6 · Prepagada Premium -->
+        <div class="pregunta" data-question-id="q21">
+          <h5>21) Diferencia clave de la <em>Prepagada Premium</em> frente a la Premium no prepagada</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q21" data-correct="true" data-explain="Se compra antes y trae VD preimpreso."><span>Se compra por adelantado y trae VD preimpreso</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q21" data-explain="Ambas son certificadas."><span>No es una certificada</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q21" data-explain="No es su rasgo principal."><span>Admite 500 g</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q22">
+          <h5>22) Dimensiones del sobre de Prepagada Premium</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q22" data-explain="Ese es el mínimo."><span>14 × 9 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q22" data-correct="true" data-explain="Tamaño de su sobre: 189 × 250 mm."><span>189 × 250 mm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q22" data-explain="No corresponde."><span>162 × 229 mm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q23">
+          <h5>23) Seguro/valor declarado de la Prepagada Premium es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q23" data-correct="true" data-explain="Incluye 100 € no ampliables."><span>100 € <em>no ampliable</em></span></label></li>
+            <li><label class="opcion"><input type="radio" name="q23" data-explain="No puede ampliarse."><span>Ampliable a 3000 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q23" data-explain="No es el valor correcto."><span>500 € fijo</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q24">
+          <h5>24) Si el destino tiene <em>régimen fiscal distinto</em>, la Prepagada Premium admite…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q24" data-correct="true" data-explain="Solo documentos. Mercancía → paquetería."><span>Solo documentos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q24" data-explain="No, eso es para paquetería."><span>Documentos y mercancías sin límite</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q24" data-explain="Incorrecto."><span>Solo mercancías</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A7 · Carta Urgente -->
+        <div class="pregunta" data-question-id="q25">
+          <h5>25) Ámbito de la carta urgente actual</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q25" data-correct="true" data-explain="Nacional: España y Andorra."><span>España y Andorra (nacional)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q25" data-explain="Ya no se comercializa en oficinas."><span>Internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q25" data-explain="Demasiado específico."><span>Solo península</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q26">
+          <h5>26) Carta urgente: peso máximo admitido</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q26" data-correct="true" data-explain="Hasta 500 g."><span>500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q26" data-explain="Eso es certificada urgente."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q26" data-explain="No aplica."><span>20 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q27">
+          <h5>27) La carta urgente requiere <em>firma</em> en la entrega…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q27" data-explain="Justamente no requiere."><span>Sí, siempre</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q27" data-correct="true" data-explain="Se deposita en buzón. Para firma, usar certificada."><span>No, se deposita en el buzón</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q27" data-explain="No existe esa regla."><span>Solo si pesa más de 100 g</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q28">
+          <h5>28) Para objetivo D+1 en urgente, debés depositar…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q28" data-correct="true" data-explain="Antes de 16:00 (o 14:30 si solo mañana), y según origen/destino."><span>Antes de las 16:00 (14:30 si solo mañana)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q28" data-explain="No es garantizado y depende del horario."><span>En cualquier momento del día</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q28" data-explain="No es una condición de carta."><span>Con firma del cartero</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A8 · Carta Urgente (práctica) -->
+        <div class="pregunta" data-question-id="q29">
+          <h5>29) La carta urgente se identifica en el anverso con…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q29" data-correct="true" data-explain="Etiqueta roja con la mención “carta urgente”."><span>Una etiqueta roja “Carta urgente”</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q29" data-explain="Es de certificadas."><span>Etiqueta VD preimpreso</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q29" data-explain="No es el color distintivo."><span>Etiqueta verde</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q30">
+          <h5>30) Sobre “carta urgente”: espesor máximo recomendado del sobre estándar</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q30" data-correct="true" data-explain="10 mm para el formato sobre."><span>10 mm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q30" data-explain="No es el recomendado."><span>15 mm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q30" data-explain="Incorrecto."><span>3 mm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q31">
+          <h5>31) En rollos/tubos de urgente, el mínimo es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q31" data-explain="Eso es máximo de certificada urgente."><span>L + 2D ≤ 104 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q31" data-correct="true" data-explain="La regla de mínimos."><span>L + 2D ≥ 17 cm y mayor ≥ 10 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q31" data-explain="No existe."><span>Perímetro + largo ≥ 20 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q32">
+          <h5>32) La entrega típica de urgente se realiza…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q32" data-correct="true" data-explain="Se deposita en el buzón domiciliario."><span>Depositando en el buzón del destinatario</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q32" data-explain="Eso es certificada."><span>Bajo firma en mano</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q32" data-explain="No corresponde."><span>Con cita previa obligatoria</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A9 · Certificada Urgente -->
+        <div class="pregunta" data-question-id="q33">
+          <h5>33) La carta certificada urgente requiere…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q33" data-correct="true" data-explain="Entrega bajo firma + seguimiento."><span>Firma en la entrega</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q33" data-explain="Eso es urgente normal."><span>Depósito en buzón</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q33" data-explain="No aplica."><span>PEE obligatorio</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q34">
+          <h5>34) Certificada urgente (sobre/caja): suma máxima de lados</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q34" data-correct="true" data-explain="L + A + A ≤ 90 cm; la mayor ≤ 60 cm."><span>90 cm (L + A + A)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q34" data-explain="Eso es para cilindros."><span>104 cm (L + 2D)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q34" data-explain="No aplica aquí."><span>120 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q35">
+          <h5>35) Certificada urgente (tubo/rollo): límite correcto</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q35" data-explain="Eso es un mínimo general."><span>L + 2D ≥ 17 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q35" data-correct="true" data-explain="Cota máxima del cilindro."><span>L + 2D ≤ 104 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q35" data-explain="No figura."><span>L + 2D ≤ 150 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q36">
+          <h5>36) Con <em>valor declarado</em>, la indemnización ante siniestro será…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q36" data-explain="Aplica cuando no hay VD."><span>Tarifa abonada × 10 siempre</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q36" data-correct="true" data-explain="Se paga la menor entre: valor declarado, reposición o reparación."><span>La menor entre valor declarado, reposición o reparación</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q36" data-explain="No hay tope 500 € aquí."><span>Máximo 500 €</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A10 · Valijas -->
+        <div class="pregunta" data-question-id="q37">
+          <h5>37) Valijas: peso máximo por unidad</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q37" data-explain="Eso es de carta."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q37" data-correct="true" data-explain="Tope por valija: 20 kg."><span>20 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q37" data-explain="No aplica."><span>50 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q38">
+          <h5>38) Precintos de valijas (clientes): central → delegaciones</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q38" data-correct="true" data-explain="De central a delegaciones: amarillo."><span>Amarillo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q38" data-explain="Es de vuelta a la central."><span>Rojo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q38" data-explain="Color de uso interno en ciertos flujos."><span>Verde</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q39">
+          <h5>39) Si la recogida y la entrega se hacen <em>a la vez</em>, la valija es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q39" data-correct="true" data-explain="Unitoque = intercambio en un único toque."><span>Unitoque</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q39" data-explain="Bitoque es en horarios distintos."><span>Bitoque</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q39" data-explain="No es una denominación."><span>Monotoque</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q40">
+          <h5>40) Embalaje obligatorio en valijas (clientes)</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q40" data-correct="true" data-explain="Bolsa autorizada con cremallera precintable y ventana para etiqueta."><span>Bolsa autorizada con cremallera precintable</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q40" data-explain="No es ‘cualquier bolsa’."><span>Cualquier bolsa resistente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q40" data-explain="No es obligatorio."><span>Caja americana sin asas</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
