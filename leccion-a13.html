@@ -1,3 +1,6 @@
+¡hecho! acá tenés la **A13 — Notificaciones** rehecha con *ejemplos de la vida real* en los puntos 3 y 4. Podés pegar todo el archivo tal cual.
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,16 +18,11 @@
   .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
   .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
 
-  /* breadcrumb */
-  .breadcrumb{
-    max-width:980px;margin:6px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
-    display:flex;gap:8px;align-items:center;font-size:14px
-  }
+  .breadcrumb{max-width:980px;margin:6px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;display:flex;gap:8px;align-items:center;font-size:14px}
   .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
   .breadcrumb a:hover{text-decoration:underline}
   .breadcrumb .sep{color:#6b7280}
 
-  /* bloques */
   .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
   .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
   .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
@@ -44,7 +42,6 @@
   .b-ejemplo h4{color:#ca6f1e}
   .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
 
-  /* test */
   .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
   .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
   .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
@@ -65,18 +62,12 @@
   .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
   .explicacion{font-size:14px;color:#444;margin-top:4px}
 
-  /* botón siguiente */
-  .boton-siguiente{
-    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
-    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
-    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
-  }
+  .boton-siguiente{position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999}
   .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
 </style>
 </head>
 
 <body>
-  <!-- Breadcrumb -->
   <nav class="breadcrumb" aria-label="Migas de pan">
     <a href="index.html">Inicio</a><span class="sep">›</span>
     <a href="bloques.html">Bloques</a><span class="sep">›</span>
@@ -85,9 +76,9 @@
 
   <div class="contenedor">
     <div class="leccion-titulo">Lección A13 — Notificaciones</div>
-    <div class="leccion-sub">Producto para órganos administrativos y judiciales que requiere prueba fehaciente de entrega. Dos intentos de entrega, bajo firma y con gestión específica. Minilecciones, ejemplos y mini-test.</div>
+    <div class="leccion-sub">Certificada “especial” para actos administrativos/judiciales: 2 intentos en turnos distintos, bajo firma, aviso M-4 y gestión regulada. Con ejemplos y mini-test.</div>
 
-    <!-- 1. Qué es + marco -->
+    <!-- 1 -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
       <h3 class="minititulo">1) Qué es y marco de entrega</h3>
@@ -95,25 +86,22 @@
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          Producto de uso exclusivo de entidades administrativas y judiciales que requieren prueba fehaciente de la entrega de sus comunicaciones de carácter legal. Circulan de manera certificada e incluyen <strong>dos intentos</strong> de entrega en el domicilio del destinatario <strong>bajo firma</strong>. Si no se puede, se deposita aviso (M-4) con permanencia en lista de <strong>7 días naturales</strong>. El segundo intento debe realizarse en <strong>turno distinto</strong> y, si el primero se hizo antes de las 15:00, el segundo será después de esa hora y <em>viceversa</em>, dejando un margen mínimo de <strong>3 horas</strong> entre intentos, dentro de los <strong>3 días</strong> siguientes. Códigos SGIE administrativos: <em>NA, ND, NE, NT, NV, NJ y 90</em>; judiciales: <em>NC, NJ, NF</em>. 
-          <footer>Fuente: Sesión A — Notificaciones (p. 31–32).</footer>
+          Producto de uso exclusivo de entidades administrativas y judiciales que requieren prueba fehaciente de la entrega. Circula certificada, con <strong>dos intentos</strong> de entrega bajo firma. Si no es posible, aviso <strong>M-4</strong> y <strong>7 días</strong> en lista. El segundo intento se realiza en <strong>turno distinto</strong>, con al menos <strong>3 horas</strong> de diferencia y dentro de los <strong>3 días</strong> siguientes. Códigos administrativos: <em>NA, ND, NE, NT, NV, NJ, 90</em>; judiciales: <em>NC, NJ, NF</em>.
+          <footer>Sesión A — Notificaciones (p. 31–32)</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Versión entendible</h4>
-        <div>
-          Es una <strong>certificada especial</strong> que exige dos intentos en turnos distintos y control estricto de firma/aviso.
-          Si el primero fue por la mañana, el segundo debe ser por la tarde (o al revés), y siempre con al menos 3 horas de diferencia.
-        </div>
+        <div>Es una certificada con reglas extra: mañana vs. tarde (o al revés) y separación mínima de 3 h entre intentos. Si no te ubican, queda aviso por 7 días.</div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 En la vida real</h4>
         <div class="ejemplo">
           <ul style="margin:0;padding-left:18px">
-            <li><strong>Juzgado</strong> envía una citación: primer intento 10:30 → segundo intento debe ser <em>de tarde</em> y dentro de los 3 días.</li>
-            <li><strong>Ayuntamiento</strong> notifica un requerimiento: nadie firma en el 2.º intento → aviso M-4 y 7 días en lista para retirar.</li>
+            <li><strong>Juzgado</strong>: primer intento 10:20 → segundo intento obligatorio de tarde antes de 3 días.</li>
+            <li><strong>Ayuntamiento</strong>: segundo intento fallido → M-4 y 7 días en lista para retirar en oficina.</li>
           </ul>
         </div>
       </div>
@@ -121,13 +109,13 @@
       <div class="bloque b-texto">
         <h4>📎 Nota legal</h4>
         <blockquote class="cita">
-          La regulación remite al <em>RD 1829/1999</em> (Reglamento Postal).<br>
-          <small>✱ Disposición transitoria única del RD 437/2024: la admisión y entrega de notificaciones continuará rigiéndose por lo dispuesto en el RD 1829/1999.</small>
+          Regulación principal: <em>RD 1829/1999</em> (Reglamento Postal).<br>
+          <small>✱ Disposición transitoria única del RD 437/2024: la admisión y entrega de notificaciones continuará rigiéndose por el RD 1829/1999.</small>
         </blockquote>
       </div>
     </section>
 
-    <!-- 2. Ámbito, peso y medidas -->
+    <!-- 2 -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
       <h3 class="minititulo">2) Ámbito, peso, medidas y plazos</h3>
@@ -135,34 +123,31 @@
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          <strong>Ámbito</strong>: solo España (se excluye Andorra).<br>
-          <strong>Peso</strong>: hasta <u>2 kg</u>.<br>
-          <strong>Máximas</strong> sobre/caja: <u>L + A + A ≤ 90 cm</u> (mayor ≤ 60 cm). Rollo/tubo: <u>L + 2D ≤ 104 cm</u> (mayor ≤ 90 cm).<br>
-          <strong>Mínimas</strong> sobre/caja: <u>14 × 9 cm</u>. Rollo/tubo: <u>L + 2D ≥ 17 cm</u> (mayor ≥ 10 cm). Si es inferior, <em>etiqueta 10 × 7 cm</em> con dirección y franqueo.<br>
-          <strong>Plazos orientativos</strong>: local D+1; provincial D+2; nacional D+3 (≈93%).
-          <footer>Fuente: Sesión A — Notificaciones (p. 33).</footer>
+          <strong>Ámbito</strong>: solo España (se excluye Andorra). <strong>Peso</strong>: hasta 2 kg.<br>
+          <strong>Máximas</strong>: sobre/caja <u>L+A+A ≤ 90 cm</u> (mayor ≤ 60 cm); tubo <u>L+2D ≤ 104 cm</u> (mayor ≤ 90 cm).<br>
+          <strong>Mínimas</strong>: sobre/caja 14×9 cm; tubo <u>L+2D ≥ 17 cm</u> (mayor ≥ 10 cm). Si es inferior a mínimos, <em>etiqueta 10×7 cm</em>.<br>
+          <strong>Plazos orientativos</strong>: local D+1; provincial D+2; nacional D+3 (~93%).
+          <footer>Sesión A — Notificaciones (p. 33)</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🧭 Versión entendible</h4>
-        <div>
-          Recordá las fórmulas de siempre: <strong>L+A+A ≤ 90</strong> (cajas/sobres) y <strong>L+2D ≤ 104</strong> (tubos). Si queda “mini”, pegá <strong>10×7</strong>.
-        </div>
+        <div>Fórmulas clásicas: <strong>L+A+A ≤ 90</strong> (cajas/sobres) y <strong>L+2D ≤ 104</strong> (tubos). Si te queda “mini”, salvás con la <strong>10×7</strong>.</div>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>📦 Casos rápidos</h4>
         <div class="ejemplo">
           <ul style="margin:0;padding-left:18px">
-            <li>Un <strong>CD en estuche</strong> como prueba: va en sobre rígido; controlá <em>L+A+A</em>.</li>
-            <li>Un <strong>tubo A1</strong> con plano: validá <em>L+2D ≤ 104</em> y la mayor ≤ 90 cm.</li>
+            <li><strong>CD de pruebas</strong> en sobre acolchado rígido → controlá L+A+A.</li>
+            <li><strong>Plano A1</strong> en tubo → verificá L+2D y que la mayor no supere 90 cm.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- 3. Rotulación y SICER -->
+    <!-- 3 -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
       <h3 class="minititulo">3) Rotulación, SICER y códigos</h3>
@@ -170,21 +155,31 @@
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          En el anverso debe figurar la palabra <strong>“Notificación”</strong> o etiqueta que identifique el producto, el acto al que se refiere (citación, requerimiento…), <em>expediente n.º</em>, número de certificado, nombre del órgano emisor y dirección. Circula con <strong>código de barras</strong>.<br>
-          Si es notificación <strong>SICER</strong> (acuerdos especiales), circulará <em>informatizada</em> y figurará en el anverso del sobre y en el AR “Notificación informatizada”, con código de barras alfanumérico. Las no SICER llevan el modelo normalizado de AR si se contrata.
-          <footer>Fuente: Sesión A — Notificaciones (p. 33).</footer>
+          En el anverso debe figurar <strong>“Notificación”</strong>, el <em>acto</em> (citación, requerimiento…), <em>expediente n.º</em>, n.º de certificado, órgano emisor y dirección. Siempre con <strong>código de barras</strong>.<br>
+          En <strong>SICER</strong> (acuerdos especiales) la notificación viaja <em>informatizada</em>: etiqueta y AR “Notificación informatizada” con código alfanumérico. Las no SICER usan el AR normal si se contrata.
+          <footer>Sesión A — Notificaciones (p. 33)</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Versión entendible</h4>
-        <div>
-          Rotulación “cantada”: poné <strong>Notificación</strong>, el <strong>acto</strong>, el <strong>expediente</strong> y el <strong>órgano emisor</strong>. Con convenios SICER, todo viaja informatizado (etiqueta y AR con código especial).
+        <div>Rotulación “cantada”: <strong>Notificación + Acto + Expediente + Órgano + Dirección</strong>. Con SICER todo va digital y el AR también trae código especial.</div>
+      </div>
+
+      <!-- NUEVO: ejemplos de la vida real -->
+      <div class="bloque b-ejemplo">
+        <h4>📝 En la vida real (rotulación/SICER)</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Tráfico</strong> envía una sanción: en el anverso se lee “Notificación — Procedimiento sancionador — Expte. 2024/1234 — Jefatura Provincial de Tráfico”.</li>
+            <li><strong>Agencia Tributaria (SICER)</strong>: etiqueta informatizada y AR “Notificación informatizada” con código alfanumérico; el seguimiento muestra evento SICER.</li>
+            <li><strong>Universidad pública</strong> (no SICER): requerimiento de documentación a un opositor; añade AR normal para constancia en papel.</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- 4. Servicios añadidos -->
+    <!-- 4 -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
       <h3 class="minititulo">4) Servicios añadidos y PEE</h3>
@@ -192,20 +187,31 @@
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          Servicios: <strong>Aviso de recibo</strong>, recogida a domicilio (clientes con contrato), normalización, petición de devolución/modificación/corrección, <strong>gestión de entrega</strong> conforme art. 42.2 Ley 39/2015 (dos turnos distintos), y <strong>PEE Postal</strong> con custodia a 5/10/15 años. Valores añadidos en acuerdos especiales: retorno de información, nota de cortesía, gestión de devoluciones, tercera entrega (ordinaria/urgente), digitalización, servicio integral de notificaciones, clasificación y envío de SMS al notificado.
-          <footer>Fuente: Sesión A — Notificaciones (p. 33–34).</footer>
+          Servicios: <strong>Aviso de recibo</strong>, recogida a domicilio (clientes con contrato), normalización, devolución/modificación/corrección de dirección, <strong>gestión de entrega</strong> (dos turnos distintos según Ley 39/2015) y <strong>PEE Postal</strong> con custodias de <u>5/10/15</u> años. En acuerdos especiales: retorno de info, nota de cortesía, gestión de devoluciones, <em>tercera entrega</em> (ordinaria/urgente), digitalización, servicio integral de notificaciones, clasificación y <strong>SMS</strong> al notificado.
+          <footer>Sesión A — Notificaciones (p. 33–34)</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🧩 Versión entendible</h4>
-        <div>
-          Si necesitás <strong>constancia electrónica</strong>, elegí PEE 5/10/15. Para más “mimo” al proceso (retornos, digitalización, tercera entrega…), eso va por <em>acuerdos</em>.
+        <div>¿Necesitás evidencia digital? elegí <strong>PEE 5/10/15</strong> según cuánto tiempo querés la custodia. ¿Más mimo? acordás extras: tercera entrega, digitalización, SMS, etc.</div>
+      </div>
+
+      <!-- NUEVO: ejemplos de la vida real -->
+      <div class="bloque b-ejemplo">
+        <h4>📎 En la práctica (servicios/PEE)</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Consejería de Educación</strong>: contrata <u>PEE 10</u> para conservar electrónicamente las entregas de expedientes durante una década.</li>
+            <li><strong>Hacienda Autonómica</strong>: activa <u>tercera entrega urgente</u> para expedientes con plazos a punto de vencer.</li>
+            <li><strong>Defensor del Pueblo</strong>: usa <u>retorno de información</u> + <u>digitalización</u> para incorporar los AR a su gestor documental.</li>
+            <li><strong>Municipio pequeño</strong> (sin contrato): solo añade <u>Aviso de recibo</u>; no puede pedir recogida a domicilio.</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- Mini test -->
+    <!-- TEST -->
     <section class="minileccion">
       <span class="badge">Mini test</span>
       <h3 class="minititulo">5) Mini test de repaso</h3>
@@ -217,7 +223,328 @@
           <h5>1) ¿Cuál es la regla del <em>segundo intento</em> de entrega?</h5>
           <ul class="opciones">
             <li><label class="opcion"><input type="radio" name="q1"/><span>El mismo día y en el mismo turno</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Turno distinto al primero, con al menos 3 horas de diferencia y dentro de los 3 días siguientes."><span>En turno distinto, ≥ 3 h de diferencia, dentro de 3 días</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Turno distinto al primero, ≥ 3 h de diferencia y dentro de 3 días."><span>En turno distinto, ≥ 3 h de diferencia, dentro de 3 días</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"/><span>Solo si el destinatario lo pide por escrito</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) Medida <em>máxima</em> correcta para tubo/rollo</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2"/><span>L + 2D ≤ 90 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Cilindros en notificación: L+2D ≤ 104 cm (mayor ≤ 90 cm)."><span>L + 2D ≤ 104 cm (mayor ≤ 90 cm)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"/><span>L + 2D ≥ 17 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) ¿Qué <em>rotulación</em> debe figurar en el anverso?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3"/><span>Solo dirección y remitente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain='“Notificación”, acto, expediente n.º, n.º de certificado, órgano emisor y dirección.'><span>“Notificación”, acto, expediente, n.º certificado, órgano y dirección</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"/><span>Etiqueta roja de urgente</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) Ámbito y pesos de notificaciones</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4"/><span>Internacional, hasta 500 g</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Ámbito solo España; peso hasta 2 kg."><span>Solo España, hasta 2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"/><span>España y Andorra, hasta 1 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <a class="boton-siguiente" href="leccion-a14.html" rel="next">Siguiente ➜</a>
+
+<script>
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      const b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',e=>{ if(e.target.matches('input[type="radio"]')) b.disabled=false; });
+    });
+  }
+  function check(p){
+    const sel=p.querySelector('input[type="radio"]:checked');
+    const ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return; }
+    const good=sel.hasAttribute('data-correct');
+    const exp=sel.getAttribute('data-explain')||'';
+    const card=sel.closest('.opcion');
+    if(good){ card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block'; }
+    else    { card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block'; }
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-action]'); if(!b) return;
+    const p=b.closest('.pregunta'); if(!p) return;
+    const a=b.getAttribute('data-action');
+    if(a==='comprobar') check(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
+```
+¡Hecho! Acá va la **A13 — Notificaciones** rehacida, ahora con **ejemplos de la vida real** también en los puntos **3** (Rotulación y SICER) y **4** (Servicios añadidos y PEE). Pegalo tal cual:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A13 — Notificaciones</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  .breadcrumb{
+    max-width:980px;margin:6px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <nav class="breadcrumb" aria-label="Migas de pan">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A13 — Notificaciones</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A13 — Notificaciones</div>
+    <div class="leccion-sub">Producto para órganos administrativos y judiciales con prueba fehaciente de entrega. Dos intentos en turnos distintos, bajo firma y control estricto. Con ejemplos y mini-test.</div>
+
+    <!-- 1 -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es y marco de entrega</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Producto de uso exclusivo de entidades administrativas y judiciales. Circula de forma certificada e incluye <strong>dos intentos</strong> de entrega bajo firma. Si no se puede, se deja aviso M-4 con <strong>7 días</strong> en lista. El 2.º intento debe ser en <strong>turno distinto</strong> al primero y con una diferencia mínima de <strong>3 horas</strong>, dentro de los <strong>3 días</strong> siguientes. Códigos SGIE administrativos: NA, ND, NE, NT, NV, NJ y 90; judiciales: NC, NJ, NF. 
+          <footer>Sesión A — Notificaciones (p. 31–32)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Es una <strong>certificada especial</strong>: dos visitas obligatorias en franjas distintas (mañana/tarde), con al menos 3 h entre una y otra. Si no hay firma, va aviso y queda 7 días en lista.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Juzgado</strong>: primer intento 10:15 → el segundo se agenda de tarde (p. ej. 17:30) dentro de los 3 días.</li>
+            <li><strong>Ayuntamiento</strong>: segundo intento sin éxito → se deja M-4; el vecino tiene 7 días naturales para retirar.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloque b-texto">
+        <h4>📎 Nota legal</h4>
+        <blockquote class="cita">
+          La gestión se rige por el <em>RD 1829/1999</em>.<br>
+          <small>✱ Disposición transitoria única (RD 437/2024): la admisión y entrega de notificaciones continúa rigiéndose por el RD 1829/1999.</small>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Ámbito, peso, medidas y plazos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Ámbito</strong>: solo España (se excluye Andorra). <strong>Peso</strong>: hasta 2 kg.<br>
+          <strong>Máximas</strong>: sobre/caja L+A+A ≤ 90 cm (mayor ≤ 60 cm). Rollo L+2D ≤ 104 cm (mayor ≤ 90 cm).<br>
+          <strong>Mínimas</strong>: sobre/caja 14×9 cm; rollo L+2D ≥ 17 cm (mayor ≥ 10 cm). Si es inferior, <em>etiqueta 10×7</em> con dirección y franqueo.<br>
+          <strong>Plazos orientativos</strong>: local D+1; provincial D+2; nacional D+3 (~93%).
+          <footer>Sesión A — Notificaciones (p. 33)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🧭 Versión entendible</h4>
+        <div>Fórmulas de siempre: <strong>L+A+A ≤ 90</strong> (caja/sobre) y <strong>L+2D ≤ 104</strong> (tubo). Si te queda “mini”, salvás con <strong>10×7</strong>.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>📦 Casos rápidos</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>CD en estuche</strong> como prueba: usar sobre rígido; validar L+A+A.</li>
+            <li><strong>Plano en tubo</strong> A1: comprobar L+2D ≤ 104 y mayor ≤ 90 cm.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Rotulación, SICER y códigos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          En el anverso debe figurar <strong>“Notificación”</strong> (o etiqueta del producto), el <em>acto</em> (citación, requerimiento…), el <em>n.º de expediente</em>, el <em>n.º de certificado</em>, el <em>órgano emisor</em> y su <em>dirección</em>. Circula con <strong>código de barras</strong>.<br>
+          En modalidad <strong>SICER</strong> (acuerdos especiales) la notificación se <em>informatiza</em>: etiqueta y AR “Notificación informatizada” con código alfanumérico; las no SICER usan el AR normalizado si se contrata.
+          <footer>Sesión A — Notificaciones (p. 33)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Rotulación “cantada”: <strong>Notificación</strong> + <strong>Acto</strong> + <strong>Expediente</strong> + <strong>N.º certificado</strong> + <strong>Órgano y dirección</strong>. Con <strong>SICER</strong> todo viaja informatizado y el AR también.</div>
+      </div>
+
+      <!-- NUEVOS EJEMPLOS VIDA REAL -->
+      <div class="bloque b-ejemplo">
+        <h4>🛠️ En la práctica (rotulación y SICER)</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Rotulación completa</strong>: “Notificación — <em>Requerimiento de pago</em> — Expte. 2024/1234 — Cert. NV53HK… — <em>Agencia Tributaria Local</em>, C/ Mayor 10, Ciudad”.</li>
+            <li><strong>Error común</strong>: falta el <em>acto</em> o el <em>n.º de expediente</em> → puede provocar incidencias; revisá antes de admitir.</li>
+            <li><strong>SICER</strong> con AR informatizado: el <em>Gobierno regional</em> envía 20.000 citaciones; van con etiqueta SICER y el AR “Notificación informatizada” (código alfanumérico).</li>
+            <li><strong>No SICER</strong> con AR papel: un <em>juzgado de paz</em> sin acuerdo especial contrata AR normalizado para adjuntar al expediente físico.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Servicios añadidos y PEE</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Servicios: <strong>Aviso de recibo</strong>, recogida a domicilio (clientes con contrato), normalización, petición de devolución/modificación/corrección, <strong>gestión de entrega</strong> (art. 42.2 Ley 39/2015: dos turnos distintos) y <strong>PEE Postal</strong> con custodia a 5/10/15 años. Valores añadidos en acuerdos especiales: retorno de información, nota de cortesía, gestión de devoluciones, <em>tercera entrega</em> (ordinaria/urgente), digitalización, servicio integral de notificaciones (impresión y logística), clasificación y SMS al notificado.
+          <footer>Sesión A — Notificaciones (p. 33–34)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🧩 Versión entendible</h4>
+        <div>Si querés <strong>constancia electrónica</strong>, elegí PEE 5/10/15 según cuánto tiempo necesitás guardar. Para “mimar” el proceso (retornos, 3.ª entrega, digitalización, SMS) va por <em>acuerdos</em>.</div>
+      </div>
+
+      <!-- NUEVOS EJEMPLOS VIDA REAL -->
+      <div class="bloque b-ejemplo">
+        <h4>📎 Casos reales de servicios</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Municipio chico</strong>: contrata <em>PEE 5</em> para multas de tránsito (plazos cortos de impugnación).</li>
+            <li><strong>Agencia provincial</strong>: usa <em>PEE 10</em> y <em>retorno de información</em> para cargar automáticamente el resultado de cada intento en su sistema.</li>
+            <li><strong>Universidad pública</strong>: necesita prueba extendida → <em>PEE 15</em> + <em>digitalización</em> de AR y documentos anexos.</li>
+            <li><strong>Consejería</strong> con vencimientos inminentes: añade <em>tercera entrega urgente</em> para maximizar entregas efectivas.</li>
+            <li><strong>Organismo sin imprenta</strong>: contrata <em>servicio integral</em> (Correos imprime, ensobra y notifica) + <em>SMS al notificado</em> como cortesía.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Test -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">5) Mini test de repaso</h3>
+
+      <div class="test" data-test-id="a13">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Cuál es la regla del <em>segundo intento</em> de entrega?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1"/><span>El mismo día y en el mismo turno</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Turno distinto al primero, con ≥ 3 horas de diferencia y dentro de los 3 días siguientes."><span>En turno distinto, ≥ 3 h de diferencia, dentro de 3 días</span></label></li>
             <li><label class="opcion"><input type="radio" name="q1"/><span>Solo si el destinatario lo pide por escrito</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
@@ -239,7 +566,7 @@
           <h5>3) ¿Qué <em>rotulación</em> debe figurar en el anverso?</h5>
           <ul class="opciones">
             <li><label class="opcion"><input type="radio" name="q3"/><span>Solo dirección y remitente</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain='La palabra "Notificación", acto, expediente n.º, n.º de certificado, órgano emisor y dirección.'><span>“Notificación”, acto, expediente, n.º certificado, órgano y dirección</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain='“Notificación”, acto, expediente, n.º certificado, órgano y dirección.'><span>“Notificación”, acto, expediente, n.º certificado, órgano y dirección</span></label></li>
             <li><label class="opcion"><input type="radio" name="q3"/><span>Etiqueta roja de urgente</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
@@ -260,44 +587,39 @@
     </section>
   </div>
 
-  <!-- Botón siguiente -->
   <a class="boton-siguiente" href="leccion-a14.html" rel="next">Siguiente ➜</a>
 
 <script>
-/* Mini-test */
 (function(){
   function init(){
     document.querySelectorAll('.pregunta').forEach(function(p){
-      var btn=p.querySelector('button[data-action="comprobar"]');
-      if(btn) btn.disabled=true;
-      p.addEventListener('change',function(e){
-        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
-      });
+      const b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',e=>{ if(e.target.matches('input[type="radio"]')) b.disabled=false; });
     });
   }
   function check(p){
-    var sel=p.querySelector('input[type="radio"]:checked');
-    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
-    ok.style.display='none'; ok.textContent='';
-    ko.style.display='none'; ko.textContent='';
+    const sel=p.querySelector('input[type="radio"]:checked');
+    const ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
     p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
-    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
-    var good=sel.hasAttribute('data-correct');
-    var exp=sel.getAttribute('data-explain')||'';
-    var card=sel.closest('.opcion');
-    if(good){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
-    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+    if(!sel){ ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return; }
+    const good=sel.hasAttribute('data-correct');
+    const exp=sel.getAttribute('data-explain')||'';
+    const card=sel.closest('.opcion');
+    if(good){ card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block'; }
+    else{ card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block'; }
   }
   function reset(p){
     p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
-    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.feedback').forEach(f=>{ f.style.display='none'; f.textContent=''; });
     p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
-    var btn=p.querySelector('button[data-action="comprobar"]'); if(btn) btn.disabled=true;
+    const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
   }
-  document.addEventListener('click',function(e){
-    var b=e.target.closest('button[data-action]'); if(!b) return;
-    var p=b.closest('.pregunta'); if(!p) return;
-    var a=b.getAttribute('data-action');
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-action]'); if(!b) return;
+    const p=b.closest('.pregunta'); if(!p) return;
+    const a=b.getAttribute('data-action');
     if(a==='comprobar') check(p);
     if(a==='reset') reset(p);
   });
@@ -306,3 +628,4 @@
 </script>
 </body>
 </html>
+```
