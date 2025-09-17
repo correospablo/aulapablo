@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A15 — Valor filatélico</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* cajas */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* tablita comparativa */
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:10px;border:1px solid #e5e7eb;text-align:left}
+  th{background:#eef2ff}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A15 — Valor filatélico</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A15 — Valor filatélico</div>
+    <div class="leccion-sub">Qué es, cómo circula, intentos y plazos, quién lo remite y cómo se identifica (VF). Con versión entendible, ejemplos y mini-test.</div>
+
+    <!-- 1. QUÉ ES -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es el valor filatélico</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Producto para el envío a coleccionistas de <strong>sellos</strong> o <strong>sobres prefranqueados</strong> con valor filatélico. Presenta rasgos intermedios entre los envíos certificados y los envíos con valor declarado: se tratan como “<em>valores</em>” en su admisión y curso, pero <strong>se entregan como certificados</strong>. Llevan <strong>dos intentos de entrega</strong> a domicilio; el segundo dentro de los <strong>tres días hábiles</strong> siguientes al primero; si falla, queda en <strong>lista 15 días naturales</strong>. No llevan <u>aviso de recibo</u>. El remitente es el <strong>Servicio Filatélico de Correos</strong> y la admisión de remesas se realiza en Madrid. Se identifican con las siglas <strong>VF</strong>.
+          <footer>Sesión A — Valor filatélico (resumen oficial)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Es el “canal oficial” con el que Correos envía a <strong>coleccionistas</strong> sus pedidos de sellos y material filatélico.
+          Corre como un certificado (2 intentos, lista 15 días), pero se <em>gestiona</em> internamente como un envío de <strong>valor</strong>.
+          No lleva AR y lo verás identificado como <strong>VF</strong>.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Suscripción trimestral</strong> del Servicio Filatélico: hoja bloque + tarjeta máxima → sale como <u>VF</u>.</li>
+            <li><strong>Edición limitada</strong> de un pliego premium pedida por un coleccionista → envío <u>VF</u> con 2 intentos.</li>
+            <li><strong>Lote para club filatélico</strong> (sobres primer día) → circuito <u>VF</u>, sin AR, con 15 días de lista si no está.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CÓMO CIRCULA -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Flujo de entrega y plazos</h3>
+
+      <div class="bloque b-explica">
+        <h4>🧭 Versión entendible</h4>
+        <div>
+          <ol style="margin:0;padding-left:18px">
+            <li><strong>Depósito</strong> (Madrid) por el Servicio Filatélico.</li>
+            <li><strong>Intento 1</strong> en domicilio del coleccionista.</li>
+            <li><strong>Intento 2</strong> dentro de los <u>3 días hábiles</u> posteriores.</li>
+            <li>Si falla, pasa a <strong>lista 15 días naturales</strong> en oficina → retirarlo con identificación.</li>
+          </ol>
+          No se contrata <em>AR</em>. Se comporta en reparto como un certificado estándar.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>📎 Ejemplos rápidos</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li>El cartero no encuentra a <strong>Ana</strong> el lunes → segundo intento jueves (dentro de 3 hábiles) → falla → queda en lista hasta el <u>décimoquinto día natural</u>.</li>
+            <li><strong>Jorge</strong> está de viaje: su pareja retira el envío en oficina mostrando el <em>resguardo</em> y DNI.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. DIFERENCIAS Y PISTAS -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Diferencias clave (para el test)</h3>
+
+      <div class="bloque">
+        <table>
+          <thead>
+            <tr><th>Producto</th><th>Entrega</th><th>Intentos / Lista</th><th>AR</th><th>Quién remite</th><th>Identificación</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Valor filatélico</strong></td><td>Como certificado</td><td>2 intentos / 15 días</td><td>No</td><td>Servicio Filatélico (Madrid)</td><td><strong>VF</strong></td></tr>
+            <tr><td>Certificada</td><td>Con firma</td><td>2 intentos / 15 o 7 (según modalidad)</td><td>Opcional (AR/PEE)</td><td>Remitente general</td><td>SPU / Cód. cert.</td></tr>
+            <tr><td>Valor declarado</td><td>Como certificado</td><td>2 intentos / según modalidad</td><td>Opcional</td><td>Remitente general</td><td>VD</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>💡 Pistas</h4>
+        <div>
+          Si en el enunciado ves <em>sellos, sobres prefranqueados, Servicio Filatélico, VF, sin AR</em> → la respuesta suele ser <strong>Valor filatélico</strong>.
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CÓMO LO RECONOZCO -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Identificación y ámbito</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal + entendible</h4>
+        <blockquote class="cita">
+          Los envíos se <strong>identifican con “VF”</strong> en sus códigos/etiquetas. La admisión de remesas se hace en <strong>Madrid</strong> por el Servicio Filatélico de Correos. <br>
+          <em>Traducción rápida:</em> si ves “VF” y procede del Servicio Filatélico, estás ante este producto.
+          <footer>Sesión A — Valor filatélico</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>📎 Caso real</h4>
+        <div class="ejemplo">
+          <p>Etiqueta con referencia interna y <strong>VF</strong>; el destinatario es un socio del Servicio Filatélico que recibe pedidos periódicos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz — Valor filatélico</h3>
+
+      <div class="test" data-test-id="a15">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) El valor filatélico se <em>entrega</em> como…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1"><span>Valor declarado con AR obligatorio</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="En reparto se comporta como un certificado."><span>Un certificado (2 intentos)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Carta urgente sin firma</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Lleva <em>aviso de recibo</em> por defecto?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2"><span>Sí, siempre</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="El producto no incluye AR."><span>No</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>Solo internacional</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) Si fallan los dos intentos, el envío…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3"><span>Se destruye a las 72 h</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Pasa a lista durante 15 días naturales."><span>Permanece en lista 15 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>Se devuelve inmediatamente al remitente</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) ¿Con qué siglas se identifica este producto?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4"><span>VD</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="VF = Valor filatélico."><span>VF</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>SPU</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a16.html" rel="next">Siguiente ➜</a>
+
+<script>
+/* Motor mini-test (como en A7–A14) */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn=p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
+      });
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var isOk=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(isOk){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-action]'); if(!b) return;
+    var p=b.closest('.pregunta'); if(!p) return;
+    var a=b.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
