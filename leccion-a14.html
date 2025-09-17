@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A14 — Envíos con tratamiento SICER</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* cajas */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A14 — SICER</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A14 — Envíos con tratamiento SICER</div>
+    <div class="leccion-sub">Qué es SICER, dónde se admite y cómo se clasifican sus envíos (ordinarios, registrados y notificaciones informatizadas). Con versión entendible y ejemplos reales + mini-test.</div>
+
+    <!-- ===== 1. QUÉ ES SICER ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es SICER y dónde se admite</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Producto que utiliza la plataforma tecnológica <strong>SICER</strong> (Sistema de Información y Control de Envíos Registrados), dirigido a instituciones/entidades que realizan remesas masivas de certificados o notificaciones (también opción para envíos ordinarios) y necesitan condiciones de entrega personalizadas e información de retorno. <br>
+          Admisión: <strong>solo</strong> en Centros de Admisión Masiva. Permite trazabilidad homogénea, respuestas más rápidas y centralización de incidencias. 
+          <footer>Sesión A — SICER (p. 34–35 aprox.)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          SICER es la “autopista” de Correos para clientes grandes: todo entra por centros masivos y se controla con códigos y reglas específicas.
+          Ventaja: <em>tracking</em> uniforme, informes y reglas de entrega/retorno a medida.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Agencia X</strong> lanza 50.000 notificaciones administrativas con PEE → remesa por SICER con informes diarios.</li>
+            <li><strong>Banco Y</strong> envía tarjetas y PIN (certificados TB-2) con tercer intento en sucursal → circuito SICER.</li>
+            <li><strong>Retail Z</strong> manda 100.000 cartas ordinarias con código OB para devoluciones centralizadas → régimen SICER.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. ENVÍOS ORDINARIOS (OB) ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Envíos ordinarios con SICER (OB)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          En el anverso llevan un <strong>código de barras</strong> que comienza por las letras <strong>OB</strong>. Las devoluciones se registran en PDA (único evento en SGIE) y después se centralizan en los centros provinciales de certificados. Entrega en <em>casilleros domiciliarios</em>. 
+          <footer>Sesión A — SICER (p. 35)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Es una carta ordinaria “con matrícula”: no lleva firma, pero su devolución queda identificada y se centraliza para el cliente.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>📎 Ejemplos</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li>Campaña de <strong>recibos</strong> que vuelven por dirección incorrecta → el OB permite saber cuántas y por qué vuelven.</li>
+            <li>Mailing de <strong>nuevas condiciones</strong> (sin firma) de una gran superficie → OB para tener retorno de devueltos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. ENVÍOS REGISTRADOS (C1, C2, C5, EL, TB-2) ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Envíos registrados en SICER</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>C1</strong>: certificado informatizado 1-15 (un intento a domicilio + 15 días en lista). Puede llevar AR o PEE. <br>
+          <strong>C2</strong>: certificado informatizado 2-7 (dos intentos; 7 días lista; sin reexpedición). <br>
+          <strong>C5</strong>: certificado informatizado 2-15 (dos intentos; 15 días lista). <br>
+          <strong>EL 1-0-B</strong>: certificado 1-0-B (un único intento registrado en turno de tarde; si falla, <u>depósito en buzón</u>). <br>
+          <strong>TB-2</strong> (bancario BBVA): dos intentos; si fallan, <u>entrega en sucursal</u>; integra 3 avisos en una hoja (dos de llegada + AR especial).
+          <footer>Sesión A — SICER (p. 35–36)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Los “C” son certificados con reglas de intentos/lista (1-15, 2-7, 2-15). <strong>EL</strong> es especial: un intento tarde y luego buzón. 
+          <strong>TB-2</strong> añade un tercer escenario: retiro en banco si fallan ambos intentos.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>📎 Ejemplos</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Universidad</strong> envía <em>títulos</em> con <u>C1</u> para tener 15 días de lista y PEE.</li>
+            <li><strong>Mutua</strong> notifica <em>altas/bajas</em> con <u>C2</u> (dos intentos, 7 días de lista, sin reexpedir).</li>
+            <li><strong>Ayuntamiento</strong> remite <em>comunicaciones</em> con <u>C5</u> (más margen en lista).</li>
+            <li><strong>Entidad financiera</strong> manda <em>PIN</em> con <u>EL 1-0-B</u> (intento tarde; si falla, buzón).</li>
+            <li><strong>BBVA</strong> distribuye <em>tarjetas</em> con <u>TB-2</u> (tercer evento: retirada en sucursal).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. NOTIFICACIONES INFORMATIZADAS (NT, 90, NS, NE, ND, N3, NC, NF, NJ) ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Notificaciones informatizadas en SICER</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>NT</strong>: notificación informatizada con dos intentos y 7 días en lista. <br>
+          <strong>“90…”</strong> (AEAT): dos intentos, 7 días; AR azul en el anverso del sobre; <u>no admite reenvíos</u>; puede devolver “Fuera de fecha límite”. <br>
+          <strong>NS</strong>: notificación informatizada <em>digitalizada</em> (AR digital). <br>
+          <strong>NE</strong>: con lista y <u>depósito en buzón</u> si no retirada dentro de 7 días (AR se liquida como “no retirado”). Variante <em>NE con PEE</em>. <br>
+          <strong>ND</strong>: <em>sin lista</em> y con depósito en buzón tras el 2º intento. <br>
+          <strong>N3</strong>: tercer intento en turno de tarde por USE (tras 7 días). <br>
+          <strong>NC</strong>: notificación <em>judicial informatizada</em> (7 días; regla de la “diferencia de 60 min” entre intentos). <br>
+          <strong>NF</strong>: notificación judicial <em>prerregistrada</em> (7 días; idem regla 60 min). <br>
+          <strong>NJ</strong>: notificación judicial <em>manual</em> (7 días; idem regla 60 min). <br>
+          Códigos similares fuera de SICER: <strong>NA / NV</strong> (Mi Oficina).
+          <footer>Sesión A — SICER (p. 36–38 + tabla p. 40)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Las “N” son notificaciones con reglas finas: algunas permiten depósito en buzón (NE/ND), otras digitalizan el AR (NS) y las judiciales (NC/NF/NJ)
+          exigen la <strong>diferencia de 60 min</strong> entre intentos. AEAT “90” es especial: sin reexpedición y con plazos estrictos.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>📎 Ejemplos</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Consejería</strong> envía sanciones con <u>NT</u> (2 intentos + 7 días en lista).</li>
+            <li><strong>AEAT</strong> remite requerimientos <u>90…</u> (devolución si “fuera de fecha límite”; sin reenvíos).</li>
+            <li><strong>Ayto.</strong> usa <u>NS</u> para tener <em>AR digital</em> en su gestor documental.</li>
+            <li><strong>Diputación</strong> contrata <u>NE</u>: si no retiran en lista, se deja en buzón; con PEE cuando se requiere constancia.</li>
+            <li><strong>Tráfico</strong> usa <u>N3</u> para tercer intento en tarde (USE) tras intentos previos.</li>
+            <li><strong>Juzgado</strong> emite <u>NC/NF/NJ</u> con regla de 60 min. entre intentos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. CÓDIGO DE BARRAS SICER ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">5) Identificación: código de barras SICER</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Los envíos con tratamiento SICER se identifican con un <strong>código de barras de 23 caracteres</strong>:<br>
+          • 2 primeros: <em>producto</em> (p.ej., OB, C1, NT, 90…).<br>
+          • 8 siguientes: <em>código de cliente</em>.<br>
+          • 12 siguientes: <em>identificación del envío</em>.<br>
+          • Último carácter: <em>dígito de control</em>.
+          <footer>Sesión A — SICER (p. 39)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Leélo así: <strong>[Producto][Cliente][Envío][Control]</strong>. Saber los 2 iniciales te dice “qué es”: OB, C1, C2, C5, EL, TB, NT, 90, NS, NE, ND, N3, NC, NF, NJ…</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>📎 Ejemplos</h4>
+        <div class="ejemplo">
+          <p><code>NT12345678 000012345678 X</code> → Notificación informatizada de cliente 12345678, envío #000012345678.</p>
+          <p><code>OB87654321 202406150001 7</code> → Ordinario SICER (OB) del cliente 87654321.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEST ===== -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso — SICER</h3>
+
+      <div class="test" data-test-id="a14">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Dónde se admite SICER?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="SICER entra por Centros de Admisión Masiva."><span>Solo en Centros de Admisión Masiva</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Las oficinas no admiten SICER."><span>En cualquier oficina</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No existe esa vía."><span>Solo por Citypaq</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Qué describe mejor un <em>EL 1-0-B</em>?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Eso es C2."><span>Dos intentos y 7 días en lista</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Un intento registrado en turno de tarde; si falla, depósito en buzón."><span>Un intento en tarde y luego depósito en buzón</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="TB-2 entrega en sucursal si fallan los dos intentos."><span>Entrega en sucursal tras dos intentos fallidos</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) En NE (notificación informatizada con lista), si no se retira en plazo…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="NE sí contempla depósito."><span>Se devuelve siempre al remitente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Tras 7 días, se liquida AR como 'no retirado' y se <u>deposita en buzón</u>."><span>Se liquida “no retirado” y se deposita en el buzón</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Eso es ND/NE, no NT."><span>Pasa a NT automáticamente</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) ¿Qué significa que un código comience por <strong>90</strong>…?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="OB es ordinario."><span>Es un ordinario con devolución registrada</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Notificación de AEAT: 2 intentos, 7 días, sin reenvíos; AR azul en anverso."><span>Notificación de la AEAT con reglas especiales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="C1 es 1-15."><span>Un certificado 1-15</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a15.html" rel="next">Siguiente ➜</a>
+
+<script>
+/* Motor mini-test (como en A7–A13) */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn=p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
+      });
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var isOk=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(isOk){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-action]'); if(!b) return;
+    var p=b.closest('.pregunta'); if(!p) return;
+    var a=b.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
