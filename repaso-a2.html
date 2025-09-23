@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Repaso — Bloque A (A11 a A20)</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#a78bfa; --c-explica:#22d3ee; --c-ejemplo:#f59e0b; --c-test:#3b82f6;
+    --bg-legal:#f5f3ff; --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques generales */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{font-size:22px;font-weight:750;margin:6px 0 14px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  /* skin azul (igual que repaso-a.html) */
+  body.tema-azul .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800}
+  body.tema-azul .b-explica{background:#f5eef8;border-color:#ead1f3;border-left:6px solid #af7ac5}
+  body.tema-azul .b-explica h4{color:#8e44ad}
+  body.tema-azul .test{background:#f4f6f7;border-left:6px solid #117a65}
+  body.tema-azul .test .titulo-test{color:#117a65}
+
+  /* grid enlaces */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+  .chip{display:block;padding:10px 12px;border:1px solid #dbeafe;border-radius:10px;background:#eff6ff;color:#1453a6;text-decoration:none;font-weight:700}
+  .chip:hover{background:#e0efff}
+
+  /* tabla chuletario */
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:10px;border:1px solid #e5e7eb;text-align:left}
+  th{background:#eef2ff}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;border:1px solid #cfe6df;border-radius:12px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#ecfdf3;border-color:#bbf7d0}
+  .opcion.incorrecta{background:#fff1f2;border-color:#fecdd3}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* botón flotante */
+  .boton-siguiente{position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25)}
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body class="tema-azul">
+  <nav class="breadcrumb" aria-label="Migas de pan">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Repaso Bloque A — A11 a A20</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Repaso — Bloque A (A11 a A20)</div>
+    <div class="leccion-sub">Valijas (clientes/interno), Cecograma, Notificaciones, SICER, Valor Filatélico, Fax/Burofax, Telegrama, Télex y Línea financiera (Giro nacional). Todo lo que suele caer.</div>
+
+    <!-- Enlaces a las lecciones -->
+    <section class="minileccion">
+      <span class="badge">Accesos rápidos</span>
+      <h3 class="minititulo">Volver a cualquier lección</h3>
+      <div class="grid">
+        <a class="chip" href="leccion-a11.html">A11 · Valijas</a>
+        <a class="chip" href="leccion-a12.html">A12 · Cecograma</a>
+        <a class="chip" href="leccion-a13.html">A13 · Notificaciones</a>
+        <a class="chip" href="leccion-a14.html">A14 · Tratamiento SICER</a>
+        <a class="chip" href="leccion-a15.html">A15 · Valor Filatélico</a>
+        <a class="chip" href="leccion-a16.html">A16 · Fax y Burofax</a>
+        <a class="chip" href="leccion-a17.html">A17 · Telegrama</a>
+        <a class="chip" href="leccion-a18.html">A18 · Télex</a>
+        <a class="chip" href="leccion-a19.html">A19 · Línea financiera</a>
+        <a class="chip" href="leccion-a20.html">A20 · Giro nacional</a>
+      </div>
+    </section>
+
+    <!-- Mapa en 1 línea por lección -->
+    <section class="minileccion">
+      <span class="badge">Mapa</span>
+      <h3 class="minititulo">Qué cubre cada lección en 1 línea</h3>
+      <div class="bloque b-explica">
+        <ul style="margin:0;padding-left:18px">
+          <li><strong>A11</strong>: Valijas a contrato: embalaje autorizado con cremallera/ventana, <u>20 kg</u>, zonas 1–4, precinto <u>amarillo</u> (central→deleg.) y <u>rojo</u> (deleg.→central); tipos: clientes externos / uso interno.</li>
+          <li><strong>A12</strong>: Cecograma (material para invidentes): <u>exento de franqueo</u>, hasta <u>7 kg</u>, nacional e internacional; también por particulares con certificado.</li>
+          <li><strong>A13</strong>: Notificaciones: proceso con <u>dos intentos</u> en turnos distintos dentro de 3 días; producto solo España; AR/PEE/PEF y custodia 5/10/15.</li>
+          <li><strong>A14</strong>: SICER: plataforma de control (OB, C1/C2/C5, EL 1-0-B, TB-2, NT, “90…”, NC/NF/NJ/N3/NE/NS/ND); código de barras de <u>23</u> caracteres.</li>
+          <li><strong>A15</strong>: Valor Filatélico (VF): envíos del Servicio Filatélico; se tratan como “valores” pero se <u>entregan como certificados</u>; 2 intentos y <u>15 días</u> en lista.</li>
+          <li><strong>A16</strong>: Fax/Burofax: modalidades (Básico Plus, Premium, Premium Plus, Online, Telefax autorizado, Premium Digital), plazos D+0/D+1, <u>lista 30 días</u>, custodia <u>60 meses</u> (ampliable a 120).</li>
+          <li><strong>A17</strong>: Telegrama: validez legal, nacional e internacional; tarifas por palabras; lista 30 días; tipos (SVH, ETAT, RCT, PC, POSTFIN…).</li>
+          <li><strong>A18</strong>: Télex: red en desuso; transmisión inmediata; hoy emulador software; tarifas de acceso/mensual/por minuto.</li>
+          <li><strong>A19</strong>: Línea financiera: pagos/ingresos vía Correos; el giro postal es servicio complementario SPU y <u>exento de IVA</u>; sujeta a PBC/identificación.</li>
+          <li><strong>A20</strong>: Giro nacional: inmediato (cobro en 5–15 min, <u>localizador 8</u>), ordinario 3–5 días, OIC/Correos Pay 3 días; límites: 499,99 € domicilio / 999,99 € inmediato / 2.499,99 € OIC.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Chuletario -->
+    <section class="minileccion">
+      <span class="badge">Chuletario</span>
+      <h3 class="minititulo">Números y reglas que más caen</h3>
+      <div class="bloque">
+        <table>
+          <thead><tr><th>Tema</th><th>Claves rápidas</th></tr></thead>
+          <tbody>
+            <tr><td>Valijas (A11)</td><td>Hasta <strong>20 kg</strong> · Bolsa autorizada con cremallera precintable + ventana · Precintos: <strong>amarillo</strong> (central→deleg.) / <strong>rojo</strong> (deleg.→central) · Zonas 1–4</td></tr>
+            <tr><td>Cecograma (A12)</td><td>Ámbito nacional + internacional · <strong>7 kg</strong> · Máx. sobre/caja: L+A+A ≤ 90 · tubo: L+2D ≤ 104 · <strong>Exento de franqueo</strong></td></tr>
+            <tr><td>Notificaciones (A13)</td><td>2º intento en turno distinto dentro de <strong>3 días</strong> · Local D+1 / Provincial D+2 / Nacional D+3 · Solo España</td></tr>
+            <tr><td>SICER (A14)</td><td>Familias: OB / C1-C2-C5 / EL 1-0-B / TB-2 / NT / “90…” / NC-NF-NJ-N3-NE-NS-ND · Código barras <strong>23</strong> (2 prod + 8 cliente + 12 envío + 1 control)</td></tr>
+            <tr><td>Valor Filatélico (A15)</td><td>Entrega como certificada · 2 intentos · Lista <strong>15 días</strong> · Sin AR</td></tr>
+            <tr><td>Burofax/Fax (A16)</td><td>D+0 si USE y antes 13:00 (jul-ago-sep except.) / D+1 si después · Lista <strong>30 días</strong> · Custodia <strong>60 meses</strong> (hasta 120)</td></tr>
+            <tr><td>Telegrama (A17)</td><td>Tarifa por palabras (nac: fijo + cada 50; intl: por palabra, mínimos) · Lista <strong>30 días</strong> · Impreso TG-1</td></tr>
+            <tr><td>Télex (A18)</td><td>Transmisión inmediata · En desuso · Emulador software</td></tr>
+            <tr><td>Línea financiera (A19)</td><td>Servicios financieros complementarios SPU · <strong>Exentos de IVA</strong></td></tr>
+            <tr><td>Giro nacional (A20)</td><td>Inmediato 5–15 min (<strong>loc. 8</strong>) · Ordinario 3–5 días · OIC/Correos Pay 3 días · <strong>499,99 €</strong> domicilio / <strong>999,99 €</strong> inmediato / <strong>2.499,99 €</strong> OIC</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Test -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso del Bloque A (A11–A20) — 40 preguntas</h3>
+
+      <div class="test" data-test-id="repaso-a2">
+        <!-- A11 Valijas -->
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) Peso máximo por valija (clientes externos)</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Ese es de cartas."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Tope por unidad."><span>20 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Demasiado."><span>50 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) Precinto correcto de <em>central → delegaciones</em></h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Central → delegaciones: amarillo."><span>Amarillo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Ese es de retorno a central."><span>Rojo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No es el color estándar de clientes."><span>Verde</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) El embalaje exigido para valijas de clientes es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Bolsa autorizada con asas, cremallera precintable y ventana para etiqueta."><span>Bolsa autorizada con cremallera precintable y ventana</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No basta ‘cualquier bolsa’."><span>Cualquier bolsa resistente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es obligatorio."><span>Caja americana</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) “Unitoque” significa…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Entrega y recogida en el mismo toque/horario."><span>Se entrega y recoge a la vez</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Bitoque es en horarios distintos."><span>Se entrega y recoge en horarios distintos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="No es una tipología válida."><span>Servicio mono</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A12 Cecograma -->
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) En cecogramas, la tarifa es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Ley 43/2010, art. 34.3."><span>Exento de franqueo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="No tiene mitad."><span>Mitad que una carta</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="No existe tarifa plana."><span>Tarifa plana 100 g</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q6">
+          <h5>6) Peso máximo de un cecograma</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="No es tope."><span>2 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Dato clave."><span>7 kg</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="Es de valijas."><span>20 kg</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q7">
+          <h5>7) ¿Quién puede enviar cecogramas?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="También pueden particulares acreditados."><span>Solo organizaciones de ciegos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Organizaciones y particulares con certificado."><span>Organizaciones y particulares acreditados</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="No depende del soporte."><span>Solo si es en CD</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q8">
+          <h5>8) Máximo para un <em>tubo</em> de cecograma</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="L + 2D ≤ 104 cm; mayor ≤ 90 cm."><span>L + 2D ≤ 104 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="Esa es de sobre/caja."><span>L + A + A ≤ 90 cm</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="Es el mínimo."><span>L + 2D ≥ 17 cm</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A13 Notificaciones -->
+        <div class="pregunta" data-question-id="q9">
+          <h5>9) El segundo intento de notificación debe realizarse…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q9" data-correct="true" data-explain="Turno/hora distinta y dentro de 3 días desde el primero."><span>En turno distinto y dentro de 3 días</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-explain="Deben ser diferentes."><span>En el mismo turno que el primero</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-explain="No marca 7."><span>Dentro de 7 días</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q10">
+          <h5>10) Ámbito de las notificaciones del producto de oficinas</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q10" data-correct="true" data-explain="Solo España (se excluye Andorra)."><span>España (se excluye Andorra)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-explain="No es internacional."><span>Internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-explain="No es el criterio."><span>Solo capitales</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q11">
+          <h5>11) PEE de notificaciones: custodias disponibles</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q11" data-correct="true" data-explain="Tres modalidades habituales."><span>5, 10 y 15 años</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q11" data-explain="Faltan dos."><span>5 años</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q11" data-explain="No existe 20."><span>20 años</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q12">
+          <h5>12) Plazo objetivo de entrega “nacional” para notificaciones</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q12" data-explain="Ese es el local."><span>D+1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q12" data-explain="Ese es el provincial."><span>D+2</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q12" data-correct="true" data-explain="Objetivo para nacional (≈93%)."><span>D+3</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A14 SICER -->
+        <div class="pregunta" data-question-id="q13">
+          <h5>13) ¿Qué familia <em>no</em> pertenece a SICER?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q13" data-explain="Sí es SICER."><span>C2</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q13" data-explain="Sí es SICER."><span>NT</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q13" data-correct="true" data-explain="Paq Estándar es paquetería, no SICER."><span>Paq Estándar</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q14">
+          <h5>14) Longitud del código de barras SICER y estructura correcta</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q14" data-correct="true" data-explain="23 caracteres: 2 prod + 8 cliente + 12 envío + 1 control."><span>23 (2+8+12+1)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q14" data-explain="No es la estructura."><span>20 (4+8+8)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q14" data-explain="Tampoco."><span>22 (2+10+10)</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q15">
+          <h5>15) En la serie “90…” (Agencia Tributaria), ¿qué clave <em>no</em> admiten?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q15" data-correct="true" data-explain="No admite reenvíos ni el código 07 “Nadie se hace cargo”."><span>“Nadie se hace cargo” (07)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q15" data-explain="Clave válida en sus reglas."><span>Ausente (03)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q15" data-explain="Existe el 04 para desconocido."><span>Desconocido (04)</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q16">
+          <h5>16) ¿Cuál realiza un tercer intento en oficina bancaria?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q16" data-explain="No es este."><span>EL 1-0-B</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q16" data-correct="true" data-explain="Producto BBVA: dos intentos y, si fallan, entrega en sucursal BBVA."><span>TB-2</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q16" data-explain="No contempla tercero."><span>C2</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A15 Valor Filatélico -->
+        <div class="pregunta" data-question-id="q17">
+          <h5>17) El Valor Filatélico se entrega…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q17" data-correct="true" data-explain="Se cursa como ‘valor’, pero se entrega como una certificada."><span>Como una carta certificada (con dos intentos)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q17" data-explain="No es urgente."><span>Como carta urgente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q17" data-explain="No aplica."><span>Como paquetería 48/72</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q18">
+          <h5>18) Permanencia en lista de Valor Filatélico</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q18" data-correct="true" data-explain="Dato típico."><span>15 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q18" data-explain="Es el de burofax."><span>30 días</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q18" data-explain="No es el plazo."><span>7 días</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q19">
+          <h5>19) ¿Lleva aviso de recibo por defecto el Valor Filatélico?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q19" data-correct="true" data-explain="No, no lleva AR por defecto."><span>No</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q19" data-explain="No es así."><span>Sí, siempre</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q19" data-explain="Tampoco."><span>Solo si pesa &gt; 500 g</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q20">
+          <h5>20) Remitente típico del Valor Filatélico</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q20" data-correct="true" data-explain="Servicio Filatélico de Correos (Madrid)."><span>Servicio Filatélico de Correos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q20" data-explain="No es el caso."><span>Agencia Tributaria</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q20" data-explain="Es un cliente SICER."><span>BBVA</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A16 Fax/Burofax -->
+        <div class="pregunta" data-question-id="q21">
+          <h5>21) Lista de permanencia de un burofax en oficina</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q21" data-explain="Ese es VF."><span>15 días</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q21" data-correct="true" data-explain="Clave de examen."><span>30 días naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q21" data-explain="No."><span>7 días</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q22">
+          <h5>22) Custodia incluida de los burofaxes (Premium/Online)</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q22" data-correct="true" data-explain="60 meses, ampliable a 120 con suplemento."><span>60 meses (ampliable a 120)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q22" data-explain="No se usa aquí."><span>24 meses</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q22" data-explain="Excesivo."><span>180 meses</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q23">
+          <h5>23) En Premium Digital, si fallan los 2 intentos…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q23" data-correct="true" data-explain="A los 7 días se envía SMS para generar el intento digital tercero."><span>Se habilita un tercer intento de entrega digital vía SMS</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q23" data-explain="No es la operativa."><span>Se destruye automáticamente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q23" data-explain="Tampoco."><span>Se reexpide sin coste</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q24">
+          <h5>24) Garantía por demora imputable en burofax/fax</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q24" data-correct="true" data-explain="Se devuelve la tarifa abonada sin extras; no hay indemnización por pérdida (documento digitalizado)."><span>Devolución de la tarifa (sin extras)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q24" data-explain="No aplica."><span>Indemnización del 10×</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q24" data-explain="No es así."><span>Seguro por 100 €</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A17 Telegrama -->
+        <div class="pregunta" data-question-id="q25">
+          <h5>25) En nacional, si se admite antes de 13:00 y hay USE, el telegrama se entrega…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q25" data-correct="true" data-explain="Regla general (excepto jul-ago-sep)."><span>El mismo día (D+0)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q25" data-explain="Ese sería si entra tarde."><span>D+1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q25" data-explain="No aplica."><span>D+2</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q26">
+          <h5>26) En internacional, la tarifa se calcula…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q26" data-correct="true" data-explain="Continental/intercontinental: por palabra, con mínimos."><span>Por palabra (con mínimos)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q26" data-explain="Eso es nacional."><span>Fijo + cada 50 palabras</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q26" data-explain="No es telegráfico."><span>Por páginas</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q27">
+          <h5>27) Impreso de admisión del telegrama en oficina</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q27" data-correct="true" data-explain="Formulario TG-1."><span>TG-1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q27" data-explain="No es el código."><span>NT-1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q27" data-explain="Es de notificaciones."><span>M-4</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q28">
+          <h5>28) ¿Qué tipo está orientado a seguridad de la vida humana?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q28" data-correct="true" data-explain="SVH."><span>SVH</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q28" data-explain="Asuntos de Estado."><span>ETAT</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q28" data-explain="Finanzas."><span>POSTFIN</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A18 Télex -->
+        <div class="pregunta" data-question-id="q29">
+          <h5>29) El télex hoy se presta mediante…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q29" data-correct="true" data-explain="Emulador software que envía/recibe por Internet."><span>Un emulador software (Internet)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q29" data-explain="Ya no."><span>Teletipo mecánico obligatorio</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q29" data-explain="No existe ese modo."><span>SMS</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q30">
+          <h5>30) La transmisión del télex es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q30" data-correct="true" data-explain="Característica del servicio."><span>Inmediata</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q30" data-explain="No."><span>D+1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q30" data-explain="Tampoco."><span>D+3</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A19 Línea financiera -->
+        <div class="pregunta" data-question-id="q31">
+          <h5>31) El giro postal, según la Ley 43/2010, es un servicio…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q31" data-correct="true" data-explain="Complementario a los postales del SPU."><span>Complementario a los postales (SPU)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q31" data-explain="No es el término legal."><span>Principal de paquetería</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q31" data-explain="Tampoco."><span>Privado no regulado</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q32">
+          <h5>32) Fiscalidad de los giros (SPU)</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q32" data-correct="true" data-explain="Se equiparan a los servicios incluidos en el SPU: exentos de IVA."><span>Exentos de IVA</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q32" data-explain="No es la regla."><span>Al 10 %</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q32" data-explain="No aplica."><span>Al 21 %</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- A20 Giro nacional -->
+        <div class="pregunta" data-question-id="q33">
+          <h5>33) En <em>giro inmediato</em>, el localizador tiene…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q33" data-explain="Se actualizó."><span>7 caracteres</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q33" data-correct="true" data-explain="Nota oficial: 8 caracteres."><span>8 caracteres</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q33" data-explain="No es así."><span>10 caracteres</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q34">
+          <h5>34) Límite en efectivo para <em>entrega a domicilio</em> de un giro</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q34" data-correct="true" data-explain="Máximo en metálico a domicilio/apartado: 499,99 €."><span>499,99 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q34" data-explain="Es tope del inmediato en oficina."><span>999,99 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q34" data-explain="Es tope de OIC/Correos Pay."><span>2.499,99 €</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q35">
+          <h5>35) Un giro no cobrado en domicilio pasa a lista y permanece hasta…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q35" data-correct="true" data-explain="Hasta el día 25 del mes siguiente al aviso."><span>El día 25 del mes siguiente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q35" data-explain="No es esa fecha."><span>El día 15 del mes siguiente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q35" data-explain="No es un plazo estándar."><span>60 días</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q36">
+          <h5>36) Plazo típico de un <em>giro ordinario</em> (entrega/cobro)</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q36" data-explain="Es el OIC/Pay."><span>3 días exactos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q36" data-correct="true" data-explain="Rango habitual."><span>Entre 3 y 5 días hábiles</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q36" data-explain="No."><span>1 día</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q37">
+          <h5>37) Forma de pago del remitente en giros</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q37" data-correct="true" data-explain="En ventanilla y en metálico; Correos Pay Premium permite tarjeta."><span>En ventanilla y en metálico (tarjeta en Correos Pay Premium)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q37" data-explain="No hay TPV obligatorio."><span>Siempre con tarjeta</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q37" data-explain="No se domicilia."><span>Por domiciliación bancaria</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q38">
+          <h5>38) En giros, las tarifas se componen de…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q38" data-correct="true" data-explain="Parte fija + porcentaje sobre el importe girado."><span>Una parte fija + un porcentaje</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q38" data-explain="No."><span>Solo un porcentaje</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q38" data-explain="No."><span>Un fijo por página</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q39">
+          <h5>39) Garantía del giro nacional ante incidencia</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q39" data-correct="true" data-explain="Correos garantiza la totalidad de la cantidad girada."><span>Garantía por el total de la cantidad girada</span></label></li>
+          <li><label class="opcion"><input type="radio" name="q39" data-explain="No es una regla de giro."><span>Devolución de la tarifa sin principal</span></label></li>
+          <li><label class="opcion"><input type="radio" name="q39" data-explain="No."><span>Solo 50 %</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q40">
+          <h5>40) Plazo para reclamar un giro: mínimo y máximo (desde la admisión)</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q40" data-correct="true" data-explain="Ventana: de 10 días naturales a 2 años."><span>De 10 días naturales a 2 años</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q40" data-explain="No es el rango."><span>De 1 a 3 meses</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q40" data-explain="Se queda corto."><span>De 5 a 30 días</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <a class="boton-siguiente" href="bloques.html">Volver a Bloques</a>
+
+<script>
+/* Motor del quiz (mismo que el de las lecciones/repasos anteriores) */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(p=>{
+      const b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',e=>{
+        if(e.target.matches('input[type="radio"]')) b.disabled=false;
+      });
+    });
+  }
+  function check(p){
+    const sel=p.querySelector('input[type="radio"]:checked');
+    const ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    const good=sel.hasAttribute('data-correct');
+    const exp=sel.getAttribute('data-explain')||'';
+    const card=sel.closest('.opcion');
+    if(good){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-action]'); if(!b) return;
+    const p=b.closest('.pregunta'); if(!p) return;
+    const a=b.getAttribute('data-action');
+    if(a==='comprobar') check(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
