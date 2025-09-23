@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A19 — Línea financiera</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A19 — Línea financiera</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A19 — Línea financiera</div>
+    <div class="leccion-sub">Qué incluye la línea financiera de Correos, marco legal del giro postal, productos/medios, fiscalidad (IVA) y cumplimiento (identificación del cliente). Con ejemplos claros y mini-test.</div>
+
+    <!-- 1) Qué es -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es la línea financiera</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Conjunto de servicios de Correos que permiten realizar y recibir pagos en el ámbito nacional e internacional. Comprende, junto a las transferencias de dinero, los pagos a empresas y administraciones públicas en las oficinas de Correos y diferentes medios de pago. La línea financiera de Correos incluye los productos de envío y recepción de dinero, las tarjetas de crédito, regalo o fidelización, los servicios de envío, los servicios de Correos Pay (antes Tenvío) y los acuerdos suscritos por el operador postal con determinadas entidades bancarias.
+          <footer>Sesión A — Línea financiera (introducción)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Es el “lado bancario” de Correos: mover dinero (enviar/recibir), pagar tasas o facturas en ventanilla,
+          usar medios de pago y soluciones como <strong>Correos Pay</strong>, muchas veces gracias a acuerdos con bancos.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Ana</strong> paga el <em>IBI</em> de su ayuntamiento en la oficina de Correos: operación de la línea financiera.</li>
+            <li><strong>Rubén</strong> envía dinero a su familia en otro país mediante un servicio de remesas ofrecido en Correos.</li>
+            <li><strong>Comercio “La Plaza”</strong> cobra contraentregas y liquida a través de <em>Correos Pay</em>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) Marco legal del giro -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Giro postal dentro del SPU (marco legal)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          La Ley 43/2010, de 30 de diciembre, del SPU, de los derechos de los usuarios y del mercado postal, en su disposición final tercera, establece que el <strong>giro postal</strong> se considera <u>servicio complementario</u> a los servicios postales y de <u>interés económico general</u> que deberá prestarse, directamente o a través de terceros, por el operador designado por el Estado para el Servicio Postal Universal, conforme a la normativa aplicable.<br>
+          En las tarifas de Correos el Giro aparece <u>exento de IVA</u>, por equipararse a los servicios incluidos en el SPU. Estas operaciones requieren el cumplimiento de medidas relativas a la <strong>Prevención de Blanqueo de Capitales</strong>, como la identificación y conocimiento del ordenante y del destinatario.
+          <footer>Sesión A — Línea financiera (marco legal y fiscalidad)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          El giro es “servicio público” del correo: está dentro del SPU, no lleva IVA y exige controles de
+          <em>conozca a su cliente</em> (pedir DNI, justificar operaciones, etc.).
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Marta</strong> quiere enviar 800 € por giro: la atienden en ventanilla, le piden documento y datos del destinatario.</li>
+            <li><strong>Juan</strong> recibe un giro del extranjero: firma, se identifica y queda registro de la operación.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Productos y medios disponibles -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Productos y medios de la línea financiera</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          La línea financiera comprende: <strong>envío y recepción de dinero</strong> (giros y remesas), <strong>pagos a empresas y administraciones</strong> en oficinas, <strong>medios de pago</strong> (tarjetas de crédito, regalo o fidelización), <strong>servicios de envío con cobro</strong>, <strong>Correos Pay</strong> (antes Tenvío) y <strong>acuerdos con entidades bancarias</strong> para operar determinados productos.
+          <footer>Sesión A — Línea financiera (catálogo)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Pensalo en tres bloques: <strong>mover dinero</strong> (enviar/recibir), <strong>pagar cosas</strong> (tasas, recibos, facturas) y
+          <strong>soluciones para comercios</strong> (contra reembolso, pasarela <em>Correos Pay</em>) apoyadas en convenios con bancos.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Academia Sol</strong> permite a sus alumnos pagar la matrícula en Correos: la oficina registra el pago y lo abona a la academia.</li>
+            <li><strong>Tienda online</strong> configura <em>contra reembolso</em>: el reparto cobra al entregar y el dinero se liquida por <em>Correos Pay</em>.</li>
+            <li><strong>Pedro</strong> recarga una tarjeta prepago/fidelización disponible en Correos para gastos controlados.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) Fiscalidad y cumplimiento -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Fiscalidad y cumplimiento (IVA y PBC/FT)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          En las tarifas de Correos, el Giro aparece <u>exento de IVA</u> por su equiparación a los servicios del SPU. Las operaciones financieras requieren el cumplimiento de la normativa de <strong>Prevención del Blanqueo de Capitales y Financiación del Terrorismo</strong>, incluida la <u>identificación del cliente</u>, la <u>finalidad</u> de la operación y la <u>conservación</u> de registros.
+          <footer>Sesión A — Línea financiera (fiscalidad y PBC)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Claves para el test: <strong>giro = sin IVA</strong>. En ventanilla, si movés dinero, te piden datos y, a veces, justificante.
+          Todo queda guardado en sistema por ley.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li>Un cliente intenta fraccionar varios giros seguidos: la oficina aplica controles PBC y puede solicitar información adicional.</li>
+            <li>Una ONG recibe ingresos de campañas y los canaliza por convenio con banco a través de Correos: hay reportes y trazabilidad.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso — Línea financiera</h3>
+
+      <div class="test" data-test-id="a19">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) El <em>giro postal</em> según la Ley 43/2010 es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No es un producto privado fuera del SPU."><span>Un producto privado ajeno al SPU</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Servicio complementario del SPU y de interés económico general."><span>Servicio complementario del SPU y de interés económico general</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No se limita a administraciones."><span>Solo para administraciones públicas</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) En fiscalidad, el <em>giro</em>…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Está exento de IVA por su equiparación a servicios del SPU."><span>Está exento de IVA</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No tiene un IVA reducido en el temario."><span>Tributa con IVA reducido</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Tampoco aplica el general."><span>Tributa con IVA general</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) ¿Cuál NO pertenece a la línea financiera?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Sí pertenece: es pasarela/solución de cobros."><span>Correos Pay</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Pagos a AAPP en oficinas: sí pertenece."><span>Pagos a administraciones públicas</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Es un producto puramente postal/logístico, no financiero."><span>Paq Estándar nacional</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) En cumplimiento PBC/FT, en ventanilla se puede exigir…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Identificación y finalidad de la operación son requisitos clave."><span>Identificación del cliente y finalidad de la operación</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="No se piden contraseñas personales."><span>La contraseña del correo electrónico del cliente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Se conservan registros por ley."><span>No conservar ningún registro</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) Señalá la afirmación correcta</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Los bancos sí aparecen por convenios."><span>No hay acuerdos con bancos en la línea financiera</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="El catálogo incluye envíos/recepciones de dinero, pagos en oficinas, medios de pago y Correos Pay."><span>Incluye mover dinero, pagar recibos/tasas y soluciones de cobro para comercios</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Correos Pay forma parte de esta línea."><span>Correos Pay es ajeno a la línea financiera</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a20.html" rel="next">Siguiente ➜</a>
+
+<script>
+/* Motor mini-test */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      const b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) b.disabled=false;
+      });
+    });
+  }
+  function check(p){
+    const sel=p.querySelector('input[type="radio"]:checked');
+    const ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    const good=sel.hasAttribute('data-correct');
+    const exp=sel.getAttribute('data-explain')||'';
+    const card=sel.closest('.opcion');
+    if(good){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    const b=e.target.closest('button[data-action]'); if(!b) return;
+    const p=b.closest('.pregunta'); if(!p) return;
+    const a=b.getAttribute('data-action');
+    if(a==='comprobar') check(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
