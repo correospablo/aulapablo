@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A18 — Télex</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A18 — Télex</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A18 — Télex</div>
+    <div class="leccion-sub">Qué es el servicio Télex, su situación actual, ámbito, plazos, tarifas (acceso, mensualidad y por minuto) y cómo se usa hoy con emulador. Con ejemplos reales y mini-test.</div>
+
+    <!-- 1) Qué es -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es Télex</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Red que permite la comunicación impresa y a distancia entre miembros pertenecientes a Télex (Teleprinting-Exchange). Los mensajes se transmiten por medio de teletipos de empresas o domicilios particulares y se dirigen tanto a nivel nacional como internacional. Los abonados dados de alta cuentan con un código identificativo compuesto por cinco cifras y seis letras, la última de ellas correspondiente al país de origen del abonado.<br><br>
+          Se trata de un servicio en desuso como consecuencia del avance del fax, la transmisión de datos y de Internet. Actualmente, Correos ofrece a los abonados que lo soliciten un <strong>emulador de télex mediante software</strong>, que envía y recibe mensajes usando Internet.
+          <footer>Sesión A — Télex (p. 50)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Télex es la “red clásica” de teletipos. Hoy casi no se usa, pero sigue existiendo para clientes con código. En lugar del aparato físico,
+          se puede trabajar con un <strong>programa que emula el télex</strong> y manda/recibe por Internet.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Transitaria</strong> mantiene su código Télex para dialogar con un puerto que aún opera esta red → usa el <em>emulador</em> desde PC.</li>
+            <li><strong>Embajada</strong> conserva un canal Télex como respaldo ante caídas de otros sistemas → envía avisos urgentes impresos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) Ámbito y plazos -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Ámbito y plazos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Ámbito nacional:</strong> España y Andorra. <br>
+          <strong>Ámbito internacional:</strong> para todos los países, en las tarifas por comunicación se establece un <u>importe único</u>. <br>
+          <strong>Plazos de entrega:</strong> la transmisión es <u>inmediata</u>.
+          <footer>Sesión A — Télex (p. 50)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Funciona dentro de España/Andorra y con el exterior. Cuando conectás, el texto llega al instante (no hay “D+1”: es una comunicación directa).
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Naviera</strong> envía confirmación de atraque a otra empresa en Italia → recepción inmediata en su teletipo.</li>
+            <li><strong>Operadora logística</strong> manda un aviso a Andorra → llega al momento y queda impreso.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Tarifas -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Tarifas (acceso, mensualidad y por uso)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          La tarifa se establece en función de si el destino es nacional o internacional y del número de comunicaciones.<br>
+          • <strong>Por una sola vez</strong>: derecho de acceso a la red Télex y primera instalación (incluye cada operación de cambio de distintivo a petición del abonado).<br>
+          • <strong>Mensual</strong>: establece una cuota de abono.<br>
+          • <strong>Por comunicaciones medidas</strong>: cuando la comunicación sea interior (todo el territorio nacional e internacional), se tarificará <u>por cada minuto o fracción</u>; cuando se realice a través de <u>estaciones móviles (vía satélite)</u>, tiene una tarifa propia por cada minuto o fracción.
+          <footer>Sesión A — Télex (p. 50)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Hay tres capas: <strong>alta</strong> (una vez), <strong>cuota mensual</strong> y <strong>pago por minutos</strong> de uso. Si la conexión es vía satélite,
+          el minuto tiene una tarifa diferente.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Agencia marítima</strong> paga el alta y la cuota; además, 6 minutos de comunicación internacional para confirmar un <em>booking</em>.</li>
+            <li><strong>Base científica</strong> se conecta por satélite durante 3 minutos → aplica la tarifa especial por minuto de la modalidad satelital.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) Identificación y uso actual -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Identificador del abonado y uso actual</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Los abonados cuentan con un <strong>código identificativo</strong> formado por cinco cifras y seis letras; la última letra corresponde al país de origen del abonado. Correos presta el servicio mediante <u>emulador software</u> para los abonados que lo soliciten.
+          <footer>Sesión A — Télex (p. 50)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Cada cliente tiene algo así como una “matrícula Télex”. Hoy casi todos se conectan con un programa en el ordenador en vez de un teletipo físico.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Operador portuario</strong> comunica su código 12345-ABCDEF<strong>E</strong> (E = España) a un socio extranjero para que lo añada a su agenda.</li>
+            <li><strong>Broker</strong> instala el emulador en un PC de operaciones y autoriza a dos usuarios a emitir/recibir desde ese código.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso — Télex</h3>
+
+      <div class="test" data-test-id="a18">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿Cuál es el <em>plazo</em> de transmisión del Télex?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="El temario indica que la transmisión es inmediata."><span>Inmediato</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No se manejan D+1 en Télex."><span>D+1</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Tampoco es de 3 a 5 días."><span>3–5 días</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Qué opción describe mejor la <em>tarifa</em> del servicio?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Alta (una vez) + cuota mensual + precio por minuto o fracción; satélite tiene precio propio."><span>Alta + cuota mensual + minutos (satélite con precio propio)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Eso es más propio de burofax premium."><span>Importe por página</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No hay tarifa plana sin minutos."><span>Tarifa plana sin medir minutos</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) El <em>código</em> del abonado Télex…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="El formato correcto es 5 cifras + 6 letras."><span>Se compone solo de letras</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="5 cifras y 6 letras; la última letra identifica el país."><span>Son 5 cifras + 6 letras (la última es el país)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es un NIF."><span>Coincide con el NIF del abonado</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) ¿Cuál es la situación actual del servicio?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Sigue existiendo, pero no es de uso masivo."><span>En crecimiento masivo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Está en desuso; Correos lo presta con emulador software para abonados."><span>En desuso; se presta con emulador software</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="No está retirado por completo en el temario."><span>Totalmente retirado del temario</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) Una conexión Télex por <em>vía satélite</em>…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Tiene tarifa propia por minuto o fracción."><span>Se factura con tarifa propia por minuto</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="El temario distingue precisamente satélite como modalidad especial."><span>Usa la misma tarifa que una línea fija</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Sí, hay medición por tiempo de comunicación."><span>No lleva medición de tiempo</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a19.html" rel="next">Siguiente ➜</a>
+
+<script>
+/* Motor mini-test */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      const b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) b.disabled=false;
+      });
+    });
+  }
+  function check(p){
+    const sel=p.querySelector('input[type="radio"]:checked');
+    const ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    const good=sel.hasAttribute('data-correct');
+    const exp=sel.getAttribute('data-explain')||'';
+    const card=sel.closest('.opcion');
+    if(good){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    const b=e.target.closest('button[data-action]'); if(!b) return;
+    const p=b.closest('.pregunta'); if(!p) return;
+    const a=b.getAttribute('data-action');
+    if(a==='comprobar') check(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
