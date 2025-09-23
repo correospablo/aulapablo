@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A17 — Telegrama</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A17 — Telegrama</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A17 — Telegrama</div>
+    <div class="leccion-sub">Definición, modalidades (nacional/internacional), plazos, tipos especiales, servicios, tarifas, caracteres permitidos, garantías y códigos. Todo con versión entendible, ejemplos reales y mini-test.</div>
+
+    <!-- 1) Qué es -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es un telegrama</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Producto diseñado para el envío urgente de mensajes escritos transmitidos por medios electrónicos a través de la red de telecomunicaciones de Correos con caracteres telegráficos, con posibilidad de certificar de forma fehaciente el contenido y la entrega. Disponible para ámbito nacional e internacional y para particulares y empresas. Se entrega bajo firma en domicilio, oficina o apartado. Cada telegrama se dirige a un solo destinatario. 
+          <footer>Sesión A — Telegrama (p. 46–49)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Es un “mensaje urgente con validez legal”. Se envía por red de Correos y se <strong>entrega bajo firma</strong>. Podés pedir prueba de entrega o copias certificadas.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Estudio jurídico</strong> notifica una rescisión de contrato con acuse: usa <em>telegrama con AR</em>.</li>
+            <li><strong>Hotel</strong> informa una confirmación urgente a una embajada: <em>telegrama nacional</em> con entrega en el día.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) Ámbito y modalidades -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Ámbito y modalidades de admisión</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Nacional:</strong> telegramas con entregas domiciliarias o anticipadas por teléfono con posterior entrega; <em>Telebén</em> (admitidos por teléfono); y telegramas sin entrega domiciliaria comunicados por teléfono (TFx) o fax (FAXx). A abonados de Télex: TLXx.<br>
+          <strong>Internacional:</strong> ordinario en régimen <em>continental</em> o <em>intercontinental</em>, y admitidos por teléfono (Telebén). 
+          <footer>Sesión A — Telegrama (p. 46)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Podés admitirlo en mostrador, por teléfono (Telebén) o como aviso TF/FAX. Nacional e internacional (según país: continental o intercontinental).</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Marcos</strong> dicta por teléfono un mensaje para entrega en domicilio: <u>Telebén nacional</u>.</li>
+            <li><strong>Agencia de viajes</strong> envía un telegrama a Túnez: <u>internacional continental</u>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Plazos -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Plazos de entrega y permanencia</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Nacional:</strong> si se admite antes de las 13:00 y va a localidad con USE, <u>se entrega el mismo día (D+0)</u> salvo julio–septiembre; si se admite después de las 13:00 o va a localidad sin USE, <u>D+1</u>. <br>
+          <strong>Permanencia en lista:</strong> 30 días naturales. <br>
+          <strong>Internacional:</strong> según país y destino. 
+          <footer>Sesión A — Telegrama (p. 47)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Regla fácil: “antes de las 13 → hoy; después de las 13 o sin USE → mañana”. Si no se entrega, queda en lista hasta 30 días.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Empresa</strong> deposita 10:45 para Madrid (con USE) → llega <u>D+0</u>.</li>
+            <li><strong>Ayuntamiento</strong> impone 16:10 para pueblo sin USE → <u>D+1</u>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) Tipos especiales -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Tipos según indicaciones del servicio</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>SVH</strong>: seguridad de la vida humana, prioridad absoluta.</li>
+            <li><strong>ETAT</strong>: asuntos de Estado, con sello de la autoridad.</li>
+            <li><strong>RCT</strong>: personas protegidas en tiempo de guerra (Convenio de Ginebra).</li>
+            <li><strong>OBS</strong>: meteorología, observaciones y previsiones.</li>
+            <li><strong>A</strong>: avisos sobre problemas/incidencias de otros telegramas.</li>
+            <li><strong>PC</strong>: telegrama con acuse de recibo.</li>
+            <li><strong>POSTFIN</strong>: servicios financieros en internacional.</li>
+            <li><strong>CONFERENCE</strong>: telegramas privilegiados en conferencias/reuniones de la UIC.</li>
+          </ul>
+          <footer>Sesión A — Telegrama (p. 47–48)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Son “etiquetas” que marcan prioridad o finalidad. El más común en examen es <strong>PC</strong> (con AR). SVH/ETAT son raros pero dan prioridad total.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Protección Civil</strong> emite aviso por temporal → <u>OBS</u>.</li>
+            <li><strong>Juzgado</strong> pide constancia de recepción → <u>PC</u> (con AR).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) Servicios adicionales y tarifas -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">5) Servicios adicionales y tarifas</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Ámbito nacional – servicios:</strong> acuse de recibo, <u>PEE 5 telegráfico</u>, certificaciones (entrega/intento) y copia certificada, y aviso de servicio (tasado).<br>
+          <strong>Ámbito internacional – servicios:</strong> copia certificada y aviso de servicio (tasado).<br><br>
+          <strong>Tarifas nacional:</strong> dos importes: <em>fijo por telegrama</em> según tarifa vigente + <em>importe por cada 50 palabras o fracción</em>. Los admitidos por teléfono llevan un adicional por despacho.<br>
+          <strong>Tarifas internacional:</strong> se <u>tarifica por palabra</u> (régimen continental: precio por palabra + fijo por telegrama; régimen intercontinental: precio por palabra con mínimo de 7). No se contabilizan tildes/diéresis. En internacional se distinguen palabras reales y tasables (unidades de 10 caracteres).
+          <footer>Sesión A — Telegrama (p. 48)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>En nacional pagás “<strong>apertura</strong> + <strong>cada 50 palabras</strong>”. En internacional, <strong>precio por palabra</strong> (con mínimos). Podés sumar AR, PEE 5 o copias certificadas.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Empresa</strong> manda 68 palabras con AR (nacional) → se cobra fijo + 2 bloques de 50 (1º completo, 2º fracción) + AR.</li>
+            <li><strong>Exportadora</strong> envía a Marruecos (continental), 20 palabras → fijo por telegrama + 20 palabras.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) Caracteres, acondicionamiento y garantías -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">6) Caracteres permitidos, admisión y garantías</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Caracteres</strong> admitidos: letras A–Z (incluye Ñ), cifras 0–9 y signos: (.), (,), (:), (?), (-), (( )), (/), (+).<br>
+          <strong>Acondicionamiento</strong>: el remitente rellena impreso TG-1 (datos de remitente, destinatario y mensaje). Puede adjuntar texto/datos en papel distinto siempre que se adhiera al TG-1. <br>
+          <strong>Garantías</strong>: por demora o pérdida imputable a Correos se devuelve la tarifa abonada sin servicios adicionales. Plazo de reclamación nacional: 2 días naturales a 6 meses; internacional: 3 días naturales a 4 meses desde la admisión.
+          <footer>Sesión A — Telegrama (p. 49)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Es “texto telegrafiado”: sin tildes/diéresis; signos limitados. Se admite con formulario <strong>TG-1</strong>. Si Correos se retrasa o pierde, te devuelven la tarifa del producto (no extras).</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Cliente</strong> trae el mensaje impreso desde Word → se grapa al TG-1 y vale.</li>
+            <li><strong>Retraso</strong> imputable a la operativa → devolución del importe base del telegrama.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) Códigos y nota operativa -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">7) Códigos de telegrama y nota operativa</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Códigos habituales: <strong>OD</strong> (nacional ordinario a domicilio), <strong>OL</strong> (nacional ordinario a lista), <strong>C1</strong> (continental ordinario), <strong>IO</strong> (intercontinental ordinario), <strong>TS</strong> (interior tasado), <strong>TC</strong> (continental tasado), <strong>TI</strong> (intercontinental tasado). <br>
+          <em>Nota:</em> actualmente Correos no presta servicio de telegrama de ámbito internacional; se mantiene la información por posible restauración del servicio.
+          <footer>Sesión A — Telegrama (p. 49)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>En práctica diaria verás sobre todo <strong>OD</strong> y <strong>OL</strong>. Los códigos internacionales existen en temario, pero pueden no estar operativos.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Notaría</strong> → <u>OD</u> (entrega a domicilio con firma).</li>
+            <li><strong>Cliente sin dirección fija</strong> → <u>OL</u> (retiro en oficina/lista).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso — Telegrama</h3>
+
+      <div class="test" data-test-id="a17">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) Si admitís un telegrama a las 12:30 para ciudad con USE, el plazo será…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Antes de las 13:00 y con USE → D+0."><span>Entrega el mismo día (D+0)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Después de las 13:00 o sin USE → D+1."><span>Al día siguiente (D+1)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="El telegrama no usa 2–3 días en nacional."><span>Entre 2 y 3 días</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) En tarifas <em>nacionales</em>, ¿cómo se calcula?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Fijo por telegrama + importe por cada 50 palabras o fracción."><span>Fijo + cada 50 palabras o fracción</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Eso es esquema internacional."><span>Solo precio por palabra</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No existe tarifa por página en telegramas."><span>Por páginas</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) Marcá la opción <em>permitida</em> en el texto del telegrama</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Las tildes/diéresis no se computan ni se transmiten."><span>Usar tildes (á, é, í, …)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Se permiten . , : ? - ( ) / + además de letras y cifras."><span>Paréntesis y signos: . , : ? - ( ) / +</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Los emojis no forman parte del juego de caracteres."><span>Emojis 🙂</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) ¿Qué indica el tipo <strong>PC</strong> en un telegrama?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="SVH es seguridad de la vida humana."><span>Prioridad por seguridad de la vida humana</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="PC = con acuse de recibo."><span>Que lleva acuse de recibo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="OBS es el meteorológico."><span>Que es meteorológico</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) Sobre garantías, señalá la correcta</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="No se indemniza con extras; se devuelve la tarifa del producto."><span>Se devuelve la suma del producto + extras</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Demora/pérdida imputable → devolución de la tarifa abonada (sin adicionales)."><span>Se devuelve la tarifa del producto (sin adicionales)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="El plazo nacional es 2 días a 6 meses, no 1 año."><span>Se puede reclamar hasta 1 año</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a18.html" rel="next">Siguiente ➜</a>
+
+<script>
+/* Motor mini-test */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      const b=p.querySelector('button[data-action="comprobar"]');
+      if(b) b.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) b.disabled=false;
+      });
+    });
+  }
+  function check(p){
+    const sel=p.querySelector('input[type="radio"]:checked');
+    const ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent=''; ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    const good=sel.hasAttribute('data-correct');
+    const exp=sel.getAttribute('data-explain')||'';
+    const card=sel.closest('.opcion');
+    if(good){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    p.querySelectorAll('.feedback').forEach(f=>{f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(o=>o.classList.remove('correcta','incorrecta'));
+    const b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    const b=e.target.closest('button[data-action]'); if(!b) return;
+    const p=b.closest('.pregunta'); if(!p) return;
+    const a=b.getAttribute('data-action');
+    if(a==='comprobar') check(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
