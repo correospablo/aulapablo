@@ -1,130 +1,330 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Lección A20 - Giro Nacional</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
-    h2 { color: #b22222; }
-    h3 { color: #333366; }
-    .bloque { padding: 15px; margin-bottom: 20px; border-radius: 10px; }
-    .literal { background-color: #fce4e4; border: 1px solid #f5b7b1; }
-    .explicacion { background-color: #eaf2f8; border: 1px solid #aed6f1; }
-    .ejemplo { background-color: #e9f7ef; border: 1px solid #a9dfbf; }
-    .minitest { background-color: #fff3cd; border: 1px solid #ffeeba; }
-    button { margin-top: 10px; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; }
-    .opcion { background-color: #f0f0f0; display: block; margin: 8px 0; text-align: left; }
-    .siguiente { background-color: #28a745; color: white; font-weight: bold; float: right; }
-    .feedback { display: none; margin-top: 5px; padding: 5px; border-radius: 5px; }
-    .correcto { background-color: #d4edda; border: 1px solid #c3e6cb; }
-    .incorrecto { background-color: #f8d7da; border: 1px solid #f5c6cb; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A20 — Giro nacional</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
 </head>
+
 <body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A20 — Giro nacional</span>
+  </nav>
 
-  <h2>Lección A20: Giro Nacional</h2>
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A20 — Giro nacional</div>
+    <div class="leccion-sub">Qué es, modalidades, plazos, límites, pagos, extras y garantías. Con ejemplos de mostrador y mini-test.</div>
 
-  <div class="bloque literal">
-    <h3>1. Texto literal</h3>
-    <p>
-      Servicio, también denominado orden de envío nacional, mediante el cual se ordenan pagos a personas físicas o jurídicas por cuenta y encargo de otras, garantizando la cantidad girada. 
-      Es un servicio que se presta en el ámbito nacional e implica la entrega del importe económico al destinatario o a la persona autorizada por él en la dirección indicada.
-    </p>
-    <p>
-      Admite en su ejecución distintas calidades en función de su forma de entrega (a domicilio, en oficina postal o en entidad bancaria).
-    </p>
-    <p>
-      Modalidades: giro inmediato, giro ordinario de entrega en domicilio, orden de ingreso en cuenta (OIC), envío a prisiones, Correos Pay, giro oficial interno de Correos. 
-    </p>
-    <p>
-      Características: ámbito nacional (España y Andorra), plazos de entrega entre 5 minutos y 5 días hábiles según modalidad, lugar de pago (domicilio, oficina o banco), límites de cantidades, 
-      servicios adicionales (SMS, certificación, aviso de servicio), y garantía de la totalidad de la cantidad girada.
-    </p>
+    <!-- ===== 1) Qué es ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es el <em>giro nacional</em></h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Servicio u orden de envío nacional mediante el cual se ordenan pagos a personas físicas o jurídicas por cuenta y encargo de otras, garantizando la cantidad girada. Se presta en el ámbito nacional e implica la entrega del importe al destinatario o a persona autorizada por él, en la dirección indicada, en oficina postal o en entidad bancaria. Admite distintas calidades en función de la forma de entrega (a domicilio, en oficina o en OIC/entidad). 
+          <footer>Temario — Línea financiera · Giro nacional (p. 51)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Es “mandar dinero” dentro de España/Andorra por Correos. El remitente paga en ventanilla y Correos entrega el importe al destinatario (en su casa, en una oficina o ingresándolo en su cuenta).</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Ana</strong> paga un <em>alquiler</em> a su casero que vive en otro pueblo → Giro ordinario a domicilio.</li>
+            <li><strong>Cooperativa Sol</strong> ingresa <em>dietas</em> a socios → <u>Orden de Ingreso en Cuenta (OIC)</u>.</li>
+            <li><strong>Juan</strong> necesita que su hijo cobre <em>hoy</em> → <u>Giro inmediato en oficina</u>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2) Modalidades y plazos ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Modalidades y plazos</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Modalidades:</strong> giro inmediato (cobro instantáneo en oficina), giro ordinario de entrega en domicilio (incluye lista/apartado a efectos de tarifa), <u>orden de ingreso en cuenta (OIC)</u>, <u>envío a prisiones</u> (a cuenta de prisiones autorizada vía Correos Pay) y <u>Correos Pay</u> (orden de ingreso en cuenta / cobro de recibos). <br><br>
+          <strong>Plazos de entrega:</strong> giro inmediato: disponibilidad inmediata, entre 5 y 15 minutos en cualquier oficina tras la admisión, con <u>localizador de 8 caracteres</u>; giro ordinario: entre <u>3 y 5 días hábiles</u>; Correos Pay/OIC y prisiones: <u>3 días</u>. <br>
+          <strong>Ámbito:</strong> España y Andorra.
+          <footer>Temario — Línea financiera · Giro nacional (p. 52) — Nota: “siete” → “ocho” caracteres</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Pensá en tres “velocidades”: <strong>inmediato</strong> (cobra al toque en cualquier oficina con un código),
+          <strong>ordinario</strong> (Correos se lo lleva a casa en 3–5 días) y <strong>OIC/Correos Pay</strong> (entra en su cuenta en aprox. 3 días).
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Salario puntual</strong>: empresa paga una ayuda y quiere ingreso en cuenta → <u>OIC</u> (3 días).</li>
+            <li><strong>Ayuda urgente</strong>: madre envía 120 € a hijo viajando → <u>Inmediato</u> (5–15 min con código de 8 caracteres).</li>
+            <li><strong>Renta habitación</strong>: envía 350 € al propietario que prefiere efectivo en casa → <u>Ordinario a domicilio</u> (3–5 días).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3) Límites, lugar de pago y formas de abono ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Límites, cobro y pago</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Límites de cantidad:</strong> máximo <u>2.499,99 €</u> para OIC/Correos Pay; si es a domicilio o apartado, máximo <u>499,99 €</u> en metálico; el giro inmediato en oficina (incluidos derechos) tiene límite de <u>999,99 €</u> en metálico. Mínimo: 0,01 €. El límite de 2.499,99 € excluye Western Union. <br>
+          <strong>Lugar de pago:</strong> a domicilio (si no se cobra pasa a lista; permanece a disposición hasta el <u>día 25</u> del mes siguiente al aviso), en oficina postal (inmediato u ordinario en lista/apartado) o en entidad bancaria (OIC, prisiones, Correos Pay). <br>
+          <strong>Formas de pago del remitente:</strong> en ventanilla y en metálico; para Correos Pay (servicio Premium) se admite tarjeta débito/crédito.
+          <footer>Temario — Línea financiera · Giro nacional (p. 52–53)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Resumen de números: <strong>499,99 €</strong> tope en efectivo a domicilio; <strong>999,99 €</strong> para inmediato en oficina; <strong>2.499,99 €</strong> si va a <em>cuenta</em> (OIC/Correos Pay). Si no están en casa, queda en lista hasta el <strong>día 25</strong> del mes siguiente.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Obra pequeña</strong>: pagan 480 € al albañil en su domicilio → dentro del tope 499,99 €.</li>
+            <li><strong>Ayuda familiar alta</strong>: 1.300 € → se hace por <u>OIC</u> (no admite 1.300 € en efectivo a domicilio).</li>
+            <li><strong>Olvido de cobro</strong>: no estaba en casa; pasa a lista y puede cobrarlo en oficina hasta el <u>día 25</u> del mes siguiente.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4) Extras, tarifas y garantías ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Servicios adicionales, tarifas y garantías</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Extras:</strong> comunicación privada SMS (140 caracteres al destinatario, gratuito salvo en giros inmediatos), certificación de imposición y de entrega, aviso de servicio, reexpediciones/modificación/devolución (si el giro no fue abonado, con resguardo y <em>TS</em>). <br>
+          <strong>Tarifas:</strong> exentas de IVA; se componen de una parte fija + un porcentaje del valor: <u>Ordinario</u> 12,10 € + 2%; <u>OIC</u> 3,05 € + 2%; <u>Inmediato</u> 4,00 € + 2% (referencia 2022). <br>
+          <strong>Garantías:</strong> Correos garantiza la <u>totalidad</u> de la cantidad girada. Plazo para reclamar: mínimo <u>10 días naturales</u> y máximo <u>2 años</u> desde la admisión.
+          <footer>Temario — Línea financiera · Giro nacional (p. 53)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Podés añadir aviso por SMS y pedir certificados. El precio siempre es “<em>fijo + %</em>”.
+          Si algo sale mal, el dinero está cubierto y tenés hasta <strong>2 años</strong> para reclamar (no menos de <strong>10 días</strong>).
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>ONG</strong> exige constancias → solicita <u>certificación de imposición y de entrega</u>.</li>
+            <li><strong>Aviso rápido</strong> en ordinario → SMS gratuito al destinatario con disponibilidad y localizador.</li>
+            <li><strong>Giro no cobrado</strong> → se tramita <u>devolución</u> adjuntando el resguardo y modelo <em>TS</em> a la unidad responsable.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mini test -->
+      <div class="test" data-test-id="a20">
+        <div class="titulo-test">🧪 Mini test — Giro nacional</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) En un <em>giro inmediato</em>, el localizador tiene…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Se actualizó: ya no son 7."><span>7 caracteres</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Corrección oficial: 8 caracteres."><span>8 caracteres</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No usa 10."><span>10 caracteres</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar</button>
+          </div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) Tope en efectivo para <em>giro a domicilio</em></h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Ese es el tope del inmediato en oficina."><span>999,99 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Máximo a domicilio/apartado: 499,99 €."><span>499,99 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Ese es el máximo para OIC/Correos Pay, no en efectivo a domicilio."><span>2.499,99 €</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar</button>
+          </div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) ¿Cuánto tiempo puede quedar en <em>lista</em> un giro no cobrado?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es un rango fijo de 7 días."><span>7 días</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Hasta el día 25 del mes siguiente al aviso."><span>Hasta el día 25 del mes siguiente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No hay referencia al día 15."><span>Hasta el día 15 del mes siguiente</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar</button>
+          </div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) Señalá la combinación correcta</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Ordinario no es 1 día."><span>Ordinario: 1 día · OIC: 5–7 días</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Ordinario 3–5 días hábiles · OIC/Correos Pay 3 días."><span>Ordinario: 3–5 días · OIC: 3 días</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Inmediato no tarda días: es instantáneo con código."><span>Inmediato: 2–3 días</span></label></li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button>
+            <button class="btn btn-secundario" data-action="reset">Limpiar</button>
+          </div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="bloque explicacion">
-    <h3>2. Versión entendible</h3>
-    <p>
-      El giro nacional es básicamente <b>mandar plata dentro de España y Andorra</b> usando Correos. 
-      Podés hacerlo para que llegue enseguida (giro inmediato), para que lo entreguen en casa del destinatario (giro ordinario), para que caiga directo en una cuenta bancaria (OIC), o incluso para enviar dinero a un preso.
-    </p>
-    <p>
-      También existe la opción de usar <b>Correos Pay</b>, que sirve mucho para autónomos o empresas que tienen que cobrar facturas, o los giros oficiales internos que son entre oficinas de Correos.
-    </p>
-    <p>
-      Según lo que elijas, el dinero puede llegar en minutos o tardar hasta 5 días hábiles. Los límites dependen de la modalidad, y siempre hay un mínimo de 0,01 € y un máximo de hasta 2.499,99 €. 
-      Y ojo: Correos garantiza que la cantidad llegue, siempre y cuando esté bien hecho el trámite.
-    </p>
-  </div>
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a21.html" rel="next">Siguiente ➜</a>
 
-  <div class="bloque ejemplo">
-    <h3>3. Ejemplo de la vida real</h3>
-    <p>
-      Pablo trabaja en Murcia y su hermana Vicky, que vive en Barcelona, necesita 200 € urgente para cubrir una fianza de su piso. 
-      En vez de hacer una transferencia bancaria, Pablo va a una oficina de Correos y manda un <b>Giro Inmediato</b>. 
-      En menos de 15 minutos, Vicky puede pasar por su oficina de Correos más cercana y retirar el dinero en efectivo.
-    </p>
-    <p>
-      Otro caso: un padre quiere mandarle 50 € a su hijo que está estudiando en otra ciudad y decide usar un <b>Giro Ordinario</b>. 
-      A los 3 días, el chico recibe el dinero en su casa.
-    </p>
-  </div>
-
-  <div class="bloque minitest">
-    <h3>4. MiniTest</h3>
-    <p><b>Pregunta 1:</b> ¿Cuál es el ámbito del giro nacional?</p>
-    <button class="opcion" onclick="mostrarFeedback(this, true)">España y Andorra</button>
-    <div class="feedback correcto">✔️ Correcto. Solo funciona en España y Andorra.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">Europa completa</button>
-    <div class="feedback incorrecto">❌ Incorrecto. Ese sería un giro internacional.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">Todo el mundo</button>
-    <div class="feedback incorrecto">❌ Incorrecto. No es global.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">Solo en España</button>
-    <div class="feedback incorrecto">❌ Casi, pero también incluye Andorra.</div>
-
-    <p><b>Pregunta 2:</b> ¿Qué modalidad usarías si querés que llegue en menos de 15 minutos?</p>
-    <button class="opcion" onclick="mostrarFeedback(this, true)">Giro Inmediato</button>
-    <div class="feedback correcto">✔️ Exacto. Se cobra casi al instante.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">Giro Ordinario</button>
-    <div class="feedback incorrecto">❌ No, ese tarda entre 3 y 5 días.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">Correos Pay</button>
-    <div class="feedback incorrecto">❌ No, ese tarda unos 3 días.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">Envío a prisiones</button>
-    <div class="feedback incorrecto">❌ No, tampoco es inmediato.</div>
-
-    <p><b>Pregunta 3:</b> ¿Cuál es el importe máximo que se puede girar?</p>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">500 € en todos los casos</button>
-    <div class="feedback incorrecto">❌ No, solo en giros a domicilio.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">999,99 € siempre</button>
-    <div class="feedback incorrecto">❌ Incorrecto. Ese es el límite del giro inmediato.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, true)">Hasta 2.499,99 €</button>
-    <div class="feedback correcto">✔️ Correcto. Ese es el máximo general permitido.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">10.000 €</button>
-    <div class="feedback incorrecto">❌ No, eso no se puede por Correos.</div>
-
-    <p><b>Pregunta 4:</b> ¿Qué garantiza Correos en los giros nacionales?</p>
-    <button class="opcion" onclick="mostrarFeedback(this, true)">La totalidad de la cantidad girada</button>
-    <div class="feedback correcto">✔️ Correcto. Esa es la gran garantía del servicio.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">Solo hasta el 80 % del dinero</button>
-    <div class="feedback incorrecto">❌ No, garantiza el 100 %.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">Nada, es bajo tu responsabilidad</button>
-    <div class="feedback incorrecto">❌ No, hay respaldo de Correos.</div>
-    <button class="opcion" onclick="mostrarFeedback(this, false)">Depende de la oficina</button>
-    <div class="feedback incorrecto">❌ No, la garantía es general.</div>
-  </div>
-
-  <button class="siguiente" onclick="window.location.href='a21.html'">Siguiente ➡️</button>
-
-  <script>
-    function mostrarFeedback(boton, esCorrecto) {
-      let feedback = boton.nextElementSibling;
-      if (esCorrecto) {
-        feedback.style.display = "block";
-      } else {
-        feedback.style.display = "block";
-      }
-    }
-  </script>
-
+<script>
+/* Motor mini-test (mismo que en A12–A19) */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn=p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
+      });
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var isOk=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(isOk){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-action]'); if(!b) return;
+    var p=b.closest('.pregunta'); if(!p) return;
+    var a=b.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
 </body>
 </html>
