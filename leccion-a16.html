@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A16 — Fax y Burofax</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A16 — Fax y Burofax</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A16 — Fax y Burofax</div>
+    <div class="leccion-sub">Definición, tipos, ámbito y plazos, servicios adicionales, tarifas y garantías. Con versión entendible, ejemplos reales y mini-test.</div>
+
+    <!-- ===== M1: FAX ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Fax (servicio de telecomunicaciones)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          El fax es un servicio de <strong>ámbito nacional</strong> que permite intercambiar de forma inmediata documentos desde las oficinas de Correos, siempre que el destinatario disponga de un terminal fax. <br>
+          La <strong>entrega</strong> se realiza de manera inmediata. <br>
+          En caso de festividad en la localidad de destino, debe informarse de la situación al remitente. <br>
+          <footer>Temario — Servicios de Telecomunicaciones (Fax)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Es un envío “<strong>por teléfono</strong>”: desde la oficina se marca el número de fax del destinatario y el documento llega al momento. <strong>Solo nacional</strong> y <strong>sin lista</strong> porque no queda pendiente: o entra, o se informa del problema.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Ana</strong> necesita enviar <em>un poder firmado</em> a una notaría de otra ciudad y lo requieren “ya”: lo transmite por <u>fax</u> desde Correos.</li>
+            <li><strong>Clínica Iris</strong> manda por fax <em>una autorización</em> a un hospital provincial: recepción inmediata, misma mañana.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== M2: BUROFAX (qué es) ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Burofax — concepto general</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          El burofax es todo envío <strong>urgente</strong> de mensajes, imágenes y documentos, con <strong>entrega registrada bajo firma</strong> y <strong>validez legal</strong>. El cliente entrega el documento en oficina o por canales habilitados; se digitaliza y se distribuye para su impresión y entrega en destino. <br>
+          El cliente no rellena impresos: el empleado graba los datos en IRIS, genera carátula con número, fecha y hora; el cliente <strong>firma la carátula</strong>. <br>
+          La entrega final se realiza con <strong>dos intentos</strong> y <strong>30 días</strong> de permanencia en lista si falla. <br>
+          <footer>Temario — Burofax (proceso y entrega)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Es “<strong>un fax con valor probatorio</strong>”: Correos guarda el documento digital, lo entrega con firma y te puede emitir <em>pruebas</em> de imposición y entrega. Si no encuentran al destinatario, queda en lista <strong>30 días</strong>.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Marcos</strong> notifica a su inquilino un <em>requerimiento de pago</em> con prueba de entrega: usa <u>burofax</u> con AR/PEE.</li>
+            <li><strong>Estudio Vega</strong> envía a un cliente un <em>presupuesto firmado</em> que debe quedar acreditado: <u>burofax</u>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== M3: Tipos de burofax ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Tipos de Burofax</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Burofax Básico Plus</strong> (masivo con contrato): intercambio de ficheros (OV2/Mi Oficina); reparto vía red ordinaria (URO) al día siguiente de la admisión. Incluye <em>primera página</em>, <em>PEE</em>, <em>copia certificada</em> y <em>custodia 60 meses</em>.</li>
+            <li><strong>Burofax Premium</strong>: admisión en oficinas; entrega urgente en domicilio, lista o apartado. Si se admite antes de las <strong>13:00</strong> y es localidad con <strong>USE</strong>, se entrega <strong>mismo día</strong> (excepto julio-agosto-septiembre); si no, al día hábil siguiente. Incluye <em>primera página</em> y <em>custodia 60 meses</em>.</li>
+            <li><strong>Burofax Premium Plus</strong>: “pack” para oficinas (sin contrato): incluye en precio <em>primera página</em> + <em>PEE o PEF</em> a elegir + <em>copia certificada</em> + <em>custodia 60 meses</em>.</li>
+            <li><strong>Burofax Premium Online</strong>: contratación por <em>app</em> o web (Mi Oficina); incluye <em>primera página</em> y <em>custodia 60 meses</em>.</li>
+            <li><strong>Burofax Premium Digital</strong> (clientes con contrato): alta por Canal Masivo (OV2/EDI/SFTP). Añade <strong>tercer intento de entrega digital</strong> por SMS si fallan los dos intentos físicos.</li>
+            <li><strong>Telefax autorizado</strong>: clientes con contrato que envían desde su propio fax a una oficina determinada para distribución urgente.</li>
+          </ul>
+          <footer>Temario — Tipologías de Burofax</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Básico Plus</strong> = remesas masivas por fichero, con “extras” incluidos.</li>
+            <li><strong>Premium</strong> = ventanilla; si entra antes de <u>13:00</u> en ciudad con <u>USE</u>, llega <u>hoy</u>.</li>
+            <li><strong>Premium Plus</strong> = ventanilla “todo en uno” (PEE/PEF+copia+custodia incluidos).</li>
+            <li><strong>Premium Online</strong> = lo haces desde web/app.</li>
+            <li><strong>Premium Digital</strong> = empresas con contrato + posible <u>tercer intento digital</u> vía SMS.</li>
+            <li><strong>Telefax</strong> = el cliente manda desde su fax a una oficina Correos concreta.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Mini-casos por tipo</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Ayuntamiento</strong> programa 300 notificaciones: <u>Básico Plus</u> (fichero masivo, PEE incluido).</li>
+            <li><strong>Abogada Luz</strong> presenta una <em>reclamación</em> hoy 11:30 h: <u>Premium</u> (mismo día en ciudad con USE).</li>
+            <li><strong>Particular</strong> quiere “todo incluido” en mostrador: <u>Premium Plus</u>.</li>
+            <li><strong>Consultora</strong> envía a las 20:00 h desde el portátil: <u>Premium Online</u>.</li>
+            <li><strong>Entidad financiera</strong> con contrato necesita tercer intento digital: <u>Premium Digital</u>.</li>
+            <li><strong>Cadena hotelera</strong> autorizada remite desde su fax a oficina destino: <u>Telefax autorizado</u>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== M4: Ámbito y plazos ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Ámbito y plazos de entrega</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Ámbito:</strong> España y Andorra. <br>
+          <strong>Plazos</strong><br>
+          • <u>Burofax Básico Plus</u>: ficheros en servidores de Correos antes de las 21:00 → intento al día siguiente hábil (D+1) por URO. <br>
+          • <u>Premium / Premium Plus / Premium Online / Premium Digital</u>: <em>si</em> localidad con USE y admisión antes de 13:00 → entrega en el mismo día (D+0), excepto julio-agosto-septiembre; si la admisión es después de 13:00 → D+1 desde la admisión. <br>
+          • <u>Fax</u>: entrega inmediata. <br>
+          <strong>Lista</strong> burofax: <u>30 días naturales</u>. 
+          <footer>Temario — Ámbito y plazos</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Pensalo así: <em>Fax</em> = “ahora mismo”. <em>Burofax</em> = “hoy si entro antes de 13:00 en ciudad con USE; si no, mañana”. El masivo <em>Básico Plus</em> siempre va a <u>D+1</u>. Todo es <strong>nacional</strong>.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li>Admites un Premium a las <strong>12:40</strong> para Madrid (tiene USE) en mayo → <u>se entrega hoy</u>.</li>
+            <li>Admites un Premium a las <strong>14:10</strong> → <u>D+1</u>.</li>
+            <li>Subís el fichero de <u>Básico Plus</u> antes de <strong>21:00</strong> → reparto <u>D+1</u> por URO.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== M5: Servicios adicionales, tarifas y garantías ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">5) Servicios adicionales, tarifas y garantías</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Servicios adicionales (nacional):</strong> aviso de servicio (modificación/corrección/anulación), certificación de entrega o de intento, <u>copia certificada</u>, <u>custodia 60 meses</u> (ampliable a 120 con suplemento), <u>PEE 5 telegráfico</u>, <u>PEF/acuse de recibo</u>, <u>tercer intento digital</u> (Premium Digital). <br><br>
+          <strong>Tarifas:</strong> Premium/Online: importe fijo por burofax (incluye <em>primera página</em>) + importe por <em>página adicional</em>. Fax y Telefax: tarifa por página. <br>
+          <strong>Premium Plus/Básico Plus</strong>: precio “pack” que incluye primera página, PEE (o PEF), copia certificada y 60 meses de custodia; páginas extra y ampliación de custodia se abonan aparte. <br><br>
+          <strong>Garantías:</strong> si hay <em>demora imputable a Correos</em>, se devuelve la <u>tarifa abonada</u> (sin adicionales). No procede indemnización por pérdida al tratarse de documento <em>digitalizado</em>. Plazo de reclamación: <u>1 día a 6 meses</u> (nacional).
+          <footer>Temario — Servicios adicionales, tarifas y garantías</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Lo potente del burofax es la <strong>prueba</strong>: PEE, PEF, copia certificada y custodia larga. Si Correos se retrasa por su culpa, te devuelven el precio del burofax (no los añadidos). No hay “pérdida indemnizable” porque el original queda digitalizado.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la práctica</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Sofía</strong> quiere un soporte fuerte para juicio → contrata <u>PEE 5</u> + <u>copia certificada</u>.</li>
+            <li><strong>Hugo</strong> necesita constancia física firmada → elige <u>PEF (acuse de recibo)</u>.</li>
+            <li><strong>Empresa Delta</strong> requiere contacto extra si no lo encuentran → usa <u>Premium Digital</u> con <u>tercer intento por SMS</u>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEST ===== -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso — Fax y Burofax</h3>
+
+      <div class="test" data-test-id="a16">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <!-- Q1 -->
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) El <em>fax</em>…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Fax: servicio nacional, entrega inmediata."><span>Es nacional y la entrega es inmediata</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="El fax no es internacional en esta operativa."><span>Funciona también internacionalmente</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No lleva lista: se transmite en el acto."><span>Permanece 30 días en lista</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) Burofax Premium admitido a las 12:30 en ciudad con USE (mes de mayo). El plazo correcto es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Antes de 13:00 y con USE → D+0, salvo julio-agosto-sept."><span>Entrega en el día (D+0)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Ese es el escenario tras las 13:00 o sin USE."><span>Al día hábil siguiente (D+1)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Burofax no tiene 48 h como estándar."><span>En 48 h</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) ¿Qué incluye el “pack” de <em>Premium Plus</em>?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Falta PEE/PEF y custodia en la opción."><span>Solo la primera página</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Incluye 1ª página + PEE o PEF + copia certificada + 60 meses de custodia."><span>1ª página + PEE o PEF + copia certificada + 60 meses de custodia</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Ese es un añadido de Premium Digital."><span>Solo tercer intento digital</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) En garantías, si hay demora imputable a Correos…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Se devuelve la tarifa abonada del burofax, sin los adicionales."><span>Se devuelve la tarifa abonada (sin servicios adicionales)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="No procede indemnización por pérdida en documentos digitalizados."><span>Se indemniza por pérdida del original</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="El plazo en lista de burofax es 30 días, no 7."><span>Se amplían 7 días de lista</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a17.html" rel="next">Siguiente ➜</a>
+
+<script>
+/* Motor mini-test */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn=p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
+      });
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var isOk=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(isOk){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-action]'); if(!b) return;
+    var p=b.closest('.pregunta'); if(!p) return;
+    var a=b.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
