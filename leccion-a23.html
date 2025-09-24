@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A23 — Correos Cash</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#1f618d; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A23 — Correos Cash</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A23 — Correos Cash</div>
+    <div class="leccion-sub">Ingresos y retiradas de efectivo y <em>ingreso de cheques</em> en oficinas de Correos para clientes de entidades concertadas. Con ejemplos y mini-test.</div>
+
+    <!-- 1) Qué es / alcance -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) ¿Qué es Correos Cash y para quién?</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Permite a los clientes de <strong>Ibercaja, EVO Banco, Banco Santander, Banco Mediolanum, Bancofar y Triodos Bank</strong> ingresar y retirar dinero en efectivo o cheques, hacer ingresos a terceros o enviar dinero a domicilio en oficinas de Correos, dirigiendo las operaciones desde la <em>app</em> del cliente. Es especialmente útil en entornos rurales donde haya menos oficinas bancarias. (Resumen fiel de págs. 58–59 del temario). 
+          <footer>Bloque A · Línea financiera — “Correos Cash” (pp. 58–59)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Correos hace de “ventanilla del banco” para entidades con acuerdo. Desde la app de tu banco generás un <strong>localizador</strong> y en una oficina de Correos podés:
+          <strong>ingresar efectivo</strong> (OIC), <strong>retirar efectivo</strong> (como un giro inmediato invertido) y <strong>ingresar cheques</strong>. Todo queda registrado en IRIS/SEDI.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Luis</strong> vive en un pueblo sin sucursal. Desde la app de su banco genera un código y en la oficina de Correos <em>retira 200 €</em> al instante.</li>
+            <li><strong>María</strong> cobra en metálico su alquiler y acude a Correos para <em>ingresar 600 €</em> en su cuenta de Ibercaja con el localizador de la app.</li>
+            <li><strong>Nerea</strong> lleva un <em>cheque nominativo</em> de Banco Mediolanum y lo presenta en Correos para ingresarlo en su cuenta corriente.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) Operativa: Ingreso de efectivo -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Ingreso de efectivo (OIC)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          El cliente solicita desde su <em>app</em> bancaria el <strong>ingreso en cuenta</strong>. La entidad envía al cliente un <strong>código</strong> (de puntos, alfanumérico o de barras) con la información necesaria. En oficina se realiza la operación como <strong>OIC</strong> (orden de ingreso en cuenta) a través de IRIS. El único campo no informado es el importe, que lo fija el cliente dentro de los <em>límites de Correos</em>. 
+          <footer>Correos Cash — Ingreso de efectivo</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🧭 Pistas</h4>
+        <div>
+          El empleado escanea/teclea el <strong>localizador</strong>, recibe el efectivo y lo asigna a la cuenta indicada por el banco. La trazabilidad queda en IRIS/SEDI.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Ejemplo real</h4>
+        <div class="ejemplo">
+          <em>“Tengo 350 € en metálico para mi cuenta de Triodos.”</em> — Genera el código en la app → oficina Correos → OIC por 350 € → recibo.
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Retirada de efectivo -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Retirada de efectivo</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          El cliente solicita en su <em>app</em> la retirada; el banco envía a Correos la orden y <strong>SEDI</strong> genera un <strong>localizador</strong> que se remite al cliente. Con ese código puede retirar el efectivo en cualquier oficina con servicio de envío de dinero. La modalidad es la de <strong>Giro Inmediato</strong>. Se tramita en IRIS. 
+          <footer>Correos Cash — Retirada de efectivo</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Funciona como si el banco “te enviara un giro” a tu nombre. Mostrás DNI + <strong>código</strong> y te entregan el dinero en ventanilla.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Ejemplo real</h4>
+        <div class="ejemplo">
+          <em>“Mi banco no tiene cajero en el pueblo.”</em> — Generás la retirada en la app; te llega un código; en Correos retiráis 120 € al momento.
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) Ingreso de cheques -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Ingreso de cheques (Mediolanum y acuerdos)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          El director de la oficina u otro designado identifica al cliente y recoge el cheque para su ingreso. Requisitos: <strong>nominativo</strong> (no al portador), <strong>para ingreso en cuenta corriente</strong> (barrado en anverso), <strong>firmado al reverso</strong> por el titular de la cuenta; puede entregarlo cualquier persona; debe ser de banco/caja con sucursal en España y <strong>en euros</strong>. Si el cheque está registrado en la <em>app</em> de la entidad, se solicita su <strong>código identificativo</strong>. 
+          <footer>Correos Cash — Ingreso de cheques</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Cheque “cruzado”, con firma al dorso. Correos lo admite, lo remite al banco y el abono lo verás cuando tu entidad lo liquide.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 Ejemplo real</h4>
+        <div class="ejemplo">
+          Te pagan una beca con <strong>cheque nominativo</strong>: lo llevás a Correos, te identifican, registran el código del cheque (si lo tienes en la app) y se tramita el ingreso a tu cuenta.
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) Extensión del servicio / asociaciones -->
+    <section class="minileccion">
+      <span class="badge">Contexto</span>
+      <h3 class="minititulo">5) Extensión del servicio y acuerdos sectoriales</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          En julio de 2022 Correos suscribe un <strong>Protocolo General de Actuación</strong> con <strong>AEB</strong>, <strong>CECA</strong> y <strong>UNACC</strong> para extender progresivamente estas facilidades a más entidades (BBVA, Sabadell, Bankinter, Openbank, cajas rurales, etc.) y mejorar la asistencia financiera básica en zonas rurales mediante 2.300 oficinas y 2.282 servicios rurales. 
+          <footer>Correos Cash — Acuerdos sectoriales (p. 59)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🧠 Clave para examen</h4>
+        <div>
+          **Correos Cash no es “banco”**: presta ventanilla para entidades que firman acuerdo. Operativa: IRIS/SEDI, con códigos/localizadores y verificación de identidad.
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz — Correos Cash</h3>
+
+      <div class="test" data-test-id="a23">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) Correos Cash sirve principalmente para…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Ventanilla para bancos con acuerdo: ingreso/retirada y cheques."><span>Ingresar/retirar efectivo y cheques de bancos con acuerdo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Eso es Western Union."><span>Enviar dinero a 200 países con MTCN</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Eso es Giro IFS internacional."><span>Ordenar giros UPU con código de 6–10 caracteres</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) En el <em>ingreso de efectivo</em> el dato que fija el cliente en oficina es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="El importe lo decide el cliente dentro de límites."><span>El importe del ingreso</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Viene en el código de la app."><span>El IBAN de destino</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Lo genera SEDI."><span>El localizador</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) La retirada de efectivo se tramita en Correos como…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Así lo indica el temario: modalidad Giro Inmediato."><span>Giro Inmediato (con localizador SEDI)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es una transferencia SEPA en oficina."><span>Transferencia SEPA</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Eso es WU."><span>Money Transfer con MTCN</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) Requisito NO válido para ingresar un cheque en Correos Cash</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Sí puede entregarlo un tercero."><span>Debe presentarlo el propio emisor del cheque</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Falso: puede presentarlo cualquier persona; ha de ser nominativo, cruzado y firmado al dorso."><span>Que lo presente exclusivamente el emisor del cheque</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es requisito: nominativo."><span>Que sea nominativo</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) ¿Qué sistemas usa Correos en estas operaciones?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="IRIS para la operación y SEDI para localizadores/registro."><span>IRIS y SEDI</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="No aplica aquí."><span>CCPC y SGIE</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="Es de paquetería."><span>GESCOM y SGIE-Paq</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a24.html" rel="next">Siguiente ➜</a>
+
+<script>
+/* Motor mini-test (consistente con el resto) */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn=p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
+      });
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var isOk=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(isOk){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-action]'); if(!b) return;
+    var p=b.closest('.pregunta'); if(!p) return;
+    var a=b.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
