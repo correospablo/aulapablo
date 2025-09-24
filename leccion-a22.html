@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A22 — Western Union</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A22 — Western Union</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A22 — Western Union</div>
+    <div class="leccion-sub">Qué es, modalidades (Will Call, Next Day, Direct to Bank, WU Air), límites y operativa. Con ejemplos y mini-test.</div>
+
+    <!-- 1. Qué es y modalidades -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) ¿Qué es Western Union en Correos?</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Gracias al acuerdo de colaboración entre Correos y Western Union, mayores de 18 años pueden realizar transferencias
+          por vía electrónica en cuestión de minutos a <strong>más de 200 países y territorios</strong> mediante un
+          número de control (MTCN) de 10 cifras.<br>
+          El envío puede cobrarse en distintos tipos de oficinas según el país; el límite máximo general de Correos (2.499,99 €)
+          <strong>no se aplica</strong> a Western Union.<br><br>
+          <em>Modalidades:</em> <strong>Will Call</strong> (minutos), <strong>Next Day</strong> (día siguiente),
+          <strong>Direct to Bank</strong> (abono directo en cuenta — no en todos los países) y <strong>Western Union Air</strong>
+          (finaliza en destino operaciones iniciadas en la app de WU).
+          <footer>Temario — pág. 56</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🗣️ Versión entendible</h4>
+        <div>
+          Es el servicio de giros internacionales instantáneos que gestionamos en ventanilla. Elegís modalidad según urgencia:
+          cobro en minutos, al día siguiente, ingreso directo a cuenta o completar una operación iniciada en el móvil.
+          Siempre se genera un <strong>MTCN</strong> que el destinatario debe presentar.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>👩‍🏫 Ejemplos reales</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Will Call:</strong> Marta envía 250 € a Portugal. Su hermano cobra en agencia WU a los 10 minutos con el MTCN.</li>
+            <li><strong>Next Day:</strong> Empresa paga a proveedor en Marruecos; el cobro queda disponible al día siguiente laborable.</li>
+            <li><strong>Direct to Bank:</strong> Un cliente transfiere 800 € a la cuenta de su madre en Chile; no hace falta ir a una agencia.</li>
+            <li><strong>WU Air:</strong> La persona inicia la transferencia en la app de WU y la finaliza en una oficina de Correos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Características y límites -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Características, plazos y límites</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Ámbito:</strong> internacional (oficinas de Correos y red WU en +200 países). Posible “envío” (pago en destino) y “pago” (cobro en España).<br>
+          <strong>Plazos:</strong> minutos (Will Call), 24 h (Next Day) o hasta 3 días según país; el sistema mantiene el dinero 90 días. Tras ese plazo, puede reactivarse vía <em>call center</em>.<br>
+          <strong>Usuarios:</strong> personas físicas mayores de 18 años (no admite apoderados para cobrar).<br>
+          <strong>Límites:</strong> <u>máximo 3000 €</u> por persona (remitente y beneficiario) y por día o trimestre natural (según país); <u>mínimo 0,01 €</u>.<br>
+          <strong>Servicios adicionales:</strong> entrega a domicilio (si el país lo ofrece), mensaje hasta 10 palabras, cambio de moneda, llamada/aviso en destino, “pregunta de verificación” (España no la admite).<br>
+          <strong>Tarifas:</strong> comisión por tramos del importe enviado. <strong>Pago</strong> normalmente en metálico en ventanilla; disponible la tarjeta de fidelización <em>WUcard / My WU</em>.<br>
+          <strong>Garantías:</strong> por demora puede solicitarse devolución de comisiones.
+          <footer>Temario — págs. 56–57</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🗣️ Versión entendible</h4>
+        <div>
+          Pensalo así: elegís rapidez y destino; el dinero queda disponible según modalidad. Si nadie lo cobra, permanece
+          90 días y luego hay que reactivarlo. Límite típico: <strong>hasta 3000 €</strong> (depende del país); los costes son
+          una comisión por tramos. En España cobramos en efectivo y pedimos identificación al remitente.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>👩‍🏫 Ejemplos reales</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Mensaje incluido:</strong> además del dinero, el remitente añade un texto de 10 palabras (“Feliz cumple, cobrará Juan Pérez”).</li>
+            <li><strong>Plazo 90 días:</strong> si la tía en Perú no cobra el giro en 3 meses, el remitente llama para reactivarlo o pedir devolución.</li>
+            <li><strong>Límite país:</strong> para Colombia puede haber tope específico; verificamos en el terminal antes de aceptar importes altos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Operativa en ventanilla -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Operativa rápida en oficina</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Para <strong>Direct to Bank</strong> se requiere: nombre del beneficiario titular de la cuenta, nombre del banco y número de cuenta. 
+          El pago al remitente (devolución) y el envío se efectúan cuando hay identificación correcta y todos los datos son válidos. 
+          El remitente recibe un <strong>SMS</strong> confirmando el éxito de la transacción.
+          <footer>Temario — pág. 56</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🗣️ Versión entendible</h4>
+        <div>
+          Identificamos al remitente, elegimos modalidad, país y moneda, registramos datos del beneficiario y cobramos la comisión.
+          Emitimos el <strong>MTCN</strong> (lo ve en el resguardo) y, si procede, enviamos el SMS. Recordá: España <em>no</em> admite “pregunta de verificación”.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>👩‍🏫 Ejemplos reales</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Datos bancarios incompletos:</strong> falta el IBAN → no se puede cursar “Direct to Bank”; se ofrece Will Call o completar datos.</li>
+            <li><strong>Reembolso de comisiones por demora:</strong> si un Next Day se acredita más tarde por causa del operador, el cliente puede reclamar la devolución de comisiones.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso — Western Union</h3>
+
+      <div class="test" data-test-id="a22">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) ¿A cuántos países/territorios llega la red WU que usamos en Correos?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1"><span>Más de 190</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="El temario actualiza a +200."><span>Más de 200</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Exactamente 150</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) Elegí la <em>modalidad</em> que ingresa el dinero directo a una cuenta</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2"><span>Will Call</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Direct to Bank = abono directo."><span>Direct to Bank</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>Next Day</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) Límite general indicado en temario para importes WU</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Máximo 3000 € por persona y por día o trimestre natural (según país)."><span>3000 € por persona</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>999,99 € por operación</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>2.499,99 € (tope Correos)</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) ¿Qué código permite cobrar el envío en destino?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4"><span>IBAN</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Número de Control de Transferencia de Dinero (10 dígitos)."><span>MTCN</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>SWIFT/BIC</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a23.html" rel="next">Siguiente ➜</a>
+
+<script>
+/* Motor mini-test (mismo que en otras lecciones) */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn=p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
+      });
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var isOk=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(isOk){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-action]'); if(!b) return;
+    var p=b.closest('.pregunta'); if(!p) return;
+    var a=b.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
