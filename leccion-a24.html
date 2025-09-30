@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A24 — Tarjeta Correos Prepago Mastercard</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#1f618d; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* listas clave */
+  .ticks{margin:0;padding-left:18px}
+  .ticks li{margin:4px 0}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A24 — Tarjeta Correos Prepago Mastercard</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A24 — Tarjeta Correos Prepago Mastercard</div>
+    <div class="leccion-sub">Qué es, cómo se obtiene, límites y comisiones, recargas, IBAN virtual, gestión/renovación y variantes (empresas/ayudas). Con ejemplos y quiz.</div>
+
+    <!-- 1. Qué es -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es la Tarjeta Correos Prepago Mastercard</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Permite pagar en comercios físicos o electrónicos adheridos a la red Mastercard, con el saldo que el cliente haya recargado previamente. No va vinculada a una cuenta bancaria. Se puede solicitar en oficinas (entrega instantánea) o por web/app (entrega al domicilio en ≈10 días hábiles tras su fabricación), con posterior verificación de identidad en oficina para el alta en prevención de blanqueo de capitales. <footer>Temario oficial — p. 60–63</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Es una <strong>tarjeta prepago</strong>: cargás dinero y gastás hasta ese saldo. Funciona donde acepten Mastercard y no necesita cuenta bancaria.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">Marta compra la tarjeta en la oficina, la recarga con 50 € en efectivo y paga su suscripción online. Si se gasta el saldo, no puede quedar en negativo.</div>
+      </div>
+    </section>
+
+    <!-- 2. Identidad y nominativa -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Identificación y “no nominativa” vs. nominativa</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          La tarjeta no es nominativa y lleva impresa la leyenda “NO NECESITA IDENTIFICACIÓN” para pagar en comercios; sí se requiere identificación para reintegros o gestiones en Correos. Si se solicita en web puede elegirse que sea nominativa (con el nombre impreso). En cualquier caso, el <em>alta</em> requiere escanear el DNI en oficina para su registro en el sistema de control de blanqueo de capitales. <footer>Temario oficial — p. 60</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Para <em>pagar</em> en tiendas no te piden DNI, pero para <em>retirar</em> o hacer trámites en Correos sí. Podés pedirla con tu nombre impreso.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">Diego quiere sacar efectivo en ventanilla: le piden DNI. En cambio, compra en un súper contactless sin mostrar documento.</div>
+      </div>
+    </section>
+
+    <!-- 3. Dónde se adquiere y coste -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Dónde se obtiene y cuánto cuesta</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Puede adquirirse en oficinas de Correos (entrega inmediata) o por web/app (plástico recibido en el domicilio; verificación posterior en oficina). Coste de emisión, tarjeta adicional o reemplazo: <strong>6 € (IVA incl.)</strong>. <footer>Temario oficial — p. 61</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>La sacás al instante en oficina o la pedís online y te llega a casa. Cada emisión o reposición cuesta 6 €.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">Lola perdió su tarjeta. Va a la oficina, pide un reemplazo (6 €) y le trasladan el saldo de la anterior.</div>
+      </div>
+    </section>
+
+    <!-- 4. Recargas: vías y límites por vía -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Recargas: dónde y cuánto</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Vías de recarga: en oficinas (efectivo), web <em>correosprepago.es</em>, app Correos Prepago, compartiendo fondos entre tarjetas de Correos Prepago e IBAN virtual (transferencia). Límites (extracto):<br>
+          • Mínimo por recarga: <strong>10 €</strong>. Máximo de <strong>5 recargas/día</strong> por tarjeta. <br>
+          • En efectivo: hasta <strong>999,99 €</strong> por operación (998,49 € + 1,50 € de comisión), sin superar <strong>1.000 € al día</strong> ni <strong>5.000 € al mes</strong>. <br>
+          • Con tarjeta (crédito/débito): <strong>500 € al día</strong> (servicio temporalmente no disponible en oficinas). <br>
+          • Por transferencia a IBAN virtual: <strong>5.000 €</strong> por recarga. <footer>Temario oficial — p. 61</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Podés cargarla en ventanilla, online o por transferencia. Pensá en el número mágico: <strong>10€ mínimo</strong>, <strong>5 recargas/día</strong>, tope típicamente <strong>1.000€/día</strong> y <strong>5.000€/mes</strong> (vía efectivo).</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">Antonio quiere ingresar 1.200 € en oficina. No puede en una sola operación: hace dos recargas (700 € + 500 €) respetando el máximo diario de 1.000 €.</div>
+      </div>
+    </section>
+
+    <!-- 5. Uso, reintegros y comisiones -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">5) Reintegros y comisiones frecuentes</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Principales comisiones y límites (resumen):<br>
+          • Recarga en oficina: <strong>1,5 €</strong>. · Recarga en web/app: <strong>2 €</strong>.<br>
+          • Retiro en oficinas de Correos: <strong>1 €</strong>. · Retiro en cajeros zona euro: <strong>1 € + 0,20 %</strong> (más comisión del cajero según entidad).<br>
+          • Transferencia entre tarjetas Correos Prepago: <strong>0,10 €</strong>.<br>
+          • Límite de reintegros en oficina: hasta <strong>300 € por operación</strong> y <strong>600 € al día</strong> (operaciones en tickets separados). En cajero: <strong>600 € día</strong>, <strong>1.000 € mes</strong>, <strong>12.000 € año</strong>.<br>
+          • Sin cuota de mantenimiento; gasto por inactividad tras 365 días sin uso: <strong>1 €/mes</strong>. <footer>Temario oficial — p. 61–62</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Para memorizar: <em>recarga</em> oficina 1,5 €, <em>web/app</em> 2 €; <em>retirar</em> en oficina 1 € y en cajero 1 € + 0,20 %. Límite típico de efectivo: 300 €/operación (600 € al día) en ventanilla.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">Sofía necesita 500 € en mano. En oficina hace dos retiros: 300 € y 200 €. Le cobran 1 € en cada operación (2 € en total) y respeta el máximo diario de 600 €.</div>
+      </div>
+    </section>
+
+    <!-- 6. IBAN virtual y funcionalidades digitales -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">6) IBAN virtual y extras digitales</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Servicio <strong>IBAN</strong> (cuenta virtual SEPA): permite recargar por transferencia y realizar transferencias nacionales/internacionales. Cuota de mantenimiento del servicio: <strong>2 €/mes</strong>. Recarga por transferencia: hasta <strong>5.000 €</strong>. Transferencia de salida: hasta <strong>7.500 €</strong>. Otras funciones: acceso con correo electrónico, 3D Secure con OTP por SMS, vinculación a medios de pago digitales (PayPal, Apple Pay, Google Pay), gestión de hasta cuatro tarjetas en un mismo perfil y gestión de tarjetas de terceros con autorización OTP. <footer>Temario oficial — p. 63</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Con el IBAN tu prepago se comporta como una mini-cuenta: recibís nómina o hacés transferencias (coste del servicio 2 €/mes). Además, podés usarla con Apple/Google Pay.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">A un autónomo le ingresan 600 € en el IBAN de su tarjeta y paga proveedores con transferencia inmediata desde la app.</div>
+      </div>
+    </section>
+
+    <!-- 7. Baja, anulación, renovación -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">7) Baja, anulación y renovación por caducidad</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          • Anulación de operaciones: solo el mismo día; si no, incidencia por PoST (servicio interno).<br>
+          • Baja: saldo a cero + devolución de tarjeta (se corta banda/chip).<br>
+          • Renovación por caducidad: un mes antes se notifica al titular; puede adquirir nueva tarjeta en oficina con traspaso de saldo o solicitarla por Atención al Cliente (envío a domicilio en 7–10 días). <footer>Temario oficial — p. 61–62</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Para darla de baja, dejala sin saldo y entregala en oficina. Si caduca, te avisan y podés renovar con traspaso del saldo.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">A Juan le caduca en mayo. En abril recibe aviso; pasa por la oficina, emiten una nueva y trasladan automáticamente su saldo.</div>
+      </div>
+    </section>
+
+    <!-- 8. Empresas y ayudas sociales -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">8) Empresas, tarjetas secundarias y ayudas</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          • Tarjetas secundarias: hasta <strong>tres</strong> adicionales por titular (con su PIN). Dependientes posibles (comisión de <strong>6 €</strong> se descuenta de la principal).<br>
+          • Correos Prepago Empresas: monedero digital con IBAN, recargas por transferencia y panel de gestión (tarifa anual según nº de tarjetas/empleados).<br>
+          • Ayudas sociales/bonos: emisión de tarjetas para colectivos (ej.: Bono Cultural Joven 400 € en 2022) y otras iniciativas públicas; no admiten recargas particulares. <footer>Temario oficial — p. 63–64</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Podés tener tarjetas extra para familia o empleados. Las <em>Ayudas Sociales</em> son tarjetas que cargan las administraciones (el usuario gasta, pero no recarga).</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">Una pyme entrega 10 tarjetas Empresa a su equipo: cada mes recarga dietas desde el panel y controla gastos en tiempo real.</div>
+      </div>
+    </section>
+
+    <!-- 9. Otras notas -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">9) Otros datos útiles (SEPA, medidas, ediciones especiales)</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Ámbito: válida en <strong>SEPA</strong> (nacional e internacional). Medidas de la tarjeta: <strong>85,60 × 53,98 mm</strong>, norma <strong>ISO/IEC 7810 ID-1</strong>. Existen ediciones/series especiales (p. ej., Camino de Santiago; versiones virtuales temáticas). <footer>Temario oficial — p. 60 y 64</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>Funciona en toda la zona de pagos en euros. Algunas ediciones son solo virtuales y pueden venir con campañas/promos.</div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">Claudia viaja por Portugal y paga peajes y hoteles con su tarjeta prepago sin problema (SEPA).</div>
+      </div>
+    </section>
+
+    <!-- Quiz -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz — Tarjeta Correos Prepago</h3>
+
+      <div class="test" data-test-id="a24">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) La tarjeta Correos Prepago es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1"><span>Una tarjeta de crédito asociada a un banco</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Funciona con saldo cargado previamente."><span>Una tarjeta prepago no vinculada a cuenta</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Una tarjeta de fidelización sin pagos</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) Para realizar un <em>reintegro</em> en oficina, el titular debe…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Siempre se identifica para retiradas/gestiones."><span>Identificarse con su DNI</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>No mostrar documento nunca</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>Enviar un email al soporte</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) Coste de emisión o reemplazo de la tarjeta</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3"><span>0 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Según temario: 6 € IVA incl."><span>6 € (IVA incl.)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>10 €</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) Mínimo por recarga y máximo de recargas/día</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Clave: 10 € y hasta 5 recargas/día."><span>10 € · 5 recargas/día</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>20 € · 3 recargas/día</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>5 € · 10 recargas/día</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) Tope típico por <em>efectivo</em> en recargas (oficina)</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5"><span>2.000 € día · 10.000 € mes</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="1.000 €/día y 5.000 €/mes, según temario."><span>1.000 € día · 5.000 € mes</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>600 € día · 1.000 € mes</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q6">
+          <h5>6) Comisión por recargar en <em>oficina</em> y en <em>web/app</em></h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Oficina 1,5 €; web/app 2 €."><span>1,5 € · 2 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>2 € · 1,5 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>1 € · 1 €</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q7">
+          <h5>7) Reintegro en cajero zona euro: comisión básica</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="+ la comisión del cajero del banco."><span>1 € + 0,20 %</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>0,50 € fijos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>Gratis</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q8">
+          <h5>8) Con el servicio <em>IBAN</em> podés…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q8"><span>Solo recargar en oficina</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="Recibir transferencias y enviar hasta 7.500 € por operación."><span>Recibir y enviar transferencias (salida hasta 7.500 €)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8"><span>Crear una cuenta bancaria tradicional</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q9">
+          <h5>9) Límite por operación de reintegro en <em>oficina</em></h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q9" data-correct="true" data-explain="Hasta 300 € por operación; 600 € al día."><span>300 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9"><span>500 €</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9"><span>1.000 €</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q10">
+          <h5>10) ¿Cuántas tarjetas secundarias podés añadir por titular?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q10"><span>Una</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-correct="true" data-explain="Hasta tres, según temario."><span>Tres</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10"><span>Sin límite</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente: ajustá el destino cuando tengas la A25 -->
+  <a class="boton-siguiente" href="bloques.html" rel="next">Volver a Bloques</a>
+
+<script>
+/* Motor mini-test (reutilizado) */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn=p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
+      });
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var isOk=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(isOk){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-action]'); if(!b) return;
+    var p=b.closest('.pregunta'); if(!p) return;
+    var a=b.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
