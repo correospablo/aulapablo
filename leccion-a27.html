@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A27 — Correos Pay (antes Tenvío)</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  .checks{margin:0;padding-left:18px}
+  .checks li{margin:6px 0}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A27 — Correos Pay</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A27 — Correos Pay (antes Tenvío)</div>
+    <div class="leccion-sub">Plataforma financiera de Correos para OIC, pagos de recibos y operativas asociadas a giros.</div>
+
+    <!-- ===== MINILECCIÓN 1 ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) ¿Qué es Correos Pay?</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Correos Pay (antes Tenvío)</strong>: <u>envío orden de ingreso en cuenta (OIC)</u>. Servicio de pago de <u>recibos o facturas</u> para autónomos, pymes, ayuntamientos, etc.
+          <footer>Temario — (apartado “Giro nacional / Modalidades”)</footer>
+        </blockquote>
+        <blockquote class="cita">
+          <u>Envío a prisiones</u>: la cantidad girada, dirigida a un recluso, se ingresa en la cuenta de prisiones autorizada previamente. <u>Se realiza mediante Correos Pay</u>.
+          <footer>Temario — (apartado “Giro nacional / Modalidades”)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Correos Pay es la <strong>plataforma de cobros/pagos de Correos</strong>. Con ella:
+          <ul class="checks">
+            <li>Metés dinero en una <strong>cuenta bancaria</strong> del destinatario (OIC).</li>
+            <li>Pagás <strong>recibos y facturas</strong> (autónomos, pymes, administraciones).</li>
+            <li>Canalizás <strong>ingresos a prisiones</strong> (a las cuentas autorizadas).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <strong>Lorena</strong> lleva a la oficina el recibo del agua de su bar y lo paga con Correos Pay. Queda abonado y se emite justificante.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 2 ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Formas de pago y particularidades</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <u>Formas de pago</u>: el remitente lo abona en ventanilla y en metálico. <strong>El servicio Premium de Correos Pay permite el pago con tarjeta de débito o crédito</strong>.
+          <footer>Temario — (apartado “Giro nacional / Formas de pago”)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🧭 Versión entendible</h4>
+        <ul class="checks">
+          <li>Pago habitual: <strong>efectivo en ventanilla</strong>.</li>
+          <li>Si la oficina/cliente tiene <strong>Correos Pay Premium</strong>, también se acepta <strong>tarjeta</strong>.</li>
+          <li>En ingresos a prisiones, el dinero va a la <strong>cuenta específica</strong> autorizada.</li>
+        </ul>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <strong>Mario</strong> quiere hacer un OIC a la cuenta de su hija. Paga con tarjeta porque su oficina trabaja con Correos Pay Premium; se genera justificante con el número de operación.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 3 ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Operativas típicas con Correos Pay</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal (síntesis normativa)</h4>
+        <blockquote class="cita">
+          Correos Pay permite <u>ordenes de ingreso en cuenta (OIC)</u>, <u>pagos de recibos/facturas</u> y <u>envíos a prisiones</u> mediante abono en cuentas autorizadas.
+          <footer>Síntesis del temario (bloque Línea Financiera)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <ol class="checks">
+          <li><strong>OIC</strong>: llevás el dinero a la oficina y lo ingresamos en la <em>cuenta</em> que indicás.</li>
+          <li><strong>Pago de recibos</strong>: traés el documento (o el código) y lo abonás allí mismo.</li>
+          <li><strong>Prisiones</strong>: ingresás fondos a la cuenta del centro para un interno (solo cuentas autorizadas).</li>
+        </ol>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Ana</strong> paga la tasa municipal de terrazas (recibo con código) en el mostrador con Correos Pay.</li>
+            <li><strong>Rubén</strong> ingresa 150 € vía OIC a la cuenta de su casero para la fianza.</li>
+            <li><strong>Bea</strong> hace un ingreso a prisiones para su hermano; la oficina lo tramita por la cuenta autorizada del centro penitenciario.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEST ===== -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso — Correos Pay</h3>
+
+      <div class="test" data-test-id="a27">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) Correos Pay (antes Tenvío) se usa, entre otras cosas, para…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Es la plataforma para OIC."><span>Ordenes de ingreso en cuenta (OIC)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Eso es Western Union."><span>Transferencias WU a 200 países</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No es su función."><span>Envío de paquetes internacionales</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Qué afirmación es correcta sobre el <em>pago</em> en Correos Pay?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Premium habilita tarjeta en mostrador."><span>Por regla general se paga en efectivo; con Correos Pay Premium se puede pagar con tarjeta</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="No es la norma general."><span>Siempre se exige tarjeta, nunca efectivo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="En ventanilla se puede."><span>Solo admite transferencia bancaria previa</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) Los ingresos para internos en centros penitenciarios se tramitan…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Así lo establece el temario."><span>Mediante Correos Pay a la cuenta autorizada del centro</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No existe esa opción."><span>Con cheque al portador entregado al cartero</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es el canal indicado."><span>Con un giro IFS internacional</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) Elegí el caso que <em>sí</em> corresponde a Correos Pay</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Eso es paquetería."><span>Enviar un paquete a Francia</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Pago de recibos/facturas es propio de Correos Pay."><span>Pagar un recibo del ayuntamiento presentado en la oficina</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es otro producto financiero (WU)."><span>Enviar dinero en minutos a un familiar en Perú</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Siguiente lección -->
+  <a class="boton-siguiente" href="leccion-a28.html" rel="next">Siguiente: A28 ➜</a>
+
+<script>
+/* Motor mini-test (igual que en las otras lecciones) */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn=p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
+      });
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var isOk=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(isOk){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-action]'); if(!b) return;
+    var p=b.closest('.pregunta'); if(!p) return;
+    var a=b.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
