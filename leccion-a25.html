@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección A25 — Tarjeta Más Cerca</title>
+<style>
+  :root{
+    --c-leccion:#60a5fa; --c-texto:#1453a6; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;padding:16px;background:#f7f7f7;color:#222}
+  .contenedor{max-width:980px;margin:0 auto;padding-bottom:120px}
+  .leccion-titulo{font-size:28px;font-weight:800;margin:8px 0 4px}
+  .leccion-sub{font-size:16px;color:#555;margin-bottom:18px}
+
+  /* breadcrumb */
+  .breadcrumb{
+    max-width:980px;margin:4px auto 14px;padding:10px 12px;background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
+
+  /* bloques */
+  .minileccion{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 1px 2px rgba(0,0,0,.04);border-left:6px solid var(--c-leccion)}
+  .badge{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#eef6ff;color:#1453a6;border:1px solid #d7e9ff;margin-bottom:8px}
+  .minititulo{display:block;margin:0 0 14px;padding:16px 18px;background:#d6eaf8;color:#1f618d;border-left:8px solid #1f618d;border-radius:12px;font-weight:800;font-size:22px}
+
+  .bloque{border-radius:10px;padding:12px;margin:14px 0;border:1px solid #e9e9e9}
+  .bloque h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#444}
+  .b-texto{background:var(--bg-legal);border-color:#d6eaf8;border-left:6px solid var(--c-texto)}
+  .b-texto h4{color:var(--c-texto)}
+  blockquote.cita{background:#fff;border-left:4px solid var(--c-texto);padding:10px 12px;border-radius:8px;margin:6px 0 0;color:#333}
+  blockquote.cita footer{font-size:12px;color:#666;margin-top:6px}
+
+  .b-explica{background:var(--bg-explica);border-color:#ead1f3;border-left:6px solid var(--c-explica)}
+  .b-explica h4{color:#8e44ad}
+
+  .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
+  .b-ejemplo h4{color:#ca6f1e}
+  .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
+
+  /* Test */
+  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
+  .test .titulo-test{font-weight:700;color:var(--c-test);margin:0 0 8px}
+  .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
+  .pregunta h5{margin:0 0 8px;font-size:16px}
+  .opciones{list-style:none;margin:0;padding:0}
+  .opciones li{margin:8px 0}
+  .opcion{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e6e6e6;border-radius:8px;padding:10px;cursor:pointer}
+  .opcion input{margin-top:4px}
+  .opcion.correcta{background:#eafaf1;border-color:#c8f3da}
+  .opcion.incorrecta{background:#fdecea;border-color:#f5c6cb}
+  .acciones{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .btn{border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  .btn-primario{background:#1453a6;color:#fff}
+  .btn-secundario{background:#ececec;color:#222}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
+  .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
+  .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .explicacion{font-size:14px;color:#444;margin-top:4px}
+
+  /* Botón siguiente */
+  .boton-siguiente{
+    position:fixed;right:16px;bottom:16px;background:#28a745;color:#fff;border:none;border-radius:10px;
+    padding:12px 18px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(40,167,69,.25);
+    transition:transform .05s ease-in-out,box-shadow .15s ease;z-index:9999
+  }
+  .boton-siguiente:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(40,167,69,.33)}
+</style>
+</head>
+
+<body>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="migas">
+    <a href="index.html">Inicio</a><span class="sep">›</span>
+    <a href="bloques.html">Bloques</a><span class="sep">›</span>
+    <span>Lección A25 — Tarjeta Más Cerca</span>
+  </nav>
+
+  <div class="contenedor">
+    <div class="leccion-titulo">Lección A25 — Tarjeta Más Cerca</div>
+    <div class="leccion-sub">Tarjeta gratuita de fidelización de Correos. Ventajas, cómo se identifica, quién puede tenerla y qué documentación se pide.</div>
+
+    <!-- ===== MINILECCIÓN 1: Qué es y ventajas ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">1) Qué es la Tarjeta Más Cerca y qué ventajas tiene</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Es la tarjeta gratuita de fidelización de Correos. Permite a su titular beneficiarse de ventajas y descuentos exclusivos en los envíos que realice. Es de ámbito nacional y se usa en un entorno cerrado, en operaciones comerciales con Correos. <br><br>
+          Las ventajas de esta tarjeta son las siguientes: <br>
+          • Descuentos y promociones exclusivas. <br>
+          • El cliente puede recibir su factura mensual de forma automática. <br>
+          • Hasta cuatro tarjetas adicionales gratuitas para que pueda operar a través de quien quiera con total control. La tarjeta del titular acaba siempre en múltiplo de 5 (00, 05, 10, 15…). Las tarjetas adicionales acabarán en 01, 02, 03, 04 (correlativas saltando los múltiplos de 5). <br>
+          • El cliente puede usarla como tarjeta prepago para abonar sus compras en Correos y establecer un límite de gasto diario. 
+          <footer>Temario — Tarjeta Más Cerca (págs. 65–66)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Es una tarjeta <strong>gratis</strong> para clientes de Correos que da <strong>descuentos</strong>, permite <strong>factura mensual automática</strong> y te deja pedir hasta <strong>4 tarjetas extra</strong> para otras personas (familia, personal de la empresa), manteniendo el control. El número de la tarjeta del titular siempre termina en <strong>múltiplo de 5</strong> (…00, 05, 10…) y las adicionales en <strong>01–04</strong>. También puede funcionar como <em>prepago</em> para pagar en Correos con límite diario.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Lucía autónoma</strong> tramita varias certificadas por mes. Con Más Cerca obtiene un <em>descuento promocional</em> y recibe la <em>factura mensual</em> sin pedirla.</li>
+            <li><strong>Asociación vecinal</strong>: el presidente es titular y pide <em>4 adicionales</em> (terminadas en 01–04) para tesorero y voluntarias. Todos pagan con la tarjeta y el presidente ve el consumo.</li>
+            <li><strong>Uso prepago</strong>: Juan carga €50 y pone <em>límite diario €10</em> para no pasarse cuando compra embalajes en la oficina.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 2: Características básicas ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Características y coste</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Características</strong><br>
+          • Ámbito: nacional. <br>
+          • Tarifa: gratuita. 
+          <footer>Temario — Tarjeta Más Cerca (pág. 65)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Solo se usa en España/Andorra y <strong>no tiene coste de emisión</strong>. Se emplea en operaciones con Correos (no es una tarjeta bancaria para comercios externos).
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <p>Marcos va a su oficina, pide la tarjeta y se la entregan sin pagar nada. A la semana siguiente aprovecha una promo de <em>carta certificada</em> para clientes Más Cerca.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 3: Quién puede obtenerla y documentos ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Quién puede tenerla y qué documentación se pide</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Esta tarjeta está disponible para particulares, empresas y para organismos públicos. La documentación a aportar en el momento de la solicitud de la tarjeta, en cada caso, es la siguiente: <br><br>
+          • <strong>Particulares</strong>: Documento Nacional de Identidad. <br>
+          • <strong>Empresas</strong>: Acta de constitución; documento por el que se apodera al representante; documento identificativo de la persona apoderada. <br>
+          • <strong>Organismo público</strong>: Nombramiento en el cargo de la persona que lo firma; norma o documento acreditativo de capacidad de representación; copia del CIF del organismo; documento identificativo del representante.
+          <footer>Temario — Tarjeta Más Cerca (pág. 66)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          La puede pedir cualquiera: personas físicas, empresas y administraciones. Los <strong>particulares</strong> van con DNI; las <strong>empresas</strong> necesitan papeles de constitución + apoderamiento; los <strong>organismos</strong> aportan nombramiento, norma que habilita, CIF y DNI del representante.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Particular</strong>: Ana lleva su DNI, firma la solicitud y se la entregan.</li>
+            <li><strong>Empresa</strong>: “LogiPyme SL” presenta escritura, poder de representación y DNI del apoderado; obtienen la del titular (termina en 20) + cuatro adicionales 21–24.</li>
+            <li><strong>Ayuntamiento</strong>: el Secretario presenta su <em>nombramiento</em>, norma habilitante, <em>CIF</em> y DNI. La usan para envíos de notificaciones.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINILECCIÓN 4: Esquema de numeración y control ===== -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Numeración (titular y adicionales) y control de gasto</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          La tarjeta del titular acaba siempre en múltiplo de 5 (00, 05, 10, 15…). Las tarjetas adicionales acabarán en 01, 02, 03, 04 (correlativas saltando los múltiplos de 5). El cliente puede usarla como tarjeta prepago para abonar sus compras en Correos y establecer un límite de gasto diario.
+          <footer>Temario — Tarjeta Más Cerca (pág. 65)</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          El final del número te dice si es <strong>titular</strong> (termina en 00/05/10/15…) o <strong>adicional</strong> (01–04). Si la usás como <em>prepago</em>, podés fijar un tope diario para no pasarte.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <p>El titular de “Panadería Sol” tiene la tarjeta que acaba en <strong>…25</strong>. Entrega dos adicionales para empleados <strong>…21</strong> y <strong>…22</strong> y les fija un <em>límite de €15/día</em> para compras de embalajes y certificados.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEST ===== -->
+    <section class="minileccion">
+      <span class="badge">Mini test</span>
+      <h3 class="minititulo">Quiz de repaso — Tarjeta Más Cerca</h3>
+
+      <div class="test" data-test-id="a25">
+        <div class="titulo-test">🧪 Ponete a prueba</div>
+
+        <div class="pregunta" data-question-id="q1">
+          <h5>1) La Tarjeta Más Cerca es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Es la tarjeta gratuita de fidelización de Correos."><span>Una tarjeta de fidelización gratuita de Correos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="No sirve para comercios externos."><span>Una tarjeta bancaria para cualquier comercio</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-explain="Tiene ámbito nacional."><span>Una tarjeta internacional de compras</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q2">
+          <h5>2) ¿Qué ventaja NO corresponde?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="Sí es una ventaja."><span>Factura mensual automática</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-explain="También es ventaja."><span>Hasta 4 tarjetas adicionales gratuitas</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="No ofrece descuentos en comercios ajenos a Correos."><span>Descuentos en supermercados externos</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q3">
+          <h5>3) La tarjeta del titular termina en…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="00, 05, 10, 15… (múltiplos de 5)."><span>Múltiplo de 5 (…00, 05, 10, 15…)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="Es de adicionales."><span>01–04</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-explain="No se usa."><span>06–09</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q4">
+          <h5>4) Una adicional válida termina en…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Las adicionales son 01, 02, 03, 04."><span>01–04</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es titular."><span>10</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-explain="No figura en el esquema."><span>11–14</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) El ámbito de uso de Más Cerca es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Se usa en ámbito nacional."><span>Nacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="No, no es internacional."><span>Internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-explain="No es correcta."><span>Solo capitales de provincia</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q6">
+          <h5>6) Para particulares, el documento requerido es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="DNI del titular."><span>DNI</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="Eso es para organismos."><span>Nombramiento en el cargo</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-explain="Es documentación de empresa."><span>Escritura de constitución</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q7">
+          <h5>7) Para empresas se exige, entre otros, el…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="Eso es de particular."><span>Pasaporte del titular</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Escritura/acta de constitución y poder del representante."><span>Acta de constitución y poder del representante</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-explain="No corresponde."><span>CIF del organismo público</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q8">
+          <h5>8) ¿Puede usarse como tarjeta prepago con límite diario?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="Sí, para pagar compras en Correos con tope diario."><span>Sí, con límite de gasto diario configurable</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="Es precisamente una función prevista."><span>No, nunca</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8" data-explain="Se usa solo en Correos, no en comercios externos."><span>Sí, en cualquier comercio Mastercard</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q9">
+          <h5>9) ¿Cuántas tarjetas adicionales gratuitas se pueden emitir como máximo?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q9" data-explain="Es el máximo permitido."><span>3</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-correct="true" data-explain="Hasta 4 adicionales gratuitas."><span>4</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q9" data-explain="Demasiadas."><span>6</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q10">
+          <h5>10) La opción correcta sobre la numeración es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q10" data-explain="Es al revés."><span>Titular 01–04; adicionales múltiplos de 5</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-correct="true" data-explain="Titular acaba en 00/05/10/15…; adicionales 01–04."><span>Titular en múltiplos de 5; adicionales 01–04</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q10" data-explain="No existe ese patrón."><span>Todas terminan en 00</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="bloques.html" rel="up">Volver a Bloques</a>
+
+<script>
+/* Motor mini-test: mismo que en A7–A10 */
+(function(){
+  function init(){
+    document.querySelectorAll('.pregunta').forEach(function(p){
+      var btn=p.querySelector('button[data-action="comprobar"]');
+      if(btn) btn.disabled=true;
+      p.addEventListener('change',function(e){
+        if(e.target.matches('input[type="radio"]')) btn.disabled=false;
+      });
+    });
+  }
+  function comprobar(p){
+    var sel=p.querySelector('input[type="radio"]:checked');
+    var ok=p.querySelector('.feedback.ok'), ko=p.querySelector('.feedback.ko');
+    ok.style.display='none'; ok.textContent='';
+    ko.style.display='none'; ko.textContent='';
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    if(!sel){ko.textContent='Elegí una opción antes de comprobar.'; ko.style.display='block'; return;}
+    var isOk=sel.hasAttribute('data-correct');
+    var exp=sel.getAttribute('data-explain')||'';
+    var card=sel.closest('.opcion');
+    if(isOk){card.classList.add('correcta'); ok.innerHTML='✅ ¡Bien!<div class="explicacion">'+exp+'</div>'; ok.style.display='block';}
+    else{card.classList.add('incorrecta'); ko.innerHTML='❌ No es esa.<div class="explicacion">'+exp+'</div>'; ko.style.display='block';}
+  }
+  function reset(p){
+    p.querySelectorAll('input[type="radio"]').forEach(function(r){r.checked=false});
+    p.querySelectorAll('.feedback').forEach(function(f){f.style.display='none'; f.textContent='';});
+    p.querySelectorAll('.opcion').forEach(function(o){o.classList.remove('correcta','incorrecta')});
+    var b=p.querySelector('button[data-action="comprobar"]'); if(b) b.disabled=true;
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-action]'); if(!b) return;
+    var p=b.closest('.pregunta'); if(!p) return;
+    var a=b.getAttribute('data-action');
+    if(a==='comprobar') comprobar(p);
+    if(a==='reset') reset(p);
+  });
+  init();
+})();
+</script>
+</body>
+</html>
