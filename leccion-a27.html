@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lección A27 — Correos Pay (antes Tenvío)</title>
+<title>Lección A27 — Correos Pay</title>
 <style>
   :root{
-    --c-leccion:#60a5fa; --c-texto:#2e86c1; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
+    --c-leccion:#60a5fa; --c-texto:#1f618d; --c-explica:#8e44ad; --c-ejemplo:#ca6f1e; --c-test:#117a65;
     --bg-legal:#ebf5fb; --bg-explica:#f5eef8; --bg-ejemplo:#fae5d3; --bg-test:#f4f6f7;
   }
   *{box-sizing:border-box}
@@ -42,9 +42,6 @@
   .b-ejemplo{background:var(--bg-ejemplo);border-color:#f7d7bd;border-left:6px solid var(--c-ejemplo)}
   .b-ejemplo h4{color:#ca6f1e}
   .ejemplo{background:#fff8ef;border:1px solid #f7d7bd;border-radius:10px;padding:12px}
-
-  .checks{margin:0;padding-left:18px}
-  .checks li{margin:6px 0}
 
   /* Test */
   .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #cfe6df;border-left:6px solid var(--c-test);border-radius:12px}
@@ -86,157 +83,277 @@
   </nav>
 
   <div class="contenedor">
-    <div class="leccion-titulo">Lección A27 — Correos Pay (antes Tenvío)</div>
-    <div class="leccion-sub">Plataforma financiera de Correos para OIC, pagos de recibos y operativas asociadas a giros.</div>
+    <div class="leccion-titulo">Lección A27 — Correos Pay</div>
+    <div class="leccion-sub">Qué es, modalidades, operativa en oficina, plazos/tarifas y alta de cliente. Con ejemplos y mini-test.</div>
 
-    <!-- ===== MINILECCIÓN 1 ===== -->
+    <!-- 1) Qué es Correos Pay -->
     <section class="minileccion">
       <span class="badge">Minilección</span>
-      <h3 class="minititulo">1) ¿Qué es Correos Pay?</h3>
+      <h3 class="minititulo">1) Qué es Correos Pay</h3>
 
       <div class="bloque b-texto">
         <h4>📘 Texto literal</h4>
         <blockquote class="cita">
-          <strong>Correos Pay (antes Tenvío)</strong>: <u>envío orden de ingreso en cuenta (OIC)</u>. Servicio de pago de <u>recibos o facturas</u> para autónomos, pymes, ayuntamientos, etc.
-          <footer>Temario — (apartado “Giro nacional / Modalidades”)</footer>
-        </blockquote>
-        <blockquote class="cita">
-          <u>Envío a prisiones</u>: la cantidad girada, dirigida a un recluso, se ingresa en la cuenta de prisiones autorizada previamente. <u>Se realiza mediante Correos Pay</u>.
-          <footer>Temario — (apartado “Giro nacional / Modalidades”)</footer>
+          Servicio (antes TéNvío) que permite a empresas y organismos públicos la gestión de cobros utilizando la infraestructura del giro postal, para que los ciudadanos realicen pagos (multas, impuestos, tasas, suministros, facturas…) en cualquier oficina informatizada de Correos, con horario amplio y en algunas localidades también en sábado. Correos actúa como mero transmisor del dinero. 
+          <footer>Temario — 4.8 Correos Pay</footer>
         </blockquote>
       </div>
 
       <div class="bloque b-explica">
         <h4>🎤 Versión entendible</h4>
         <div>
-          Correos Pay es la <strong>plataforma de cobros/pagos de Correos</strong>. Con ella:
-          <ul class="checks">
-            <li>Metés dinero en una <strong>cuenta bancaria</strong> del destinatario (OIC).</li>
-            <li>Pagás <strong>recibos y facturas</strong> (autónomos, pymes, administraciones).</li>
-            <li>Canalizás <strong>ingresos a prisiones</strong> (a las cuentas autorizadas).</li>
-          </ul>
+          Es el “cobro en ventanilla” de Correos para terceros. La empresa/ayuntamiento firma un acuerdo y sus vecinos/usuarios pueden ir a pagar su recibo en la oficina de Correos. Correos sólo tramita el pago y devuelve los datos al cliente (empresa) en 72 h hábiles.
         </div>
-      </div>
-
-      <div class="bloque b-ejemplo">
-        <h4>🎯 En la vida real</h4>
-        <div class="ejemplo">
-          <strong>Lorena</strong> lleva a la oficina el recibo del agua de su bar y lo paga con Correos Pay. Queda abonado y se emite justificante.
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== MINILECCIÓN 2 ===== -->
-    <section class="minileccion">
-      <span class="badge">Minilección</span>
-      <h3 class="minititulo">2) Formas de pago y particularidades</h3>
-
-      <div class="bloque b-texto">
-        <h4>📘 Texto literal</h4>
-        <blockquote class="cita">
-          <u>Formas de pago</u>: el remitente lo abona en ventanilla y en metálico. <strong>El servicio Premium de Correos Pay permite el pago con tarjeta de débito o crédito</strong>.
-          <footer>Temario — (apartado “Giro nacional / Formas de pago”)</footer>
-        </blockquote>
-      </div>
-
-      <div class="bloque b-explica">
-        <h4>🧭 Versión entendible</h4>
-        <ul class="checks">
-          <li>Pago habitual: <strong>efectivo en ventanilla</strong>.</li>
-          <li>Si la oficina/cliente tiene <strong>Correos Pay Premium</strong>, también se acepta <strong>tarjeta</strong>.</li>
-          <li>En ingresos a prisiones, el dinero va a la <strong>cuenta específica</strong> autorizada.</li>
-        </ul>
-      </div>
-
-      <div class="bloque b-ejemplo">
-        <h4>🎯 En la vida real</h4>
-        <div class="ejemplo">
-          <strong>Mario</strong> quiere hacer un OIC a la cuenta de su hija. Paga con tarjeta porque su oficina trabaja con Correos Pay Premium; se genera justificante con el número de operación.
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== MINILECCIÓN 3 ===== -->
-    <section class="minileccion">
-      <span class="badge">Minilección</span>
-      <h3 class="minititulo">3) Operativas típicas con Correos Pay</h3>
-
-      <div class="bloque b-texto">
-        <h4>📘 Texto literal (síntesis normativa)</h4>
-        <blockquote class="cita">
-          Correos Pay permite <u>ordenes de ingreso en cuenta (OIC)</u>, <u>pagos de recibos/facturas</u> y <u>envíos a prisiones</u> mediante abono en cuentas autorizadas.
-          <footer>Síntesis del temario (bloque Línea Financiera)</footer>
-        </blockquote>
-      </div>
-
-      <div class="bloque b-explica">
-        <h4>🎤 Versión entendible</h4>
-        <ol class="checks">
-          <li><strong>OIC</strong>: llevás el dinero a la oficina y lo ingresamos en la <em>cuenta</em> que indicás.</li>
-          <li><strong>Pago de recibos</strong>: traés el documento (o el código) y lo abonás allí mismo.</li>
-          <li><strong>Prisiones</strong>: ingresás fondos a la cuenta del centro para un interno (solo cuentas autorizadas).</li>
-        </ol>
       </div>
 
       <div class="bloque b-ejemplo">
         <h4>🎯 En la vida real</h4>
         <div class="ejemplo">
           <ul style="margin:0;padding-left:18px">
-            <li><strong>Ana</strong> paga la tasa municipal de terrazas (recibo con código) en el mostrador con Correos Pay.</li>
-            <li><strong>Rubén</strong> ingresa 150 € vía OIC a la cuenta de su casero para la fianza.</li>
-            <li><strong>Bea</strong> hace un ingreso a prisiones para su hermano; la oficina lo tramita por la cuenta autorizada del centro penitenciario.</li>
+            <li><strong>Ayuntamiento</strong> de Villa Norte cobra el <em>IBI</em> y <em>multas</em> a través de Correos: el vecino trae el recibo y paga en la oficina.</li>
+            <li><strong>Compañía de agua</strong> acuerda Correos Pay para facturas vencidas: el cliente paga con el código de barras del recibo.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- ===== TEST ===== -->
+    <!-- 2) Modalidades: Básico vs Premium -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">2) Modalidades: Básico y Premium</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Correos Pay Básico</strong>: destinado a empresas y autónomos. El retorno de información se realiza en un archivo <em>.txt</em>. Los recibos no llevan código de barras y el pago se hará siempre en <strong>metálico</strong>.<br>
+          <strong>Correos Pay Premium</strong>: para empresas privadas que prestan servicios públicos, ayuntamientos u organismos oficiales. Incluye <strong>pago con tarjeta</strong>. El retorno se ajusta a los cuadernos bancarios <strong>57, 60 (1, 2 y 3) y 65</strong> y puede enviarse por correo electrónico. 
+          <footer>Temario — 4.8 Correos Pay</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          <strong>Básico</strong> = más sencillo: sólo efectivo y un fichero simple. <strong>Premium</strong> = más completo: admite tarjeta y entrega los datos en formatos bancarios estándar (cuadernos), incluso por email.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>Taller Pepe</strong> (autónomo) usa <em>Básico</em> para que sus clientes paguen reparaciones pendientes en Correos: sólo efectivo y recibe un <em>.txt</em> con los cobros.</li>
+            <li><strong>Consorcio de Transportes</strong> contrata <em>Premium</em>: los usuarios pagan con tarjeta en Correos y el Consorcio recibe los cuadernos 60 por email.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Operativa en oficina (código de barras e IRIS) -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">3) Cómo se cobra en la oficina</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Los recibos de entidades con Correos Pay llevan un <strong>código de barras</strong> con estructura determinada. Se introduce en el campo “Código de barras” mediante la <strong>pistola lectora</strong>. IRIS reconoce los datos necesarios y sólo falta introducir el <strong>importe</strong> para concluir la operación. Pueden existir <strong>rangos de fecha</strong> que impiden operaciones fuera de rango.
+          <footer>Temario — 4.8 Correos Pay</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          Escaneás el código, IRIS rellena el cliente, referencia, etc., y vos cargás el importe. Si el recibo está fuera de fecha, el sistema no te deja cobrar.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          María trae una <em>multa de tráfico</em>. Escaneás, IRIS completa los datos, ves que está en plazo y cobrás. A Pedro le vence ayer una <em>tasa</em>: IRIS bloquea el cobro por estar fuera de rango.
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) Ámbito, plazos y tarifas -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">4) Ámbito, plazos y tarifas</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          <strong>Ámbito:</strong> nacional. <br>
+          <strong>Plazo de entrega de información al cliente:</strong> 72 horas hábiles. <br>
+          <strong>Tarifas:</strong> Tarifa básica <u>2,95 €</u> · Tarifa premium <u>1,95 €</u>. El usuario que paga no soporta coste; los gastos los asume quien realiza el envío de cobro.
+          <footer>Temario — 4.8 Correos Pay</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          El que “contrata” Correos Pay (ayuntamiento, empresa) paga la tarifa del servicio. A las 72 h hábiles recibe el fichero/retorno con lo cobrado.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          El <strong>Ayuntamiento</strong> paga la tarifa Premium (1,95 €) y a las 72 h hábiles recibe el cuaderno 60 con todos los pagos de vecinos del fin de semana.
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) Qué NO es / Justificante -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">5) Ojo: el resguardo de Correos no cancela la deuda</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          El resguardo emitido por Correos <strong>acredita</strong> el envío de una cantidad de dinero a un destinatario, pero <strong>no es justificante</strong> de la cancelación de la deuda.
+          <footer>Temario — 4.8 Correos Pay</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          El papel de Correos demuestra que el pago se tramitó; la cancelación efectiva la confirma la <em>entidad emisora del recibo</em> en su propio sistema.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          Tras pagar una <em>tasa universitaria</em> en Correos, el alumno debe esperar a que la universidad impute el pago (puede tardar hasta 72 h hábiles). El resguardo de Correos no sirve como “matrícula pagada” hasta que la entidad lo refleje.
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) Alta de cliente (IRIS) -->
+    <section class="minileccion">
+      <span class="badge">Minilección</span>
+      <h3 class="minititulo">6) Alta de cliente en IRIS</h3>
+
+      <div class="bloque b-texto">
+        <h4>📘 Texto literal</h4>
+        <blockquote class="cita">
+          Para dar de alta al cliente (empresa u organismo público), el director de oficina accede en IRIS a <strong>Gestión → Correos Pay → Alta de cliente</strong>.
+          <footer>Temario — 4.8 Correos Pay</footer>
+        </blockquote>
+      </div>
+
+      <div class="bloque b-explica">
+        <h4>🎤 Versión entendible</h4>
+        <div>
+          El alta la hace la dirección de la oficina desde el menú de gestión, dejando listo el acuerdo para empezar a cobrar recibos.
+        </div>
+      </div>
+
+      <div class="bloque b-ejemplo">
+        <h4>🎯 En la vida real</h4>
+        <div class="ejemplo">
+          La <strong>Mancomunidad Comarcal</strong> firma el acuerdo; la directora entra en IRIS por la ruta indicada, registra los datos y, tras validación, ya puede empezar a admitirse el cobro en mostrador.
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST -->
     <section class="minileccion">
       <span class="badge">Mini test</span>
-      <h3 class="minititulo">Quiz de repaso — Correos Pay</h3>
+      <h3 class="minititulo">Quiz — Correos Pay</h3>
 
       <div class="test" data-test-id="a27">
         <div class="titulo-test">🧪 Ponete a prueba</div>
 
         <div class="pregunta" data-question-id="q1">
-          <h5>1) Correos Pay (antes Tenvío) se usa, entre otras cosas, para…</h5>
+          <h5>1) Correos Pay permite…</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Es la plataforma para OIC."><span>Ordenes de ingreso en cuenta (OIC)</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-explain="Eso es Western Union."><span>Transferencias WU a 200 países</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q1" data-explain="No es su función."><span>Envío de paquetes internacionales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Enviar paquetes internacionales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1" data-correct="true" data-explain="Es un servicio de cobros en ventanilla para terceros."><span>Cobrar recibos de terceros en oficinas de Correos</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q1"><span>Emitir certificados digitales</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
         <div class="pregunta" data-question-id="q2">
-          <h5>2) ¿Qué afirmación es correcta sobre el <em>pago</em> en Correos Pay?</h5>
+          <h5>2) El retorno de información se entrega en…</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Premium habilita tarjeta en mostrador."><span>Por regla general se paga en efectivo; con Correos Pay Premium se puede pagar con tarjeta</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="No es la norma general."><span>Siempre se exige tarjeta, nunca efectivo</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q2" data-explain="En ventanilla se puede."><span>Solo admite transferencia bancaria previa</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>24 horas naturales</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2" data-correct="true" data-explain="Plazo del temario."><span>72 horas hábiles</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q2"><span>7 días hábiles</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
         <div class="pregunta" data-question-id="q3">
-          <h5>3) Los ingresos para internos en centros penitenciarios se tramitan…</h5>
+          <h5>3) En la modalidad <em>Básico</em>…</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Así lo establece el temario."><span>Mediante Correos Pay a la cuenta autorizada del centro</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="No existe esa opción."><span>Con cheque al portador entregado al cartero</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q3" data-explain="No es el canal indicado."><span>Con un giro IFS internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3" data-correct="true" data-explain="Tal como indica el temario."><span>Se paga sólo en metálico y el retorno es un archivo .txt</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>Se admite tarjeta y se envían cuadernos 60</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q3"><span>Siempre lleva código de barras</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
         </div>
 
         <div class="pregunta" data-question-id="q4">
-          <h5>4) Elegí el caso que <em>sí</em> corresponde a Correos Pay</h5>
+          <h5>4) ¿Qué cuadernos bancarios aparecen en <em>Premium</em>?</h5>
           <ul class="opciones">
-            <li><label class="opcion"><input type="radio" name="q4" data-explain="Eso es paquetería."><span>Enviar un paquete a Francia</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="Pago de recibos/facturas es propio de Correos Pay."><span>Pagar un recibo del ayuntamiento presentado en la oficina</span></label></li>
-            <li><label class="opcion"><input type="radio" name="q4" data-explain="Es otro producto financiero (WU)."><span>Enviar dinero en minutos a un familiar en Perú</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>19 y 34</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4" data-correct="true" data-explain="57, 60 (1, 2 y 3) y 65."><span>57, 60 (1, 2 y 3) y 65</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q4"><span>320 y 340</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q5">
+          <h5>5) El código de barras del recibo se introduce…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q5"><span>Escribiéndolo a mano</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5" data-correct="true" data-explain="Siempre con pistola lectora."><span>Con pistola lectora en el campo “Código de barras”</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q5"><span>Fotografiando el recibo</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q6">
+          <h5>6) El resguardo de Correos…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q6"><span>Es justificante de cancelación de la deuda</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6" data-correct="true" data-explain="Acredita el envío del dinero, no la baja de la deuda."><span>Acredita el envío de dinero, no la cancelación</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q6"><span>No tiene ninguna validez</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q7">
+          <h5>7) ¿Quién paga la tarifa del servicio?</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q7"><span>La persona que paga el recibo en ventanilla</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7" data-correct="true" data-explain="Según el temario, los gastos los asume quien realiza el cobro (cliente de Correos Pay)."><span>La entidad/empresa que contrata Correos Pay</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q7"><span>Nadie, es gratuito</span></label></li>
+          </ul>
+          <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
+          <div class="feedback ok"></div><div class="feedback ko"></div>
+        </div>
+
+        <div class="pregunta" data-question-id="q8">
+          <h5>8) El ámbito de Correos Pay es…</h5>
+          <ul class="opciones">
+            <li><label class="opcion"><input type="radio" name="q8" data-correct="true" data-explain="Ámbito nacional."><span>Nacional (España)</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8"><span>Internacional</span></label></li>
+            <li><label class="opcion"><input type="radio" name="q8"><span>Sólo Islas</span></label></li>
           </ul>
           <div class="acciones"><button class="btn btn-primario" data-action="comprobar" disabled>Comprobar</button><button class="btn btn-secundario" data-action="reset">Limpiar</button></div>
           <div class="feedback ok"></div><div class="feedback ko"></div>
@@ -245,11 +362,11 @@
     </section>
   </div>
 
-  <!-- Siguiente lección -->
-  <a class="boton-siguiente" href="leccion-a28.html" rel="next">Siguiente: A28 ➜</a>
+  <!-- Botón siguiente -->
+  <a class="boton-siguiente" href="leccion-a28.html" rel="next">Siguiente ➜</a>
 
 <script>
-/* Motor mini-test (igual que en las otras lecciones) */
+/* Motor mini-test (igual al de otras lecciones) */
 (function(){
   function init(){
     document.querySelectorAll('.pregunta').forEach(function(p){
