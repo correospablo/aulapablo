@@ -12,7 +12,7 @@
     --c-explica:#22d3ee;  /* cian (explicación) */
     --c-ejemplo:#f59e0b;  /* ámbar (ejemplo) */
     --c-test:#3b82f6;     /* azul intenso (test) */
-    --bg-legal:#f5f3ff;   --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
+    --bg-legal:#f5f3ff;  --bg-explica:#ecfeff; --bg-ejemplo:#fffbeb; --bg-test:#eff6ff;
   }
   *{box-sizing:border-box}
   body { font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif; margin:0; padding:16px; background:#f7f7f7; color:#222; }
@@ -64,6 +64,12 @@
   .explicacion { font-size:14px; color:#444; margin-top:4px }
   .opcion input:focus-visible { outline: 2px solid #1453a6; outline-offset: 2px }
 
+  /* Bloque de SÍNTESIS */
+  .b-sintesis{ background:#eefbf3; border-color:#c7f0d8; border-left:6px solid #16a34a }
+  .b-sintesis h4{ color:#0f7a39 }
+  .b-sintesis ul{ margin:8px 0 0 18px }
+  .b-sintesis .sub{ font-weight:700; margin-top:10px }
+
   /* Botón siguiente */
   .boton-siguiente {
     position: fixed; right: 16px; bottom: 16px; background: #28a745; color: #ffffff;
@@ -73,7 +79,7 @@
   .boton-siguiente:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(40,167,69,0.33) }
   .boton-siguiente:active { transform: translateY(0) }
 
-  /* ===== SKIN "tema-azul" (como el ejemplo que te gustó) ===== */
+  /* ===== SKIN "tema-azul" ===== */
   body.tema-azul .minititulo{
     display:block; margin:0 0 14px; padding:16px 18px;
     background:#d6eaf8; color:#1f618d; border-left:8px solid #1f618d;
@@ -82,27 +88,25 @@
   body.tema-azul .b-texto{background:#ebf5fb; border-color:#d6eaf8; border-left:6px solid #2e86c1}
   body.tema-azul .b-texto h4{color:#2e86c1}
   body.tema-azul blockquote.cita{border-left:4px solid #2e86c1; background:#fff}
-
   body.tema-azul .b-explica{background:#f5eef8; border-color:#ead1f3; border-left:6px solid #af7ac5}
   body.tema-azul .b-explica h4{color:#8e44ad}
-
   body.tema-azul .b-ejemplo{background:#fae5d3; border-color:#f7d7bd; border-left:6px solid #d35400}
   body.tema-azul .b-ejemplo h4{color:#ca6f1e}
   body.tema-azul .ejemplo{background:#fff8ef; border-color:#f7d7bd}
-
   body.tema-azul .test{background:#f4f6f7; border:1px solid #cfe6df; border-left:6px solid #117a65; border-radius:12px}
   body.tema-azul .test .titulo-test{color:#117a65}
   body.tema-azul .opcion.correcta{background:#eafaf1; border-color:#c8f3da}
   body.tema-azul .opcion.incorrecta{background:#fdecea; border-color:#f5c6cb}
-/* === Breadcrumb / barra superior === */
-.breadcrumb{
-  max-width:980px;margin:8px auto 18px;padding:10px 12px;
-  background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
-  display:flex;gap:8px;align-items:center;font-size:14px
-}
-.breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
-.breadcrumb a:hover{text-decoration:underline}
-.breadcrumb .sep{color:#6b7280}
+
+  /* === Breadcrumb / barra superior === */
+  .breadcrumb{
+    max-width:980px;margin:8px auto 18px;padding:10px 12px;
+    background:#e6f2ff;border:1px solid #cde4ff;border-radius:10px;
+    display:flex;gap:8px;align-items:center;font-size:14px
+  }
+  .breadcrumb a{color:#1453a6;text-decoration:none;font-weight:600}
+  .breadcrumb a:hover{text-decoration:underline}
+  .breadcrumb .sep{color:#6b7280}
 </style>
 </head>
 
@@ -201,6 +205,47 @@
           <div class="feedback ko"></div>
         </div>
       </div>
+
+      <!-- ======= SÍNTESIS + CIERRE ======= -->
+      <div class="bloque b-sintesis" id="sintesis">
+        <h4>📌 Síntesis del día (modo analista)</h4>
+
+        <p><strong>Síntesis global (≤5 líneas):</strong><br>
+        La sesión introduce el marco del <em>Servicio Postal Universal</em> (SPU) y la Ley 43/2010 (art. 1.3) y, sobre todo, fija la
+        distinción clave: <strong>producto</strong> (tipo de envío) vs. <strong>servicio</strong> (prestación añadida que aporta garantías o velocidad).
+        Identificar esto rápido evita trampas de test. El uso del <em>texto literal</em> es estratégico porque suele caer tal cual.</p>
+
+        <div class="sub">Puntos esenciales (5–7):</div>
+        <ul>
+          <li>Correos presta el SPU en España. Base legal: Ley 43/2010, art. 1.3.</li>
+          <li><strong>Producto</strong> = carta, postal, paquete, notificación… el envío en sí.</li>
+          <li><strong>Servicio</strong> = certificado, urgente, aviso de recibo, reembolso, valor declarado, etc.</li>
+          <li>Los test pueden reproducir definiciones literales: conviene memorizar fórmulas del temario.</li>
+          <li>Diferenciar bien P/S evita confundir “urgente” (servicio) con un producto.</li>
+          <li>Los ejemplos cotidianos ayudan a fijar la distinción y a pensar casuísticas del examen.</li>
+          <li>PEE (prueba de entrega electrónica) puede añadirse como servicio cuando proceda.</li>
+        </ul>
+
+        <div class="sub">Conclusiones clave (3):</div>
+        <ul>
+          <li>Dominar <strong>producto vs. servicio</strong> es la base operativa de todo el bloque A.</li>
+          <li>La <strong>ley</strong> delimita el alcance del SPU y lo que te pueden preguntar.</li>
+          <li>El <strong>texto literal</strong> es un atajo de puntos en test si lo tenés fresco.</li>
+        </ul>
+
+        <div class="sub">Acciones concretas (3):</div>
+        <ul>
+          <li>Memorizá la definición corta: <em>Producto = envío / Servicio = prestación añadida</em>.</li>
+          <li>Subrayá en tu temario la Ley 43/2010, art. 1.3, y hacé una ficha de 1/4 de hoja.</li>
+          <li>Practicá 5 casos reales (de tu vida) y clasificá qué es producto y qué servicio.</li>
+        </ul>
+
+        <p class="sub">Cierre</p>
+        <p>Si diferenciás esto con ojos cerrados, el resto del tema es cuesta abajo. Lo único que pesa es el cartero,
+        y porque lleva la mochila 😏.</p>
+      </div>
+      <!-- ======= FIN SÍNTESIS ======= -->
+
     </section>
   </div>
 
