@@ -48,8 +48,8 @@
   .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
 
   /* Test */
-  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
-  .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
+  .test{margin-top:16px;padding:12px;background:#f4f6f7;border:1px solid #bfdbfe;border-radius:12px;border-left:6px solid #117a65}
+  .test .titulo-test{font-weight:700;color:#117a65;margin:0 0 8px}
   .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
   .pregunta h5{margin:0 0 8px;font-size:16px}
   .opciones{list-style:none;margin:0;padding:0}
@@ -79,6 +79,12 @@
   body.tema-azul .ejemplo{background:#fff8ef;border-color:#f7d7bd}
   body.tema-azul .test{background:#f4f6f7;border-left:6px solid #117a65}
   body.tema-azul .test .titulo-test{color:#117a65}
+
+  /* Bloque de SÍNTESIS (igual que en A7–A10) */
+  .b-sintesis{background:#eefbf3;border:1px solid #c7f0d8;border-left:6px solid #16a34a;border-radius:10px;padding:12px;margin:18px 0}
+  .b-sintesis h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#0f7a39}
+  .b-sintesis .sub{font-weight:700;margin-top:10px}
+  .b-sintesis ul{margin:8px 0 0 18px}
 
   /* Botón siguiente */
   .boton-siguiente{
@@ -276,10 +282,50 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== SÍNTESIS + CIERRE ===== -->
+    <section class="bloque b-sintesis" id="sintesis">
+      <h4>📌 Síntesis del día (modo analista)</h4>
+
+      <p><strong>Síntesis global (≤5 líneas):</strong><br>
+        Las <strong>valijas</strong> son un servicio <strong>con contrato</strong> para mover internos en <strong>horario fijo</strong> con <strong>bolsa homologada</strong> y <strong>precinto</strong>.  
+        Precintos clientes: <strong>amarillo</strong> (central→delegaciones) y <strong>rojo</strong> (delegaciones→central).  
+        Interno Correos: <strong>verde</strong> (hacia Sede Central) / <strong>azul</strong> (sale de Sede Central) y <strong>bolsas rojas</strong> para SS.RR.  
+        Límite <strong>20 kg</strong>, zonas <strong>Z1–Z4</strong>, reparto en <strong>1 día hábil</strong> y facturación en <em>pospago/diferido</em>.
+      </p>
+
+      <div class="sub">Puntos esenciales (5–7):</div>
+      <ul>
+        <li><strong>Unitoque/Bitoque</strong> según si el intercambio es único o en dos momentos.</li>
+        <li><strong>Embalaje</strong>: bolsa con cremallera precintable y ventana para etiqueta.</li>
+        <li><strong>Colores</strong> clientes: amarillo ida / rojo vuelta.</li>
+        <li><strong>Colores internos</strong>: verde llega a Central / azul sale de Central; SS.RR. usan bolsa roja.</li>
+        <li><strong>Peso</strong> máx. 20 kg; <strong>plazo</strong> objetivo 1 día hábil en horario pactado.</li>
+        <li><strong>Zonas</strong> Z1–Z4 (local, península, CEM, Canarias) y pagos empresariales.</li>
+      </ul>
+
+      <div class="sub">Conclusiones clave (3):</div>
+      <ul>
+        <li>Es el “<strong>shuttle</strong>” corporativo: programado, trazable y sellado.</li>
+        <li>Los <strong>colores</strong> preguntan mucho: diferenciá <em>clientes</em> (amarillo/rojo) de <em>interno Correos</em> (verde/azul/rojo SS.RR.).</li>
+        <li>Sin <strong>bolsa autorizada</strong> ni <strong>contrato</strong> → no es valija.</li>
+      </ul>
+
+      <div class="sub">Acciones concretas (3):</div>
+      <ul>
+        <li>Aprendé la mnemotecnia: <em>Amarillo sale / Rojo vuelve</em>; <em>Verde llega / Azul sale</em>.</li>
+        <li>Repasá 4 rutas y asigná la zona correcta (Z1–Z4).</li>
+        <li>Check-list de contrato: toques, horarios, previsión de precintos (6 meses) y tope de 20 kg.</li>
+      </ul>
+
+      <p class="sub">Cierre</p>
+      <p>Valijas = logística interna sin drama: <strong>horario fijo</strong>, <strong>control</strong> y <strong>colores claros</strong>. 😉</p>
+    </section>
+    <!-- ===== FIN SÍNTESIS ===== -->
+
   </div>
 
  <a class="boton-siguiente" href="leccion-a12.html" rel="next">Siguiente ➜</a>
-
 
 <script>
 (function(){
