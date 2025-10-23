@@ -48,7 +48,7 @@
   .ejemplo{background:#fff7e6;border:1px solid #ffe6a6;border-radius:10px;padding:12px}
 
   /* Test */
-  .test{margin-top:16px;padding:12px;background:var(--bg-test);border:1px solid #bfdbfe;border-radius:12px}
+  .test{margin-top:16px;padding:12px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px}
   .test .titulo-test{font-weight:700;color:#1d4ed8;margin:0 0 8px}
   .pregunta{margin:14px 0;padding:12px;background:#fff;border:1px solid #e5e7eb;border-radius:10px}
   .pregunta h5{margin:0 0 8px;font-size:16px}
@@ -67,6 +67,7 @@
   .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
   .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
   .explicacion{font-size:14px;color:#444}
+  .opcion input:focus-visible{outline:2px solid #1453a6;outline-offset:2px}
 
   /* Skin azul */
   body.tema-azul .minititulo{
@@ -82,6 +83,12 @@
   body.tema-azul .ejemplo{background:#fff8ef;border-color:#f7d7bd}
   body.tema-azul .test{background:#f4f6f7;border-left:6px solid #117a65}
   body.tema-azul .test .titulo-test{color:#117a65}
+
+  /* Bloque de SÍNTESIS (igual estilo que A7–A9) */
+  .b-sintesis{background:#eefbf3;border:1px solid #c7f0d8;border-left:6px solid #16a34a;border-radius:10px;padding:12px;margin:18px 0}
+  .b-sintesis h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#0f7a39}
+  .b-sintesis .sub{font-weight:700;margin-top:10px}
+  .b-sintesis ul{margin:8px 0 0 18px}
 
   /* Botón siguiente */
   .boton-siguiente{
@@ -159,7 +166,6 @@
         </div>
       </div>
 
-      <!-- NUEVO: casos de la vida real para el punto 2 -->
       <div class="bloque b-ejemplo">
         <h4>🧪 En la vida real</h4>
         <div class="ejemplo">
@@ -192,7 +198,6 @@
         </blockquote>
       </div>
 
-      <!-- NUEVO: versión entendible punto 3 -->
       <div class="bloque b-explica">
         <h4>🗣️ Versión entendible</h4>
         <div>
@@ -238,7 +243,6 @@
         </blockquote>
       </div>
 
-      <!-- NUEVO: versión entendible punto 4 -->
       <div class="bloque b-explica">
         <h4>🗣️ Versión entendible</h4>
         <div>
@@ -326,6 +330,47 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== SÍNTESIS + CIERRE ===== -->
+    <section class="bloque b-sintesis" id="sintesis">
+      <h4>📌 Síntesis del día (modo analista)</h4>
+
+      <p><strong>Síntesis global (≤5 líneas):</strong><br>
+        Las <strong>valijas</strong> son un servicio <strong>con contrato</strong> para mover documentos/mercancías entre sedes en <strong>horario fijo</strong>, usando <strong>bolsa autorizada</strong> con precinto hasta <strong>20 kg</strong>.  
+        Precintos para clientes: <strong>amarillo</strong> (central→delegaciones) y <strong>rojo</strong> (delegaciones→central).  
+        Zonas: Z1 provincial, Z2 peninsular, Z3 Baleares/Ceuta/Melilla y Z4 Canarias.  
+        Facturación empresarial con <strong>pospago</strong> o <strong>pago diferido</strong>.
+      </p>
+
+      <div class="sub">Puntos esenciales (5–7):</div>
+      <ul>
+        <li><strong>Contrato y trazabilidad</strong> con horario pactado (unitoque/bitoque).</li>
+        <li><strong>Embalaje</strong>: bolsa homologada, cremallera precintable, ventana para etiqueta.</li>
+        <li><strong>Peso máximo</strong> 20 kg; plazos objetivo 1 día hábil.</li>
+        <li><strong>Colores clientes</strong>: amarillo ida / rojo vuelta.</li>
+        <li><strong>Zonas</strong>: Z1–Z4 con lógicas por destino y mes; en Z3/Z4 1 kg inicial + kg o fracción.</li>
+        <li><strong>Pagos</strong>: pospago y diferido según contrato.</li>
+      </ul>
+
+      <div class="sub">Conclusiones clave (3):</div>
+      <ul>
+        <li>Es el “<strong>shuttle</strong>” corporativo: rápido, programado y sellado.</li>
+        <li>Color del precinto = <strong>sentido</strong> del flujo; no confundir con los colores <em>internos</em> de Correos (verde/azul/rojo SS.RR.).</li>
+        <li>La <strong>bolsa autorizada</strong> y el <strong>tope 20 kg</strong> son preguntas clásicas de test.</li>
+      </ul>
+
+      <div class="sub">Acciones concretas (3):</div>
+      <ul>
+        <li>Memorizar mnemotecnia: <em>Amarillo=Sale de central · Rojo=Regresa a central</em>.</li>
+        <li>Practicar 4 ejemplos de zonas (Z1→Z4) hasta que salgan automáticos.</li>
+        <li>Chequear contratos: ¿unitoque o bitoque? ¿horarios y precintos suficientes 6 meses?</li>
+      </ul>
+
+      <p class="sub">Cierre</p>
+      <p>Para empresas, la valija es un carril propio: <strong>puntual</strong>, <strong>sellada</strong> y <strong>a medida</strong>. 😉</p>
+    </section>
+    <!-- ===== FIN SÍNTESIS ===== -->
+
   </div>
 
   <a class="boton-siguiente" href="repaso-a.html" aria-label="Ir al repaso del Bloque A">
