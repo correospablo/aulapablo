@@ -62,7 +62,13 @@
   .feedback{margin-top:10px;padding:10px;border-radius:8px;display:none}
   .ok{background:#ecfdf3;border:1px solid #bbf7d0;color:#065f46}
   .ko{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
-  .explicacion{font-size:14px;color:#444;margin-top:4px}
+  .explicacion{font-size:14px;color:#444}
+
+  /* Síntesis + Cierre */
+  .b-sintesis{background:#eefbf3;border:1px solid #c7f0d8;border-left:6px solid #16a34a;border-radius:10px;padding:12px;margin:18px 0}
+  .b-sintesis h4{margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:#0f7a39}
+  .b-sintesis .sub{font-weight:700;margin-top:10px}
+  .b-sintesis ul{margin:8px 0 0 18px}
 
   /* Botón siguiente */
   .boton-siguiente{
@@ -265,6 +271,46 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== SÍNTESIS + CIERRE ===== -->
+    <section class="bloque b-sintesis" id="sintesis">
+      <h4>📌 Síntesis del día (modo analista)</h4>
+
+      <p><strong>Síntesis global (≤5 líneas):</strong><br>
+        <strong>SICER</strong> es el circuito masivo e informatizado de Correos (admisión <strong>solo</strong> en Centros de Admisión Masiva) para ordinarios con retorno (<strong>OB</strong>), 
+        <strong>registrados</strong> (C1/C2/C5/EL/TB-2) y <strong>notificaciones</strong> (NT, 90…, NS, NE, ND, N3, NC, NF, NJ). 
+        Estandariza eventos, devoluciones y reglas de intento/lista. Identificación por <strong>código de 23</strong> caracteres: [Producto][Cliente][Envío][Control].
+      </p>
+
+      <div class="sub">Puntos esenciales (5–7):</div>
+      <ul>
+        <li><strong>Admisión:</strong> Centros de Admisión Masiva (no oficinas).</li>
+        <li><strong>OB</strong> = ordinario con devolución registrada y centralizada.</li>
+        <li><strong>C1/C2/C5</strong> = certificados con reglas <em>1-15</em>, <em>2-7</em>, <em>2-15</em>.</li>
+        <li><strong>EL 1-0-B</strong> = un intento (tarde) → si falla, <em>buzón</em>.</li>
+        <li><strong>TB-2</strong> = 2 intentos → si fallan, <em>retiro en sucursal</em>.</li>
+        <li><strong>NE/ND</strong> permiten <em>depósito en buzón</em>; <strong>NS</strong> = AR digital.</li>
+        <li><strong>90… AEAT</strong> sin reexpedición y con límites estrictos; <strong>judiciales</strong> (NC/NF/NJ) exigen <em>60 min</em> entre intentos.</li>
+      </ul>
+
+      <div class="sub">Conclusiones clave (3):</div>
+      <ul>
+        <li>Identificá el <strong>código inicial</strong> (OB/C1/NT/90…) para saber reglas de juego.</li>
+        <li>Verificá si aplica <strong>lista</strong>, <strong>depósito en buzón</strong> o <strong>tercer intento</strong> (N3/TB-2).</li>
+        <li>Todo SICER deja <strong>trazabilidad</strong> y retorno de información al cliente.</li>
+      </ul>
+
+      <div class="sub">Acciones concretas (3):</div>
+      <ul>
+        <li>Derivá las remesas SICER a <strong>Admisión Masiva</strong> y comprobá el formato de etiquetas.</li>
+        <li>Para campañas sin firma pero con control de devueltos, proponé <strong>OB</strong>.</li>
+        <li>Para notificaciones exigentes, combiná con <strong>PEE</strong> y acordá reglas (N3, NE, AR digital).</li>
+      </ul>
+
+      <p class="sub">Cierre</p>
+      <p>SICER = <strong>volumen + control</strong>. Si distinguís <em>OB / C1–C5–EL–TB / N*</em> y su código de barras, tenés el 90% del examen en el bolsillo. ✅</p>
+    </section>
+    <!-- ===== FIN SÍNTESIS ===== -->
 
     <!-- ===== TEST ===== -->
     <section class="minileccion">
